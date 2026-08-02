@@ -31,3 +31,10 @@ The `<video>` element with `autoPlay loop muted playsInline` works correctly in 
 
 ## Port
 Always run on port 5000 (`next dev -p 5000`) for Replit webview.
+
+## Deployment Lockfile
+When deploying this imported project outside Replit, the lockfile must not contain Replit Package Firewall tarball URLs. Keep the complete npm lockfile metadata, including Next.js optional SWC packages, while using public npm registry URLs.
+
+**Why:** Vercel cannot resolve Replit-only package hosts, and regenerating the lockfile with incomplete optional metadata makes Next.js attempt a failing SWC lockfile patch.
+
+**How to apply:** If this issue returns, replace only the internal resolved-host prefix with `https://registry.npmjs.org/`, preserve the existing lockfile structure, use `npm ci` in Vercel, and verify `npm ci` followed by `npm run build`.
