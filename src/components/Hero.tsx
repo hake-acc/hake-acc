@@ -122,7 +122,7 @@ export default function Hero({ data, contact }: HeroProps) {
         </div>
 
         {/* CTAs */}
-        <div className="anim-enter anim-enter-d5 flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+        <div className="anim-enter anim-enter-d5 flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
           <motion.button
             onClick={scrollToWork}
             className="group relative px-8 py-3.5 bg-accent text-background text-sm font-bold tracking-widest uppercase rounded overflow-hidden transition-all duration-300"
@@ -144,7 +144,7 @@ export default function Hero({ data, contact }: HeroProps) {
         </div>
 
         {/* Social links */}
-        <div className="anim-enter anim-enter-d6 flex items-center justify-center gap-4">
+        <div className="anim-enter anim-enter-d6 flex items-center justify-center gap-4 pb-32 sm:pb-36">
           {socialLinks.map(({ icon: Icon, label, key }) => (
             <motion.a
               key={key}
@@ -163,7 +163,7 @@ export default function Hero({ data, contact }: HeroProps) {
       </div>
 
       {/* Scroll to Explore indicator */}
-      <div className="anim-enter anim-enter-d7 absolute inset-x-0 bottom-8 z-10 flex justify-center px-4 sm:bottom-10">
+      <div className="anim-enter anim-enter-d7 absolute inset-x-0 bottom-5 z-10 flex justify-center px-4 sm:bottom-8">
         <button
           onClick={scrollToAbout}
           className="flex flex-col items-center gap-3 text-text-muted hover:text-white transition-colors duration-300 group"
