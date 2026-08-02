@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown, Github, Twitter, Linkedin } from "lucide-react";
 
@@ -27,6 +27,25 @@ const socialLinks = [
 
 export default function Hero({ data, contact }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Force-play in environments where autoPlay alone is insufficient (e.g. Replit iframe proxy)
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    const tryPlay = () => {
+      video.play().catch(() => {
+        // Retry once on user gesture if policy blocks it
+      });
+    };
+    if (video.readyState >= 2) {
+      tryPlay();
+    } else {
+      video.addEventListener("canplay", tryPlay, { once: true });
+    }
+    return () => video.removeEventListener("canplay", tryPlay);
+  }, []);
 
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 600], [0, 120]);
@@ -49,6 +68,7 @@ export default function Hero({ data, contact }: HeroProps) {
       {/* Background video — parallax via Framer (layout only, not visibility) */}
       <motion.div className="absolute inset-0 z-0" style={{ y }}>
         <video
+          ref={videoRef}
           className="w-full h-full object-cover"
           src="/assets/pixelart-bg.mp4"
           autoPlay
@@ -58,12 +78,13 @@ export default function Hero({ data, contact }: HeroProps) {
           preload="auto"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background/92" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/30 via-transparent to-background/30" />
+        {/* Darkening overlays — kept light so the video breathes through */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/55 via-background/10 to-background/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/20 via-transparent to-background/20" />
         <div className="absolute inset-0" style={{
-          background: "radial-gradient(ellipse at center, transparent 30%, rgba(13,15,20,0.78) 100%)"
+          background: "radial-gradient(ellipse at center, transparent 45%, rgba(13,15,20,0.55) 100%)"
         }} />
-        <div className="absolute inset-0 scan-lines opacity-50" />
+        <div className="absolute inset-0 scan-lines opacity-30" />
       </motion.div>
 
       {/* All text uses CSS entrance animations — visible immediately from SSR */}
