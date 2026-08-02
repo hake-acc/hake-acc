@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type CSSProperties, type ComponentType } from "react";
 import { motion, useInView } from "framer-motion";
 import { Monitor, Server, Palette, Cloud } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -16,7 +16,7 @@ interface SkillsProps {
   data: Skill[];
 }
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const iconMap: Record<string, ComponentType<{ className?: string; style?: CSSProperties }>> = {
   monitor: Monitor,
   server: Server,
   palette: Palette,

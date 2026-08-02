@@ -196,7 +196,7 @@ export default function Hero({ data, contact }: HeroProps) {
       {/* Corner decorations */}
       <div className="anim-enter anim-enter-d7 absolute top-20 left-6 z-10 hidden lg:block">
         <div className="text-text-muted/30 text-xs font-mono space-y-1">
-          <div>// v1.0.0</div>
+          <div>{"// v1.0.0"}</div>
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 bg-success rounded-full animate-pulse" />
             <span>Available for hire</span>

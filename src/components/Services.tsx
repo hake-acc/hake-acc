@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, type CSSProperties, type ComponentType } from "react";
 import { motion, useInView } from "framer-motion";
 import { Sparkles, Layers, Gamepad2, Zap, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -15,7 +15,7 @@ interface ServicesProps {
   data: Service[];
 }
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const iconMap: Record<string, ComponentType<{ className?: string; style?: CSSProperties }>> = {
   sparkles: Sparkles,
   layers: Layers,
   "gamepad-2": Gamepad2,
