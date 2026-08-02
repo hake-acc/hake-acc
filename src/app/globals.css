@@ -186,6 +186,96 @@ body {
 .anim-enter-d7 { animation-delay: 0.52s; }
 .anim-nav      { opacity: 0; animation: enterSlideDown 0.45s cubic-bezier(0.22,1,0.36,1) 0.02s forwards; }
 
+/* Hero name celebration */
+.name-celebration-trigger {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  line-height: inherit;
+}
+
+.name-celebration-trigger:hover {
+  color: #ffffff;
+}
+
+.name-celebration-trigger:focus-visible {
+  outline-offset: 8px;
+}
+
+@keyframes pixelHeartPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 8px) scale(0.35) rotate(-8deg);
+  }
+  32% {
+    opacity: 1;
+    transform: translate(-50%, -10px) scale(1.18) rotate(4deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -28px) scale(0.92) rotate(-2deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -42px) scale(0.68) rotate(0);
+  }
+}
+
+@keyframes pixelBurst {
+  0% { opacity: 0; transform: scale(0.2) rotate(0deg); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.25) rotate(24deg); }
+}
+
+.name-heart-pop {
+  position: absolute;
+  left: 50%;
+  bottom: -0.05em;
+  pointer-events: none;
+  z-index: 10;
+  animation: pixelHeartPop 760ms cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
+}
+
+.name-heart-pixel {
+  display: block;
+  color: #ff3b4d;
+  font-family: monospace;
+  font-size: 0.38em;
+  line-height: 1;
+  text-shadow:
+    3px 0 #8e1426,
+    -3px 0 #8e1426,
+    0 3px #8e1426,
+    0 -3px #ff7a82,
+    0 0 14px rgba(255, 49, 70, 0.95);
+  image-rendering: pixelated;
+}
+
+.name-pop-burst {
+  position: absolute;
+  top: 44%;
+  width: 0.15em;
+  height: 0.15em;
+  background: #ff4d5f;
+  box-shadow:
+    0.3em -0.26em #ff9aa3,
+    -0.34em -0.12em #ff293d,
+    0.12em 0.28em #b51028,
+    -0.17em 0.27em #ff6875;
+  animation: pixelBurst 540ms ease-out forwards;
+}
+
+.name-pop-burst-left { left: -0.35em; }
+.name-pop-burst-right { right: -0.35em; animation-delay: 55ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .name-heart-pop,
+  .name-pop-burst {
+    animation-duration: 1ms;
+  }
+}
+
 /* Shimmer animation */
 @keyframes shimmer {
   0% { background-position: -200% 0; }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown, Github, Twitter, Linkedin } from "lucide-react";
 
@@ -28,6 +28,7 @@ const socialLinks = [
 export default function Hero({ data, contact }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [namePopKey, setNamePopKey] = useState(0);
 
   // Force-play in environments where autoPlay alone is insufficient (e.g. Replit iframe proxy)
   useEffect(() => {
@@ -56,6 +57,7 @@ export default function Hero({ data, contact }: HeroProps) {
   const scrollToAbout = () => {
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
   };
+  const celebrateName = () => setNamePopKey((key) => key + 1);
 
   return (
     <section
@@ -100,9 +102,22 @@ export default function Hero({ data, contact }: HeroProps) {
         {/* Name */}
         <div className="anim-enter anim-enter-d2 mb-6">
           <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-none">
-            <span className="block text-text-main" style={{ textShadow: "0 0 40px rgba(106,169,255,0.5)" }}>
-              {data.title.split(" ")[0]}
-            </span>
+            <button
+              type="button"
+              onClick={celebrateName}
+              className="name-celebration-trigger relative block mx-auto cursor-pointer text-text-main"
+              aria-label={`Celebrate ${data.title}`}
+              style={{ textShadow: "0 0 40px rgba(106,169,255,0.5)" }}
+            >
+              <span>{data.title.split(" ")[0]}</span>
+              {namePopKey > 0 && (
+                <span key={namePopKey} className="name-heart-pop" aria-hidden="true">
+                  <span className="name-heart-pixel">♥</span>
+                  <span className="name-pop-burst name-pop-burst-left" />
+                  <span className="name-pop-burst name-pop-burst-right" />
+                </span>
+              )}
+            </button>
             <span className="block gradient-text">{data.title.split(" ")[1]}</span>
           </h1>
         </div>
