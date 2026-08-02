@@ -49,7 +49,6 @@ export default function Hero({ data, contact }: HeroProps) {
 
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 600], [0, 120]);
-  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
 
   const scrollToWork = () => {
     document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
@@ -90,10 +89,7 @@ export default function Hero({ data, contact }: HeroProps) {
       </motion.div>
 
       {/* All text uses CSS entrance animations — visible immediately from SSR */}
-      <motion.div
-        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center"
-        style={{ opacity }}
-      >
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
         {/* Pre-title */}
         <div className="anim-enter anim-enter-d1 flex items-center justify-center gap-3 mb-6">
           <span className="h-px w-12 bg-accent/50" />
@@ -164,10 +160,10 @@ export default function Hero({ data, contact }: HeroProps) {
             </motion.a>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* Scroll to Explore indicator */}
-      <div className="anim-enter anim-enter-d7 absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+      <div className="anim-enter anim-enter-d7 absolute inset-x-0 bottom-8 z-10 flex justify-center px-4 sm:bottom-10">
         <button
           onClick={scrollToAbout}
           className="flex flex-col items-center gap-3 text-text-muted hover:text-white transition-colors duration-300 group"

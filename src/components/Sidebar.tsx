@@ -83,6 +83,7 @@ export default function Sidebar() {
               alt="Hake logo"
               width={64}
               height={64}
+              priority
               className="h-full w-full object-cover"
             />
           </div>
