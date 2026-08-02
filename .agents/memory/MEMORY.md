@@ -1,0 +1,1 @@
+- [Pixel Portfolio Setup](pixel-portfolio.md) — Next.js 14 App Router + Framer Motion portfolio; key hydration and animation gotchas documented.

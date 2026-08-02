@@ -1,0 +1,201 @@
+{
+  "hero": {
+    "title": "Alex Chen",
+    "tagline": "Creative Developer & Digital Craftsman",
+    "subtitle": "I build beautiful, immersive digital experiences at the intersection of engineering and art.",
+    "ctaLabel": "Explore My Work",
+    "ctaSecondary": "Download CV"
+  },
+  "about": {
+    "bio": "I'm a software engineer and creative developer with 6+ years of experience building immersive digital products. I believe software should feel as good as it looks — merging technical precision with artistic vision to create experiences that resonate. When I'm not pushing pixels, you'll find me composing chiptune music or exploring the wilderness with my camera.",
+    "facts": [
+      { "label": "Projects Shipped", "value": "40+" },
+      { "label": "Happy Clients", "value": "30+" },
+      { "label": "Years Experience", "value": "6+" },
+      { "label": "Open Source Stars", "value": "2.4k" }
+    ]
+  },
+  "projects": [
+    {
+      "id": "nebula-os",
+      "title": "Nebula OS",
+      "description": "A pixel-art-inspired browser-based operating system simulator with draggable windows, a functional file system, and retro terminal — all running in pure TypeScript.",
+      "longDescription": "Built from scratch without any OS framework, Nebula OS simulates a complete desktop environment in the browser. Features include a virtual file system, draggable/resizable windows, a pixel-art icon set, and an interactive terminal with 30+ commands.",
+      "tech": ["TypeScript", "Canvas API", "IndexedDB", "Web Workers"],
+      "demoUrl": "https://example.com/nebula-os",
+      "githubUrl": "https://github.com/example/nebula-os",
+      "featured": true,
+      "color": "#6AA9FF"
+    },
+    {
+      "id": "aurora-ui",
+      "title": "Aurora UI",
+      "description": "A design system library with 80+ hand-crafted components featuring aurora-inspired gradient animations, dark mode first, and full a11y compliance.",
+      "longDescription": "Aurora UI is a production-ready React component library with a distinctive aurora borealis aesthetic. Every component is built with accessibility-first principles, comprehensive Storybook documentation, and a zero-configuration dark mode.",
+      "tech": ["React", "TypeScript", "Storybook", "Radix UI", "CSS-in-JS"],
+      "demoUrl": "https://example.com/aurora-ui",
+      "githubUrl": "https://github.com/example/aurora-ui",
+      "featured": true,
+      "color": "#8B7CF6"
+    },
+    {
+      "id": "echo-analytics",
+      "title": "Echo Analytics",
+      "description": "Real-time user analytics dashboard with WebSocket live updates, interactive data visualizations, and AI-powered insight summaries.",
+      "longDescription": "Echo Analytics processes millions of events daily and presents them through a clean, responsive dashboard. The AI layer uses LLM-powered natural language summaries to make data accessible to non-technical stakeholders.",
+      "tech": ["Next.js", "D3.js", "WebSockets", "PostgreSQL", "OpenAI API"],
+      "demoUrl": "https://example.com/echo-analytics",
+      "githubUrl": "https://github.com/example/echo-analytics",
+      "featured": true,
+      "color": "#F4B860"
+    },
+    {
+      "id": "pixelcraft",
+      "title": "PixelCraft Editor",
+      "description": "A browser-based pixel art editor with layer support, animation frames, palette management, and one-click sprite sheet export.",
+      "longDescription": "PixelCraft is a full-featured pixel art creation tool built entirely in the browser. It supports multi-layer editing, frame-by-frame animation preview, custom palettes, and exports to PNG, GIF, and sprite sheet formats.",
+      "tech": ["Vue 3", "WebGL", "Canvas API", "IndexedDB"],
+      "demoUrl": "https://example.com/pixelcraft",
+      "githubUrl": "https://github.com/example/pixelcraft",
+      "featured": false,
+      "color": "#4ADE80"
+    },
+    {
+      "id": "soundscape",
+      "title": "Soundscape",
+      "description": "A procedural ambient music generator using the Web Audio API — create infinite, unique soundscapes with a drag-and-drop node editor.",
+      "longDescription": "Soundscape uses a visual node-based editor where users connect audio synthesis nodes to build complex generative music systems. Every session creates a unique, non-repeating ambient soundscape.",
+      "tech": ["React", "Web Audio API", "React Flow", "TypeScript"],
+      "demoUrl": "https://example.com/soundscape",
+      "githubUrl": "https://github.com/example/soundscape",
+      "featured": false,
+      "color": "#F87171"
+    },
+    {
+      "id": "terrain-gen",
+      "title": "Terrain Generator",
+      "description": "GPU-accelerated procedural terrain generation with real-time WebGL rendering, biome simulation, and exportable heightmaps.",
+      "longDescription": "Using noise algorithms and GPU shaders, this tool generates infinite, photorealistic terrain in real-time. Users can tweak dozens of parameters to control biome distribution, erosion patterns, and atmospheric effects.",
+      "tech": ["WebGL", "GLSL", "Three.js", "TypeScript"],
+      "demoUrl": "https://example.com/terrain-gen",
+      "githubUrl": "https://github.com/example/terrain-gen",
+      "featured": false,
+      "color": "#A7B0C0"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Frontend",
+      "icon": "monitor",
+      "level": 95,
+      "items": ["React", "Next.js", "TypeScript", "Vue 3", "Tailwind CSS", "Framer Motion"]
+    },
+    {
+      "category": "Backend",
+      "icon": "server",
+      "level": 82,
+      "items": ["Node.js", "Python", "PostgreSQL", "Redis", "GraphQL", "REST APIs"]
+    },
+    {
+      "category": "Creative",
+      "icon": "palette",
+      "level": 88,
+      "items": ["WebGL / GLSL", "Canvas API", "Three.js", "Pixel Art", "UI/UX Design", "Motion Design"]
+    },
+    {
+      "category": "DevOps",
+      "icon": "cloud",
+      "level": 75,
+      "items": ["Docker", "GitHub Actions", "Vercel", "AWS", "Terraform", "Monitoring"]
+    }
+  ],
+  "experience": [
+    {
+      "position": "Senior Creative Engineer",
+      "company": "Luminary Studios",
+      "date": "2022 – Present",
+      "type": "full-time",
+      "details": [
+        "Led a 5-person frontend guild delivering 3 AAA game marketing microsites",
+        "Built a real-time collaborative canvas tool used by 50k+ designers",
+        "Reduced core Web Vitals LCP by 62% through advanced rendering optimizations",
+        "Introduced WebGL shader-based animations that became the team's design language"
+      ]
+    },
+    {
+      "position": "Frontend Engineer II",
+      "company": "Forge Interactive",
+      "date": "2020 – 2022",
+      "type": "full-time",
+      "details": [
+        "Architected a component library adopted across 8 internal product teams",
+        "Developed a custom visual regression testing pipeline saving 20hr/sprint",
+        "Shipped an award-winning onboarding experience with 94% completion rate",
+        "Mentored 3 junior engineers through structured pairing sessions"
+      ]
+    },
+    {
+      "position": "Creative Developer",
+      "company": "Freelance",
+      "date": "2018 – 2020",
+      "type": "freelance",
+      "details": [
+        "Built 15+ custom portfolio & marketing sites for independent creators",
+        "Delivered interactive data visualizations for 4 research institutions",
+        "Created browser-based game prototypes for indie studios",
+        "Maintained a 5-star rating across 28 Upwork contracts"
+      ]
+    }
+  ],
+  "services": [
+    {
+      "title": "Creative Web Development",
+      "icon": "sparkles",
+      "description": "Cinematic, award-quality websites with custom animations, WebGL effects, and pixel-perfect implementation."
+    },
+    {
+      "title": "Design Systems",
+      "icon": "layers",
+      "description": "Scalable, accessible component libraries with comprehensive documentation and full design token support."
+    },
+    {
+      "title": "Interactive Experiences",
+      "icon": "gamepad-2",
+      "description": "Browser-based games, interactive data visualizations, generative art, and experimental interfaces."
+    },
+    {
+      "title": "Performance Optimization",
+      "icon": "zap",
+      "description": "Core Web Vitals audits, rendering optimization, bundle analysis, and progressive enhancement strategies."
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Alex delivered a portfolio site that genuinely stunned our hiring committee. The attention to detail, the animations, the performance — we'd never seen anything like it at that budget.",
+      "author": "Maya R.",
+      "role": "Engineering Director, Luminary Studios"
+    },
+    {
+      "quote": "Working with Alex transformed how we think about our digital presence. What we thought would be a simple website became a genuine piece of interactive art that tripled our inbound inquiries.",
+      "author": "Jordan K.",
+      "role": "Founder, Pixel Garden Agency"
+    },
+    {
+      "quote": "The component library Alex built for us is still the gold standard in our org two years later. Impeccably documented, endlessly flexible, and it just looks incredible.",
+      "author": "Sam T.",
+      "role": "Lead Designer, Forge Interactive"
+    },
+    {
+      "quote": "Alex has a rare ability to think in both code and design simultaneously. The interactive experience they built for our conference talk left the audience speechless.",
+      "author": "Dr. Priya V.",
+      "role": "Research Lead, DataVis Institute"
+    }
+  ],
+  "contact": {
+    "email": "alex@example.com",
+    "github": "https://github.com/alexchen",
+    "twitter": "https://twitter.com/alexchen",
+    "linkedin": "https://linkedin.com/in/alexchen",
+    "location": "San Francisco, CA"
+  }
+}
