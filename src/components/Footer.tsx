@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Twitter, Linkedin, Heart, Gamepad2, ArrowUp } from "lucide-react";
+import Image from "next/image";
+import { Github, Twitter, Linkedin, Heart, ArrowUp } from "lucide-react";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -36,8 +37,14 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 flex items-center justify-center bg-accent/20 border border-accent/30 rounded">
-                <Gamepad2 className="w-4 h-4 text-accent" />
+              <div className="w-8 h-8 overflow-hidden rounded border border-accent/30 bg-accent/20">
+                <Image
+                  src="/assets/hake-logo.png"
+                  alt="Hake logo"
+                  width={32}
+                  height={32}
+                  className="h-full w-full object-cover"
+                />
               </div>
               <span className="text-text-main font-bold tracking-wider" style={{ textShadow: "0 0 20px rgba(244,184,96,0.8)" }}>
                 HAKE.DEV

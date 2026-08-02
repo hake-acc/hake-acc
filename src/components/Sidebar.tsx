@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Home,
@@ -77,24 +78,13 @@ export default function Sidebar() {
               border: "1px solid rgba(106,169,255,0.15)",
             }}
           >
-            {/* Pixel robot avatar */}
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* Head */}
-              <rect x="10" y="8" width="20" height="16" rx="3" fill="#6AA9FF" fillOpacity="0.9" />
-              {/* Eyes */}
-              <rect x="14" y="13" width="4" height="4" rx="1" fill="#0d0f14" />
-              <rect x="22" y="13" width="4" height="4" rx="1" fill="#0d0f14" />
-              {/* Mouth */}
-              <rect x="15" y="20" width="10" height="2" rx="1" fill="#0d0f14" />
-              {/* Antenna */}
-              <rect x="19" y="4" width="2" height="4" rx="1" fill="#8B7CF6" />
-              <rect x="18" y="3" width="4" height="2" rx="1" fill="#8B7CF6" />
-              {/* Body */}
-              <rect x="12" y="26" width="16" height="10" rx="2" fill="#8B7CF6" fillOpacity="0.7" />
-              {/* Arms */}
-              <rect x="6" y="27" width="5" height="7" rx="2" fill="#8B7CF6" fillOpacity="0.5" />
-              <rect x="29" y="27" width="5" height="7" rx="2" fill="#8B7CF6" fillOpacity="0.5" />
-            </svg>
+            <Image
+              src="/assets/hake-logo.png"
+              alt="Hake logo"
+              width={64}
+              height={64}
+              className="h-full w-full object-cover"
+            />
           </div>
           {/* Online indicator */}
           <div className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-amber-400 rounded-full border-2 border-[#0d0f14]" />

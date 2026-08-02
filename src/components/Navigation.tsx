@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Gamepad2 } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -61,9 +62,14 @@ export default function Navigation() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="relative w-8 h-8 flex items-center justify-center">
-                <div className="absolute inset-0 bg-accent/20 rounded border border-accent/30 group-hover:bg-accent/30 transition-colors" />
-                <Gamepad2 className="w-4 h-4 text-accent relative z-10" />
+              <div className="relative w-8 h-8 overflow-hidden rounded border border-accent/30 bg-accent/20">
+                <Image
+                  src="/assets/hake-logo.png"
+                  alt="Hake logo"
+                  width={32}
+                  height={32}
+                  className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-110"
+                />
               </div>
               <span className="text-text-main font-bold text-sm tracking-wider hidden sm:block" style={{ textShadow: "0 0 20px rgba(244,184,96,0.8)" }}>
                 HAKE.DEV
