@@ -1,6 +1,6 @@
 import content from "@/data/content.json";
 import Hero from "@/components/Hero";
-import Navigation from "@/components/Navigation";
+import Sidebar from "@/components/Sidebar";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
@@ -34,8 +34,8 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Navigation />
-      <main id="main-content">
+      <Sidebar />
+      <main id="main-content" className="lg:pl-[220px]">
         <Hero data={content.hero} contact={content.contact} />
         <About data={content.about} />
         <SectionDivider color="#6AA9FF" />

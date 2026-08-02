@@ -164,19 +164,31 @@ export default function Hero({ data, contact }: HeroProps) {
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
-      <div className="anim-enter anim-enter-d7 absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+      {/* Scroll to Explore indicator */}
+      <div className="anim-enter anim-enter-d7 absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
         <button
           onClick={scrollToAbout}
-          className="flex flex-col items-center gap-2 text-text-muted hover:text-accent transition-colors"
-          aria-label="Scroll down"
+          className="flex flex-col items-center gap-3 text-text-muted hover:text-white transition-colors duration-300 group"
+          aria-label="Scroll to explore"
         >
-          <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
+          {/* Mouse icon */}
+          <div className="relative w-6 h-9 rounded-full border-2 border-white/40 group-hover:border-white/70 transition-colors duration-300 flex items-start justify-center pt-1.5">
+            <motion.div
+              className="w-1 h-2 bg-white/60 rounded-full group-hover:bg-white/90 transition-colors duration-300"
+              animate={{ y: [0, 6, 0], opacity: [1, 0.3, 1] }}
+              transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+            />
+          </div>
+          {/* Label */}
+          <span className="text-xs tracking-[0.18em] uppercase text-white/50 group-hover:text-white/80 transition-colors duration-300">
+            Scroll to explore
+          </span>
+          {/* Chevron */}
           <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+            animate={{ y: [0, 5, 0] }}
+            transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut", delay: 0.2 }}
           >
-            <ChevronDown className="w-5 h-5" />
+            <ChevronDown className="w-4 h-4 text-white/40 group-hover:text-white/70 transition-colors duration-300" />
           </motion.div>
         </button>
       </div>
