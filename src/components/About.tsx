@@ -77,7 +77,7 @@ export default function About({ data }: AboutProps) {
                   <User className="w-10 h-10 text-primary" />
                 </div>
                 <div className="text-center mb-6">
-                  <h3 className="text-xl font-bold text-text-main mb-1">Alex Chen</h3>
+                  <h3 className="text-xl font-bold text-text-main mb-1">Hake</h3>
                   <p className="text-accent text-sm tracking-wide">Creative Developer</p>
                 </div>
                 <div className="flex flex-wrap gap-3 justify-center">

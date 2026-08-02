@@ -146,9 +146,9 @@ export default function ContactForm({ data }: ContactProps) {
               <p className="text-xs text-accent tracking-widest uppercase mb-4">Find Me Online</p>
               <div className="space-y-3">
                 {[
-                  { icon: Github, label: "GitHub", url: data.github, sub: "@alexchen" },
-                  { icon: Twitter, label: "Twitter / X", url: data.twitter, sub: "@alexchen" },
-                  { icon: Linkedin, label: "LinkedIn", url: data.linkedin, sub: "linkedin.com/in/alexchen" },
+                  { icon: Github, label: "GitHub", url: data.github, sub: "@hake-acc" },
+                  { icon: Twitter, label: "Twitter / X", url: data.twitter, sub: "@hake_acc" },
+                  { icon: Linkedin, label: "LinkedIn", url: data.linkedin, sub: "linkedin.com/in/hake-acc" },
                 ].map(({ icon: Icon, label, url, sub }) => (
                   <a
                     key={label}

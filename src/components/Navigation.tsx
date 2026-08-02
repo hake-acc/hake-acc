@@ -66,7 +66,7 @@ export default function Navigation() {
                 <Gamepad2 className="w-4 h-4 text-accent relative z-10" />
               </div>
               <span className="text-text-main font-bold text-sm tracking-wider hidden sm:block" style={{ textShadow: "0 0 20px rgba(244,184,96,0.8)" }}>
-                ALEX.DEV
+                HAKE.DEV
               </span>
             </motion.a>
 

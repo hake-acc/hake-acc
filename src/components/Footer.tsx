@@ -13,9 +13,9 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { icon: Github, label: "GitHub", href: "https://github.com/alexchen" },
-  { icon: Twitter, label: "Twitter", href: "https://twitter.com/alexchen" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/alexchen" },
+  { icon: Github, label: "GitHub", href: "https://github.com/hake-acc" },
+  { icon: Twitter, label: "Twitter", href: "https://twitter.com/hake_acc" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/hake-acc" },
 ];
 
 export default function Footer() {
@@ -40,7 +40,7 @@ export default function Footer() {
                 <Gamepad2 className="w-4 h-4 text-accent" />
               </div>
               <span className="text-text-main font-bold tracking-wider" style={{ textShadow: "0 0 20px rgba(244,184,96,0.8)" }}>
-                ALEX.DEV
+                HAKE.DEV
               </span>
             </div>
             <p className="text-text-muted text-sm leading-relaxed max-w-xs">
@@ -98,7 +98,7 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <a href="https://github.com/alexchen" target="_blank" rel="noopener noreferrer"
+                <a href="https://github.com/hake-acc" target="_blank" rel="noopener noreferrer"
                   className="text-sm text-text-muted hover:text-primary transition-colors duration-200">
                   GitHub
                 </a>
@@ -115,7 +115,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-text-muted/60 text-center sm:text-left">
-            © 2025 Alex Chen. Built with{" "}
+            © 2025 Hake. Built with{" "}
             <Heart className="w-3 h-3 inline text-error/60 mx-0.5" />
             using Next.js, Framer Motion &amp; Tailwind CSS.
           </p>

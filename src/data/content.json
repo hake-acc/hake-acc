@@ -171,31 +171,31 @@
   ],
   "testimonials": [
     {
-      "quote": "Alex delivered a portfolio site that genuinely stunned our hiring committee. The attention to detail, the animations, the performance — we'd never seen anything like it at that budget.",
+      "quote": "Hake delivered a portfolio site that genuinely stunned our hiring committee. The attention to detail, the animations, the performance — we'd never seen anything like it at that budget.",
       "author": "Maya R.",
       "role": "Engineering Director, Luminary Studios"
     },
     {
-      "quote": "Working with Alex transformed how we think about our digital presence. What we thought would be a simple website became a genuine piece of interactive art that tripled our inbound inquiries.",
+      "quote": "Working with Hake transformed how we think about our digital presence. What we thought would be a simple website became a genuine piece of interactive art that tripled our inbound inquiries.",
       "author": "Jordan K.",
       "role": "Founder, Pixel Garden Agency"
     },
     {
-      "quote": "The component library Alex built for us is still the gold standard in our org two years later. Impeccably documented, endlessly flexible, and it just looks incredible.",
+      "quote": "The component library Hake built for us is still the gold standard in our org two years later. Impeccably documented, endlessly flexible, and it just looks incredible.",
       "author": "Sam T.",
       "role": "Lead Designer, Forge Interactive"
     },
     {
-      "quote": "Alex has a rare ability to think in both code and design simultaneously. The interactive experience they built for our conference talk left the audience speechless.",
+      "quote": "Hake has a rare ability to think in both code and design simultaneously. The interactive experience they built for our conference talk left the audience speechless.",
       "author": "Dr. Priya V.",
       "role": "Research Lead, DataVis Institute"
     }
   ],
   "contact": {
-    "email": "alex@example.com",
-    "github": "https://github.com/alexchen",
-    "twitter": "https://twitter.com/alexchen",
-    "linkedin": "https://linkedin.com/in/alexchen",
+    "email": "hake@example.com",
+    "github": "https://github.com/hake-acc",
+    "twitter": "https://twitter.com/hake_acc",
+    "linkedin": "https://linkedin.com/in/hake-acc",
     "location": "San Francisco, CA"
   }
 }

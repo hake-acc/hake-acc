@@ -1,4 +1,4 @@
-# Pixel Portfolio — Alex Chen
+# Pixel Portfolio — Hake
 
 A breathtaking, cinematic personal portfolio website for a software engineer and creative developer. The experience immerses visitors in a living pixel-art world using a looping full-screen background video, with a lightweight, elegant UI floating above.
 

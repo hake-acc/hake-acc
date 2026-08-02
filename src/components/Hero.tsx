@@ -70,14 +70,16 @@ export default function Hero({ data, contact }: HeroProps) {
         <video
           ref={videoRef}
           className="w-full h-full object-cover"
-          src="/assets/pixelart-bg.mp4"
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           aria-hidden="true"
-        />
+        >
+          <source src="/assets/pixelart-bg.webm" type="video/webm" />
+          <source src="/assets/pixelart-bg.mp4" type="video/mp4" />
+        </video>
         {/* Darkening overlays — kept light so the video breathes through */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/55 via-background/10 to-background/80" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/20 via-transparent to-background/20" />

@@ -14,13 +14,13 @@ import SectionDivider from "@/components/SectionDivider";
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Alex Chen",
+  name: "Hake",
   jobTitle: "Creative Developer & Software Engineer",
-  url: "https://alexchen.dev",
+  url: "https://github.com/hake-acc",
   sameAs: [
-    "https://github.com/alexchen",
-    "https://twitter.com/alexchen",
-    "https://linkedin.com/in/alexchen",
+    "https://github.com/hake-acc",
+    "https://twitter.com/hake_acc",
+    "https://linkedin.com/in/hake-acc",
   ],
   knowsAbout: ["Web Development", "React", "Next.js", "WebGL", "TypeScript", "UI/UX Design"],
 };

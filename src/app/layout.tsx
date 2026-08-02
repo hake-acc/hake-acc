@@ -10,9 +10,9 @@ const pixelifySans = Pixelify_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Alex Chen — Creative Developer & Digital Craftsman",
+  title: "Hake — Creative Developer & Digital Craftsman",
   description:
-    "Portfolio of Alex Chen — a software engineer and creative developer building immersive digital experiences at the intersection of engineering and art.",
+    "Portfolio of Hake — a software engineer and creative developer building immersive digital experiences at the intersection of engineering and art.",
   keywords: [
     "creative developer",
     "software engineer",
@@ -23,22 +23,22 @@ export const metadata: Metadata = {
     "React",
     "Next.js",
   ],
-  authors: [{ name: "Alex Chen" }],
-  creator: "Alex Chen",
+  authors: [{ name: "Hake" }],
+  creator: "Hake",
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Alex Chen — Creative Developer & Digital Craftsman",
+    title: "Hake — Creative Developer & Digital Craftsman",
     description:
       "Immersive digital experiences at the intersection of engineering and art.",
-    siteName: "Alex Chen Portfolio",
+    siteName: "Hake Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alex Chen — Creative Developer",
+    title: "Hake — Creative Developer",
     description:
       "Immersive digital experiences at the intersection of engineering and art.",
-    creator: "@alexchen",
+    creator: "@hake_acc",
   },
   robots: { index: true, follow: true },
 };

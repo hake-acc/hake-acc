@@ -171,7 +171,7 @@ export default function Projects({ data }: ProjectsProps) {
           </div>
           <motion.a
             variants={itemVariants}
-            href="https://github.com/alexchen"
+            href="https://github.com/hake-acc"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-text-muted hover:text-primary transition-colors duration-200 self-start sm:self-auto"
