@@ -14,10 +14,9 @@ import {
   Github,
   Linkedin,
   Globe,
-  Menu,
-  X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import PixelIcon from "@/components/PixelIcon";
 
 const navLinks = [
   { label: "Home", href: "#hero", icon: Home },
@@ -192,7 +191,7 @@ export default function Sidebar() {
         whileTap={{ scale: 0.9 }}
         aria-label={mobileOpen ? "Close sidebar" : "Open sidebar"}
       >
-        {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+        <PixelIcon name={mobileOpen ? "close" : "menu"} className="text-current" />
       </motion.button>
 
       {/* Mobile Sidebar */}

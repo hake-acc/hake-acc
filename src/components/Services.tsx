@@ -2,8 +2,9 @@
 
 import { useRef, type CSSProperties, type ComponentType } from "react";
 import { motion, useInView } from "framer-motion";
-import { Sparkles, Layers, Gamepad2, Zap, ArrowUpRight } from "lucide-react";
+import { Sparkles, Layers, Gamepad2, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
+import PixelIcon from "@/components/PixelIcon";
 
 interface Service {
   title: string;
@@ -120,7 +121,7 @@ export default function Services({ data }: ServicesProps) {
 
                   <div className="flex items-center gap-1 text-xs text-text-muted/50 group-hover:text-accent transition-colors duration-300">
                     <span className="tracking-wide">Learn more</span>
-                    <ArrowUpRight className="w-3 h-3" />
+                    <PixelIcon name="arrow-up-right" className="text-current" />
                   </div>
                 </div>
               </motion.div>
@@ -145,7 +146,7 @@ export default function Services({ data }: ServicesProps) {
             whileTap={{ scale: 0.97 }}
           >
             Let&apos;s Work Together
-            <ArrowUpRight className="w-4 h-4" />
+            <PixelIcon name="arrow-up-right" className="text-current" />
           </motion.button>
         </motion.div>
       </div>

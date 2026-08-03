@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Github, Twitter, Linkedin, Heart, ArrowUp } from "lucide-react";
+import { Github, Twitter, Linkedin } from "lucide-react";
+import PixelIcon from "@/components/PixelIcon";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -123,7 +124,7 @@ export default function Footer() {
         <div className="pt-8 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-text-muted/60 text-center sm:text-left">
             © 2025 Hake. Built with{" "}
-            <Heart className="w-3 h-3 inline text-error/60 mx-0.5" />
+            <PixelIcon name="heart" className="inline-flex align-[-2px] text-error/60 mx-0.5" />
             using Next.js, Framer Motion &amp; Tailwind CSS.
           </p>
           <div className="flex items-center gap-4">
@@ -137,7 +138,7 @@ export default function Footer() {
               whileTap={{ scale: 0.9 }}
               aria-label="Back to top"
             >
-              <ArrowUp className="w-4 h-4" />
+              <PixelIcon name="arrow-up" className="text-current" />
             </motion.button>
           </div>
         </div>

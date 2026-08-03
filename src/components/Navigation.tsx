@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import PixelIcon from "@/components/PixelIcon";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -120,7 +120,7 @@ export default function Navigation() {
               whileTap={{ scale: 0.9 }}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              <PixelIcon name={mobileOpen ? "close" : "menu"} className="text-current" />
             </motion.button>
           </div>
         </div>

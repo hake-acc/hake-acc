@@ -2,7 +2,8 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { Quote, Star } from "lucide-react";
+import PixelIcon from "@/components/PixelIcon";
 
 interface Testimonial {
   quote: string;
@@ -140,7 +141,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
                 whileTap={{ scale: 0.9 }}
                 aria-label="Previous testimonial"
               >
-                <ChevronLeft className="w-4 h-4" />
+                <PixelIcon name="chevron-left" className="text-current" />
               </motion.button>
               <motion.button
                 onClick={next}
@@ -149,7 +150,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
                 whileTap={{ scale: 0.9 }}
                 aria-label="Next testimonial"
               >
-                <ChevronRight className="w-4 h-4" />
+                <PixelIcon name="chevron-right" className="text-current" />
               </motion.button>
             </div>
           </div>

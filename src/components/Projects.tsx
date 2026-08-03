@@ -2,8 +2,9 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, ArrowRight, Layers } from "lucide-react";
+import { Github } from "lucide-react";
 import { cn } from "@/lib/utils";
+import PixelIcon from "@/components/PixelIcon";
 
 interface Project {
   id: string;
@@ -66,7 +67,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             className="w-10 h-10 rounded-lg flex items-center justify-center border border-white/10"
             style={{ background: `${project.color}20` }}
           >
-            <Layers className="w-5 h-5" style={{ color: project.color }} />
+            <PixelIcon name="layers" className="w-5 h-5" style={{ color: project.color }} />
           </div>
           <div className="flex items-center gap-2">
             {project.featured && (
@@ -110,7 +111,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             whileHover={{ x: 2 }}
             aria-label={`View live demo of ${project.title}`}
           >
-            <ExternalLink className="w-3.5 h-3.5" />
+            <PixelIcon name="external-link" className="text-current" />
             Live Demo
           </motion.a>
           <span className="text-white/10">|</span>
@@ -177,7 +178,7 @@ export default function Projects({ data }: ProjectsProps) {
             className="flex items-center gap-2 text-sm text-text-muted hover:text-primary transition-colors duration-200 self-start sm:self-auto"
             whileHover={{ x: 3 }}
           >
-            All repos <ArrowRight className="w-4 h-4" />
+            All repos <PixelIcon name="arrow-right" className="text-current" />
           </motion.a>
         </motion.div>
 
@@ -210,7 +211,7 @@ export default function Projects({ data }: ProjectsProps) {
               whileTap={{ scale: 0.97 }}
             >
               View All Projects
-              <ArrowRight className="w-4 h-4" />
+              <PixelIcon name="arrow-right" className="text-current" />
             </motion.button>
           </motion.div>
         )}

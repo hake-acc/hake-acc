@@ -2,7 +2,8 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ChevronDown, Github, Twitter, Linkedin } from "lucide-react";
+import { Github, Twitter, Linkedin } from "lucide-react";
+import PixelIcon from "@/components/PixelIcon";
 
 interface HeroProps {
   data: {
@@ -214,7 +215,7 @@ export default function Hero({ data, contact }: HeroProps) {
             animate={{ y: [0, 5, 0] }}
             transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut", delay: 0.2 }}
           >
-            <ChevronDown className="w-4 h-4 text-white/40 group-hover:text-white/70 transition-colors duration-300" />
+            <PixelIcon name="chevron-down" className="text-white/40 group-hover:text-white/70 transition-colors duration-300" />
           </motion.div>
         </button>
       </div>
