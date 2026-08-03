@@ -29,6 +29,7 @@ export default function Hero({ data, contact }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [namePopKey, setNamePopKey] = useState(0);
+  const [mineKey, setMineKey] = useState(0);
 
   // Force-play in environments where autoPlay alone is insufficient (e.g. Replit iframe proxy)
   useEffect(() => {
@@ -52,7 +53,10 @@ export default function Hero({ data, contact }: HeroProps) {
   const y = useTransform(scrollY, [0, 600], [0, 120]);
 
   const scrollToWork = () => {
-    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+    setMineKey((key) => key + 1);
+    window.setTimeout(() => {
+      document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+    }, 440);
   };
   const scrollToAbout = () => {
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
@@ -140,13 +144,22 @@ export default function Hero({ data, contact }: HeroProps) {
         <div className="anim-enter anim-enter-d5 flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
           <motion.button
             onClick={scrollToWork}
-            className="group relative px-8 py-3.5 bg-accent text-background text-sm font-bold tracking-widest uppercase rounded overflow-hidden transition-all duration-300"
+            className="group mine-work-button relative px-8 py-3.5 bg-accent text-background text-sm font-bold tracking-widest uppercase rounded overflow-hidden transition-all duration-300"
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.97 }}
             style={{ boxShadow: "0 0 28px rgba(244,184,96,0.5)" }}
           >
             <span className="relative z-10">{data.ctaLabel}</span>
             <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />
+            {mineKey > 0 && (
+              <span key={mineKey} className="mine-pickaxe-swing" aria-hidden="true">
+                <span className="mine-pickaxe-head" />
+                <span className="mine-pickaxe-handle" />
+                <span className="mine-spark mine-spark-one" />
+                <span className="mine-spark mine-spark-two" />
+                <span className="mine-spark mine-spark-three" />
+              </span>
+            )}
           </motion.button>
 
           <motion.button

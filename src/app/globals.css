@@ -304,9 +304,98 @@ body {
 .name-pop-burst-left { left: -14px; }
 .name-pop-burst-right { right: -12px; animation-delay: 55ms; }
 
+/* Explore work mining interaction */
+@keyframes pixelPickaxeMine {
+  0% {
+    opacity: 0;
+    transform: rotate(-72deg) translate(8px, -4px);
+  }
+  14% {
+    opacity: 1;
+  }
+  52% {
+    opacity: 1;
+    transform: rotate(28deg) translate(-2px, 9px);
+  }
+  68% {
+    opacity: 1;
+    transform: rotate(19deg) translate(0, 7px);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(46deg) translate(7px, 13px);
+  }
+}
+
+@keyframes mineSpark {
+  0%, 48% { opacity: 0; transform: translate(0, 0) scale(0.3); }
+  60% { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: var(--spark-travel) scale(0.6); }
+}
+
+.mine-work-button {
+  isolation: isolate;
+}
+
+.mine-pickaxe-swing {
+  position: absolute;
+  left: 50%;
+  top: -9px;
+  width: 46px;
+  height: 52px;
+  z-index: 20;
+  pointer-events: none;
+  transform-origin: 22px 36px;
+  animation: pixelPickaxeMine 440ms cubic-bezier(0.25, 0.75, 0.4, 1) forwards;
+}
+
+.mine-pickaxe-handle {
+  position: absolute;
+  left: 20px;
+  top: 11px;
+  width: 6px;
+  height: 36px;
+  background: #834a26;
+  box-shadow: 6px 0 #4a291b, 0 6px #a66a35;
+}
+
+.mine-pickaxe-head {
+  position: absolute;
+  left: 4px;
+  top: 5px;
+  width: 36px;
+  height: 6px;
+  background: #c5d4df;
+  box-shadow:
+    6px -6px #ecf5fb,
+    12px -6px #ecf5fb,
+    18px -6px #ecf5fb,
+    24px 0 #8da5b7,
+    30px 6px #6f879b,
+    -6px 6px #8da5b7,
+    12px 6px #8da5b7;
+}
+
+.mine-spark {
+  position: absolute;
+  left: 23px;
+  top: 42px;
+  width: 5px;
+  height: 5px;
+  background: #fff2a8;
+  box-shadow: 5px 0 #ffbd42;
+  animation: mineSpark 440ms ease-out forwards;
+}
+
+.mine-spark-one { --spark-travel: translate(-19px, 9px); }
+.mine-spark-two { --spark-travel: translate(18px, 7px); animation-delay: 25ms; }
+.mine-spark-three { --spark-travel: translate(5px, -16px); animation-delay: 42ms; }
+
 @media (prefers-reduced-motion: reduce) {
   .name-heart-pop,
-  .name-pop-burst {
+  .name-pop-burst,
+  .mine-pickaxe-swing,
+  .mine-spark {
     animation-duration: 1ms;
   }
 }
