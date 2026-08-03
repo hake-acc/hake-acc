@@ -193,6 +193,7 @@ body {
   background: transparent;
   font: inherit;
   line-height: inherit;
+  isolation: isolate;
 }
 
 .name-celebration-trigger:hover {
@@ -206,19 +207,23 @@ body {
 @keyframes pixelHeartPop {
   0% {
     opacity: 0;
-    transform: translate(-50%, 8px) scale(0.35) rotate(-8deg);
+    transform: translate(0, 0.35em) scale(0.3);
   }
-  32% {
+  24% {
     opacity: 1;
-    transform: translate(-50%, -10px) scale(1.18) rotate(4deg);
+    transform: translate(0.12em, 0.06em) scale(0.78);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(0.38em, -0.3em) scale(1);
   }
   70% {
     opacity: 1;
-    transform: translate(-50%, -28px) scale(0.92) rotate(-2deg);
+    transform: translate(0.58em, -0.52em) scale(0.9);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -42px) scale(0.68) rotate(0);
+    transform: translate(0.78em, -0.8em) scale(0.68);
   }
 }
 
@@ -230,44 +235,74 @@ body {
 
 .name-heart-pop {
   position: absolute;
-  left: 50%;
-  bottom: -0.05em;
+  top: 0.04em;
+  right: -0.05em;
+  width: 42px;
+  height: 38px;
   pointer-events: none;
-  z-index: 10;
+  z-index: 1;
   animation: pixelHeartPop 760ms cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
+}
+
+.name-celebration-label {
+  position: relative;
+  z-index: 2;
 }
 
 .name-heart-pixel {
   display: block;
-  color: #ff3b4d;
-  font-family: monospace;
-  font-size: 0.38em;
-  line-height: 1;
-  text-shadow:
-    3px 0 #8e1426,
-    -3px 0 #8e1426,
-    0 3px #8e1426,
-    0 -3px #ff7a82,
-    0 0 14px rgba(255, 49, 70, 0.95);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: #d91f3a;
+  box-shadow:
+    6px 0 #ff5268,
+    18px 0 #ff5268,
+    24px 0 #d91f3a,
+    -6px 6px #ff5268,
+    0 6px #ff5268,
+    6px 6px #ff5268,
+    12px 6px #ff5268,
+    18px 6px #ff5268,
+    24px 6px #ff5268,
+    30px 6px #d91f3a,
+    -6px 12px #c31432,
+    0 12px #ff5268,
+    6px 12px #ff5268,
+    12px 12px #ff5268,
+    18px 12px #ff5268,
+    24px 12px #ff5268,
+    30px 12px #c31432,
+    0 18px #c31432,
+    6px 18px #ff5268,
+    12px 18px #ff5268,
+    18px 18px #ff5268,
+    24px 18px #c31432,
+    6px 24px #b10e28,
+    12px 24px #d91f3a,
+    18px 24px #b10e28,
+    12px 30px #89091f;
   image-rendering: pixelated;
 }
 
 .name-pop-burst {
   position: absolute;
-  top: 44%;
-  width: 0.15em;
-  height: 0.15em;
+  top: 16px;
+  width: 6px;
+  height: 6px;
   background: #ff4d5f;
   box-shadow:
-    0.3em -0.26em #ff9aa3,
-    -0.34em -0.12em #ff293d,
-    0.12em 0.28em #b51028,
-    -0.17em 0.27em #ff6875;
+    12px -12px #ff9aa3,
+    -12px -6px #ff293d,
+    6px 12px #b51028,
+    -6px 12px #ff6875;
   animation: pixelBurst 540ms ease-out forwards;
 }
 
-.name-pop-burst-left { left: -0.35em; }
-.name-pop-burst-right { right: -0.35em; animation-delay: 55ms; }
+.name-pop-burst-left { left: -14px; }
+.name-pop-burst-right { right: -12px; animation-delay: 55ms; }
 
 @media (prefers-reduced-motion: reduce) {
   .name-heart-pop,

@@ -109,10 +109,10 @@ export default function Hero({ data, contact }: HeroProps) {
               aria-label={`Celebrate ${data.title}`}
               style={{ textShadow: "0 0 40px rgba(106,169,255,0.5)" }}
             >
-              <span>{data.title.split(" ")[0]}</span>
+              <span className="name-celebration-label">{data.title.split(" ")[0]}</span>
               {namePopKey > 0 && (
                 <span key={namePopKey} className="name-heart-pop" aria-hidden="true">
-                  <span className="name-heart-pixel">♥</span>
+                  <span className="name-heart-pixel" />
                   <span className="name-pop-burst name-pop-burst-left" />
                   <span className="name-pop-burst name-pop-burst-right" />
                 </span>
