@@ -229,7 +229,7 @@ export default function ContactForm({ data }: ContactProps) {
             {/* Availability */}
             <motion.div variants={itemVariants} className="pixel-card rounded-xl p-4 sm:p-5 border-l-4 border-success">
               <div className="flex items-center gap-2 mb-1.5">
-                <span className="w-2 h-2 bg-success rounded-full animate-pulse" />
+                <span className="w-2 h-2 bg-success rounded-full" />
                 <span className="text-xs font-silkscreen text-success uppercase">
                   OPEN FOR CREATOR CONTRACTS
                 </span>

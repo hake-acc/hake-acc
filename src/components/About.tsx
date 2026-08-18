@@ -78,7 +78,7 @@ export default function About({ data }: AboutProps) {
                     alt="Hake Acc avatar logo"
                     className="w-full h-full object-cover rounded-lg pixel-crisp"
                   />
-                  <div className="absolute bottom-1 right-1 w-3.5 h-3.5 bg-success rounded-full border-2 border-[#1A1F2B] animate-pulse" />
+                  <div className="absolute bottom-1 right-1 w-3.5 h-3.5 bg-success rounded-full border-2 border-[#1A1F2B]" />
                 </div>
 
                 <div className="mb-5">

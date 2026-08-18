@@ -1,8 +1,7 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Youtube, Twitter, Github, Sparkles, ArrowRight, Gamepad2 } from "lucide-react";
-import PixelIcon from "@/components/PixelIcon";
-import { playClick, playCoin, playPowerup, playBlip } from "@/lib/sound";
+import { Youtube, Twitter, Github, ArrowRight, Gamepad2 } from "lucide-react";
+import { playClick, playBlip } from "@/lib/sound";
 
 interface HeroProps {
   data: {
@@ -24,8 +23,6 @@ interface HeroProps {
 export default function Hero({ data, contact }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [namePopKey, setNamePopKey] = useState(0);
-  const [mineKey, setMineKey] = useState(0);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -43,17 +40,7 @@ export default function Hero({ data, contact }: HeroProps) {
   }, []);
 
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 600], [0, 100]);
-
-  const celebrateName = () => {
-    playPowerup();
-    setNamePopKey((key) => key + 1);
-  };
-
-  const handleMineClick = () => {
-    playCoin();
-    setMineKey((key) => key + 1);
-  };
+  const y = useTransform(scrollY, [0, 600], [0, 80]);
 
   const titleParts = data.title.split(" ");
   const firstName = titleParts[0] || "Hake";
@@ -63,7 +50,7 @@ export default function Hero({ data, contact }: HeroProps) {
     <section
       ref={containerRef}
       id="hero"
-      className="relative w-full min-h-[92vh] flex flex-col items-center justify-center overflow-hidden pt-12 pb-16"
+      className="relative w-full min-h-[90vh] flex flex-col items-center justify-center overflow-hidden pt-12 pb-16"
       aria-label="Hero section"
     >
       {/* Background video */}
@@ -95,35 +82,20 @@ export default function Hero({ data, contact }: HeroProps) {
 
       {/* Hero content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
-        {/* Pre-title status pill */}
+        {/* Pre-title status pill - Clean solid indicator */}
         <div className="anim-enter anim-enter-d1 flex items-center justify-center gap-3 mb-5">
           <span className="h-px w-8 sm:w-12 bg-accent/40" />
           <span className="pixel-badge bg-accent/15 border border-accent/40 text-accent font-silkscreen tracking-wider">
-            <span className="w-2 h-2 rounded-sm bg-success animate-pulse" />
+            <span className="w-2 h-2 rounded-sm bg-success" />
             Social Media Manager • Discord Developer • Agency Founder
           </span>
           <span className="h-px w-8 sm:w-12 bg-accent/40" />
         </div>
 
-        {/* Interactive Pixel Title */}
+        {/* Pixel Title */}
         <div className="anim-enter anim-enter-d2 mb-5">
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold font-retro tracking-tight leading-none">
-            <button
-              type="button"
-              onClick={celebrateName}
-              className="name-celebration-trigger relative inline-block mx-auto cursor-pointer text-text-main hover:text-white transition-transform active:scale-95"
-              aria-label={`Celebrate ${data.title}`}
-              style={{ textShadow: "0 0 32px rgba(106,169,255,0.6)" }}
-            >
-              <span className="name-celebration-label">{firstName}</span>
-              {namePopKey > 0 && (
-                <span key={namePopKey} className="name-heart-pop" aria-hidden="true">
-                  <span className="name-heart-pixel" />
-                  <span className="name-pop-burst name-pop-burst-left" />
-                  <span className="name-pop-burst name-pop-burst-right" />
-                </span>
-              )}
-            </button>
+          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold font-retro tracking-tight leading-none text-text-main" style={{ textShadow: "0 0 32px rgba(106,169,255,0.6)" }}>
+            <span>{firstName}</span>
             <span className="block gradient-text mt-1">{lastName}</span>
           </h1>
         </div>
@@ -142,36 +114,25 @@ export default function Hero({ data, contact }: HeroProps) {
           </p>
         </div>
 
-        {/* CTAs with tactile pixel styling */}
+        {/* CTAs - Clean tactile pixel buttons without weird shining sweeps */}
         <div className="anim-enter anim-enter-d5 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8">
           <a
             href="/projects"
-            onClick={handleMineClick}
-            className="group mine-work-button pixel-btn pixel-btn-accent text-xs sm:text-sm px-6 sm:px-8 py-3 sm:py-3.5 rounded"
+            onClick={() => playClick()}
+            className="pixel-btn pixel-btn-accent text-xs sm:text-sm px-6 sm:px-8 py-3 sm:py-3.5 rounded flex items-center gap-2"
           >
-            <span className="relative z-10 flex items-center gap-2">
-              <Gamepad2 className="w-4 h-4" />
-              {data.ctaLabel}
-            </span>
-            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />
-            {mineKey > 0 && (
-              <span key={mineKey} className="mine-pickaxe-swing" aria-hidden="true">
-                <span className="mine-pickaxe-head" />
-                <span className="mine-pickaxe-handle" />
-                <span className="mine-spark mine-spark-one" />
-                <span className="mine-spark mine-spark-two" />
-                <span className="mine-spark mine-spark-three" />
-              </span>
-            )}
+            <Gamepad2 className="w-4 h-4" />
+            <span>{data.ctaLabel}</span>
           </a>
 
           <a
             href="/contact"
             onMouseEnter={() => playBlip()}
             onClick={() => playClick()}
-            className="pixel-btn pixel-btn-outline text-xs sm:text-sm px-6 sm:px-8 py-3 sm:py-3.5 rounded"
+            className="pixel-btn pixel-btn-outline text-xs sm:text-sm px-6 sm:px-8 py-3 sm:py-3.5 rounded flex items-center gap-1.5"
           >
-            {data.ctaSecondary} <ArrowRight className="w-4 h-4 inline-block ml-1" />
+            <span>{data.ctaSecondary}</span>
+            <ArrowRight className="w-4 h-4" />
           </a>
         </div>
 

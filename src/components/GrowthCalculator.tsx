@@ -26,7 +26,7 @@ export default function GrowthCalculator() {
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-white/10">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2.5 h-2.5 bg-accent rounded-sm animate-pulse" />
+            <span className="w-2.5 h-2.5 bg-accent rounded-sm" />
             <span className="text-xs font-silkscreen text-accent uppercase tracking-wider">
               CREATOR ROI & SYSTEM ESTIMATOR
             </span>

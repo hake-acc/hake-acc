@@ -210,7 +210,7 @@ export default function TerminalSimulator() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-silkscreen bg-success/20 text-success border border-success/30 animate-pulse">
+          <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-silkscreen bg-success/20 text-success border border-success/30">
             ONLINE
           </span>
           <button

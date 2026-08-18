@@ -76,8 +76,8 @@ export default function Sidebar() {
               className="h-full w-full object-cover rounded-lg pixel-crisp"
             />
           </div>
-          {/* Online indicator */}
-          <div className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-success rounded-full border-2 border-[#0d0f14] animate-pulse" />
+          {/* Online indicator - clean solid dot */}
+          <div className="absolute -top-1 -right-1 w-3 h-3 bg-success rounded-full border-2 border-[#0d0f14]" />
         </div>
         <div className="text-center">
           <div className="font-bold text-text-main text-sm font-retro tracking-wide group-hover:text-accent transition-colors">
@@ -125,7 +125,7 @@ export default function Sidebar() {
               />
               <span className="relative z-10">{link.label}</span>
               {isActive && (
-                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
+                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-accent" />
               )}
             </a>
           );

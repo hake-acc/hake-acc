@@ -117,7 +117,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-white/40">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-success" />
             <span>OPERATIONAL STATUS: READY FOR CREATOR CONTRACTS</span>
           </div>
 
