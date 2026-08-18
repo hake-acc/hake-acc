@@ -11,20 +11,19 @@ import {
   Mail,
   Twitter,
   Github,
-  MessageSquare,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import PixelIcon from "@/components/PixelIcon";
+import SoundToggle from "@/components/SoundToggle";
+import { playBlip, playClick } from "@/lib/sound";
 
 const navLinks = [
-  { label: "Home", href: "#hero", icon: Home },
-  { label: "About", href: "#about", icon: User },
-  { label: "Channels", href: "#projects", icon: Youtube },
-  { label: "Skills", href: "#skills", icon: Code2 },
-  { label: "Experience", href: "#experience", icon: Briefcase },
-  { label: "Services", href: "#services", icon: Layers },
-  { label: "Reviews", href: "#testimonials", icon: Star },
-  { label: "Contact", href: "#contact", icon: Mail },
+  { label: "Home", href: "/", icon: Home },
+  { label: "About", href: "/about", icon: User },
+  { label: "Channels", href: "/projects", icon: Youtube },
+  { label: "Skills & Stack", href: "/experience", icon: Code2 },
+  { label: "Services", href: "/services", icon: Layers },
+  { label: "Contact", href: "/contact", icon: Mail },
 ];
 
 const socialLinks = [
@@ -34,132 +33,133 @@ const socialLinks = [
 ];
 
 export default function Sidebar() {
-  const [activeSection, setActiveSection] = useState("hero");
+  const [currentPath, setCurrentPath] = useState("/");
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = navLinks.map((l) => l.href.replace("#", ""));
-      for (const section of [...sections].reverse()) {
-        const el = document.getElementById(section);
-        if (el && window.scrollY >= el.offsetTop - 140) {
-          setActiveSection(section);
-          break;
-        }
-      }
+    const updatePath = () => {
+      const path = window.location.pathname;
+      // Normalize trailing slash
+      const cleanPath = path === "" ? "/" : path.replace(/\/$/, "") || "/";
+      setCurrentPath(cleanPath);
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    updatePath();
+    window.addEventListener("popstate", updatePath);
+    document.addEventListener("astro:page-load", updatePath);
+    return () => {
+      window.removeEventListener("popstate", updatePath);
+      document.removeEventListener("astro:page-load", updatePath);
+    };
   }, []);
 
-  const scrollTo = (href: string) => {
-    const id = href.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else if (id === "hero") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-    setMobileOpen(false);
-  };
-
   const SidebarContent = () => (
-    <div className="flex flex-col h-full py-6">
+    <div className="flex flex-col h-full py-5">
       {/* Logo / Avatar */}
-      <div className="flex flex-col items-center justify-center mb-6 px-4">
-        <div className="relative mb-3">
+      <a
+        href="/"
+        onClick={() => playClick()}
+        className="flex flex-col items-center justify-center mb-5 px-4 group"
+      >
+        <div className="relative mb-2.5">
           <div
-            className="w-16 h-16 rounded-xl flex items-center justify-center overflow-hidden p-0.5"
+            className="w-16 h-16 rounded-xl flex items-center justify-center overflow-hidden p-0.5 transition-transform duration-200 group-hover:scale-105"
             style={{
               background: "rgba(106,169,255,0.12)",
-              border: "1px solid rgba(244,184,96,0.3)",
-              boxShadow: "0 0 16px rgba(244,184,96,0.2)",
+              border: "1px solid rgba(244,184,96,0.4)",
+              boxShadow: "0 0 16px rgba(244,184,96,0.25)",
             }}
           >
             <img
               src="/assets/hake-logo.png"
               alt="Hake Acc logo"
-              className="h-full w-full object-cover rounded-lg"
+              className="h-full w-full object-cover rounded-lg pixel-crisp"
             />
           </div>
           {/* Online indicator */}
-          <div className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-success rounded-full border-2 border-[#0d0f14]" />
+          <div className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-success rounded-full border-2 border-[#0d0f14] animate-pulse" />
         </div>
         <div className="text-center">
-          <div className="font-bold text-text-main text-sm tracking-wide">Hake Acc</div>
-          <div className="text-[10px] text-accent font-medium tracking-wider uppercase">Agency Founder</div>
+          <div className="font-bold text-text-main text-sm font-retro tracking-wide group-hover:text-accent transition-colors">
+            HAKE ACC
+          </div>
+          <div className="text-[10px] text-accent font-silkscreen tracking-wider uppercase mt-0.5">
+            AGENCY FOUNDER
+          </div>
         </div>
-      </div>
+      </a>
 
       {/* Divider */}
-      <div className="h-px bg-white/[0.06] mb-4 mx-4" />
+      <div className="h-px bg-white/[0.08] mb-3 mx-4" />
 
       {/* Nav Links */}
-      <nav className="flex-1 flex flex-col gap-0.5 px-3 overflow-y-auto">
+      <nav className="flex-1 flex flex-col gap-1 px-3 overflow-y-auto">
         {navLinks.map((link) => {
           const Icon = link.icon;
-          const isActive = activeSection === link.href.replace("#", "");
+          const isActive =
+            link.href === "/"
+              ? currentPath === "/"
+              : currentPath.startsWith(link.href);
+
           return (
-            <motion.button
+            <a
               key={link.href}
-              onClick={() => scrollTo(link.href)}
+              href={link.href}
+              onMouseEnter={() => playBlip()}
+              onClick={() => {
+                playClick();
+                setMobileOpen(false);
+              }}
               className={cn(
-                "relative flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs tracking-wide text-left transition-all duration-200 group",
+                "relative flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-silkscreen tracking-wide transition-all duration-150 group",
                 isActive
-                  ? "text-white font-semibold"
-                  : "text-white/50 hover:text-white/80"
+                  ? "text-white font-bold bg-accent/15 border border-accent/30 shadow-pixel-sm"
+                  : "text-white/60 hover:text-white hover:bg-white/5 border border-transparent"
               )}
-              whileHover={{ x: 2 }}
-              whileTap={{ scale: 0.97 }}
             >
-              {isActive && (
-                <motion.div
-                  layoutId="sidebar-active"
-                  className="absolute inset-0 rounded-lg"
-                  style={{
-                    background: "linear-gradient(90deg, rgba(244,184,96,0.25) 0%, rgba(244,184,96,0.05) 100%)",
-                    borderLeft: "2px solid #F4B860",
-                  }}
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
-                />
-              )}
               <Icon
                 className={cn(
-                  "w-4 h-4 relative z-10 shrink-0",
-                  isActive ? "text-accent" : "text-white/40 group-hover:text-white/70"
+                  "w-4 h-4 relative z-10 shrink-0 transition-colors",
+                  isActive ? "text-accent" : "text-white/40 group-hover:text-accent"
                 )}
               />
               <span className="relative z-10">{link.label}</span>
-            </motion.button>
+              {isActive && (
+                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
+              )}
+            </a>
           );
         })}
       </nav>
 
-      {/* Bottom section */}
-      <div className="px-4 mt-4 pt-3 border-t border-white/[0.06]">
+      {/* Sound FX Toggle & Bottom section */}
+      <div className="px-4 mt-3 pt-3 border-t border-white/[0.08] space-y-3">
+        <div className="flex justify-center">
+          <SoundToggle />
+        </div>
+
         {/* Social icons */}
-        <div className="flex items-center justify-center gap-2 mb-3">
+        <div className="flex items-center justify-center gap-2">
           {socialLinks.map(({ icon: Icon, label, href }) => (
-            <motion.a
+            <a
               key={label}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="w-8 h-8 flex items-center justify-center rounded-lg border border-white/10 text-white/40 hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-all duration-200"
-              whileHover={{ y: -2, scale: 1.08 }}
-              whileTap={{ scale: 0.9 }}
+              onMouseEnter={() => playBlip()}
+              onClick={() => playClick()}
+              className="w-8 h-8 flex items-center justify-center rounded-lg border border-white/10 text-white/40 hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-all duration-150 active:translate-y-[1px]"
             >
               <Icon className="w-3.5 h-3.5" />
-            </motion.a>
+            </a>
           ))}
         </div>
 
-        {/* Copyright */}
-        <div className="text-center text-white/30 text-[10px] leading-relaxed">
+        {/* Status / Copyright */}
+        <div className="text-center text-white/40 text-[10px] font-mono leading-relaxed">
+          <div className="text-success font-silkscreen text-[9px] mb-0.5">● READY FOR CONTRACTS</div>
           <div>© 2026 Hake Acc</div>
-          <div>All rights reserved.</div>
         </div>
       </div>
     </div>
@@ -169,25 +169,22 @@ export default function Sidebar() {
     <>
       {/* Desktop Sidebar */}
       <aside
-        className="hidden lg:flex fixed left-0 top-0 h-screen w-[220px] flex-col z-50"
-        style={{
-          background: "rgba(11, 13, 18, 0.97)",
-          borderRight: "1px solid rgba(255,255,255,0.06)",
-          backdropFilter: "blur(20px)",
-        }}
+        className="hidden lg:flex fixed left-0 top-0 h-screen w-[220px] flex-col z-50 bg-[#0B0D12]/95 border-r border-white/[0.08] backdrop-blur-xl"
       >
         <SidebarContent />
       </aside>
 
       {/* Mobile toggle button */}
-      <motion.button
-        className="lg:hidden fixed top-4 left-4 z-50 w-10 h-10 flex items-center justify-center rounded-lg bg-[#0d0f14]/90 border border-white/10 text-white/70 backdrop-blur-md"
-        onClick={() => setMobileOpen(!mobileOpen)}
-        whileTap={{ scale: 0.9 }}
+      <button
+        className="lg:hidden fixed top-4 left-4 z-50 w-10 h-10 flex items-center justify-center rounded-lg bg-[#0d0f14]/90 border border-white/15 text-white/80 backdrop-blur-md shadow-pixel-sm active:translate-y-[1px]"
+        onClick={() => {
+          playClick();
+          setMobileOpen(!mobileOpen);
+        }}
         aria-label={mobileOpen ? "Close sidebar" : "Open sidebar"}
       >
         <PixelIcon name={mobileOpen ? "close" : "menu"} className="text-current" />
-      </motion.button>
+      </button>
 
       {/* Mobile Sidebar */}
       <AnimatePresence>
@@ -197,19 +194,15 @@ export default function Sidebar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="lg:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+              className="lg:hidden fixed inset-0 z-40 bg-black/70 backdrop-blur-sm"
               onClick={() => setMobileOpen(false)}
             />
             <motion.aside
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              transition={{ type: "spring", bounce: 0, duration: 0.35 }}
-              className="lg:hidden fixed left-0 top-0 h-screen w-[220px] z-50"
-              style={{
-                background: "rgba(11, 13, 18, 0.99)",
-                borderRight: "1px solid rgba(255,255,255,0.06)",
-              }}
+              transition={{ type: "spring", bounce: 0, duration: 0.3 }}
+              className="lg:hidden fixed left-0 top-0 h-screen w-[240px] z-50 bg-[#0B0D12] border-r border-white/[0.08]"
             >
               <SidebarContent />
             </motion.aside>

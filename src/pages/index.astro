@@ -3,8 +3,11 @@ import Layout from "@/layouts/Layout.astro";
 import content from "@/data/content.json";
 import Hero from "@/components/Hero";
 import Sidebar from "@/components/Sidebar";
+import Navigation from "@/components/Navigation";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
+import TerminalSimulator from "@/components/TerminalSimulator";
+import GrowthCalculator from "@/components/GrowthCalculator";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import Services from "@/components/Services";
@@ -14,23 +17,55 @@ import Footer from "@/components/Footer";
 import SectionDivider from "@/components/SectionDivider";
 ---
 
-<Layout>
+<Layout
+  title="Hake Acc — Social Media Manager, Discord Developer & Agency Founder"
+  description="Official portfolio of Hake Acc. Scaling top YouTube channels, engineering high-retention Discord communities, and building unstoppable creator brands."
+>
   <Sidebar client:load />
-  <main id="main-content" class="lg:pl-[220px]">
-    <Hero client:load data={content.hero} contact={content.contact} />
-    <About client:visible data={content.about} />
-    <SectionDivider color="#6AA9FF" />
-    <Projects client:visible data={content.projects} />
-    <SectionDivider color="#8B7CF6" />
-    <Skills client:visible data={content.skills} />
-    <SectionDivider color="#F4B860" />
-    <Experience client:visible data={content.experience} />
-    <SectionDivider color="#6AA9FF" />
-    <Services client:visible data={content.services} />
-    <SectionDivider color="#8B7CF6" />
-    <Testimonials client:visible data={content.testimonials} />
-    <SectionDivider color="#F4B860" />
-    <ContactForm client:visible data={content.contact} />
-  </main>
-  <Footer client:visible />
+  <div class="lg:pl-[220px] flex flex-col min-h-screen">
+    <Navigation client:load />
+    
+    <main id="main-content" class="flex-1">
+      <Hero client:load data={content.hero} contact={content.contact} />
+      
+      {/* Interactive Micro-Interactions Showcase: Terminal Simulator */}
+      <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <div class="mb-6 text-center">
+          <p class="section-label mb-2">// INTERACTIVE CONSOLE</p>
+          <h2 class="text-2xl sm:text-3xl font-bold font-retro text-text-main">
+            Test The Discord Bot &amp; Agency Systems
+          </h2>
+        </div>
+        <TerminalSimulator client:visible />
+      </section>
+
+      <SectionDivider color="#6AA9FF" />
+      <About client:visible data={content.about} />
+      
+      <SectionDivider color="#8B7CF6" />
+      <Projects client:visible data={content.projects} />
+
+      {/* Interactive Growth Calculator */}
+      <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <GrowthCalculator client:visible />
+      </section>
+      
+      <SectionDivider color="#F4B860" />
+      <Skills client:visible data={content.skills} />
+      
+      <SectionDivider color="#6AA9FF" />
+      <Experience client:visible data={content.experience} />
+      
+      <SectionDivider color="#8B7CF6" />
+      <Services client:visible data={content.services} />
+      
+      <SectionDivider color="#F4B860" />
+      <Testimonials client:visible data={content.testimonials} />
+      
+      <SectionDivider color="#6AA9FF" />
+      <ContactForm client:visible data={content.contact} />
+    </main>
+    
+    <Footer client:visible />
+  </div>
 </Layout>

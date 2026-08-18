@@ -1,0 +1,104 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import content from "@/data/content.json";
+import Sidebar from "@/components/Sidebar";
+import Navigation from "@/components/Navigation";
+import Projects from "@/components/Projects";
+import GrowthCalculator from "@/components/GrowthCalculator";
+import Footer from "@/components/Footer";
+import SectionDivider from "@/components/SectionDivider";
+---
+
+<Layout
+  title="Managed Channels & Creator Projects — Hake Acc"
+  description="Explore the YouTube channels, creator brands, and Discord communities managed and developed by Hake Acc Agency."
+>
+  <Sidebar client:load />
+  <div class="lg:pl-[220px] flex flex-col min-h-screen">
+    <Navigation client:load />
+    
+    <main id="main-content" class="flex-1 pt-20">
+      {/* Page Header */}
+      <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-accent/15 border border-accent/30 rounded text-accent font-silkscreen text-xs mb-4">
+          <span class="w-2 h-2 rounded-sm bg-accent animate-pulse" />
+          <span>PORTFOLIO &amp; SHOWCASE</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold font-retro text-text-main leading-tight mb-4">
+          Featured Creators &amp;
+          <br />
+          <span class="gradient-text">Managed Channel Hubs.</span>
+        </h1>
+        <p class="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-pixel leading-relaxed">
+          Explore channels, video packaging strategies, and Discord community architectures that generated over 150 Million organic views.
+        </p>
+      </section>
+
+      {/* Main filterable projects showcase */}
+      <Projects client:load data={content.projects} showFilterTabs={true} />
+
+      <SectionDivider color="#8B7CF6" />
+
+      {/* Case Study Spotlight */}
+      <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <div class="text-center mb-12">
+          <p class="section-label mb-2">// CASE STUDY SPOTLIGHT</p>
+          <h2 class="text-3xl sm:text-4xl font-bold font-retro text-text-main">
+            How We Scaled Apex Gaming to 1.4M Subscribers
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="pixel-card rounded-xl p-6 border-l-4 border-[#6AA9FF]">
+            <div class="text-xs font-silkscreen text-[#6AA9FF] uppercase mb-2">PHASE 1: PACKAGING AUDIT</div>
+            <h3 class="text-base font-bold font-retro text-text-main mb-3">Thumbnail Hook Engineering</h3>
+            <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
+              Analyzed 100+ past videos and identified drop-off points. Redesigned thumbnail hierarchy with high-contrast character focal points and emotive expressions, lifting average CTR from 4.8% to 9.2%.
+            </p>
+          </div>
+
+          <div class="pixel-card rounded-xl p-6 border-l-4 border-[#8B7CF6]">
+            <div class="text-xs font-silkscreen text-[#8B7CF6] uppercase mb-2">PHASE 2: SHORTS FUNNEL</div>
+            <h3 class="text-base font-bold font-retro text-text-main mb-3">Cross-Platform Viral Repurposing</h3>
+            <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
+              Extracted high-intensity clips from long-form streams, custom-captioned them with retro styling, and published daily to YouTube Shorts and TikTok, generating 18M+ top-of-funnel discovery views.
+            </p>
+          </div>
+
+          <div class="pixel-card rounded-xl p-6 border-l-4 border-[#F4B860]">
+            <div class="text-xs font-silkscreen text-[#F4B860] uppercase mb-2">PHASE 3: COMMUNITY ENGINE</div>
+            <h3 class="text-base font-bold font-retro text-text-main mb-3">Discord Superhub &amp; VIP Perks</h3>
+            <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
+              Built a 45K-member Discord server with custom leveling bots, stream alerts, and subscriber-only tournaments, creating an army of superfans who boost every new video upload within the first hour.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Growth Calculator section */}
+      <section class="py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <GrowthCalculator client:visible />
+      </section>
+
+      {/* CTA */}
+      <section class="py-16 px-4 sm:px-6 max-w-4xl mx-auto w-full text-center">
+        <div class="pixel-card rounded-2xl p-8 sm:p-12 border border-accent/40 bg-accent/5">
+          <h2 class="text-2xl sm:text-3xl font-bold font-retro text-text-main mb-4">
+            Want Your Channel Featured Here Next?
+          </h2>
+          <p class="text-text-muted text-sm sm:text-base max-w-lg mx-auto font-pixel mb-6">
+            Submit your channel for a full growth audit and management proposal.
+          </p>
+          <a
+            href="/contact"
+            class="pixel-btn pixel-btn-accent text-xs sm:text-sm py-3.5 px-8 rounded inline-flex items-center gap-2"
+          >
+            Submit Channel For Review →
+          </a>
+        </div>
+      </section>
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>

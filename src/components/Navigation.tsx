@@ -2,127 +2,133 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import PixelIcon from "@/components/PixelIcon";
+import SoundToggle from "@/components/SoundToggle";
+import { playBlip, playClick } from "@/lib/sound";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Channels", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Channels", href: "/projects" },
+  { label: "Skills", href: "/experience" },
+  { label: "Services", href: "/services" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const [currentPath, setCurrentPath] = useState("/");
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
-      const sections = navLinks.map((l) => l.href.replace("#", ""));
-      for (const section of sections.reverse()) {
-        const el = document.getElementById(section);
-        if (el && window.scrollY >= el.offsetTop - 120) {
-          setActiveSection(section);
-          break;
-        }
-      }
+      setIsScrolled(window.scrollY > 30);
     };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
-  const scrollTo = (href: string) => {
-    const id = href.replace("#", "");
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setMobileOpen(false);
-  };
+    const updatePath = () => {
+      const path = window.location.pathname;
+      const cleanPath = path === "" ? "/" : path.replace(/\/$/, "") || "/";
+      setCurrentPath(cleanPath);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("popstate", updatePath);
+    document.addEventListener("astro:page-load", updatePath);
+    updatePath();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("popstate", updatePath);
+      document.removeEventListener("astro:page-load", updatePath);
+    };
+  }, []);
 
   return (
     <>
       <header
         className={cn(
-          "anim-nav fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          "anim-nav fixed top-0 left-0 right-0 z-40 transition-all duration-300",
           isScrolled
-            ? "glass-card border-b border-white/[0.06]"
-            : "bg-transparent"
+            ? "glass-card border-b border-white/[0.08] shadow-pixel-sm py-2"
+            : "bg-transparent py-3"
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-14">
             {/* Logo */}
-            <motion.a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
+            <a
+              href="/"
+              onMouseEnter={() => playBlip()}
+              onClick={() => playClick()}
               className="flex items-center gap-2.5 group"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
             >
-              <div className="relative w-8 h-8 overflow-hidden rounded-lg border border-accent/40 bg-accent/10 p-0.5">
+              <div className="relative w-8 h-8 overflow-hidden rounded-lg border border-accent/40 bg-accent/10 p-0.5 transition-transform duration-150 group-hover:scale-105">
                 <img
                   src="/assets/hake-logo.png"
                   alt="Hake Acc logo"
-                  className="h-full w-full object-cover rounded-md transition-transform duration-200 group-hover:scale-110"
+                  className="h-full w-full object-cover rounded-md pixel-crisp"
                 />
               </div>
               <span
-                className="text-text-main font-bold text-sm tracking-widest hidden sm:block"
-                style={{ textShadow: "0 0 20px rgba(244,184,96,0.8)" }}
+                className="text-text-main font-retro text-xs sm:text-sm tracking-wide group-hover:text-accent transition-colors"
+                style={{ textShadow: "0 0 16px rgba(244,184,96,0.6)" }}
               >
                 HAKE ACC
               </span>
-            </motion.a>
+            </a>
 
             {/* Desktop nav */}
             <nav aria-label="Main navigation" className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => {
-                const isActive = activeSection === link.href.replace("#", "");
+                const isActive =
+                  link.href === "/"
+                    ? currentPath === "/"
+                    : currentPath.startsWith(link.href);
+
                 return (
-                  <motion.button
+                  <a
                     key={link.href}
-                    onClick={() => scrollTo(link.href)}
+                    href={link.href}
+                    onMouseEnter={() => playBlip()}
+                    onClick={() => playClick()}
                     className={cn(
-                      "relative px-4 py-2 text-xs tracking-widest uppercase transition-colors duration-200 rounded",
-                      isActive ? "text-accent" : "text-text-muted hover:text-text-main"
+                      "relative px-3.5 py-1.5 text-xs font-silkscreen tracking-wide transition-all duration-150 rounded",
+                      isActive
+                        ? "text-accent bg-accent/10 border border-accent/30 shadow-pixel-sm font-bold"
+                        : "text-text-muted hover:text-text-main hover:bg-white/5 border border-transparent"
                     )}
-                    whileHover={{ y: -1 }}
-                    whileTap={{ scale: 0.96 }}
                   >
-                    {isActive && (
-                      <motion.span
-                        layoutId="nav-indicator"
-                        className="absolute inset-0 bg-accent/10 rounded border border-accent/20"
-                        transition={{ type: "spring", bounce: 0.25, duration: 0.4 }}
-                      />
-                    )}
                     <span className="relative z-10">{link.label}</span>
-                  </motion.button>
+                  </a>
                 );
               })}
-              <motion.button
-                onClick={() => scrollTo("#contact")}
-                className="ml-3 px-5 py-2 text-xs tracking-widest uppercase bg-accent text-background font-bold rounded hover:bg-accent/90 transition-all duration-200"
-                whileHover={{ scale: 1.04, y: -1 }}
-                whileTap={{ scale: 0.96 }}
-                style={{ boxShadow: "0 0 20px rgba(244,184,96,0.4)" }}
-              >
-                Hire Me
-              </motion.button>
+
+              <div className="ml-2 pl-2 border-l border-white/10 flex items-center gap-2">
+                <SoundToggle compact />
+                <a
+                  href="/contact"
+                  onMouseEnter={() => playBlip()}
+                  onClick={() => playClick()}
+                  className="pixel-btn pixel-btn-accent text-[11px] py-1.5 px-3.5 rounded"
+                >
+                  Hire Me
+                </a>
+              </div>
             </nav>
 
-            {/* Mobile hamburger */}
-            <motion.button
-              className="md:hidden p-2 text-text-muted hover:text-text-main transition-colors"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              whileTap={{ scale: 0.9 }}
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            >
-              <PixelIcon name={mobileOpen ? "close" : "menu"} className="text-current" />
-            </motion.button>
+            {/* Mobile controls */}
+            <div className="flex md:hidden items-center gap-2">
+              <SoundToggle compact />
+              <button
+                className="p-2 text-text-muted hover:text-text-main bg-white/5 rounded border border-white/10 active:translate-y-[1px]"
+                onClick={() => {
+                  playClick();
+                  setMobileOpen(!mobileOpen);
+                }}
+                aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              >
+                <PixelIcon name={mobileOpen ? "close" : "menu"} className="text-current" />
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -134,32 +140,60 @@ export default function Navigation() {
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", bounce: 0, duration: 0.35 }}
-            className="fixed inset-0 z-40 md:hidden"
+            transition={{ type: "spring", bounce: 0, duration: 0.3 }}
+            className="fixed inset-0 z-50 md:hidden"
           >
-            <div className="absolute inset-0 bg-[#0d0f14]/80 backdrop-blur-xl" onClick={() => setMobileOpen(false)} />
-            <div className="absolute right-0 top-0 h-full w-72 glass-card border-l border-white/[0.06] flex flex-col pt-20 px-6 gap-2">
-              {navLinks.map((link, i) => (
-                <motion.button
-                  key={link.href}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06 }}
-                  onClick={() => scrollTo(link.href)}
-                  className="text-left px-4 py-3 text-sm tracking-widest uppercase text-text-muted hover:text-accent hover:bg-accent/10 rounded transition-all duration-200"
+            <div
+              className="absolute inset-0 bg-[#0d0f14]/80 backdrop-blur-xl"
+              onClick={() => setMobileOpen(false)}
+            />
+            <div className="absolute right-0 top-0 h-full w-72 bg-[#0d1117] border-l border-white/10 flex flex-col pt-16 px-6 gap-2 shadow-2xl">
+              <div className="flex items-center justify-between pb-4 mb-2 border-b border-white/10">
+                <span className="font-retro text-xs text-accent">MENU NAVIGATION</span>
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="p-1 text-white/50 hover:text-white"
                 >
-                  {link.label}
-                </motion.button>
-              ))}
-              <motion.button
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.06 }}
-                onClick={() => scrollTo("#contact")}
-                className="mt-4 px-4 py-3 text-sm tracking-widest uppercase bg-accent text-background font-bold rounded text-center"
+                  <PixelIcon name="close" />
+                </button>
+              </div>
+
+              {navLinks.map((link) => {
+                const isActive =
+                  link.href === "/"
+                    ? currentPath === "/"
+                    : currentPath.startsWith(link.href);
+
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => {
+                      playClick();
+                      setMobileOpen(false);
+                    }}
+                    className={cn(
+                      "text-left px-4 py-2.5 text-xs font-silkscreen uppercase rounded transition-all duration-150 border",
+                      isActive
+                        ? "text-accent bg-accent/15 border-accent/40 font-bold"
+                        : "text-text-muted hover:text-white hover:bg-white/5 border-transparent"
+                    )}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
+
+              <a
+                href="/contact"
+                onClick={() => {
+                  playClick();
+                  setMobileOpen(false);
+                }}
+                className="pixel-btn pixel-btn-accent text-center mt-4 text-xs py-3 rounded"
               >
                 Hire Me
-              </motion.button>
+              </a>
             </div>
           </motion.div>
         )}

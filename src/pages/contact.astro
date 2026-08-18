@@ -1,0 +1,62 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import content from "@/data/content.json";
+import Sidebar from "@/components/Sidebar";
+import Navigation from "@/components/Navigation";
+import ContactForm from "@/components/ContactForm";
+import Footer from "@/components/Footer";
+import SectionDivider from "@/components/SectionDivider";
+---
+
+<Layout
+  title="Contact & Booking — Hake Acc"
+  description="Get in touch with Hake Acc for YouTube channel management, Discord server development, and creator agency inquiries."
+>
+  <Sidebar client:load />
+  <div class="lg:pl-[220px] flex flex-col min-h-screen">
+    <Navigation client:load />
+    
+    <main id="main-content" class="flex-1 pt-20">
+      {/* Page Header */}
+      <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-accent/15 border border-accent/30 rounded text-accent font-silkscreen text-xs mb-4">
+          <span class="w-2 h-2 rounded-sm bg-accent animate-pulse" />
+          <span>INQUIRIES &amp; BOOKINGS</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold font-retro text-text-main leading-tight mb-4">
+          Let&apos;s Build Something
+          <br />
+          <span class="gradient-text">Legendary Together.</span>
+        </h1>
+        <p class="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-pixel leading-relaxed">
+          Submit your channel details or project requirements below. I typically review and respond to inquiries within 24 hours.
+        </p>
+      </section>
+
+      {/* Onboarding Steps */}
+      <section class="pb-12 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { step: "01", title: "Inquiry & Goals", desc: "Submit your channel link, current metrics, and key growth objectives." },
+            { step: "02", title: "14-Day Audit", desc: "We review your analytics, CTR drop-offs, SEO tags, and Discord engagement." },
+            { step: "03", title: "Custom Roadmap", desc: "Receive a tailored packaging, upload schedule, and community blueprint." },
+            { step: "04", title: "Launch & Scale", desc: "We deploy custom bots, manage upload pipelines, and start scaling." },
+          ].map((item) => (
+            <div key={item.step} class="pixel-card rounded-xl p-5 border border-white/10">
+              <div class="text-xl font-bold font-retro text-accent mb-2">{item.step}</div>
+              <h3 class="text-sm font-bold font-retro text-text-main mb-1.5">{item.title}</h3>
+              <p class="text-text-muted text-xs font-pixel leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <SectionDivider color="#F4B860" />
+
+      {/* Main Contact Form */}
+      <ContactForm client:load data={content.contact} />
+    </main>
+    
+    <Footer client:visible />
+  </div>
+</Layout>

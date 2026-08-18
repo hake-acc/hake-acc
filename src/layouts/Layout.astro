@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import "../styles/globals.css";
 
 interface Props {
@@ -75,18 +76,23 @@ const jsonLd = {
     <meta name="twitter:image" content={image} />
     <meta name="twitter:creator" content="@hake_acc" />
 
-    <!-- Google Fonts: Pixelify Sans -->
+    <!-- Google Pixel Fonts: Pixelify Sans, Press Start 2P, Silkscreen, VT323, Space Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&display=swap"
       rel="stylesheet"
     />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Astro View Transitions for instant SPA-like navigation -->
+    <ClientRouter />
   </head>
-  <body class="font-pixel antialiased">
+  <body class="font-pixel antialiased bg-[#0D0F14] text-[#F5F7FA] selection:bg-accent/30 selection:text-accent">
+    <div class="scan-lines fixed inset-0 z-30 pointer-events-none opacity-40"></div>
+    <div class="pixel-grid fixed inset-0 z-10 pointer-events-none opacity-60"></div>
     <slot />
   </body>
 </html>
