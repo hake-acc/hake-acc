@@ -1,0 +1,36 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import content from "@/data/content.json";
+import Hero from "@/components/Hero";
+import Sidebar from "@/components/Sidebar";
+import About from "@/components/About";
+import Projects from "@/components/Projects";
+import Skills from "@/components/Skills";
+import Experience from "@/components/Experience";
+import Services from "@/components/Services";
+import Testimonials from "@/components/Testimonials";
+import ContactForm from "@/components/ContactForm";
+import Footer from "@/components/Footer";
+import SectionDivider from "@/components/SectionDivider";
+---
+
+<Layout>
+  <Sidebar client:load />
+  <main id="main-content" class="lg:pl-[220px]">
+    <Hero client:load data={content.hero} contact={content.contact} />
+    <About client:visible data={content.about} />
+    <SectionDivider color="#6AA9FF" />
+    <Projects client:visible data={content.projects} />
+    <SectionDivider color="#8B7CF6" />
+    <Skills client:visible data={content.skills} />
+    <SectionDivider color="#F4B860" />
+    <Experience client:visible data={content.experience} />
+    <SectionDivider color="#6AA9FF" />
+    <Services client:visible data={content.services} />
+    <SectionDivider color="#8B7CF6" />
+    <Testimonials client:visible data={content.testimonials} />
+    <SectionDivider color="#F4B860" />
+    <ContactForm client:visible data={content.contact} />
+  </main>
+  <Footer client:visible />
+</Layout>

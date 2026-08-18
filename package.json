@@ -1,19 +1,19 @@
 {
-  "name": "pixel-portfolio",
-  "version": "0.1.0",
+  "name": "hake-acc-portfolio",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 5000",
-    "build": "next build",
-    "start": "next start -p 5000",
-    "lint": "next lint"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/react": "^6.0.2",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^7.2.2",
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.2",
     "lucide-react": "^0.447.0",
-    "next": "^14.2.35",
-    "next-themes": "^0.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwind-merge": "^2.6.1"
@@ -23,8 +23,6 @@
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
     "autoprefixer": "^10.5.4",
-    "eslint": "^8.57.1",
-    "eslint-config-next": "^14.2.35",
     "postcss": "^8.5.25",
     "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3"

@@ -1,19 +1,17 @@
-"use client";
-
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Home,
   User,
-  FolderOpen,
+  Youtube,
   Code2,
   Briefcase,
-  Trophy,
+  Layers,
+  Star,
   Mail,
+  Twitter,
   Github,
-  Linkedin,
-  Globe,
+  MessageSquare,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import PixelIcon from "@/components/PixelIcon";
@@ -21,17 +19,18 @@ import PixelIcon from "@/components/PixelIcon";
 const navLinks = [
   { label: "Home", href: "#hero", icon: Home },
   { label: "About", href: "#about", icon: User },
-  { label: "Projects", href: "#projects", icon: FolderOpen },
+  { label: "Channels", href: "#projects", icon: Youtube },
   { label: "Skills", href: "#skills", icon: Code2 },
   { label: "Experience", href: "#experience", icon: Briefcase },
-  { label: "Achievements", href: "#achievements", icon: Trophy },
+  { label: "Services", href: "#services", icon: Layers },
+  { label: "Reviews", href: "#testimonials", icon: Star },
   { label: "Contact", href: "#contact", icon: Mail },
 ];
 
 const socialLinks = [
-  { icon: Github, label: "GitHub", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Globe, label: "Website", href: "#" },
+  { icon: Youtube, label: "YouTube", href: "https://youtube.com" },
+  { icon: Twitter, label: "Twitter / X", href: "https://twitter.com/hake_acc" },
+  { icon: Github, label: "GitHub", href: "https://github.com/hake-acc" },
 ];
 
 export default function Sidebar() {
@@ -68,34 +67,36 @@ export default function Sidebar() {
   const SidebarContent = () => (
     <div className="flex flex-col h-full py-6">
       {/* Logo / Avatar */}
-      <div className="flex items-center justify-center mb-8 px-4">
-        <div className="relative">
+      <div className="flex flex-col items-center justify-center mb-6 px-4">
+        <div className="relative mb-3">
           <div
-            className="w-16 h-16 rounded-xl flex items-center justify-center overflow-hidden"
+            className="w-16 h-16 rounded-xl flex items-center justify-center overflow-hidden p-0.5"
             style={{
-              background: "rgba(106,169,255,0.08)",
-              border: "1px solid rgba(106,169,255,0.15)",
+              background: "rgba(106,169,255,0.12)",
+              border: "1px solid rgba(244,184,96,0.3)",
+              boxShadow: "0 0 16px rgba(244,184,96,0.2)",
             }}
           >
-            <Image
+            <img
               src="/assets/hake-logo.png"
-              alt="Hake logo"
-              width={64}
-              height={64}
-              priority
-              className="h-full w-full object-cover"
+              alt="Hake Acc logo"
+              className="h-full w-full object-cover rounded-lg"
             />
           </div>
           {/* Online indicator */}
-          <div className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-amber-400 rounded-full border-2 border-[#0d0f14]" />
+          <div className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-success rounded-full border-2 border-[#0d0f14]" />
+        </div>
+        <div className="text-center">
+          <div className="font-bold text-text-main text-sm tracking-wide">Hake Acc</div>
+          <div className="text-[10px] text-accent font-medium tracking-wider uppercase">Agency Founder</div>
         </div>
       </div>
 
       {/* Divider */}
-      <div className="h-px bg-white/[0.06] mb-6 mx-4" />
+      <div className="h-px bg-white/[0.06] mb-4 mx-4" />
 
       {/* Nav Links */}
-      <nav className="flex-1 flex flex-col gap-1 px-3">
+      <nav className="flex-1 flex flex-col gap-0.5 px-3 overflow-y-auto">
         {navLinks.map((link) => {
           const Icon = link.icon;
           const isActive = activeSection === link.href.replace("#", "");
@@ -104,9 +105,9 @@ export default function Sidebar() {
               key={link.href}
               onClick={() => scrollTo(link.href)}
               className={cn(
-                "relative flex items-center gap-3 px-4 py-3 rounded-lg text-sm tracking-wide text-left transition-all duration-200 group",
+                "relative flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs tracking-wide text-left transition-all duration-200 group",
                 isActive
-                  ? "text-white"
+                  ? "text-white font-semibold"
                   : "text-white/50 hover:text-white/80"
               )}
               whileHover={{ x: 2 }}
@@ -117,8 +118,8 @@ export default function Sidebar() {
                   layoutId="sidebar-active"
                   className="absolute inset-0 rounded-lg"
                   style={{
-                    background: "linear-gradient(90deg, rgba(139,124,246,0.35) 0%, rgba(139,124,246,0.08) 100%)",
-                    borderLeft: "2px solid #8B7CF6",
+                    background: "linear-gradient(90deg, rgba(244,184,96,0.25) 0%, rgba(244,184,96,0.05) 100%)",
+                    borderLeft: "2px solid #F4B860",
                   }}
                   transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
                 />
@@ -126,19 +127,19 @@ export default function Sidebar() {
               <Icon
                 className={cn(
                   "w-4 h-4 relative z-10 shrink-0",
-                  isActive ? "text-white" : "text-white/40 group-hover:text-white/70"
+                  isActive ? "text-accent" : "text-white/40 group-hover:text-white/70"
                 )}
               />
-              <span className="relative z-10 font-medium">{link.label}</span>
+              <span className="relative z-10">{link.label}</span>
             </motion.button>
           );
         })}
       </nav>
 
       {/* Bottom section */}
-      <div className="px-4 mt-6">
+      <div className="px-4 mt-4 pt-3 border-t border-white/[0.06]">
         {/* Social icons */}
-        <div className="flex items-center justify-center gap-2 mb-4">
+        <div className="flex items-center justify-center gap-2 mb-3">
           {socialLinks.map(({ icon: Icon, label, href }) => (
             <motion.a
               key={label}
@@ -146,8 +147,8 @@ export default function Sidebar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="w-9 h-9 flex items-center justify-center rounded-lg border border-white/10 text-white/40 hover:text-white/80 hover:border-white/25 hover:bg-white/5 transition-all duration-200"
-              whileHover={{ y: -2, scale: 1.05 }}
+              className="w-8 h-8 flex items-center justify-center rounded-lg border border-white/10 text-white/40 hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-all duration-200"
+              whileHover={{ y: -2, scale: 1.08 }}
               whileTap={{ scale: 0.9 }}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -155,15 +156,9 @@ export default function Sidebar() {
           ))}
         </div>
 
-        {/* Colored bars */}
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <div className="h-1 w-8 rounded-full bg-gradient-to-r from-violet-500 to-purple-500" />
-          <div className="h-1 w-8 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400" />
-        </div>
-
         {/* Copyright */}
-        <div className="text-center text-white/25 text-[10px] leading-relaxed">
-          <div>© 2025 Hake</div>
+        <div className="text-center text-white/30 text-[10px] leading-relaxed">
+          <div>© 2026 Hake Acc</div>
           <div>All rights reserved.</div>
         </div>
       </div>
@@ -177,7 +172,7 @@ export default function Sidebar() {
         className="hidden lg:flex fixed left-0 top-0 h-screen w-[220px] flex-col z-50"
         style={{
           background: "rgba(11, 13, 18, 0.97)",
-          borderRight: "1px solid rgba(255,255,255,0.05)",
+          borderRight: "1px solid rgba(255,255,255,0.06)",
           backdropFilter: "blur(20px)",
         }}
       >
@@ -186,7 +181,7 @@ export default function Sidebar() {
 
       {/* Mobile toggle button */}
       <motion.button
-        className="lg:hidden fixed top-4 left-4 z-50 w-10 h-10 flex items-center justify-center rounded-lg bg-background/90 border border-white/10 text-white/70 backdrop-blur-md"
+        className="lg:hidden fixed top-4 left-4 z-50 w-10 h-10 flex items-center justify-center rounded-lg bg-[#0d0f14]/90 border border-white/10 text-white/70 backdrop-blur-md"
         onClick={() => setMobileOpen(!mobileOpen)}
         whileTap={{ scale: 0.9 }}
         aria-label={mobileOpen ? "Close sidebar" : "Open sidebar"}
@@ -213,7 +208,7 @@ export default function Sidebar() {
               className="lg:hidden fixed left-0 top-0 h-screen w-[220px] z-50"
               style={{
                 background: "rgba(11, 13, 18, 0.99)",
-                borderRight: "1px solid rgba(255,255,255,0.05)",
+                borderRight: "1px solid rgba(255,255,255,0.06)",
               }}
             >
               <SidebarContent />

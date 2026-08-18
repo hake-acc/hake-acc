@@ -1,41 +1,42 @@
-# Pixel Portfolio — Hake
+# Pixel Portfolio — Hake Acc
 
-A breathtaking, cinematic personal portfolio website for a software engineer and creative developer. The experience immerses visitors in a living pixel-art world using a looping full-screen background video, with a lightweight, elegant UI floating above.
+A high-performance, cinematic personal portfolio website for **Hake Acc** — **Social Media Manager, Discord Server Developer & Creator Agency Founder**. Powered by Astro and React Islands for near-instant load speeds while keeping all pixel-art visual effects, looping background video, and Framer Motion animations.
 
 ## Stack
 
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: Astro 5 (Static Site Generation with React Islands)
+- **UI & Islands**: React 18 & Framer Motion v11
 - **Styling**: Tailwind CSS v3
-- **Animations**: Framer Motion v11
 - **Typography**: Pixelify Sans (Google Fonts)
 - **Language**: TypeScript
 
 ## Architecture
 
-- `src/app/` — Next.js App Router pages and layout
-- `src/components/` — All UI components (Hero, Navigation, About, Projects, Skills, Experience, Services, Testimonials, ContactForm, Footer)
-- `src/data/content.json` — All site content (projects, skills, experience, testimonials, contact)
-- `src/lib/utils.ts` — Utility functions
-- `public/assets/pixelart-bg.mp4` — Looping pixel-art background video
+- `src/layouts/Layout.astro` — Master Astro layout with full OpenGraph/Twitter social cards, Favicons, JSON-LD Schema, and Google Fonts.
+- `src/pages/index.astro` — Main homepage orchestrating interactive React islands (`client:load` / `client:visible`).
+- `src/components/` — UI components:
+  - `Hero.tsx` — Cinematic video backdrop, pixel celebration animations, and creator badges.
+  - `Sidebar.tsx` — Fixed glassmorphic sidebar with Hake Acc avatar logo, online indicator, and section routing.
+  - `About.tsx` — Hake Acc profile card with pixel avatar, creator stats, and bio.
+  - `Projects.tsx` — Managed YouTubers & Creator channels showcase with direct YouTube links and subscriber metrics.
+  - `Skills.tsx` — YouTube Studio, SEO, CTR testing, Discord bot architecture, and creator tool stack.
+  - `Experience.tsx` — Agency Founder, Lead YouTube Manager, and Discord Architect timeline.
+  - `Services.tsx` — Channel Management, Discord Server Dev, Shorts Scaling, and Creator Monetization.
+  - `Testimonials.tsx` — Testimonials from YouTubers and creators.
+  - `ContactForm.tsx` — Creator project inquiry form with validation.
+  - `Footer.tsx` — Branded footer with Hake Acc logo, links, and socials.
+- `src/data/content.json` — Central data source for all text, stats, YouTube channels, and links.
+- `public/assets/` — Logo (`hake-logo.png`), background video (`pixelart-bg.mp4` / `pixelart-bg.webm`), and favicons.
 
-## Design System
+## Customization
 
-- **Primary**: #6AA9FF (Sky Blue)
-- **Secondary**: #8B7CF6 (Twilight Purple)
-- **Accent**: #F4B860 (Warm Lantern Gold)
-- **Background**: #0D0F14 (Deep Midnight)
-- **Surface**: #1A1F2B (Dark Slate)
-- **Font**: Pixelify Sans
+- To add or edit your managed YouTuber channels, links, subscriber counts, and services: update `src/data/content.json` under `"projects"`.
+- To edit social links, email, or bio: update `src/data/content.json`.
 
-## Running
+## Running & Building
 
 ```bash
-npm run dev   # starts on port 5000
-npm run build # production build
+npm run dev   # starts Astro dev server on port 5000
+npm run build # builds static production bundle into dist/
+npm run preview # preview production build
 ```
-
-## User Preferences
-
-- All content is driven by `src/data/content.json` — update that file to personalize
-- Video background lives at `public/assets/pixelart-bg.mp4`
-- Port: 5000 (Replit webview)

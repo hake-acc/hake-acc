@@ -1,16 +1,14 @@
-"use client";
-
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import PixelIcon from "@/components/PixelIcon";
 
 const navLinks = [
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
+  { label: "Channels", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
+  { label: "Services", href: "#services" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -43,7 +41,6 @@ export default function Navigation() {
 
   return (
     <>
-      {/* CSS entrance — no Framer initial opacity */}
       <header
         className={cn(
           "anim-nav fixed top-0 left-0 right-0 z-50 transition-all duration-500",
@@ -57,22 +54,26 @@ export default function Navigation() {
             {/* Logo */}
             <motion.a
               href="#"
-              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-              className="flex items-center gap-2 group"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="flex items-center gap-2.5 group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="relative w-8 h-8 overflow-hidden rounded border border-accent/30 bg-accent/20">
-                <Image
+              <div className="relative w-8 h-8 overflow-hidden rounded-lg border border-accent/40 bg-accent/10 p-0.5">
+                <img
                   src="/assets/hake-logo.png"
-                  alt="Hake logo"
-                  width={32}
-                  height={32}
-                  className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-110"
+                  alt="Hake Acc logo"
+                  className="h-full w-full object-cover rounded-md transition-transform duration-200 group-hover:scale-110"
                 />
               </div>
-              <span className="text-text-main font-bold text-sm tracking-wider hidden sm:block" style={{ textShadow: "0 0 20px rgba(244,184,96,0.8)" }}>
-                HAKE.DEV
+              <span
+                className="text-text-main font-bold text-sm tracking-widest hidden sm:block"
+                style={{ textShadow: "0 0 20px rgba(244,184,96,0.8)" }}
+              >
+                HAKE ACC
               </span>
             </motion.a>
 
@@ -136,7 +137,7 @@ export default function Navigation() {
             transition={{ type: "spring", bounce: 0, duration: 0.35 }}
             className="fixed inset-0 z-40 md:hidden"
           >
-            <div className="absolute inset-0 bg-background/80 backdrop-blur-xl" onClick={() => setMobileOpen(false)} />
+            <div className="absolute inset-0 bg-[#0d0f14]/80 backdrop-blur-xl" onClick={() => setMobileOpen(false)} />
             <div className="absolute right-0 top-0 h-full w-72 glass-card border-l border-white/[0.06] flex flex-col pt-20 px-6 gap-2">
               {navLinks.map((link, i) => (
                 <motion.button

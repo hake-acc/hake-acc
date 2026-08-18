@@ -1,8 +1,6 @@
-"use client";
-
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Github, Twitter, Linkedin } from "lucide-react";
+import { Youtube, MessageSquare, Twitter, Github, Sparkles } from "lucide-react";
 import PixelIcon from "@/components/PixelIcon";
 
 interface HeroProps {
@@ -14,17 +12,13 @@ interface HeroProps {
     ctaSecondary: string;
   };
   contact: {
-    github: string;
-    twitter: string;
-    linkedin: string;
+    email: string;
+    discord?: string;
+    twitter?: string;
+    github?: string;
+    youtube?: string;
   };
 }
-
-const socialLinks = [
-  { icon: Github, label: "GitHub", key: "github" as const },
-  { icon: Twitter, label: "Twitter", key: "twitter" as const },
-  { icon: Linkedin, label: "LinkedIn", key: "linkedin" as const },
-];
 
 export default function Hero({ data, contact }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -32,15 +26,12 @@ export default function Hero({ data, contact }: HeroProps) {
   const [namePopKey, setNamePopKey] = useState(0);
   const [mineKey, setMineKey] = useState(0);
 
-  // Force-play in environments where autoPlay alone is insufficient (e.g. Replit iframe proxy)
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
     video.muted = true;
     const tryPlay = () => {
-      video.play().catch(() => {
-        // Retry once on user gesture if policy blocks it
-      });
+      video.play().catch(() => {});
     };
     if (video.readyState >= 2) {
       tryPlay();
@@ -59,10 +50,14 @@ export default function Hero({ data, contact }: HeroProps) {
       document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
     }, 440);
   };
-  const scrollToAbout = () => {
-    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToContact = () => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
   const celebrateName = () => setNamePopKey((key) => key + 1);
+
+  const titleParts = data.title.split(" ");
+  const firstName = titleParts[0] || "Hake";
+  const lastName = titleParts.slice(1).join(" ") || "Acc";
 
   return (
     <section
@@ -71,7 +66,7 @@ export default function Hero({ data, contact }: HeroProps) {
       className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden"
       aria-label="Hero section"
     >
-      {/* Background video — parallax via Framer (layout only, not visibility) */}
+      {/* Background video */}
       <motion.div className="absolute inset-0 z-0" style={{ y }}>
         <video
           ref={videoRef}
@@ -86,22 +81,28 @@ export default function Hero({ data, contact }: HeroProps) {
           <source src="/assets/pixelart-bg.webm" type="video/webm" />
           <source src="/assets/pixelart-bg.mp4" type="video/mp4" />
         </video>
-        {/* Darkening overlays — kept light so the video breathes through */}
+        {/* Darkening overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/55 via-background/10 to-background/80" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/20 via-transparent to-background/20" />
-        <div className="absolute inset-0" style={{
-          background: "radial-gradient(ellipse at center, transparent 45%, rgba(13,15,20,0.55) 100%)"
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "radial-gradient(ellipse at center, transparent 45%, rgba(13,15,20,0.55) 100%)",
+          }}
+        />
         <div className="absolute inset-0 scan-lines opacity-30" />
       </motion.div>
 
-      {/* All text uses CSS entrance animations — visible immediately from SSR */}
+      {/* Hero content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
-        {/* Pre-title */}
+        {/* Pre-title status pill */}
         <div className="anim-enter anim-enter-d1 flex items-center justify-center gap-3 mb-6">
-          <span className="h-px w-12 bg-accent/50" />
-          <span className="section-label tracking-[0.3em]">Portfolio 2025</span>
-          <span className="h-px w-12 bg-accent/50" />
+          <span className="h-px w-10 bg-accent/50" />
+          <span className="section-label tracking-[0.3em] flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+            Social Media Manager • Discord Developer • Agency Founder
+          </span>
+          <span className="h-px w-10 bg-accent/50" />
         </div>
 
         {/* Name */}
@@ -114,7 +115,7 @@ export default function Hero({ data, contact }: HeroProps) {
               aria-label={`Celebrate ${data.title}`}
               style={{ textShadow: "0 0 40px rgba(106,169,255,0.5)" }}
             >
-              <span className="name-celebration-label">{data.title.split(" ")[0]}</span>
+              <span className="name-celebration-label">{firstName}</span>
               {namePopKey > 0 && (
                 <span key={namePopKey} className="name-heart-pop" aria-hidden="true">
                   <span className="name-heart-pixel" />
@@ -123,7 +124,7 @@ export default function Hero({ data, contact }: HeroProps) {
                 </span>
               )}
             </button>
-            <span className="block gradient-text">{data.title.split(" ")[1]}</span>
+            <span className="block gradient-text">{lastName}</span>
           </h1>
         </div>
 
@@ -164,6 +165,7 @@ export default function Hero({ data, contact }: HeroProps) {
           </motion.button>
 
           <motion.button
+            onClick={scrollToContact}
             className="px-8 py-3.5 border border-white/15 text-text-muted text-sm font-medium tracking-widest uppercase rounded hover:border-primary/50 hover:text-primary transition-all duration-300"
             whileHover={{ scale: 1.02, y: -1 }}
             whileTap={{ scale: 0.97 }}
@@ -174,31 +176,55 @@ export default function Hero({ data, contact }: HeroProps) {
 
         {/* Social links */}
         <div className="anim-enter anim-enter-d6 flex items-center justify-center gap-4 pb-32 sm:pb-36">
-          {socialLinks.map(({ icon: Icon, label, key }) => (
+          {contact.youtube && (
             <motion.a
-              key={key}
-              href={contact[key]}
+              href={contact.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={label}
+              aria-label="YouTube"
+              className="w-10 h-10 flex items-center justify-center rounded border border-white/10 text-text-muted hover:text-error hover:border-error/40 hover:bg-error/10 transition-all duration-200"
+              whileHover={{ y: -3, scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <Youtube className="w-4 h-4" />
+            </motion.a>
+          )}
+          {contact.twitter && (
+            <motion.a
+              href={contact.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter / X"
               className="w-10 h-10 flex items-center justify-center rounded border border-white/10 text-text-muted hover:text-primary hover:border-primary/40 hover:bg-primary/10 transition-all duration-200"
               whileHover={{ y: -3, scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Icon className="w-4 h-4" />
+              <Twitter className="w-4 h-4" />
             </motion.a>
-          ))}
+          )}
+          {contact.github && (
+            <motion.a
+              href={contact.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="w-10 h-10 flex items-center justify-center rounded border border-white/10 text-text-muted hover:text-secondary hover:border-secondary/40 hover:bg-secondary/10 transition-all duration-200"
+              whileHover={{ y: -3, scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <Github className="w-4 h-4" />
+            </motion.a>
+          )}
         </div>
       </div>
 
-      {/* Scroll to Explore indicator */}
+      {/* Scroll indicator */}
       <div className="anim-enter anim-enter-d7 absolute inset-x-0 bottom-5 z-10 flex justify-center px-4 sm:bottom-8">
         <button
-          onClick={scrollToAbout}
+          onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
           className="flex flex-col items-center gap-3 text-text-muted hover:text-white transition-colors duration-300 group"
           aria-label="Scroll to explore"
         >
-          {/* Mouse icon */}
           <div className="relative w-6 h-9 rounded-full border-2 border-white/40 group-hover:border-white/70 transition-colors duration-300 flex items-start justify-center pt-1.5">
             <motion.div
               className="w-1 h-2 bg-white/60 rounded-full group-hover:bg-white/90 transition-colors duration-300"
@@ -206,11 +232,9 @@ export default function Hero({ data, contact }: HeroProps) {
               transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
             />
           </div>
-          {/* Label */}
           <span className="text-xs tracking-[0.18em] uppercase text-white/50 group-hover:text-white/80 transition-colors duration-300">
             Scroll to explore
           </span>
-          {/* Chevron */}
           <motion.div
             animate={{ y: [0, 5, 0] }}
             transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut", delay: 0.2 }}
@@ -223,18 +247,18 @@ export default function Hero({ data, contact }: HeroProps) {
       {/* Corner decorations */}
       <div className="anim-enter anim-enter-d7 absolute top-20 left-6 z-10 hidden lg:block">
         <div className="text-text-muted/30 text-xs font-mono space-y-1">
-          <div>{"// v1.0.0"}</div>
+          <div>{"// Agency Founder & Strategist"}</div>
           <div className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 bg-success rounded-full animate-pulse" />
-            <span>Available for hire</span>
+            <span className="text-success/80">Accepting new creators</span>
           </div>
         </div>
       </div>
 
       <div className="anim-enter anim-enter-d7 absolute top-20 right-6 z-10 hidden lg:block">
         <div className="text-text-muted/30 text-xs font-mono text-right space-y-1">
-          <div>San Francisco, CA</div>
-          <div>UTC-7</div>
+          <div>Worldwide</div>
+          <div>EST / PST / UTC</div>
         </div>
       </div>
     </section>

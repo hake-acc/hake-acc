@@ -7,12 +7,12 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
-
-# production
+# astro & build
+/dist/
+/.astro/
 /build
+/out/
+/.next/
 
 # misc
 .DS_Store

@@ -1,201 +1,219 @@
 {
   "hero": {
-    "title": "Hake",
-    "tagline": "Creative Developer & Digital Craftsman",
-    "subtitle": "I build beautiful, immersive digital experiences at the intersection of engineering and art.",
-    "ctaLabel": "Explore My Work",
-    "ctaSecondary": "Download CV"
+    "title": "Hake Acc",
+    "tagline": "Social Media Manager • Discord Developer • Agency Founder",
+    "subtitle": "Scaling top YouTube channels, engineering high-retention Discord communities, and building unstoppable creator brands.",
+    "ctaLabel": "Explore Channels",
+    "ctaSecondary": "Let's Work Together"
   },
   "about": {
-    "bio": "I'm a software engineer and creative developer with 6+ years of experience building immersive digital products. I believe software should feel as good as it looks — merging technical precision with artistic vision to create experiences that resonate. When I'm not pushing pixels, you'll find me composing chiptune music or exploring the wilderness with my camera.",
+    "bio": "I'm Hake Acc — a dedicated Social Media Manager, Discord Server Developer, and Creator Agency Founder with 5+ years of experience helping high-profile YouTubers scale their audience, retention, and community. From viral content packaging and video SEO to custom Discord bot ecosystems and full channel management, I build systems that turn viewers into lifelong superfans.",
     "facts": [
-      { "label": "Projects Shipped", "value": "40+" },
-      { "label": "Happy Clients", "value": "30+" },
-      { "label": "Years Experience", "value": "6+" },
-      { "label": "Open Source Stars", "value": "2.4k" }
+      { "label": "YouTubers Managed", "value": "25+" },
+      { "label": "Total Views Driven", "value": "150M+" },
+      { "label": "Discord Members", "value": "100k+" },
+      { "label": "Years Experience", "value": "5+" }
     ]
   },
   "projects": [
     {
-      "id": "nebula-os",
-      "title": "Nebula OS",
-      "description": "A pixel-art-inspired browser-based operating system simulator with draggable windows, a functional file system, and retro terminal — all running in pure TypeScript.",
-      "longDescription": "Built from scratch without any OS framework, Nebula OS simulates a complete desktop environment in the browser. Features include a virtual file system, draggable/resizable windows, a pixel-art icon set, and an interactive terminal with 30+ commands.",
-      "tech": ["TypeScript", "Canvas API", "IndexedDB", "Web Workers"],
-      "demoUrl": "https://example.com/nebula-os",
-      "githubUrl": "https://github.com/example/nebula-os",
+      "id": "gaming-creator-hub",
+      "title": "Gaming & Entertainment Channel",
+      "channelName": "Apex Gaming Creator",
+      "description": "Full-scale YouTube channel management: Thumbnail packaging, title A/B testing, video SEO, and retention-focused upload strategies.",
+      "longDescription": "Transformed channel performance through viral packaging hooks, custom thumbnail design direction, audience retention analytics, and YouTube Shorts repurposing.",
+      "metrics": "1.4M+ Subscribers • 48M+ Views",
+      "role": "Lead Channel & Social Manager",
+      "tech": ["YouTube Studio", "Video SEO", "Thumbnail Strategy", "Shorts Scaling"],
+      "youtubeUrl": "https://youtube.com",
+      "discordUrl": "https://discord.gg",
       "featured": true,
       "color": "#6AA9FF"
     },
     {
-      "id": "aurora-ui",
-      "title": "Aurora UI",
-      "description": "A design system library with 80+ hand-crafted components featuring aurora-inspired gradient animations, dark mode first, and full a11y compliance.",
-      "longDescription": "Aurora UI is a production-ready React component library with a distinctive aurora borealis aesthetic. Every component is built with accessibility-first principles, comprehensive Storybook documentation, and a zero-configuration dark mode.",
-      "tech": ["React", "TypeScript", "Storybook", "Radix UI", "CSS-in-JS"],
-      "demoUrl": "https://example.com/aurora-ui",
-      "githubUrl": "https://github.com/example/aurora-ui",
+      "id": "creator-discord-ecosystem",
+      "title": "Elite Creator Discord Server",
+      "channelName": "Creator Superfan Hub",
+      "description": "Engineered a 45K+ member Discord server with custom security bots, tiered VIP perks, automated Twitch/YouTube alerts, and gamified engagement.",
+      "longDescription": "Designed a zero-raid, high-security Discord architecture with automated role verification, interactive mini-games, server economy, and live event staging.",
+      "metrics": "45K+ Members • 8K+ Daily Active",
+      "role": "Discord Server Architect & Developer",
+      "tech": ["Discord.js", "Server Security", "Custom Bots", "Community Systems"],
+      "youtubeUrl": "https://youtube.com",
+      "discordUrl": "https://discord.gg",
       "featured": true,
       "color": "#8B7CF6"
     },
     {
-      "id": "echo-analytics",
-      "title": "Echo Analytics",
-      "description": "Real-time user analytics dashboard with WebSocket live updates, interactive data visualizations, and AI-powered insight summaries.",
-      "longDescription": "Echo Analytics processes millions of events daily and presents them through a clean, responsive dashboard. The AI layer uses LLM-powered natural language summaries to make data accessible to non-technical stakeholders.",
-      "tech": ["Next.js", "D3.js", "WebSockets", "PostgreSQL", "OpenAI API"],
-      "demoUrl": "https://example.com/echo-analytics",
-      "githubUrl": "https://github.com/example/echo-analytics",
+      "id": "variety-youtube-scale",
+      "title": "Variety & Challenge Channel",
+      "channelName": "Epic Content Collective",
+      "description": "Scaled video performance and audience growth across long-form YouTube content and viral short-form clips on YouTube Shorts and TikTok.",
+      "longDescription": "Developed the end-to-end content calendar, oversaw video title hooks and thumbnail variants, and implemented community tab marketing campaigns.",
+      "metrics": "850K+ Subscribers • 32M+ Views",
+      "role": "Social Media & Growth Strategist",
+      "tech": ["Content Calendar", "Retention Optimization", "CTR Testing", "Community Posts"],
+      "youtubeUrl": "https://youtube.com",
+      "discordUrl": "https://discord.gg",
       "featured": true,
       "color": "#F4B860"
     },
     {
-      "id": "pixelcraft",
-      "title": "PixelCraft Editor",
-      "description": "A browser-based pixel art editor with layer support, animation frames, palette management, and one-click sprite sheet export.",
-      "longDescription": "PixelCraft is a full-featured pixel art creation tool built entirely in the browser. It supports multi-layer editing, frame-by-frame animation preview, custom palettes, and exports to PNG, GIF, and sprite sheet formats.",
-      "tech": ["Vue 3", "WebGL", "Canvas API", "IndexedDB"],
-      "demoUrl": "https://example.com/pixelcraft",
-      "githubUrl": "https://github.com/example/pixelcraft",
+      "id": "streamer-brand-hub",
+      "title": "Streamer & Creator Brand",
+      "channelName": "Live Gaming Network",
+      "description": "Managed daily YouTube VOD editing schedules, highlight packaging, and brand sponsor integrations with zero missed deadlines.",
+      "longDescription": "Coordinated editor workflows, delivered high-conversion sponsor reads, and maintained consistent multi-platform branding.",
+      "metrics": "620K+ Subscribers • 22M+ Views",
+      "role": "Channel Manager & Operations",
+      "tech": ["Sponsorship Integration", "VOD Packaging", "Editor Management", "Analytics"],
+      "youtubeUrl": "https://youtube.com",
+      "discordUrl": "https://discord.gg",
       "featured": false,
       "color": "#4ADE80"
     },
     {
-      "id": "soundscape",
-      "title": "Soundscape",
-      "description": "A procedural ambient music generator using the Web Audio API — create infinite, unique soundscapes with a drag-and-drop node editor.",
-      "longDescription": "Soundscape uses a visual node-based editor where users connect audio synthesis nodes to build complex generative music systems. Every session creates a unique, non-repeating ambient soundscape.",
-      "tech": ["React", "Web Audio API", "React Flow", "TypeScript"],
-      "demoUrl": "https://example.com/soundscape",
-      "githubUrl": "https://github.com/example/soundscape",
+      "id": "anime-commentary-growth",
+      "title": "Anime & Pop Culture Network",
+      "channelName": "AniVerse Media",
+      "description": "Doubled organic search traffic and search impressions through deep video metadata optimization and competitive trend analysis.",
+      "longDescription": "Implemented rapid-response trend coverage strategies, optimized end-screen conversions, and built an engaged Discord discussion hub.",
+      "metrics": "410K+ Subscribers • 18M+ Views",
+      "role": "Lead SEO & Community Strategist",
+      "tech": ["Trend Analysis", "Video SEO", "End-Screen Funnels", "Discord Moderation"],
+      "youtubeUrl": "https://youtube.com",
+      "discordUrl": "https://discord.gg",
       "featured": false,
       "color": "#F87171"
     },
     {
-      "id": "terrain-gen",
-      "title": "Terrain Generator",
-      "description": "GPU-accelerated procedural terrain generation with real-time WebGL rendering, biome simulation, and exportable heightmaps.",
-      "longDescription": "Using noise algorithms and GPU shaders, this tool generates infinite, photorealistic terrain in real-time. Users can tweak dozens of parameters to control biome distribution, erosion patterns, and atmospheric effects.",
-      "tech": ["WebGL", "GLSL", "Three.js", "TypeScript"],
-      "demoUrl": "https://example.com/terrain-gen",
-      "githubUrl": "https://github.com/example/terrain-gen",
+      "id": "tech-review-creator",
+      "title": "Tech & Setup Review Channel",
+      "channelName": "Tech Craft HQ",
+      "description": "Built affiliate link conversion funnels, professional Discord community support, and structured review release campaigns.",
+      "longDescription": "Managed product review timelines, optimized affiliate link placement in descriptions and pinned comments, and coordinated community AMA events.",
+      "metrics": "290K+ Subscribers • 12M+ Views",
+      "role": "Operations & Affiliate Manager",
+      "tech": ["Affiliate Funnels", "Event Staging", "Community AMAs", "Brand Deals"],
+      "youtubeUrl": "https://youtube.com",
+      "discordUrl": "https://discord.gg",
       "featured": false,
       "color": "#A7B0C0"
     }
   ],
   "skills": [
     {
-      "category": "Frontend",
+      "category": "YouTube & Social Media",
       "icon": "monitor",
-      "level": 95,
-      "items": ["React", "Next.js", "TypeScript", "Vue 3", "Tailwind CSS", "Framer Motion"]
+      "level": 96,
+      "items": ["YouTube Studio", "Video SEO & Packaging", "Thumbnail & CTR Strategy", "Audience Retention", "Shorts & Viral Scaling", "Analytics & Insights"]
     },
     {
-      "category": "Backend",
+      "category": "Discord Architecture",
       "icon": "server",
-      "level": 82,
-      "items": ["Node.js", "Python", "PostgreSQL", "Redis", "GraphQL", "REST APIs"]
+      "level": 94,
+      "items": ["Server Design & Layout", "Custom Bot Integration", "Automated Moderation", "Role & Permission Systems", "Community Engagement", "VIP & Nitro Perks"]
     },
     {
-      "category": "Creative",
+      "category": "Agency & Growth",
       "icon": "palette",
-      "level": 88,
-      "items": ["WebGL / GLSL", "Canvas API", "Three.js", "Pixel Art", "UI/UX Design", "Motion Design"]
+      "level": 90,
+      "items": ["Talent Management", "Sponsorship & Brand Deals", "Community Monetization", "Team Workflow Optimization", "Creator Branding", "Campaign Strategy"]
     },
     {
-      "category": "DevOps",
+      "category": "Content & Operations",
       "icon": "cloud",
-      "level": 75,
-      "items": ["Docker", "GitHub Actions", "Vercel", "AWS", "Terraform", "Monitoring"]
+      "level": 86,
+      "items": ["Content Calendars", "A/B Testing", "Cross-Platform Repurposing", "Community Events", "Discord Webhooks", "CRM & Creator Outreach"]
     }
   ],
   "experience": [
     {
-      "position": "Senior Creative Engineer",
-      "company": "Luminary Studios",
+      "position": "Founder & Lead Creator Strategist",
+      "company": "Hake Acc Agency",
       "date": "2022 – Present",
-      "type": "full-time",
+      "type": "agency",
       "details": [
-        "Led a 5-person frontend guild delivering 3 AAA game marketing microsites",
-        "Built a real-time collaborative canvas tool used by 50k+ designers",
-        "Reduced core Web Vitals LCP by 62% through advanced rendering optimizations",
-        "Introduced WebGL shader-based animations that became the team's design language"
+        "Directly manage 15+ creator channels and Discord communities representing 100M+ combined views",
+        "Architected 30+ high-security Discord servers with custom moderation and VIP onboarding",
+        "Increased average creator video CTR by 38% through iterative thumbnail and title optimization",
+        "Negotiated and executed six-figure brand partnerships and creator sponsorships"
       ]
     },
     {
-      "position": "Frontend Engineer II",
-      "company": "Forge Interactive",
+      "position": "Lead YouTube Channel & Social Media Manager",
+      "company": "Top Creator Networks",
       "date": "2020 – 2022",
       "type": "full-time",
       "details": [
-        "Architected a component library adopted across 8 internal product teams",
-        "Developed a custom visual regression testing pipeline saving 20hr/sprint",
-        "Shipped an award-winning onboarding experience with 94% completion rate",
-        "Mentored 3 junior engineers through structured pairing sessions"
+        "Managed daily operations, metadata, SEO, and community engagement for top gaming and commentary channels",
+        "Scaled a gaming creator from 150K to 850K subscribers in 14 months",
+        "Launched and moderated official creator Discord servers with 50K+ active members",
+        "Established automated cross-posting pipelines across YouTube, Shorts, TikTok, and X"
       ]
     },
     {
-      "position": "Creative Developer",
+      "position": "Discord Server Architect & Growth Consultant",
       "company": "Freelance",
-      "date": "2018 – 2020",
+      "date": "2019 – 2020",
       "type": "freelance",
       "details": [
-        "Built 15+ custom portfolio & marketing sites for independent creators",
-        "Delivered interactive data visualizations for 4 research institutions",
-        "Created browser-based game prototypes for indie studios",
-        "Maintained a 5-star rating across 28 Upwork contracts"
+        "Built and hardened 20+ creator Discord servers with custom bot permissions and anti-raid security",
+        "Designed gamified leveling and role systems that increased weekly chat engagement by 200%",
+        "Assisted emerging YouTubers with content scheduling, tags, and audience retention analysis"
       ]
     }
   ],
   "services": [
     {
-      "title": "Creative Web Development",
+      "title": "YouTube Channel Management",
       "icon": "sparkles",
-      "description": "Cinematic, award-quality websites with custom animations, WebGL effects, and pixel-perfect implementation."
+      "description": "End-to-end channel strategy, thumbnail/title optimization, SEO, upload schedules, and retention-focused video packaging."
     },
     {
-      "title": "Design Systems",
+      "title": "Discord Server Development",
       "icon": "layers",
-      "description": "Scalable, accessible component libraries with comprehensive documentation and full design token support."
+      "description": "Custom bot configuration, anti-nuke/anti-raid security, role hierarchy, custom channels, and high-engagement community architecture."
     },
     {
-      "title": "Interactive Experiences",
+      "title": "Social Media Growth & Shorts",
       "icon": "gamepad-2",
-      "description": "Browser-based games, interactive data visualizations, generative art, and experimental interfaces."
+      "description": "Cross-platform short-form video scaling across YouTube Shorts, TikTok, and X to drive massive top-of-funnel traffic."
     },
     {
-      "title": "Performance Optimization",
+      "title": "Creator Agency & Monetization",
       "icon": "zap",
-      "description": "Core Web Vitals audits, rendering optimization, bundle analysis, and progressive enhancement strategies."
+      "description": "Brand deal negotiations, merch launches, Patreon/membership tier setups, and full-scale creator operations."
     }
   ],
   "testimonials": [
     {
-      "quote": "Hake delivered a portfolio site that genuinely stunned our hiring committee. The attention to detail, the animations, the performance — we'd never seen anything like it at that budget.",
-      "author": "Maya R.",
-      "role": "Engineering Director, Luminary Studios"
+      "quote": "Hake Acc completely transformed our YouTube workflow. Our average CTR jumped from 4.8% to 9.2%, and our Discord server became the most active creator community in our niche.",
+      "author": "Apex Gaming (YouTuber)",
+      "role": "1.4M Subscribers"
     },
     {
-      "quote": "Working with Hake transformed how we think about our digital presence. What we thought would be a simple website became a genuine piece of interactive art that tripled our inbound inquiries.",
-      "author": "Jordan K.",
-      "role": "Founder, Pixel Garden Agency"
+      "quote": "Working with Hake is the best decision we made for our channel. He handles everything from video SEO and thumbnails to our entire Discord backend with unmatched professionalism.",
+      "author": "Kev Gaming",
+      "role": "850K Subscribers"
     },
     {
-      "quote": "The component library Hake built for us is still the gold standard in our org two years later. Impeccably documented, endlessly flexible, and it just looks incredible.",
-      "author": "Sam T.",
-      "role": "Lead Designer, Forge Interactive"
+      "quote": "The Discord server Hake built for my community is incredible. The security, custom bots, and onboarding flow gave our fans an unforgettable experience.",
+      "author": "Tyler V.",
+      "role": "Creator & Streamer (500K Subs)"
     },
     {
-      "quote": "Hake has a rare ability to think in both code and design simultaneously. The interactive experience they built for our conference talk left the audience speechless.",
-      "author": "Dr. Priya V.",
-      "role": "Research Lead, DataVis Institute"
+      "quote": "Hake Acc understands the creator economy better than anyone. He doesn't just manage channels — he scales brands and creates superfans.",
+      "author": "Elena R.",
+      "role": "Agency Partner & Talent Director"
     }
   ],
   "contact": {
-    "email": "hake@example.com",
-    "github": "https://github.com/hake-acc",
+    "email": "contact@hakeacc.com",
+    "discord": "hake_acc",
     "twitter": "https://twitter.com/hake_acc",
-    "linkedin": "https://linkedin.com/in/hake-acc",
-    "location": "San Francisco, CA"
+    "github": "https://github.com/hake-acc",
+    "youtube": "https://youtube.com",
+    "location": "Available Worldwide"
   }
 }

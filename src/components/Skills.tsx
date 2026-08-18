@@ -137,7 +137,7 @@ export default function Skills({ data }: SkillsProps) {
             variants={itemVariants}
             className="text-text-muted mt-5 max-w-xl mx-auto text-base leading-relaxed"
           >
-            I&apos;ve spent years refining my craft across every layer of the stack — from GPU shaders to database indexes.
+            I&apos;ve mastered the end-to-end creator growth stack — from video packaging and SEO to Discord bot architecture and viral content systems.
           </motion.p>
         </motion.div>
 
@@ -167,10 +167,10 @@ export default function Skills({ data }: SkillsProps) {
           aria-hidden="true"
         >
           <div className="text-xs text-text-muted/30 tracking-[0.4em] uppercase text-center mb-4">
-            Also familiar with
+            Creator Tools &amp; Ecosystems
           </div>
           <div className="flex gap-8 items-center justify-center flex-wrap">
-            {["Svelte", "Astro", "Remix", "tRPC", "Prisma", "Supabase", "Cloudflare Workers", "Rust (learning)", "WASM", "Blender", "After Effects"].map((tech) => (
+            {["Photoshop", "Premiere Pro", "CapCut", "VidIQ", "TubeBuddy", "SocialBlade", "Discord.js", "OBS Studio", "Patreon", "Notion CMS", "OpenAI / Claude"].map((tech) => (
               <span key={tech} className="text-xs text-text-muted/40 whitespace-nowrap hover:text-text-muted/60 transition-colors">
                 {tech}
               </span>

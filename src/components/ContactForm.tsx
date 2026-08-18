@@ -1,16 +1,15 @@
-"use client";
-
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Send, CheckCircle2, AlertCircle, Mail, MapPin, Github, Twitter, Linkedin } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Mail, MapPin, Youtube, Twitter, Github, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ContactProps {
   data: {
     email: string;
-    github: string;
-    twitter: string;
-    linkedin: string;
+    discord?: string;
+    twitter?: string;
+    github?: string;
+    youtube?: string;
     location: string;
   };
 }
@@ -32,17 +31,17 @@ export default function ContactForm({ data }: ContactProps) {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [formState, setFormState] = useState<FormState>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [fields, setFields] = useState({ name: "", email: "", message: "" });
+  const [fields, setFields] = useState({ name: "", email: "", channelLink: "", message: "" });
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    if (!fields.name.trim()) newErrors.name = "Name is required.";
+    if (!fields.name.trim()) newErrors.name = "Name or Channel name is required.";
     if (!fields.email.trim()) newErrors.email = "Email is required.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email))
       newErrors.email = "Please enter a valid email.";
     if (!fields.message.trim()) newErrors.message = "Message is required.";
-    else if (fields.message.trim().length < 20)
-      newErrors.message = "Message must be at least 20 characters.";
+    else if (fields.message.trim().length < 15)
+      newErrors.message = "Message must be at least 15 characters.";
     return newErrors;
   };
 
@@ -56,8 +55,8 @@ export default function ContactForm({ data }: ContactProps) {
     setErrors({});
     setFormState("loading");
 
-    // Simulate async submission (replace with real endpoint)
-    await new Promise((r) => setTimeout(r, 1800));
+    // Simulated async submission
+    await new Promise((r) => setTimeout(r, 1500));
     setFormState("success");
   };
 
@@ -79,7 +78,7 @@ export default function ContactForm({ data }: ContactProps) {
       {/* Background */}
       <div className="absolute inset-0 bg-surface/15 pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -95,15 +94,15 @@ export default function ContactForm({ data }: ContactProps) {
             variants={itemVariants}
             className="text-4xl sm:text-5xl font-bold text-text-main leading-tight"
           >
-            Let&apos;s build something
+            Ready to scale your channel
             <br />
-            <span className="gradient-text">extraordinary together.</span>
+            <span className="gradient-text">and dominate your niche?</span>
           </motion.h2>
           <motion.p
             variants={itemVariants}
             className="text-text-muted mt-5 max-w-xl mx-auto text-base leading-relaxed"
           >
-            Whether you have a project in mind, need a collaborator, or just want to say hello — I&apos;d love to hear from you.
+            Whether you&apos;re a creator looking for channel management, need a high-security Discord server, or want agency scaling — let&apos;s connect.
           </motion.p>
         </motion.div>
 
@@ -117,13 +116,13 @@ export default function ContactForm({ data }: ContactProps) {
           >
             {/* Contact info */}
             <motion.div variants={itemVariants} className="glass-card rounded-2xl p-6 space-y-5">
-              <p className="text-xs text-accent tracking-widest uppercase mb-4">Reach Out</p>
+              <p className="text-xs text-accent tracking-widest uppercase mb-4 font-semibold">Direct Contact</p>
               <a
                 href={`mailto:${data.email}`}
-                className="flex items-center gap-3 text-text-muted hover:text-primary transition-colors duration-200 group"
+                className="flex items-center gap-3 text-text-muted hover:text-accent transition-colors duration-200 group"
               >
-                <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                  <Mail className="w-4 h-4 text-primary" />
+                <div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/25 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
+                  <Mail className="w-4 h-4 text-accent" />
                 </div>
                 <div>
                   <p className="text-[10px] text-text-muted/60 uppercase tracking-wide mb-0.5">Email</p>
@@ -131,8 +130,8 @@ export default function ContactForm({ data }: ContactProps) {
                 </div>
               </a>
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4 text-accent" />
+                <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4 text-primary" />
                 </div>
                 <div>
                   <p className="text-[10px] text-text-muted/60 uppercase tracking-wide mb-0.5">Location</p>
@@ -143,23 +142,24 @@ export default function ContactForm({ data }: ContactProps) {
 
             {/* Social links */}
             <motion.div variants={itemVariants} className="glass-card rounded-2xl p-6">
-              <p className="text-xs text-accent tracking-widest uppercase mb-4">Find Me Online</p>
+              <p className="text-xs text-accent tracking-widest uppercase mb-4 font-semibold">Find Me Online</p>
               <div className="space-y-3">
                 {[
-                  { icon: Github, label: "GitHub", url: data.github, sub: "@hake-acc" },
-                  { icon: Twitter, label: "Twitter / X", url: data.twitter, sub: "@hake_acc" },
-                  { icon: Linkedin, label: "LinkedIn", url: data.linkedin, sub: "linkedin.com/in/hake-acc" },
+                  { icon: MessageSquare, label: "Discord", url: "#", sub: data.discord || "hake_acc" },
+                  { icon: Youtube, label: "YouTube", url: data.youtube || "https://youtube.com", sub: "Creator Hub" },
+                  { icon: Twitter, label: "Twitter / X", url: data.twitter || "https://twitter.com/hake_acc", sub: "@hake_acc" },
+                  { icon: Github, label: "GitHub", url: data.github || "https://github.com/hake-acc", sub: "@hake-acc" },
                 ].map(({ icon: Icon, label, url, sub }) => (
                   <a
                     key={label}
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 group hover:text-primary transition-colors duration-200"
+                    className="flex items-center gap-3 group hover:text-accent transition-colors duration-200"
                     aria-label={`Visit ${label}`}
                   >
-                    <div className="w-8 h-8 rounded-lg bg-surface border border-white/[0.06] flex items-center justify-center shrink-0 group-hover:border-primary/30 group-hover:bg-primary/10 transition-all">
-                      <Icon className="w-4 h-4 text-text-muted group-hover:text-primary transition-colors" />
+                    <div className="w-8 h-8 rounded-lg bg-surface border border-white/[0.06] flex items-center justify-center shrink-0 group-hover:border-accent/40 group-hover:bg-accent/10 transition-all">
+                      <Icon className="w-4 h-4 text-text-muted group-hover:text-accent transition-colors" />
                     </div>
                     <div>
                       <span className="text-xs font-medium text-text-main block">{label}</span>
@@ -174,10 +174,10 @@ export default function ContactForm({ data }: ContactProps) {
             <motion.div variants={itemVariants} className="glass-card rounded-2xl p-5 border-l-2 border-success">
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2 h-2 bg-success rounded-full animate-pulse" />
-                <span className="text-xs text-success font-medium tracking-wide uppercase">Open to Work</span>
+                <span className="text-xs text-success font-medium tracking-wide uppercase">Open for Clients</span>
               </div>
               <p className="text-text-muted text-sm leading-relaxed">
-                Available for full-time roles, freelance projects, and consulting engagements starting immediately.
+                Accepting new YouTube channel management clients, creator consulting, and Discord server projects.
               </p>
             </motion.div>
           </motion.div>
@@ -199,15 +199,18 @@ export default function ContactForm({ data }: ContactProps) {
                   <div className="w-16 h-16 rounded-full bg-success/15 border border-success/30 flex items-center justify-center">
                     <CheckCircle2 className="w-8 h-8 text-success" />
                   </div>
-                  <h3 className="text-xl font-bold text-text-main">Message Received!</h3>
+                  <h3 className="text-xl font-bold text-text-main">Inquiry Received!</h3>
                   <p className="text-text-muted text-sm max-w-xs">
-                    Thanks for reaching out. I&apos;ll get back to you within 24–48 hours.
+                    Thanks for reaching out! I&apos;ll review your channel/details and respond within 24 hours.
                   </p>
                   <button
-                    onClick={() => { setFormState("idle"); setFields({ name: "", email: "", message: "" }); }}
+                    onClick={() => {
+                      setFormState("idle");
+                      setFields({ name: "", email: "", channelLink: "", message: "" });
+                    }}
                     className="mt-2 text-xs text-accent hover:underline tracking-wide"
                   >
-                    Send another message
+                    Send another inquiry
                   </button>
                 </motion.div>
               ) : (
@@ -215,12 +218,12 @@ export default function ContactForm({ data }: ContactProps) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="name" className="block text-xs text-text-muted tracking-wide mb-2">
-                        Name <span className="text-error">*</span>
+                        Your Name / Channel Name <span className="text-error">*</span>
                       </label>
                       <input
                         id="name"
                         type="text"
-                        placeholder="Alex Smith"
+                        placeholder="e.g. Apex Gaming / Hake"
                         value={fields.name}
                         onChange={(e) => setFields((f) => ({ ...f, name: e.target.value }))}
                         className={inputClasses("name")}
@@ -234,12 +237,12 @@ export default function ContactForm({ data }: ContactProps) {
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-xs text-text-muted tracking-wide mb-2">
-                        Email <span className="text-error">*</span>
+                        Email Address <span className="text-error">*</span>
                       </label>
                       <input
                         id="email"
                         type="email"
-                        placeholder="hello@example.com"
+                        placeholder="creator@example.com"
                         value={fields.email}
                         onChange={(e) => setFields((f) => ({ ...f, email: e.target.value }))}
                         className={inputClasses("email")}
@@ -254,13 +257,27 @@ export default function ContactForm({ data }: ContactProps) {
                   </div>
 
                   <div>
+                    <label htmlFor="channelLink" className="block text-xs text-text-muted tracking-wide mb-2">
+                      YouTube Channel / Discord Server Link (Optional)
+                    </label>
+                    <input
+                      id="channelLink"
+                      type="url"
+                      placeholder="https://youtube.com/@yourchannel or https://discord.gg/..."
+                      value={fields.channelLink}
+                      onChange={(e) => setFields((f) => ({ ...f, channelLink: e.target.value }))}
+                      className={inputClasses("channelLink")}
+                    />
+                  </div>
+
+                  <div>
                     <label htmlFor="message" className="block text-xs text-text-muted tracking-wide mb-2">
-                      Message <span className="text-error">*</span>
+                      Project Details / Goals <span className="text-error">*</span>
                     </label>
                     <textarea
                       id="message"
-                      rows={6}
-                      placeholder="Tell me about your project, idea, or just say hi..."
+                      rows={5}
+                      placeholder="Tell me about your channel, current subscriber count, Discord needs, or management goals..."
                       value={fields.message}
                       onChange={(e) => setFields((f) => ({ ...f, message: e.target.value }))}
                       className={cn(inputClasses("message"), "resize-none")}
@@ -270,7 +287,9 @@ export default function ContactForm({ data }: ContactProps) {
                         <p className="text-[11px] text-error flex items-center gap-1">
                           <AlertCircle className="w-3 h-3" /> {errors.message}
                         </p>
-                      ) : <span />}
+                      ) : (
+                        <span />
+                      )}
                       <span className="text-[11px] text-text-muted/40 shrink-0">
                         {fields.message.length} chars
                       </span>
@@ -280,7 +299,7 @@ export default function ContactForm({ data }: ContactProps) {
                   {formState === "error" && (
                     <div className="flex items-center gap-2 text-error text-sm bg-error/10 border border-error/20 rounded-lg px-4 py-3">
                       <AlertCircle className="w-4 h-4 shrink-0" />
-                      Something went wrong. Please try again or email me directly.
+                      Something went wrong. Please try again or email directly.
                     </div>
                   )}
 
@@ -298,12 +317,12 @@ export default function ContactForm({ data }: ContactProps) {
                           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                           className="w-4 h-4 border-2 border-background/40 border-t-background rounded-full"
                         />
-                        Sending...
+                        Sending Inquiry...
                       </>
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
-                        Send Message
+                        Send Inquiry
                       </>
                     )}
                   </motion.button>

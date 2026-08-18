@@ -1,0 +1,92 @@
+---
+import "../styles/globals.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title = "Hake Acc — Social Media Manager, Discord Developer & Agency Founder",
+  description = "Official portfolio of Hake Acc. Social Media Manager, Discord Server Developer, and Creator Agency Founder managing top YouTubers and scaling communities worldwide.",
+  image = "/assets/hake-logo.png",
+  canonicalURL = "https://hakeacc.com",
+} = Astro.props;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Hake Acc",
+  jobTitle: "Social Media Manager, Discord Server Developer & Agency Founder",
+  url: "https://hakeacc.com",
+  image: "https://hakeacc.com/assets/hake-logo.png",
+  sameAs: [
+    "https://github.com/hake-acc",
+    "https://twitter.com/hake_acc",
+    "https://youtube.com",
+  ],
+  knowsAbout: [
+    "YouTube Channel Management",
+    "Social Media Strategy",
+    "Discord Server Architecture",
+    "Custom Discord Bot Development",
+    "Audience Retention & SEO",
+    "Creator Talent Management",
+    "Community Building",
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Hake Acc, Social Media Manager, Discord Server Developer, Agency Founder, YouTube Channel Manager, Creator Manager, Discord Bot Developer, Community Growth" />
+    <meta name="author" content="Hake Acc" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#F4B860" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="/assets/hake-logo.png" />
+    <link rel="apple-touch-icon" href="/assets/hake-logo.png" />
+    <link rel="shortcut icon" href="/assets/hake-logo.png" />
+
+    <!-- Open Graph / Discord / Facebook / LinkedIn Embeds -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:site_name" content="Hake Acc Portfolio" />
+
+    <!-- Twitter / X Embeds -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:creator" content="@hake_acc" />
+
+    <!-- Google Fonts: Pixelify Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="font-pixel antialiased">
+    <slot />
+  </body>
+</html>

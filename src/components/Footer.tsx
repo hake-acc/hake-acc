@@ -1,13 +1,10 @@
-"use client";
-
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { Github, Twitter, Linkedin } from "lucide-react";
+import { Youtube, Twitter, Github } from "lucide-react";
 import PixelIcon from "@/components/PixelIcon";
 
 const navLinks = [
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
+  { label: "Managed Channels", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Services", href: "#services" },
@@ -15,9 +12,9 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { icon: Github, label: "GitHub", href: "https://github.com/hake-acc" },
+  { icon: Youtube, label: "YouTube", href: "https://youtube.com" },
   { icon: Twitter, label: "Twitter", href: "https://twitter.com/hake_acc" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/hake-acc" },
+  { icon: Github, label: "GitHub", href: "https://github.com/hake-acc" },
 ];
 
 export default function Footer() {
@@ -31,28 +28,29 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-white/[0.06] overflow-hidden" aria-label="Footer">
       <div className="absolute inset-0 bg-surface/20 pointer-events-none" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-primary/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-accent/5 blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 overflow-hidden rounded border border-accent/30 bg-accent/20">
-                <Image
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 overflow-hidden rounded-lg border border-accent/40 bg-accent/10 p-0.5">
+                <img
                   src="/assets/hake-logo.png"
-                  alt="Hake logo"
-                  width={32}
-                  height={32}
-                  className="h-full w-full object-cover"
+                  alt="Hake Acc logo"
+                  className="h-full w-full object-cover rounded-md"
                 />
               </div>
-              <span className="text-text-main font-bold tracking-wider" style={{ textShadow: "0 0 20px rgba(244,184,96,0.8)" }}>
-                HAKE.DEV
+              <span
+                className="text-text-main font-bold tracking-widest text-base"
+                style={{ textShadow: "0 0 20px rgba(244,184,96,0.8)" }}
+              >
+                HAKE ACC
               </span>
             </div>
-            <p className="text-text-muted text-sm leading-relaxed max-w-xs">
-              Creative developer crafting immersive digital experiences at the intersection of engineering and art.
+            <p className="text-text-muted text-sm leading-relaxed max-w-sm">
+              Social Media Manager, Discord Server Developer &amp; Creator Agency Founder scaling top YouTubers and building high-retention creator communities.
             </p>
             <div className="flex items-center gap-3">
               {socialLinks.map(({ icon: Icon, label, href }) => (
@@ -62,7 +60,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-9 h-9 rounded-lg glass-card border border-white/[0.07] flex items-center justify-center text-text-muted hover:text-primary hover:border-primary/30 transition-all duration-200"
+                  className="w-9 h-9 rounded-lg glass-card border border-white/[0.07] flex items-center justify-center text-text-muted hover:text-accent hover:border-accent/30 transition-all duration-200"
                   whileHover={{ y: -2, scale: 1.08 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -74,14 +72,14 @@ export default function Footer() {
 
           {/* Navigation */}
           <div>
-            <p className="text-xs text-accent tracking-widest uppercase mb-4">Navigation</p>
+            <p className="text-xs text-accent tracking-widest uppercase mb-4 font-semibold">Navigation</p>
             <nav aria-label="Footer navigation">
               <ul className="space-y-2.5">
-                {navLinks.slice(0, 4).map((link) => (
+                {navLinks.slice(0, 3).map((link) => (
                   <li key={link.href}>
                     <button
                       onClick={() => scrollTo(link.href)}
-                      className="text-sm text-text-muted hover:text-primary transition-colors duration-200 text-left"
+                      className="text-sm text-text-muted hover:text-accent transition-colors duration-200 text-left"
                     >
                       {link.label}
                     </button>
@@ -93,27 +91,26 @@ export default function Footer() {
 
           {/* More links */}
           <div>
-            <p className="text-xs text-accent tracking-widest uppercase mb-4">More</p>
+            <p className="text-xs text-accent tracking-widest uppercase mb-4 font-semibold">Connect</p>
             <ul className="space-y-2.5">
-              {navLinks.slice(4).map((link) => (
+              {navLinks.slice(3).map((link) => (
                 <li key={link.href}>
                   <button
                     onClick={() => scrollTo(link.href)}
-                    className="text-sm text-text-muted hover:text-primary transition-colors duration-200 text-left"
+                    className="text-sm text-text-muted hover:text-accent transition-colors duration-200 text-left"
                   >
                     {link.label}
                   </button>
                 </li>
               ))}
               <li>
-                <a href="https://github.com/hake-acc" target="_blank" rel="noopener noreferrer"
-                  className="text-sm text-text-muted hover:text-primary transition-colors duration-200">
-                  GitHub
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-text-muted hover:text-primary transition-colors duration-200">
-                  Download CV
+                <a
+                  href="https://twitter.com/hake_acc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-text-muted hover:text-accent transition-colors duration-200"
+                >
+                  Twitter / X
                 </a>
               </li>
             </ul>
@@ -123,13 +120,11 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-text-muted/60 text-center sm:text-left">
-            © 2025 Hake. Built with{" "}
-            <PixelIcon name="heart" className="inline-flex align-[-2px] text-error/60 mx-0.5" />
-            using Next.js, Framer Motion &amp; Tailwind CSS.
+            © 2026 Hake Acc. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <span className="text-[10px] text-text-muted/40 tracking-widest uppercase hidden sm:block">
-              Inspired by Hyper Light Drifter &amp; Sea of Stars
+              Creator Management &amp; Discord Architecture
             </span>
             <motion.button
               onClick={scrollToTop}
