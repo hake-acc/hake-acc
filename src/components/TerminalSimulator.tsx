@@ -87,12 +87,16 @@ export default function TerminalSimulator() {
         case "channels":
           botResponse = (
             <div className="space-y-1 text-[#6AA9FF]">
-              <div>🎮 [FEATURED CREATORS]</div>
-              <div>1. Apex Gaming Hub (1.4M Subs • 48M Views) — Full Channel & Discord Ops</div>
-              <div>2. Creator Superfan Hub (45K Members) — Custom Discord Bot Infrastructure</div>
-              <div>3. Epic Content Collective (850K Subs • 32M Views) — Shorts & Viral Strategy</div>
-              <div>4. Live Gaming Network (620K Subs • 22M Views) — Daily VOD Packaging & Sponsors</div>
-              <div className="text-white/60 text-xs">→ Explore full showcases at /projects</div>
+              <div>🎮 [FEATURED CREATORS & CHANNELS]</div>
+              <div>1. Alex Adi XD — Gaming & Entertainment (@alexadixdofficial)</div>
+              <div>2. Mc thunder Playz — Gaming & Community Hub (@mcthunderxdofficial)</div>
+              <div>3. Not Vangid — Creator & Content Channel (@notvangid)</div>
+              <div>4. Sky Plays — Gameplay & Streams (@oneskyplayz)</div>
+              <div>5. Upper Gaming — Gaming Network & Hub (@upper_gaming)</div>
+              <div>6. Cappy Mc — Main Gaming Channel (@cappy-mc)</div>
+              <div>7. CappuXD — Secondary Highlights Channel (@CappuXD)</div>
+              <div>8. Arpan GamzO — Gaming & Entertainment (@arpangamzo_official)</div>
+              <div className="text-white/60 text-xs">→ Explore full direct links at /projects</div>
             </div>
           );
           break;

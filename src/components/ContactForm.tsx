@@ -278,7 +278,7 @@ export default function ContactForm({ data }: ContactProps) {
                       <input
                         id="name"
                         type="text"
-                        placeholder="e.g. Apex Gaming / Hake"
+                        placeholder="e.g. Alex Adi XD / Creator Name"
                         value={fields.name}
                         onChange={(e) => setFields((f) => ({ ...f, name: e.target.value }))}
                         className={inputClasses("name")}
