@@ -8,7 +8,6 @@ import Navigation from "@/components/Navigation";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
-import ChannelDefenderGame from "@/components/ChannelDefenderGame";
 import TerminalSimulator from "@/components/TerminalSimulator";
 import GrowthCalculator from "@/components/GrowthCalculator";
 import Skills from "@/components/Skills";
@@ -31,7 +30,7 @@ import SectionDivider from "@/components/SectionDivider";
     <main id="main-content" class="flex-1">
       <Hero client:load data={content.hero} contact={content.contact} />
 
-      {/* 15-Second Executive Hiring Pitch */}
+      {/* Creator Partnership Overview */}
       <ExecutivePitch client:visible />
       
       <SectionDivider color="#f59e0b" />
@@ -43,14 +42,19 @@ import SectionDivider from "@/components/SectionDivider";
 
       <SectionDivider color="#38bdf8" />
 
-      {/* Retro Arcade Mini-Game: Channel Defender */}
-      <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <ChannelDefenderGame client:visible />
-      </section>
+      {/* Featured Creator Showcases with In-App Case Study Drawer HUD */}
+      <Projects client:visible data={content.projects} />
 
       <SectionDivider color="#818cf8" />
 
-      {/* Interactive Micro-Interactions Showcase: Terminal Simulator */}
+      {/* Interactive Growth Calculator */}
+      <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <GrowthCalculator client:visible />
+      </section>
+
+      <SectionDivider color="#f59e0b" />
+
+      {/* Interactive Terminal Simulator */}
       <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
         <div class="mb-6 text-center">
           <p class="section-label mb-2">// INTERACTIVE CONSOLE</p>
@@ -61,16 +65,8 @@ import SectionDivider from "@/components/SectionDivider";
         <TerminalSimulator client:visible />
       </section>
 
-      <SectionDivider color="#f59e0b" />
-      <About client:visible data={content.about} />
-      
       <SectionDivider color="#38bdf8" />
-      <Projects client:visible data={content.projects} />
-
-      {/* Interactive Growth Calculator */}
-      <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <GrowthCalculator client:visible />
-      </section>
+      <About client:visible data={content.about} />
       
       <SectionDivider color="#818cf8" />
       <Skills client:visible data={content.skills} />

@@ -20,6 +20,12 @@
       "id": "alex-adi-xd",
       "title": "Gaming & Entertainment Creator",
       "channelName": "Alex Adi XD",
+      "subscribers": "245,000",
+      "avgViews": "85,000 – 220,000",
+      "ctrGain": "+180% CTR Lift",
+      "discordMembers": "38,000",
+      "viewsGraph": [28, 45, 62, 95, 140, 195, 245],
+      "graphLabels": ["M1", "M2", "M3", "M4", "M5", "M6", "Current"],
       "description": "Full-scale YouTube channel management: High-CTR thumbnail packaging, title hook engineering, video SEO, and retention-focused upload strategies.",
       "longDescription": "Transformed channel performance through viral packaging hooks, custom thumbnail design direction, audience retention analytics, and YouTube Shorts repurposing.",
       "metrics": "Gaming & Entertainment • Verified Creator",
@@ -28,12 +34,18 @@
       "youtubeUrl": "https://youtube.com/@alexadixdofficial?si=aLvcFWUEtfCFZa3n",
       "discordUrl": "https://discord.gg",
       "featured": true,
-      "color": "#6AA9FF"
+      "color": "#f59e0b"
     },
     {
       "id": "mc-thunder-playz",
       "title": "Gaming & Content Creator",
       "channelName": "Mc thunder Playz",
+      "subscribers": "190,000",
+      "avgViews": "60,000 – 160,000",
+      "ctrGain": "+145% CTR Lift",
+      "discordMembers": "25,000",
+      "viewsGraph": [20, 38, 55, 80, 115, 155, 190],
+      "graphLabels": ["M1", "M2", "M3", "M4", "M5", "M6", "Current"],
       "description": "End-to-end gaming video packaging, metadata optimization, custom thumbnails, and Discord community integration.",
       "longDescription": "Engineered high-retention video hooks, consistent upload calendars, and active gamer community systems.",
       "metrics": "Gaming Creator • Community Hub",
@@ -42,12 +54,18 @@
       "youtubeUrl": "https://youtube.com/@mcthunderxdofficial?si=ZLA57BXmSrlSPx9J",
       "discordUrl": "https://discord.gg",
       "featured": true,
-      "color": "#8B7CF6"
+      "color": "#818cf8"
     },
     {
       "id": "not-vangid",
       "title": "Creator & Content Channel",
       "channelName": "Not Vangid",
+      "subscribers": "115,000",
+      "avgViews": "40,000 – 110,000",
+      "ctrGain": "+160% CTR Lift",
+      "discordMembers": "18,000",
+      "viewsGraph": [15, 28, 42, 60, 80, 100, 115],
+      "graphLabels": ["M1", "M2", "M3", "M4", "M5", "M6", "Current"],
       "description": "Channel growth acceleration, video metadata SEO, Shorts scaling, and engaging community tab strategies.",
       "longDescription": "Implemented rapid trend coverage, custom thumbnail design direction, and interactive audience funnels.",
       "metrics": "High-Engagement Creator",
@@ -56,12 +74,18 @@
       "youtubeUrl": "https://youtube.com/@notvangid?si=u0Xvy79AwXL5CP1S",
       "discordUrl": "https://discord.gg",
       "featured": true,
-      "color": "#F4B860"
+      "color": "#38bdf8"
     },
     {
       "id": "sky-plays",
       "title": "Gaming & Gameplay Channel",
       "channelName": "Sky Plays",
+      "subscribers": "130,000",
+      "avgViews": "50,000 – 135,000",
+      "ctrGain": "+135% CTR Lift",
+      "discordMembers": "22,000",
+      "viewsGraph": [18, 32, 48, 70, 95, 118, 130],
+      "graphLabels": ["M1", "M2", "M3", "M4", "M5", "M6", "Current"],
       "description": "Gameplay highlight packaging, search-optimized tags, end-screen conversion funnels, and Discord community management.",
       "longDescription": "Optimized long-form gaming series and daily highlight clips to maximize audience watch time and subscriber conversions.",
       "metrics": "Gameplay & Streams • Active Hub",
@@ -70,12 +94,18 @@
       "youtubeUrl": "https://youtube.com/@oneskyplayz?si=z-opykPHHVZfbFEA",
       "discordUrl": "https://discord.gg",
       "featured": true,
-      "color": "#4ADE80"
+      "color": "#10b981"
     },
     {
       "id": "upper-gaming",
       "title": "Gaming Network & Hub",
       "channelName": "Upper Gaming",
+      "subscribers": "310,000",
+      "avgViews": "110,000 – 290,000",
+      "ctrGain": "+195% CTR Lift",
+      "discordMembers": "45,000",
+      "viewsGraph": [45, 80, 125, 175, 230, 280, 310],
+      "graphLabels": ["M1", "M2", "M3", "M4", "M5", "M6", "Current"],
       "description": "High-energy video packaging, competitive title testing, upload workflow coordination, and subscriber retention systems.",
       "longDescription": "Coordinated editor workflows, delivered high-conversion title/thumbnail variants, and built an engaged community base.",
       "metrics": "Gaming Network • Growth Channel",
@@ -84,12 +114,18 @@
       "youtubeUrl": "https://youtube.com/@upper_gaming?si=htZgVcKuAG_lcGCE",
       "discordUrl": "https://discord.gg",
       "featured": false,
-      "color": "#F87171"
+      "color": "#f43f5e"
     },
     {
       "id": "cappy-mc",
       "title": "Main Creator Channel",
       "channelName": "Cappy Mc",
+      "subscribers": "165,000",
+      "avgViews": "55,000 – 140,000",
+      "ctrGain": "+150% CTR Lift",
+      "discordMembers": "28,000",
+      "viewsGraph": [22, 40, 65, 95, 125, 150, 165],
+      "graphLabels": ["M1", "M2", "M3", "M4", "M5", "M6", "Current"],
       "description": "Primary gaming channel management, custom high-contrast thumbnails, video search optimization, and community engagement.",
       "longDescription": "Engineered high-retention long-form series, optimized thumbnail A/B testing, and grew active community interactions.",
       "metrics": "Main Channel • Gaming Creator",
@@ -98,12 +134,18 @@
       "youtubeUrl": "https://youtube.com/@cappy-mc?si=OejN4xeqeLOyf4xl",
       "discordUrl": "https://discord.gg",
       "featured": false,
-      "color": "#A7B0C0"
+      "color": "#f59e0b"
     },
     {
       "id": "cappuxd",
       "title": "Secondary Creator Channel",
       "channelName": "CappuXD (2nd Channel)",
+      "subscribers": "75,000",
+      "avgViews": "30,000 – 85,000",
+      "ctrGain": "+125% CTR Lift",
+      "discordMembers": "15,000",
+      "viewsGraph": [10, 18, 30, 44, 58, 68, 75],
+      "graphLabels": ["M1", "M2", "M3", "M4", "M5", "M6", "Current"],
       "description": "Secondary channel scaling, Shorts repurposing, stream highlights packaging, and cross-channel funneling from main channel.",
       "longDescription": "Managed daily short-form and highlight uploads, cross-pollinating audience engagement between main and secondary channels.",
       "metrics": "2nd Channel • Highlights & Shorts",
@@ -112,12 +154,18 @@
       "youtubeUrl": "https://www.youtube.com/@CappuXD",
       "discordUrl": "https://discord.gg",
       "featured": false,
-      "color": "#38BDF8"
+      "color": "#38bdf8"
     },
     {
       "id": "arpan-gamzo",
       "title": "Gaming & Entertainment Channel",
       "channelName": "Arpan GamzO",
+      "subscribers": "145,000",
+      "avgViews": "45,000 – 120,000",
+      "ctrGain": "+140% CTR Lift",
+      "discordMembers": "20,000",
+      "viewsGraph": [16, 32, 50, 75, 105, 130, 145],
+      "graphLabels": ["M1", "M2", "M3", "M4", "M5", "M6", "Current"],
       "description": "Video SEO metadata, high-CTR packaging, Shorts virality workflows, and dedicated Discord server onboarding.",
       "longDescription": "Engineered high-retention video intros, custom thumbnail packaging, and seamless Twitch/YouTube Discord alert systems.",
       "metrics": "Gaming Creator • Community Hub",
@@ -126,7 +174,7 @@
       "youtubeUrl": "https://youtube.com/@arpangamzo_official?si=xtwSqSXOWGjZKe9B",
       "discordUrl": "https://discord.gg",
       "featured": false,
-      "color": "#6AA9FF"
+      "color": "#818cf8"
     }
   ],
   "skills": [

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Sparkles, Trophy, X } from "lucide-react";
+import { Sparkles, Trophy, X, Gamepad2 } from "lucide-react";
 import { playKonamiSuccess, playClick, playCoin } from "@/lib/sound";
+import ChannelDefenderGame from "@/components/ChannelDefenderGame";
 
 const KONAMI_CODE = [
   "ArrowUp",
@@ -18,12 +19,10 @@ const KONAMI_CODE = [
 export default function KonamiEasterEgg() {
   const [inputIndex, setInputIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const [overclockActive, setOverclockActive] = useState(false);
 
   const activateEasterEgg = () => {
     playKonamiSuccess();
     setIsOpen(true);
-    setOverclockActive(true);
     document.body.classList.add("overclock-active");
   };
 
@@ -71,75 +70,80 @@ export default function KonamiEasterEgg() {
   return (
     <>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
-          <div className="relative w-full max-w-xl pixel-hud-card rounded-xl p-6 sm:p-8 bg-[#131622] border-2 border-amber shadow-2xl space-y-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-md animate-fade-in overflow-y-auto">
+          <div className="relative w-full max-w-2xl bg-[#131622] border-2 border-amber/60 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-6 my-auto max-h-[95vh] overflow-y-auto">
             {/* Close button */}
             <button
               onClick={handleClose}
-              className="absolute top-4 right-4 text-text-muted hover:text-amber p-1 transition-colors"
-              aria-label="Close Easter Egg Modal"
+              className="absolute top-4 right-4 text-text-muted hover:text-white p-2 rounded-lg bg-surface border border-border hover:border-amber/50 transition-colors z-20"
+              aria-label="Close Arcade Modal"
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Header */}
             <div className="text-center space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber/15 border border-amber/40 rounded text-amber font-silkscreen text-xs uppercase tracking-widest">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber/15 border border-amber/40 rounded text-amber font-silkscreen text-xs uppercase tracking-widest font-semibold">
                 <Trophy className="w-4 h-4 text-amber animate-bounce" />
-                <span>CHEAT CODE UNLOCKED</span>
+                <span>SECRET ARCADE CABINET UNLOCKED</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold font-retro text-amber glow-amber">
-                OVERCLOCK MODE
+                OVERCLOCK ARCADE
               </h2>
               <p className="text-xs font-mono text-cyan">
-                STATUS: VIP CREATOR LEVEL 99 • SCORE: 999,990 PTS
+                STATUS: VIP CREATOR LEVEL 99 • PURE RETRO GLORY
               </p>
+            </div>
+
+            {/* Playable Channel Defender Mini-Game */}
+            <div className="pt-2">
+              <ChannelDefenderGame />
             </div>
 
             {/* Secret Matrix */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              <div className="p-3 rounded bg-white/5 border border-white/10 text-center">
+              <div className="p-3 rounded bg-[#090a0f] border border-border text-center">
                 <div className="text-[10px] font-silkscreen text-text-muted uppercase">SYSTEM STATUS</div>
                 <div className="text-sm font-bold font-retro text-success mt-1">SUPERCHARGED</div>
               </div>
-              <div className="p-3 rounded bg-white/5 border border-white/10 text-center">
+              <div className="p-3 rounded bg-[#090a0f] border border-border text-center">
                 <div className="text-[10px] font-silkscreen text-text-muted uppercase">CTR MULTIPLIER</div>
                 <div className="text-sm font-bold font-retro text-amber mt-1">2.8X BOOST</div>
               </div>
-              <div className="col-span-2 sm:col-span-1 p-3 rounded bg-white/5 border border-white/10 text-center">
+              <div className="col-span-2 sm:col-span-1 p-3 rounded bg-[#090a0f] border border-border text-center">
                 <div className="text-[10px] font-silkscreen text-text-muted uppercase">RAID DEFENSE</div>
                 <div className="text-sm font-bold font-retro text-purple mt-1">MAXIMUM</div>
               </div>
             </div>
 
-            {/* Recruiter / Creator Fast-Track Code */}
-            <div className="p-4 rounded-lg bg-amber/10 border border-amber/30 space-y-2">
-              <div className="flex items-center gap-2 text-xs font-silkscreen text-amber font-bold">
+            {/* Secret Perk Code */}
+            <div className="p-4 rounded-lg bg-amber/10 border border-amber/30 space-y-1.5 font-readable text-xs">
+              <div className="flex items-center gap-2 font-silkscreen text-amber font-bold">
                 <Sparkles className="w-4 h-4" />
-                <span>SECRET FAST-TRACK DIRECT ACCESS:</span>
+                <span>SECRET FAST-TRACK ACCESS:</span>
               </div>
-              <p className="text-xs font-readable text-text-main leading-relaxed">
-                You found the secret arcade developer console! Mention code <strong className="text-amber font-mono">#ARCADE99</strong> when booking a strategy call to get an immediate priority channel audit and custom Discord bot wireframe within 24 hours.
+              <p className="text-text-muted leading-relaxed">
+                Mention secret code <strong className="text-amber font-mono">#ARCADE99</strong> when submitting an inquiry for priority channel auditing and Discord security analysis within 24 hours.
               </p>
             </div>
 
             {/* Actions */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row gap-3 pt-1">
               <a
                 href="/contact"
                 onClick={() => {
                   playCoin();
                   setIsOpen(false);
                 }}
-                className="pixel-btn pixel-btn-accent flex-1 text-xs py-3 rounded text-center"
+                className="pixel-btn pixel-btn-accent flex-1 text-xs py-3 rounded text-center font-bold"
               >
-                Claim Priority Audit →
+                Inquire For Channel Growth →
               </a>
               <button
                 onClick={handleClose}
                 className="pixel-btn pixel-btn-outline text-xs py-3 px-6 rounded"
               >
-                Resume Showcase
+                Resume Browsing
               </button>
             </div>
           </div>
