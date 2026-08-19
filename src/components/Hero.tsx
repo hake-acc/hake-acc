@@ -1,7 +1,7 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Youtube, Twitter, Github, ArrowRight, Gamepad2 } from "lucide-react";
-import { playClick, playBlip } from "@/lib/sound";
+import { Youtube, Twitter, Github, ArrowRight, Gamepad2, Sparkles, Check } from "lucide-react";
+import { playClick, playBlip, playLevelUp, playChime } from "@/lib/sound";
 
 interface HeroProps {
   data: {
@@ -23,6 +23,8 @@ interface HeroProps {
 export default function Hero({ data, contact }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [xpPopups, setXpPopups] = useState<{ id: number; text: string }[]>([]);
+  const [clickedStat, setClickedStat] = useState<string | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -45,6 +47,23 @@ export default function Hero({ data, contact }: HeroProps) {
   const titleParts = data.title.split(" ");
   const firstName = titleParts[0] || "Hake";
   const lastName = titleParts.slice(1).join(" ") || "Acc";
+
+  const triggerTitleInteraction = () => {
+    playLevelUp();
+    const id = Date.now();
+    const texts = ["+100 XP!", "LEVEL UP! 🌟", "FOUNDER LEVEL 99", "CRIT BOOST! ⚡"];
+    const text = texts[Math.floor(Math.random() * texts.length)];
+    setXpPopups((prev) => [...prev, { id, text }]);
+    setTimeout(() => {
+      setXpPopups((prev) => prev.filter((p) => p.id !== id));
+    }, 850);
+  };
+
+  const handleStatClick = (label: string) => {
+    playChime();
+    setClickedStat(label);
+    setTimeout(() => setClickedStat(null), 1200);
+  };
 
   return (
     <section
@@ -82,7 +101,7 @@ export default function Hero({ data, contact }: HeroProps) {
 
       {/* Hero content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
-        {/* Pre-title status pill - Clean solid indicator */}
+        {/* Pre-title status pill */}
         <div className="anim-enter anim-enter-d1 flex items-center justify-center gap-3 mb-5">
           <span className="h-px w-8 sm:w-12 bg-accent/40" />
           <span className="pixel-badge bg-accent/15 border border-accent/40 text-accent font-silkscreen tracking-wider">
@@ -92,12 +111,34 @@ export default function Hero({ data, contact }: HeroProps) {
           <span className="h-px w-8 sm:w-12 bg-accent/40" />
         </div>
 
-        {/* Pixel Title */}
-        <div className="anim-enter anim-enter-d2 mb-5">
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold font-retro tracking-tight leading-none text-text-main" style={{ textShadow: "0 0 32px rgba(106,169,255,0.6)" }}>
-            <span>{firstName}</span>
-            <span className="block gradient-text mt-1">{lastName}</span>
-          </h1>
+        {/* Interactive Pixel Title */}
+        <div className="anim-enter anim-enter-d2 mb-5 relative inline-block">
+          <button
+            type="button"
+            onClick={triggerTitleInteraction}
+            onMouseEnter={() => playBlip()}
+            className="cursor-pointer text-left focus:outline-none transition-transform active:scale-95 group"
+            title="Click for Easter Egg Sound & XP"
+            aria-label={`Interactive Title: ${data.title}`}
+          >
+            <h1
+              className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold font-retro tracking-tight leading-none text-text-main group-hover:text-white transition-colors"
+              style={{ textShadow: "0 0 32px rgba(255,200,55,0.4)" }}
+            >
+              <span>{firstName}</span>
+              <span className="block gradient-text mt-1">{lastName}</span>
+            </h1>
+          </button>
+
+          {/* Floating XP Micro-interaction popups */}
+          {xpPopups.map((popup) => (
+            <div
+              key={popup.id}
+              className="xp-float-badge absolute -top-4 right-2 sm:right-10 bg-accent text-[#0D0F14] font-retro text-[10px] sm:text-xs px-2.5 py-1 rounded shadow-pixel-sm z-30"
+            >
+              {popup.text}
+            </div>
+          ))}
         </div>
 
         {/* Tagline */}
@@ -142,29 +183,43 @@ export default function Hero({ data, contact }: HeroProps) {
             href="#executive-pitch"
             onMouseEnter={() => playBlip()}
             onClick={() => playClick()}
-            className="inline-flex items-center gap-1.5 text-[11px] font-silkscreen text-accent/80 hover:text-accent bg-accent/10 hover:bg-accent/20 border border-accent/30 px-3 py-1 rounded transition-colors"
+            className="inline-flex items-center gap-1.5 text-[11px] font-silkscreen text-accent/90 hover:text-accent bg-accent/10 hover:bg-accent/20 border border-accent/30 px-3.5 py-1.5 rounded transition-colors"
           >
-            <span>⚡ Hiring in a hurry? Jump to 15s Executive Pitch ↓</span>
+            <Sparkles className="w-3.5 h-3.5 text-accent" />
+            <span>Hiring in a hurry? Jump to 15s Executive Pitch ↓</span>
           </a>
         </div>
 
-        {/* Mini Stats Bar */}
+        {/* Mini Stats Bar with Interactive Click feedback */}
         <div className="anim-enter anim-enter-d6 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 max-w-3xl mx-auto mb-8">
           {[
             { label: "CREATORS MANAGED", val: "25+" },
             { label: "VIEWS DRIVEN", val: "150M+" },
             { label: "DISCORD REACH", val: "100K+" },
             { label: "AVG CTR GAIN", val: "+38%" },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              onMouseEnter={() => playBlip()}
-              className="p-2 sm:p-2.5 rounded bg-white/5 border border-white/10 hover:border-accent/30 transition-colors shadow-pixel-sm"
-            >
-              <div className="text-sm sm:text-base font-bold font-retro text-accent">{stat.val}</div>
-              <div className="text-[9px] sm:text-[10px] font-silkscreen text-white/50">{stat.label}</div>
-            </div>
-          ))}
+          ].map((stat) => {
+            const isSelected = clickedStat === stat.label;
+            return (
+              <button
+                type="button"
+                key={stat.label}
+                onClick={() => handleStatClick(stat.label)}
+                onMouseEnter={() => playBlip()}
+                className={`p-2 sm:p-2.5 rounded bg-white/5 border text-center transition-all cursor-pointer shadow-pixel-sm active:translate-y-[1px] ${
+                  isSelected ? "border-accent bg-accent/20 scale-105" : "border-white/10 hover:border-accent/40"
+                }`}
+                title="Click to verify metric"
+              >
+                <div className="text-sm sm:text-base font-bold font-retro text-accent flex items-center justify-center gap-1">
+                  <span>{stat.val}</span>
+                  {isSelected && <Check className="w-3 h-3 text-success animate-bounce" />}
+                </div>
+                <div className="text-[9px] sm:text-[10px] font-silkscreen text-white/60">
+                  {isSelected ? "VERIFIED RECORD" : stat.label}
+                </div>
+              </button>
+            );
+          })}
         </div>
 
         {/* Social links */}

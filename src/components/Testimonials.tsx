@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Quote, Star } from "lucide-react";
+import { Quote, Star, Sparkles } from "lucide-react";
 import PixelIcon from "@/components/PixelIcon";
-import { playBlip, playClick } from "@/lib/sound";
+import { playBlip, playClick, playCoin } from "@/lib/sound";
 
 interface Testimonial {
   quote: string;
@@ -19,6 +19,13 @@ export default function Testimonials({ data }: TestimonialsProps) {
   const isInView = useInView(ref, { once: true, amount: 0.15 });
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [starBurst, setStarBurst] = useState(false);
+
+  const handleStarClick = () => {
+    playCoin();
+    setStarBurst(true);
+    setTimeout(() => setStarBurst(false), 1000);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -75,17 +82,31 @@ export default function Testimonials({ data }: TestimonialsProps) {
 
         {/* Testimonial card */}
         <div className="relative">
-          <div className="pixel-card rounded-2xl p-6 sm:p-10 relative overflow-hidden">
+          <div
+            onClick={handleStarClick}
+            className="pixel-card rounded-2xl p-6 sm:p-10 relative overflow-hidden cursor-pointer transition-all hover:border-accent/40"
+            title="Click to send appreciation"
+          >
             {/* Quote icon */}
             <div className="absolute top-6 right-6 opacity-10">
               <Quote className="w-16 h-16 text-accent" />
             </div>
 
-            {/* Stars */}
-            <div className="flex gap-1 mb-5">
+            {/* Stars with interactive click */}
+            <div className="flex items-center gap-1 mb-5">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-accent text-accent" />
+                <Star
+                  key={i}
+                  className={`w-4 h-4 fill-accent text-accent transition-transform duration-150 ${
+                    starBurst ? "scale-125 rotate-12 text-yellow-300" : ""
+                  }`}
+                />
               ))}
+              {starBurst && (
+                <span className="text-[10px] font-silkscreen text-accent ml-2 animate-bounce flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-accent" /> 5-STAR RATING
+                </span>
+              )}
             </div>
 
             {/* Quote text */}

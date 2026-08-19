@@ -1,7 +1,7 @@
-import { useRef, type CSSProperties, type ComponentType } from "react";
+import { useState, useRef, type CSSProperties, type ComponentType } from "react";
 import { motion, useInView } from "framer-motion";
-import { Monitor, Server, Palette, Cloud, Sparkles } from "lucide-react";
-import { playBlip } from "@/lib/sound";
+import { Monitor, Server, Palette, Cloud, Sparkles, Check } from "lucide-react";
+import { playBlip, playCoin } from "@/lib/sound";
 
 interface Skill {
   category: string;
@@ -36,14 +36,25 @@ const categoryColors = ["#6AA9FF", "#8B7CF6", "#F4B860", "#4ADE80"];
 function SkillCard({ skill, color, index }: { skill: Skill; color: string; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const [boosted, setBoosted] = useState(false);
   const Icon = iconMap[skill.icon] || Monitor;
+
+  const handleCardClick = () => {
+    playCoin();
+    setBoosted(true);
+    setTimeout(() => setBoosted(false), 1200);
+  };
 
   return (
     <motion.div
       ref={ref}
       variants={itemVariants}
+      onClick={handleCardClick}
       onMouseEnter={() => playBlip()}
-      className="pixel-card rounded-xl p-5 sm:p-6 group relative overflow-hidden flex flex-col"
+      className={`pixel-card rounded-xl p-5 sm:p-6 group relative overflow-hidden flex flex-col cursor-pointer transition-all active:translate-y-[1px] ${
+        boosted ? "border-accent bg-accent/15 scale-102" : ""
+      }`}
+      title="Click to boost skill XP"
     >
       {/* Icon + category */}
       <div className="flex items-start justify-between mb-4">
@@ -55,14 +66,15 @@ function SkillCard({ skill, color, index }: { skill: Skill; color: string; index
         </div>
         <div className="text-right">
           <span className="text-xl sm:text-2xl font-bold font-retro" style={{ color }}>
-            {skill.level}
+            {boosted ? skill.level + 4 : skill.level}
             <span className="text-xs font-silkscreen text-text-muted ml-0.5">XP</span>
           </span>
         </div>
       </div>
 
-      <h3 className="text-sm sm:text-base font-bold font-silkscreen text-text-main mb-3 uppercase tracking-wide">
-        {skill.category}
+      <h3 className="text-sm sm:text-base font-bold font-silkscreen text-text-main mb-3 uppercase tracking-wide flex items-center justify-between">
+        <span>{skill.category}</span>
+        {boosted && <Sparkles className="w-3.5 h-3.5 text-accent animate-spin" />}
       </h3>
 
       {/* Retro Pixel Progress bar */}
@@ -71,8 +83,8 @@ function SkillCard({ skill, color, index }: { skill: Skill; color: string; index
           className="h-full rounded-sm pixel-crisp"
           style={{ background: `linear-gradient(90deg, ${color}99, ${color})` }}
           initial={{ width: 0 }}
-          animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-          transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
+          animate={isInView ? { width: `${boosted ? 100 : skill.level}%` } : { width: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: index * 0.05 }}
         />
       </div>
 
