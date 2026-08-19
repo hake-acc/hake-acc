@@ -45,26 +45,26 @@ function ProjectCard({ project }: { project: Project }) {
         playBlip();
       }}
       onHoverEnd={() => setHovered(false)}
-      className="group relative pixel-card rounded-xl overflow-hidden flex flex-col transition-all duration-200"
+      className="group relative pixel-hud-card rounded-xl overflow-hidden flex flex-col transition-all duration-200"
     >
       {/* Top color accent bar */}
       <div
-        className="h-1 w-full"
-        style={{ background: project.color }}
+        className="h-1.5 w-full"
+        style={{ background: `linear-gradient(90deg, ${project.color}, #FFC837)` }}
       />
 
       <div className="p-5 sm:p-6 flex flex-col h-full relative z-10">
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div
-            className="w-10 h-10 rounded-lg flex items-center justify-center border border-white/10 shadow-pixel-sm"
+            className="w-10 h-10 rounded-lg flex items-center justify-center border border-white/15 shadow-pixel-sm"
             style={{ background: `${project.color}25` }}
           >
             <Youtube className="w-5 h-5" style={{ color: project.color }} />
           </div>
           {project.metrics && (
-            <span className="pixel-badge bg-accent/15 border border-accent/30 text-accent">
-              <Flame className="w-3 h-3 text-accent shrink-0" />
+            <span className="pixel-badge bg-accent/15 border border-accent/40 text-accent font-bold">
+              <Flame className="w-3.5 h-3.5 text-accent shrink-0" />
               {project.metrics}
             </span>
           )}
@@ -72,7 +72,7 @@ function ProjectCard({ project }: { project: Project }) {
 
         {/* Role & Channel Name */}
         <div className="mb-3">
-          <div className="text-[10px] uppercase font-silkscreen text-white/50 mb-1">
+          <div className="text-[10px] uppercase font-silkscreen text-white/50 mb-1 tracking-wider">
             {project.role || "Managed Channel"}
           </div>
           <h3
@@ -83,17 +83,17 @@ function ProjectCard({ project }: { project: Project }) {
           </h3>
         </div>
 
-        {/* Description */}
-        <p className="text-text-muted text-xs sm:text-sm leading-relaxed mb-5 flex-1 font-pixel">
+        {/* Description with enhanced legibility */}
+        <p className="text-white/85 text-xs sm:text-sm leading-relaxed mb-5 flex-1 font-pixel font-medium">
           {project.description}
         </p>
 
         {/* Tech/Strategy Tags */}
-        <div className="flex flex-wrap gap-1 mb-5">
+        <div className="flex flex-wrap gap-1.5 mb-5">
           {project.tech.map((t) => (
             <span
               key={t}
-              className="text-[10px] font-silkscreen text-white/60 bg-white/5 border border-white/10 px-2 py-0.5 rounded"
+              className="text-[10px] font-silkscreen text-white/75 bg-white/5 border border-white/10 px-2 py-0.5 rounded"
             >
               {t}
             </span>
@@ -108,11 +108,11 @@ function ProjectCard({ project }: { project: Project }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => playCoin()}
-              className="pixel-btn pixel-btn-accent text-[10px] py-1.5 px-3 rounded flex items-center gap-1.5"
+              className="pixel-btn pixel-btn-accent text-[10px] py-1.5 px-3 rounded flex items-center gap-1.5 font-bold"
               aria-label={`Visit YouTube channel for ${project.channelName || project.title}`}
             >
-              <Youtube className="w-3.5 h-3.5" />
-              <span>YouTube</span>
+              <Youtube className="w-3.5 h-3.5 text-black" />
+              <span>Visit Channel →</span>
             </a>
           )}
 
