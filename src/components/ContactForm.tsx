@@ -65,7 +65,7 @@ export default function ContactForm({ data }: ContactProps) {
     setFormState("loading");
     playLaser();
 
-    // Simulated async submission
+    // Simulated async transmission
     await new Promise((r) => setTimeout(r, 1200));
     playSuccess();
     setFormState("success");
@@ -73,17 +73,17 @@ export default function ContactForm({ data }: ContactProps) {
 
   const inputClasses = (field: string) =>
     cn(
-      "w-full bg-[#121622] border rounded px-4 py-2.5 text-text-main placeholder:text-text-muted/40 text-sm font-pixel transition-all duration-150 focus:outline-none focus:ring-1 focus:ring-accent",
+      "w-full bg-[#090a0f] border rounded-lg px-4 py-2.5 text-text-main placeholder:text-text-muted/40 text-sm font-readable transition-all duration-150 focus:outline-none focus:ring-1 focus:ring-amber",
       errors[field]
         ? "border-error/80 bg-error/5"
-        : "border-white/10 hover:border-white/20 focus:border-accent"
+        : "border-border hover:border-border-bright focus:border-amber"
     );
 
   return (
     <section
       ref={ref}
       id="contact"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 overflow-hidden"
+      className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden"
       aria-label="Contact section"
     >
       <div className="max-w-7xl mx-auto">
@@ -106,9 +106,9 @@ export default function ContactForm({ data }: ContactProps) {
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-text-muted mt-4 max-w-xl mx-auto text-sm sm:text-base leading-relaxed font-pixel"
+            className="text-text-muted mt-4 max-w-xl mx-auto text-sm sm:text-base leading-relaxed font-readable"
           >
-            Whether you&apos;re looking for YouTube management, need a high-security Discord server, or want creator agency growth — send an inquiry below.
+            Whether you&apos;re looking for YouTube management, need a high-security Discord server, or want creator agency growth — transmit an inquiry below.
           </motion.p>
         </motion.div>
 
@@ -121,19 +121,19 @@ export default function ContactForm({ data }: ContactProps) {
             className="lg:col-span-2 space-y-5"
           >
             {/* Contact info & Quick Copy */}
-            <motion.div variants={itemVariants} className="pixel-card rounded-xl p-5 sm:p-6 space-y-4">
-              <p className="text-xs font-silkscreen text-accent tracking-wider uppercase mb-3 font-semibold">
+            <motion.div variants={itemVariants} className="pixel-card rounded-xl p-5 sm:p-6 space-y-4 bg-[#131622] border border-border">
+              <p className="text-xs font-silkscreen text-amber tracking-wider uppercase mb-3 font-semibold">
                 DIRECT CONTACT
               </p>
 
               {/* Email */}
-              <div className="flex items-center justify-between p-3 rounded bg-white/5 border border-white/10">
+              <div className="flex items-center justify-between p-3 rounded-lg bg-surface-elevated border border-border">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded bg-accent/15 border border-accent/30 flex items-center justify-center shrink-0">
-                    <Mail className="w-4 h-4 text-accent" />
+                  <div className="w-8 h-8 rounded bg-amber/15 border border-amber/30 flex items-center justify-center shrink-0">
+                    <Mail className="w-4 h-4 text-amber" />
                   </div>
                   <div>
-                    <p className="text-[9px] font-silkscreen text-white/50 uppercase">Email</p>
+                    <p className="text-[9px] font-silkscreen text-text-muted uppercase">Email</p>
                     <span className="text-xs sm:text-sm font-mono text-text-main">{data.email}</span>
                   </div>
                 </div>
@@ -155,13 +155,13 @@ export default function ContactForm({ data }: ContactProps) {
               </div>
 
               {/* Discord */}
-              <div className="flex items-center justify-between p-3 rounded bg-white/5 border border-white/10">
+              <div className="flex items-center justify-between p-3 rounded-lg bg-surface-elevated border border-border">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded bg-secondary/15 border border-secondary/30 flex items-center justify-center shrink-0">
-                    <MessageSquare className="w-4 h-4 text-secondary" />
+                  <div className="w-8 h-8 rounded bg-purple/15 border border-purple/30 flex items-center justify-center shrink-0">
+                    <MessageSquare className="w-4 h-4 text-purple" />
                   </div>
                   <div>
-                    <p className="text-[9px] font-silkscreen text-white/50 uppercase">Discord ID</p>
+                    <p className="text-[9px] font-silkscreen text-text-muted uppercase">Discord ID</p>
                     <span className="text-xs sm:text-sm font-mono text-text-main">{data.discord || "hake_acc"}</span>
                   </div>
                 </div>
@@ -183,20 +183,20 @@ export default function ContactForm({ data }: ContactProps) {
               </div>
 
               {/* Location */}
-              <div className="flex items-center gap-3 p-3 rounded bg-white/5 border border-white/10">
-                <div className="w-8 h-8 rounded bg-primary/15 border border-primary/30 flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4 text-primary" />
+              <div className="flex items-center gap-3 p-3 rounded-lg bg-surface-elevated border border-border">
+                <div className="w-8 h-8 rounded bg-cyan/15 border border-cyan/30 flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4 text-cyan" />
                 </div>
                 <div>
-                  <p className="text-[9px] font-silkscreen text-white/50 uppercase">Location & Timezones</p>
+                  <p className="text-[9px] font-silkscreen text-text-muted uppercase">Location &amp; Timezones</p>
                   <span className="text-xs sm:text-sm font-mono text-text-main">{data.location}</span>
                 </div>
               </div>
             </motion.div>
 
             {/* Social links */}
-            <motion.div variants={itemVariants} className="pixel-card rounded-xl p-5 sm:p-6">
-              <p className="text-xs font-silkscreen text-accent tracking-wider uppercase mb-3 font-semibold">
+            <motion.div variants={itemVariants} className="pixel-card rounded-xl p-5 sm:p-6 bg-[#131622] border border-border">
+              <p className="text-xs font-silkscreen text-amber tracking-wider uppercase mb-3 font-semibold">
                 OFFICIAL LINKS
               </p>
               <div className="grid grid-cols-2 gap-2">
@@ -213,10 +213,10 @@ export default function ContactForm({ data }: ContactProps) {
                     rel="noopener noreferrer"
                     onMouseEnter={() => playBlip()}
                     onClick={() => playClick()}
-                    className="flex items-center gap-2 p-2.5 rounded bg-white/5 border border-white/10 hover:border-accent/40 hover:bg-accent/10 transition-all text-left group"
+                    className="flex items-center gap-2 p-2.5 rounded-lg bg-surface-elevated border border-border hover:border-amber/40 hover:bg-amber/10 transition-all text-left group"
                     aria-label={`Visit ${label}`}
                   >
-                    <Icon className="w-4 h-4 text-white/60 group-hover:text-accent shrink-0" />
+                    <Icon className="w-4 h-4 text-text-muted group-hover:text-amber shrink-0" />
                     <div>
                       <span className="text-xs font-silkscreen text-text-main block">{label}</span>
                       <span className="text-[9px] font-mono text-text-muted/60">{sub}</span>
@@ -227,15 +227,15 @@ export default function ContactForm({ data }: ContactProps) {
             </motion.div>
 
             {/* Availability */}
-            <motion.div variants={itemVariants} className="pixel-card rounded-xl p-4 sm:p-5 border-l-4 border-success">
+            <motion.div variants={itemVariants} className="pixel-card rounded-xl p-4 sm:p-5 border-l-4 border-success bg-[#131622] border border-border">
               <div className="flex items-center gap-2 mb-1.5">
-                <span className="w-2 h-2 bg-success rounded-full" />
+                <span className="w-2 h-2 bg-success rounded-full animate-pulse" />
                 <span className="text-xs font-silkscreen text-success uppercase">
                   OPEN FOR CREATOR CONTRACTS
                 </span>
               </div>
-              <p className="text-text-muted text-xs font-pixel leading-relaxed">
-                Accepting select YouTube channel management clients, creator consulting, and Discord architecture builds for Q3/Q4.
+              <p className="text-text-muted text-xs font-readable leading-relaxed">
+                Accepting select YouTube channel management clients, creator consulting, and Discord architecture builds for 2026.
               </p>
             </motion.div>
           </motion.div>
@@ -247,14 +247,14 @@ export default function ContactForm({ data }: ContactProps) {
             animate={isInView ? "visible" : "hidden"}
             className="lg:col-span-3"
           >
-            <motion.div variants={itemVariants} className="pixel-card rounded-xl p-6 sm:p-8 relative overflow-hidden">
+            <motion.div variants={itemVariants} className="pixel-hud-card rounded-xl p-6 sm:p-8 relative overflow-hidden bg-[#131622] border border-border">
               {formState === "success" ? (
                 <div className="py-10 flex flex-col items-center text-center gap-3">
                   <div className="w-14 h-14 rounded-full bg-success/20 border border-success/40 flex items-center justify-center">
                     <CheckCircle2 className="w-7 h-7 text-success" />
                   </div>
-                  <h3 className="text-xl font-bold font-retro text-text-main">Inquiry Sent!</h3>
-                  <p className="text-text-muted text-xs sm:text-sm max-w-xs font-pixel leading-relaxed">
+                  <h3 className="text-xl font-bold font-retro text-text-main">Inquiry Transmitted!</h3>
+                  <p className="text-text-muted text-xs sm:text-sm max-w-xs font-readable leading-relaxed">
                     Thank you! I&apos;ll review your channel metrics and respond to your email within 24 hours.
                   </p>
                   <button
@@ -364,7 +364,7 @@ export default function ContactForm({ data }: ContactProps) {
                     className="w-full pixel-btn pixel-btn-accent text-xs sm:text-sm py-3 px-6 rounded"
                   >
                     {formState === "loading" ? (
-                      <span>SENDING INQUIRY...</span>
+                      <span>TRANSMITTING INQUIRY...</span>
                     ) : (
                       <>
                         <Send className="w-4 h-4 inline-block mr-1" />

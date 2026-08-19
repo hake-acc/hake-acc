@@ -8,78 +8,51 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        pixel: ["'Pixelify Sans'", "var(--font-pixel)", "sans-serif"],
         retro: ["'Press Start 2P'", "var(--font-retro)", "monospace"],
         silkscreen: ["'Silkscreen'", "var(--font-silkscreen)", "monospace"],
+        pixel: ["'Pixelify Sans'", "var(--font-pixel)", "sans-serif"],
+        sans: ["'Inter'", "var(--font-readable)", "system-ui", "-apple-system", "sans-serif"],
+        mono: ["'JetBrains Mono'", "'Space Mono'", "var(--font-mono-readable)", "monospace"],
         vt323: ["'VT323'", "var(--font-vt323)", "monospace"],
-        mono: ["'Space Mono'", "var(--font-mono)", "monospace"],
       },
       colors: {
-        primary: "#6AA9FF",
-        secondary: "#8B7CF6",
-        accent: "#F4B860",
-        background: "#0D0F14",
-        surface: "#1A1F2B",
-        "text-main": "#F5F7FA",
-        "text-muted": "#A7B0C0",
-        border: "rgba(255,255,255,0.08)",
-        success: "#4ADE80",
-        warning: "#FBBF24",
-        error: "#F87171",
-      },
-      animation: {
-        "fade-in": "fadeIn 0.5s ease-out forwards",
-        "slide-up": "slideUp 0.5s ease-out forwards",
-        "float": "float 3s ease-in-out infinite",
-        "glow-pulse": "glowPulse 2s ease-in-out infinite",
-        "scan-line": "scanLine 8s linear infinite",
-        "pixel-blink": "pixelBlink 1s steps(1) infinite",
-        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        "bounce-subtle": "bounceSubtle 2s ease-in-out infinite",
-      },
-      keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
+        canvas: "#090a0f",
+        surface: "#131622",
+        "surface-elevated": "#1a1e2e",
+        border: "#262a3d",
+        "border-bright": "#3b425e",
+        amber: {
+          DEFAULT: "#f59e0b",
+          light: "#fbbf24",
+          dark: "#d97706",
         },
-        slideUp: {
-          "0%": { opacity: "0", transform: "translateY(16px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+        cyan: {
+          DEFAULT: "#38bdf8",
+          light: "#7dd3fc",
+          dark: "#0284c7",
         },
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-6px)" },
+        purple: {
+          DEFAULT: "#818cf8",
+          light: "#a5b4fc",
+          dark: "#6366f1",
         },
-        bounceSubtle: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-3px)" },
-        },
-        glowPulse: {
-          "0%, 100%": { boxShadow: "0 0 12px rgba(244,184,96,0.3)" },
-          "50%": { boxShadow: "0 0 24px rgba(244,184,96,0.7)" },
-        },
-        scanLine: {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(100vh)" },
-        },
-        pixelBlink: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0" },
-        },
-      },
-      backdropBlur: {
-        xs: "2px",
+        accent: "#f59e0b",
+        primary: "#38bdf8",
+        secondary: "#818cf8",
+        background: "#090a0f",
+        "text-main": "#f8fafc",
+        "text-muted": "#94a3b8",
+        "text-dim": "#64748b",
+        success: "#10b981",
+        warning: "#fbbf24",
+        error: "#f43f5e",
       },
       boxShadow: {
-        "glow-primary": "0 0 20px rgba(106,169,255,0.35)",
-        "glow-accent": "0 0 20px rgba(244,184,96,0.45)",
-        "glow-secondary": "0 0 20px rgba(139,124,246,0.35)",
-        "pixel-sm": "2px 2px 0px rgba(0,0,0,0.8)",
-        "pixel-md": "3px 3px 0px rgba(0,0,0,0.9)",
-        "pixel-accent": "3px 3px 0px #F4B860",
-        "pixel-primary": "3px 3px 0px #6AA9FF",
-        "pixel-inset": "inset 1px 1px 0px rgba(255,255,255,0.15), inset -1px -1px 0px rgba(0,0,0,0.5)",
-        "card": "0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)",
+        "pixel-sm": "2px 2px 0px rgba(0,0,0,0.85)",
+        "pixel-md": "4px 4px 0px rgba(0,0,0,0.9)",
+        "pixel-amber": "3px 3px 0px #f59e0b",
+        "glow-amber": "0 0 20px rgba(245,158,11,0.4)",
+        "glow-cyan": "0 0 20px rgba(56,189,248,0.4)",
       },
     },
   },
@@ -87,4 +60,3 @@ const config: Config = {
 };
 
 export default config;
-

@@ -11,7 +11,7 @@ import PageNav from "@/components/PageNav";
 ---
 
 <Layout
-  title="About Hake Acc — Social Media Manager & Agency Founder"
+  title="About Hake Acc — Content Strategist & Agency Founder"
   description="Learn more about Hake Acc, creator growth strategist, Discord architect, and founder of Hake Acc Agency."
 >
   <Sidebar client:load />
@@ -21,8 +21,8 @@ import PageNav from "@/components/PageNav";
     <main id="main-content" class="flex-1 pt-16 lg:pt-0">
       {/* Page Header */}
       <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-accent/15 border border-accent/30 rounded text-accent font-silkscreen text-xs mb-4">
-          <span class="w-2 h-2 rounded-sm bg-accent" />
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber/15 border border-amber/30 rounded text-amber font-silkscreen text-xs mb-4">
+          <span class="w-2 h-2 rounded-sm bg-amber" />
           <span>ABOUT THE FOUNDER</span>
         </div>
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold font-retro text-text-main leading-tight mb-4">
@@ -30,14 +30,14 @@ import PageNav from "@/components/PageNav";
           <br />
           <span class="gradient-text">Creator Communities.</span>
         </h1>
-        <p class="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-pixel leading-relaxed">
+        <p class="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-readable leading-relaxed">
           From viral video packaging and high-security Discord bot ecosystems to end-to-end creator talent management.
         </p>
       </section>
 
       <About client:load data={content.about} />
       
-      <SectionDivider color="#8B7CF6" />
+      <SectionDivider color="#818cf8" />
 
       {/* Core Philosophy Section */}
       <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">
@@ -48,34 +48,34 @@ import PageNav from "@/components/PageNav";
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="pixel-card rounded-xl p-6 sm:p-7 border-t-4 border-[#6AA9FF]">
-            <div class="text-2xl font-bold font-retro text-[#6AA9FF] mb-3">01</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-readable">
+          <div class="pixel-hud-card rounded-xl p-6 sm:p-7 border-t-4 border-cyan bg-[#131622]">
+            <div class="text-2xl font-bold font-retro text-cyan mb-3">01</div>
             <h3 class="text-lg font-bold font-retro text-text-main mb-2">High-Retention Packaging</h3>
-            <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
+            <p class="text-text-muted text-xs sm:text-sm leading-relaxed">
               Great content fails without magnetic packaging. We test dozens of title hooks, custom thumbnail variants, and initial 30-second pacing to guarantee peak CTR and watch time.
             </p>
           </div>
 
-          <div class="pixel-card rounded-xl p-6 sm:p-7 border-t-4 border-[#8B7CF6]">
-            <div class="text-2xl font-bold font-retro text-[#8B7CF6] mb-3">02</div>
+          <div class="pixel-hud-card rounded-xl p-6 sm:p-7 border-t-4 border-purple bg-[#131622]">
+            <div class="text-2xl font-bold font-retro text-purple mb-3">02</div>
             <h3 class="text-lg font-bold font-retro text-text-main mb-2">Superfan Architecture</h3>
-            <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
+            <p class="text-text-muted text-xs sm:text-sm leading-relaxed">
               Viewers are temporary, but community members are lifelong. We turn passive video viewers into dedicated Discord superfans with custom economy bots, VIP tiers, and interactive events.
             </p>
           </div>
 
-          <div class="pixel-card rounded-xl p-6 sm:p-7 border-t-4 border-[#F4B860]">
-            <div class="text-2xl font-bold font-retro text-[#F4B860] mb-3">03</div>
+          <div class="pixel-hud-card rounded-xl p-6 sm:p-7 border-t-4 border-amber bg-[#131622]">
+            <div class="text-2xl font-bold font-retro text-amber mb-3">03</div>
             <h3 class="text-lg font-bold font-retro text-text-main mb-2">Compounding Creator Equity</h3>
-            <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
-              We don't just optimize single video uploads — we build sustainable creator infrastructure that generates recurring brand deals, higher sponsorship rates, and passive member conversions.
+            <p class="text-text-muted text-xs sm:text-sm leading-relaxed">
+              We don&apos;t just optimize single video uploads — we build sustainable creator infrastructure that generates recurring brand deals, higher sponsorship rates, and passive member conversions.
             </p>
           </div>
         </div>
       </section>
 
-      <SectionDivider color="#6AA9FF" />
+      <SectionDivider color="#38bdf8" />
 
       {/* Interactive Terminal Sandbox */}
       <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">
@@ -88,10 +88,10 @@ import PageNav from "@/components/PageNav";
         <TerminalSimulator client:visible />
       </section>
 
-      <SectionDivider color="#F4B860" />
+      <SectionDivider color="#f59e0b" />
 
-      {/* FAQ Accordion */}
-      <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto w-full">
+      {/* FAQ Accordion in Accessible Typography */}
+      <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto w-full font-readable">
         <div class="text-center mb-12">
           <p class="section-label mb-2">// FREQUENTLY ASKED QUESTIONS</p>
           <h2 class="text-3xl sm:text-4xl font-bold font-retro text-text-main">
@@ -118,11 +118,11 @@ import PageNav from "@/components/PageNav";
               a: "We offer both monthly retainer management contracts for active YouTubers and fixed-scope project agreements for Discord infrastructure builds and creator consulting."
             }
           ].map((faq) => (
-            <div class="pixel-card rounded-xl p-6 border border-white/10 hover:border-accent/30 transition-colors">
+            <div key={faq.q} class="pixel-hud-card rounded-xl p-6 bg-[#131622] border border-border hover:border-amber/40 transition-colors">
               <h3 class="text-base font-bold font-retro text-text-main mb-2">
                 {faq.q}
               </h3>
-              <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
+              <p class="text-text-muted text-xs sm:text-sm leading-relaxed">
                 {faq.a}
               </p>
             </div>

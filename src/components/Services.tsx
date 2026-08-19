@@ -27,11 +27,11 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
 };
 
-const serviceColors = ["#6AA9FF", "#8B7CF6", "#F4B860", "#4ADE80"];
+const serviceColors = ["#38bdf8", "#818cf8", "#f59e0b", "#10b981"];
 
 export default function Services({ data }: ServicesProps) {
   const ref = useRef<HTMLElement>(null);
@@ -41,7 +41,7 @@ export default function Services({ data }: ServicesProps) {
     <section
       ref={ref}
       id="services"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 overflow-hidden"
+      className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden"
       aria-label="Services section"
     >
       <div className="max-w-7xl mx-auto">
@@ -80,27 +80,26 @@ export default function Services({ data }: ServicesProps) {
                 key={service.title}
                 variants={itemVariants}
                 onMouseEnter={() => playBlip()}
-                className="pixel-card rounded-xl p-5 sm:p-6 group relative overflow-hidden flex flex-col transition-all duration-200"
+                className="pixel-hud-card rounded-xl p-5 sm:p-6 group relative overflow-hidden flex flex-col transition-all duration-200 bg-[#131622] border border-border"
               >
                 <div className="relative z-10 flex flex-col h-full">
                   <div
-                    className="w-11 h-11 rounded-lg flex items-center justify-center border border-white/10 mb-4 shadow-pixel-sm"
-                    style={{ background: `${color}25` }}
+                    className="w-11 h-11 rounded-lg flex items-center justify-center border border-white/10 mb-4 shadow-pixel-sm bg-black/40"
                   >
                     <Icon className="w-5 h-5" style={{ color }} />
                   </div>
 
-                  <h3 className="text-sm sm:text-base font-bold font-retro text-text-main mb-2 group-hover:text-accent transition-colors">
+                  <h3 className="text-sm sm:text-base font-bold font-retro text-text-main mb-2 group-hover:text-amber transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-text-muted text-xs sm:text-sm leading-relaxed mb-4 flex-1 font-pixel">
+                  <p className="text-text-muted text-xs sm:text-sm leading-relaxed mb-4 flex-1 font-readable">
                     {service.description}
                   </p>
 
                   <a
                     href="/services"
                     onClick={() => playClick()}
-                    className="flex items-center gap-1 text-xs font-silkscreen text-white/50 group-hover:text-accent transition-colors mt-auto pt-2 border-t border-white/5"
+                    className="flex items-center gap-1 text-xs font-silkscreen text-white/50 group-hover:text-amber transition-colors mt-auto pt-2 border-t border-border"
                   >
                     <span>View Breakdown</span>
                     <PixelIcon name="arrow-up-right" className="text-current" />
@@ -113,7 +112,7 @@ export default function Services({ data }: ServicesProps) {
 
         {/* CTA */}
         <div className="mt-12 text-center">
-          <p className="text-text-muted mb-5 text-sm font-pixel">
+          <p className="text-text-muted mb-5 text-sm font-readable">
             Ready to deploy an elite channel and community management infrastructure?
           </p>
           <a

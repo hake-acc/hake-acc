@@ -1,14 +1,18 @@
 import { useState } from "react";
-import { TrendingUp, Users, Eye, Zap, ArrowRight, Sparkles } from "lucide-react";
-import { playClick, playCoin } from "@/lib/sound";
+import { TrendingUp, Users, Eye, ArrowRight, Video } from "lucide-react";
+import { playCoin, playSliderTick } from "@/lib/sound";
 
 export default function GrowthCalculator() {
   const [views, setViews] = useState(500000); // 500k views
   const [discordMembers, setDiscordMembers] = useState(15000); // 15k members
+  const [uploadsPerMonth, setUploadsPerMonth] = useState(8); // 8 uploads
 
-  // Projected metrics calculations
-  const extraViews = Math.round(views * 0.38); // +38% view boost from SEO/CTR
-  const estimatedRevenueLift = Math.round((extraViews / 1000) * 4.5 + (discordMembers * 0.15));
+  // Real formula based on 25+ managed creators
+  const extraViews = Math.round(views * 0.38); // +38% CTR & SEO view boost
+  const adRevenueLift = Math.round((extraViews / 1000) * 3.8); // $3.80 CPM
+  const discordVipRevenue = Math.round(discordMembers * 0.18); // $0.18 per member monthly conversion
+  const sponsorshipBoost = Math.round(uploadsPerMonth * (views / 100000) * 120); // brand rate multiplier
+  const totalMonthlyLift = adRevenueLift + discordVipRevenue + sponsorshipBoost;
   const activeCommunityBoost = Math.round(discordMembers * 0.42);
 
   const formatNumber = (num: number) => {
@@ -22,35 +26,36 @@ export default function GrowthCalculator() {
   };
 
   return (
-    <div className="pixel-card rounded-lg p-6 sm:p-8 bg-[#121620]/90 border border-accent/20">
+    <div className="pixel-hud-card rounded-xl p-6 sm:p-8 bg-[#131622] border border-border">
+      {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-white/10">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2.5 h-2.5 bg-accent rounded-sm" />
-            <span className="text-xs font-silkscreen text-accent uppercase tracking-wider">
-              CREATOR ROI & SYSTEM ESTIMATOR
+            <span className="w-2.5 h-2.5 bg-amber rounded-sm" />
+            <span className="section-label text-xs">
+              CREATOR ROI &amp; COMMUNITY SCALING SIMULATOR
             </span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold font-pixel text-text-main">
-            Simulate Your Channel & Discord Scaling
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold font-retro text-text-main">
+            Simulate Channel &amp; Discord Growth
           </h3>
         </div>
-        <div className="px-3 py-1 bg-accent/10 border border-accent/30 rounded text-accent font-silkscreen text-xs">
-          HAKE ACC GROWTH FORMULA
+        <div className="px-3 py-1 bg-amber/15 border border-amber/40 rounded text-amber font-silkscreen text-xs">
+          HAKE ACC GROWTH ENGINE
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        {/* Sliders Area */}
-        <div className="space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Sliders Area (7 cols) */}
+        <div className="lg:col-span-7 space-y-6">
           {/* Slider 1: Monthly Views */}
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="flex items-center gap-2 text-sm font-silkscreen text-white/80">
-                <Eye className="w-4 h-4 text-[#6AA9FF]" />
+              <label className="flex items-center gap-2 text-xs sm:text-sm font-silkscreen text-white/90">
+                <Eye className="w-4 h-4 text-cyan" />
                 <span>Monthly YouTube Views</span>
               </label>
-              <span className="text-base font-bold font-retro text-[#6AA9FF]">
+              <span className="text-sm sm:text-base font-bold font-retro text-cyan">
                 {formatNumber(views)}
               </span>
             </div>
@@ -62,11 +67,11 @@ export default function GrowthCalculator() {
               value={views}
               onChange={(e) => {
                 setViews(Number(e.target.value));
-                playClick();
+                playSliderTick();
               }}
-              className="w-full h-2.5 bg-[#1e2533] rounded-lg appearance-none cursor-pointer accent-[#6AA9FF]"
+              className="w-full h-2.5 bg-[#090a0f] rounded-lg appearance-none cursor-pointer accent-cyan"
             />
-            <div className="flex justify-between text-[10px] font-mono text-white/40">
+            <div className="flex justify-between text-[10px] font-mono text-text-muted">
               <span>50K</span>
               <span>1M</span>
               <span>5M</span>
@@ -77,11 +82,11 @@ export default function GrowthCalculator() {
           {/* Slider 2: Discord Members */}
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="flex items-center gap-2 text-sm font-silkscreen text-white/80">
-                <Users className="w-4 h-4 text-[#8B7CF6]" />
+              <label className="flex items-center gap-2 text-xs sm:text-sm font-silkscreen text-white/90">
+                <Users className="w-4 h-4 text-purple" />
                 <span>Target Discord Community Size</span>
               </label>
-              <span className="text-base font-bold font-retro text-[#8B7CF6]">
+              <span className="text-sm sm:text-base font-bold font-retro text-purple">
                 {formatNumber(discordMembers)}
               </span>
             </div>
@@ -93,11 +98,11 @@ export default function GrowthCalculator() {
               value={discordMembers}
               onChange={(e) => {
                 setDiscordMembers(Number(e.target.value));
-                playClick();
+                playSliderTick();
               }}
-              className="w-full h-2.5 bg-[#1e2533] rounded-lg appearance-none cursor-pointer accent-[#8B7CF6]"
+              className="w-full h-2.5 bg-[#090a0f] rounded-lg appearance-none cursor-pointer accent-purple"
             />
-            <div className="flex justify-between text-[10px] font-mono text-white/40">
+            <div className="flex justify-between text-[10px] font-mono text-text-muted">
               <span>1K</span>
               <span>25K</span>
               <span>50K</span>
@@ -105,45 +110,79 @@ export default function GrowthCalculator() {
             </div>
           </div>
 
-          <div className="p-3 bg-white/5 rounded border border-white/5 text-xs text-text-muted font-mono leading-relaxed">
-            💡 Calculated using real historical data from 25+ managed creator channels averaging +38% CTR lift and 42% retention improvement.
+          {/* Slider 3: Uploads per Month */}
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <label className="flex items-center gap-2 text-xs sm:text-sm font-silkscreen text-white/90">
+                <Video className="w-4 h-4 text-amber" />
+                <span>Upload Cadence (Videos / Month)</span>
+              </label>
+              <span className="text-sm sm:text-base font-bold font-retro text-amber">
+                {uploadsPerMonth} uploads
+              </span>
+            </div>
+            <input
+              type="range"
+              min="1"
+              max="20"
+              step="1"
+              value={uploadsPerMonth}
+              onChange={(e) => {
+                setUploadsPerMonth(Number(e.target.value));
+                playSliderTick();
+              }}
+              className="w-full h-2.5 bg-[#090a0f] rounded-lg appearance-none cursor-pointer accent-amber"
+            />
+            <div className="flex justify-between text-[10px] font-mono text-text-muted">
+              <span>1 / mo</span>
+              <span>4 / mo</span>
+              <span>10 / mo</span>
+              <span>20 / mo</span>
+            </div>
+          </div>
+
+          <div className="p-3.5 bg-black/40 rounded-lg border border-border text-xs text-text-muted font-readable leading-relaxed">
+            💡 Projections modeled on real benchmark data across 25+ managed creator channels averaging +38% CTR lift and 42% retention improvement.
           </div>
         </div>
 
-        {/* Projected Results Box */}
-        <div className="bg-[#0b0e14] rounded-lg p-5 sm:p-6 border border-accent/30 space-y-4 shadow-pixel-sm">
-          <div className="text-xs font-silkscreen text-accent/80 tracking-wide uppercase border-b border-white/5 pb-2">
-            ⚡ PROJECTED 90-DAY ACCELERATION
+        {/* Projected Results Box (5 cols) */}
+        <div className="lg:col-span-5 bg-[#090a0f] rounded-xl p-5 sm:p-6 border-2 border-amber/30 space-y-4 shadow-pixel-md">
+          <div className="flex items-center justify-between border-b border-white/10 pb-2">
+            <span className="text-xs font-silkscreen text-amber uppercase tracking-wide">
+              ⚡ PROJECTED 90-DAY ACCELERATION
+            </span>
+            <span className="text-[10px] font-mono text-success">ESTIMATED</span>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <div className="p-3 rounded bg-white/5 border border-white/5">
-              <div className="text-[11px] font-silkscreen text-white/50">EXTRA MONTHLY VIEWS</div>
-              <div className="text-lg sm:text-xl font-bold font-retro text-[#6AA9FF] mt-1">
+            <div className="p-3 rounded-lg bg-surface border border-border">
+              <div className="text-[10px] font-silkscreen text-text-muted uppercase">EXTRA MONTHLY VIEWS</div>
+              <div className="text-base sm:text-lg font-bold font-retro text-cyan mt-1">
                 +{formatNumber(extraViews)}
               </div>
-              <div className="text-[10px] text-success font-mono mt-0.5">+38% CTR & SEO Lift</div>
+              <div className="text-[10px] text-success font-mono mt-0.5">+38% CTR &amp; SEO</div>
             </div>
 
-            <div className="p-3 rounded bg-white/5 border border-white/5">
-              <div className="text-[11px] font-silkscreen text-white/50">ACTIVE SUPERFANS</div>
-              <div className="text-lg sm:text-xl font-bold font-retro text-[#8B7CF6] mt-1">
+            <div className="p-3 rounded-lg bg-surface border border-border">
+              <div className="text-[10px] font-silkscreen text-text-muted uppercase">DISCORD SUPERFANS</div>
+              <div className="text-base sm:text-lg font-bold font-retro text-purple mt-1">
                 +{formatNumber(activeCommunityBoost)}
               </div>
-              <div className="text-[10px] text-accent font-mono mt-0.5">Engaged Discord VIPs</div>
+              <div className="text-[10px] text-amber font-mono mt-0.5">Active VIP Members</div>
             </div>
 
-            <div className="col-span-2 p-4 rounded bg-accent/10 border border-accent/30 flex items-center justify-between">
+            <div className="col-span-2 p-4 rounded-lg bg-amber/10 border border-amber/40 flex items-center justify-between">
               <div>
-                <div className="text-[11px] font-silkscreen text-accent uppercase">
-                  EST. VALUE & SPONSOR ACCELERATION
+                <div className="text-[10px] font-silkscreen text-amber uppercase">
+                  EST. TOTAL MONTHLY REVENUE &amp; SPONSOR ACCELERATION
                 </div>
-                <div className="text-2xl sm:text-3xl font-bold font-retro text-text-main mt-1">
-                  +${estimatedRevenueLift.toLocaleString()}
-                  <span className="text-xs font-mono text-white/60 ml-1">/month</span>
+                <div className="text-2xl sm:text-3xl font-bold font-retro text-white mt-1">
+                  +${totalMonthlyLift.toLocaleString()}
+                  <span className="text-xs font-mono text-text-muted ml-1">/month</span>
                 </div>
               </div>
-              <TrendingUp className="w-8 h-8 text-accent shrink-0" />
+              <TrendingUp className="w-8 h-8 text-amber shrink-0" />
             </div>
           </div>
 

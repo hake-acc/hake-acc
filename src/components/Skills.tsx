@@ -1,6 +1,6 @@
 import { useState, useRef, type CSSProperties, type ComponentType } from "react";
 import { motion, useInView } from "framer-motion";
-import { Monitor, Server, Palette, Cloud, Sparkles, Check } from "lucide-react";
+import { Monitor, Server, Palette, Cloud, Sparkles } from "lucide-react";
 import { playBlip, playCoin } from "@/lib/sound";
 
 interface Skill {
@@ -27,11 +27,11 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
 };
 
-const categoryColors = ["#6AA9FF", "#8B7CF6", "#F4B860", "#4ADE80"];
+const categoryColors = ["#38bdf8", "#818cf8", "#f59e0b", "#10b981"];
 
 function SkillCard({ skill, color, index }: { skill: Skill; color: string; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -51,16 +51,15 @@ function SkillCard({ skill, color, index }: { skill: Skill; color: string; index
       variants={itemVariants}
       onClick={handleCardClick}
       onMouseEnter={() => playBlip()}
-      className={`pixel-card rounded-xl p-5 sm:p-6 group relative overflow-hidden flex flex-col cursor-pointer transition-all active:translate-y-[1px] ${
-        boosted ? "border-accent bg-accent/15 scale-102" : ""
+      className={`pixel-hud-card rounded-xl p-5 sm:p-6 group relative overflow-hidden flex flex-col cursor-pointer transition-all active:translate-y-[1px] bg-[#131622] border border-border ${
+        boosted ? "border-amber bg-amber/15 scale-102" : ""
       }`}
       title="Click to boost skill XP"
     >
       {/* Icon + category */}
       <div className="flex items-start justify-between mb-4">
         <div
-          className="w-10 h-10 rounded-lg flex items-center justify-center border border-white/10 shadow-pixel-sm"
-          style={{ background: `${color}25` }}
+          className="w-10 h-10 rounded-lg flex items-center justify-center border border-white/10 shadow-pixel-sm bg-black/40"
         >
           <Icon className="w-5 h-5" style={{ color }} />
         </div>
@@ -74,11 +73,11 @@ function SkillCard({ skill, color, index }: { skill: Skill; color: string; index
 
       <h3 className="text-sm sm:text-base font-bold font-silkscreen text-text-main mb-3 uppercase tracking-wide flex items-center justify-between">
         <span>{skill.category}</span>
-        {boosted && <Sparkles className="w-3.5 h-3.5 text-accent animate-spin" />}
+        {boosted && <Sparkles className="w-3.5 h-3.5 text-amber animate-spin" />}
       </h3>
 
       {/* Retro Pixel Progress bar */}
-      <div className="w-full h-2.5 bg-[#0e1118] border border-white/10 rounded-sm mb-5 overflow-hidden p-0.5">
+      <div className="w-full h-2.5 bg-[#090a0f] border border-border rounded-sm mb-5 overflow-hidden p-0.5">
         <motion.div
           className="h-full rounded-sm pixel-crisp"
           style={{ background: `linear-gradient(90deg, ${color}99, ${color})` }}
@@ -93,7 +92,7 @@ function SkillCard({ skill, color, index }: { skill: Skill; color: string; index
         {skill.items.map((item) => (
           <span
             key={item}
-            className="text-[10px] font-silkscreen text-white/70 bg-white/5 border border-white/10 px-2 py-1 rounded hover:text-white hover:border-accent/40 transition-colors"
+            className="text-[10px] font-silkscreen text-text-muted bg-surface-elevated border border-border px-2 py-1 rounded hover:text-white hover:border-amber/40 transition-colors"
           >
             {item}
           </span>
@@ -111,7 +110,7 @@ export default function Skills({ data }: SkillsProps) {
     <section
       ref={ref}
       id="skills"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 overflow-hidden"
+      className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden"
       aria-label="Skills section"
     >
       <div className="max-w-7xl mx-auto">
@@ -135,7 +134,7 @@ export default function Skills({ data }: SkillsProps) {
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-text-muted mt-4 max-w-xl mx-auto text-sm sm:text-base leading-relaxed font-pixel"
+            className="text-text-muted mt-4 max-w-xl mx-auto text-sm sm:text-base leading-relaxed font-readable"
           >
             End-to-end creator growth stack — from video packaging and SEO to Discord bot architecture and viral content systems.
           </motion.p>
@@ -160,14 +159,14 @@ export default function Skills({ data }: SkillsProps) {
 
         {/* All technologies marquee */}
         <div className="mt-12 text-center">
-          <div className="text-[10px] font-silkscreen text-white/40 tracking-[0.3em] uppercase mb-3">
+          <div className="text-[10px] font-silkscreen text-text-muted/60 tracking-[0.3em] uppercase mb-3">
             CREATOR TOOLBOX &amp; ECOSYSTEMS
           </div>
           <div className="flex gap-4 sm:gap-6 items-center justify-center flex-wrap">
             {["Photoshop", "Premiere Pro", "CapCut", "VidIQ", "TubeBuddy", "SocialBlade", "Discord.js", "OBS Studio", "Patreon", "Notion CMS", "OpenAI / Claude"].map((tech) => (
               <span
                 key={tech}
-                className="text-xs font-mono text-white/40 hover:text-accent transition-colors cursor-default"
+                className="text-xs font-mono text-text-muted hover:text-amber transition-colors cursor-default"
               >
                 {tech}
               </span>

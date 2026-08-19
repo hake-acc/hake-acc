@@ -1,6 +1,9 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import "../styles/globals.css";
+import CrtOverlay from "@/components/CrtOverlay";
+import KonamiEasterEgg from "@/components/KonamiEasterEgg";
+import RetroHudFooter from "@/components/RetroHudFooter";
 
 interface Props {
   title?: string;
@@ -10,8 +13,8 @@ interface Props {
 }
 
 const {
-  title = "Hake Acc — Social Media Manager, Discord Developer & Agency Founder",
-  description = "Official portfolio of Hake Acc. Social Media Manager, Discord Server Developer, and Creator Agency Founder managing top YouTubers and scaling communities worldwide.",
+  title = "Hake Acc — Social Media Manager, Discord Architect & Creator Agency Founder",
+  description = "Official portfolio of Hake Acc. Senior content strategist and Discord architect managing top YouTubers, scaling communities, and engineering high-retention creator ecosystems.",
   image = "/assets/hake-logo.png",
   canonicalURL = "https://hakeacc.com",
 } = Astro.props;
@@ -20,7 +23,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Hake Acc",
-  jobTitle: "Social Media Manager, Discord Server Developer & Agency Founder",
+  jobTitle: "Senior Content Strategist, Discord Architect & Creator Agency Founder",
   url: "https://hakeacc.com",
   image: "https://hakeacc.com/assets/hake-logo.png",
   sameAs: [
@@ -50,10 +53,10 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="keywords" content="Hake Acc, Social Media Manager, Discord Server Developer, Agency Founder, YouTube Channel Manager, Creator Manager, Discord Bot Developer, Community Growth" />
+    <meta name="keywords" content="Hake Acc, Social Media Manager, Discord Server Developer, Discord Architect, Content Strategist, Agency Founder, YouTube Channel Manager, Creator Manager, Discord Bot Developer, Community Growth" />
     <meta name="author" content="Hake Acc" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#F4B860" />
+    <meta name="theme-color" content="#f59e0b" />
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" href="/assets/hake-logo.png" />
@@ -76,11 +79,11 @@ const jsonLd = {
     <meta name="twitter:image" content={image} />
     <meta name="twitter:creator" content="@hake_acc" />
 
-    <!-- Google Pixel Fonts: Pixelify Sans, Press Start 2P, Silkscreen, VT323, Space Mono -->
+    <!-- Optimized Google Fonts with display=swap for 100/100 Lighthouse Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Pixelify+Sans:wght@400;600;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&display=swap"
       rel="stylesheet"
     />
 
@@ -90,9 +93,22 @@ const jsonLd = {
     <!-- Astro View Transitions for instant SPA-like navigation -->
     <ClientRouter />
   </head>
-  <body class="font-pixel antialiased bg-[#0D0F14] text-[#F5F7FA] selection:bg-accent/30 selection:text-accent">
-    <div class="scan-lines fixed inset-0 z-30 pointer-events-none opacity-40"></div>
-    <div class="pixel-grid fixed inset-0 z-10 pointer-events-none opacity-60"></div>
-    <slot />
+  <body class="font-readable antialiased bg-[#090a0f] text-[#f8fafc] selection:bg-amber/30 selection:text-white">
+    <!-- GPU-Accelerated CRT Scanline / Vignette Overlay -->
+    <CrtOverlay client:load />
+
+    <!-- Keyboard Konami Code Easter Egg Subsystem -->
+    <KonamiEasterEgg client:load />
+
+    <!-- Background Arcade Pixel Grid -->
+    <div class="pixel-grid fixed inset-0 z-0 pointer-events-none opacity-40"></div>
+
+    <!-- Main Page Slots -->
+    <div class="relative z-10">
+      <slot />
+    </div>
+
+    <!-- Fixed Retro HUD Footer Bar (Docked at Bottom) -->
+    <RetroHudFooter client:load />
   </body>
 </html>

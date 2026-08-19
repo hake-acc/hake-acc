@@ -1,5 +1,5 @@
 /**
- * Web Audio API retro 8-bit sound effects synthesizer
+ * Pure Native Web Audio API 8-Bit Retro Sound Synthesizer
  * Zero external audio assets, works instantly in browser, ultra-lightweight.
  */
 
@@ -8,7 +8,9 @@ let audioCtx: AudioContext | null = null;
 function getAudioContext(): AudioContext | null {
   if (typeof window === "undefined") return null;
   if (!audioCtx) {
-    const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    const AudioContextClass =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     if (AudioContextClass) {
       audioCtx = new AudioContextClass();
     }
@@ -40,6 +42,7 @@ export function toggleSound(): boolean {
   return next;
 }
 
+/** Quick subtle UI hover blip */
 export function playBlip(): void {
   if (!isSoundEnabled()) return;
   try {
@@ -50,36 +53,10 @@ export function playBlip(): void {
     const gain = ctx.createGain();
 
     osc.type = "square";
-    osc.frequency.setValueAtTime(440, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.05);
+    osc.frequency.setValueAtTime(580, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.04);
 
-    gain.gain.setValueAtTime(0.04, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
-
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-
-    osc.start();
-    osc.stop(ctx.currentTime + 0.05);
-  } catch {
-    // Ignore audio errors
-  }
-}
-
-export function playClick(): void {
-  if (!isSoundEnabled()) return;
-  try {
-    const ctx = getAudioContext();
-    if (!ctx) return;
-
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-
-    osc.type = "triangle";
-    osc.frequency.setValueAtTime(320, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(160, ctx.currentTime + 0.04);
-
-    gain.gain.setValueAtTime(0.06, ctx.currentTime);
+    gain.gain.setValueAtTime(0.03, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
 
     osc.connect(gain);
@@ -92,6 +69,34 @@ export function playClick(): void {
   }
 }
 
+/** Solid tactile arcade button click */
+export function playClick(): void {
+  if (!isSoundEnabled()) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(360, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(140, ctx.currentTime + 0.035);
+
+    gain.gain.setValueAtTime(0.05, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.035);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start();
+    osc.stop(ctx.currentTime + 0.035);
+  } catch {
+    // Ignore audio errors
+  }
+}
+
+/** Retro 8-bit coin chime (B5 -> E6) */
 export function playCoin(): void {
   if (!isSoundEnabled()) return;
   try {
@@ -104,23 +109,24 @@ export function playCoin(): void {
 
     osc.type = "sine";
     osc.frequency.setValueAtTime(987.77, now); // B5
-    osc.frequency.setValueAtTime(1318.51, now + 0.08); // E6
+    osc.frequency.setValueAtTime(1318.51, now + 0.07); // E6
 
-    gain.gain.setValueAtTime(0.06, now);
-    gain.gain.setValueAtTime(0.06, now + 0.08);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+    gain.gain.setValueAtTime(0.05, now);
+    gain.gain.setValueAtTime(0.05, now + 0.07);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
 
     osc.connect(gain);
     gain.connect(ctx.destination);
 
     osc.start(now);
-    osc.stop(now + 0.28);
+    osc.stop(now + 0.25);
   } catch {
     // Ignore audio errors
   }
 }
 
-export function playSuccess(): void {
+/** Chime sound for stat click */
+export function playChime(): void {
   if (!isSoundEnabled()) return;
   try {
     const ctx = getAudioContext();
@@ -130,47 +136,11 @@ export function playSuccess(): void {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
-    osc.type = "triangle";
-    osc.frequency.setValueAtTime(523.25, now); // C5
-    osc.frequency.setValueAtTime(659.25, now + 0.07); // E5
-    osc.frequency.setValueAtTime(783.99, now + 0.14); // G5
-    osc.frequency.setValueAtTime(1046.50, now + 0.21); // C6
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(659.25, now); // E5
+    osc.frequency.exponentialRampToValueAtTime(1318.51, now + 0.12); // E6
 
-    gain.gain.setValueAtTime(0.06, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
-
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-
-    osc.start(now);
-    osc.stop(now + 0.45);
-  } catch {
-    // Ignore audio errors
-  }
-}
-
-export function playPowerup(): void {
-  if (!isSoundEnabled()) return;
-  try {
-    const ctx = getAudioContext();
-    if (!ctx) return;
-
-    const now = ctx.currentTime;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-
-    osc.type = "square";
-    osc.frequency.setValueAtTime(330, now);
-    osc.frequency.exponentialRampToValueAtTime(660, now + 0.1);
-    osc.frequency.exponentialRampToValueAtTime(990, now + 0.2);
-
-    gain.gain.setValueAtTime(0.04, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
-
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-
-    osc.start(now);
+    gain.gain.setValueAtTime(0.05, now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
 
     osc.connect(gain);
@@ -183,6 +153,7 @@ export function playPowerup(): void {
   }
 }
 
+/** Level up / XP boost fanfare */
 export function playLevelUp(): void {
   if (!isSoundEnabled()) return;
   try {
@@ -191,16 +162,16 @@ export function playLevelUp(): void {
 
     const now = ctx.currentTime;
     const notes = [440, 554.37, 659.25, 880, 1108.73, 1318.51];
-    
+
     notes.forEach((freq, idx) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
-      const noteTime = now + idx * 0.05;
+      const noteTime = now + idx * 0.045;
 
       osc.type = "triangle";
       osc.frequency.setValueAtTime(freq, noteTime);
 
-      gain.gain.setValueAtTime(0.05, noteTime);
+      gain.gain.setValueAtTime(0.04, noteTime);
       gain.gain.exponentialRampToValueAtTime(0.001, noteTime + 0.12);
 
       osc.connect(gain);
@@ -214,7 +185,40 @@ export function playLevelUp(): void {
   }
 }
 
-export function playChime(): void {
+/** Major triad success chord */
+export function playSuccess(): void {
+  if (!isSoundEnabled()) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    const now = ctx.currentTime;
+    const chord = [523.25, 659.25, 783.99, 1046.5]; // C5, E5, G5, C6
+
+    chord.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const t = now + i * 0.06;
+
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(freq, t);
+
+      gain.gain.setValueAtTime(0.04, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(t);
+      osc.stop(now + 0.4);
+    });
+  } catch {
+    // Ignore audio errors
+  }
+}
+
+/** Powerup rising wave */
+export function playPowerup(): void {
   if (!isSoundEnabled()) return;
   try {
     const ctx = getAudioContext();
@@ -224,23 +228,25 @@ export function playChime(): void {
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(659.25, now); // E5
-    osc.frequency.exponentialRampToValueAtTime(1318.51, now + 0.15); // E6
+    osc.type = "square";
+    osc.frequency.setValueAtTime(330, now);
+    osc.frequency.exponentialRampToValueAtTime(660, now + 0.08);
+    osc.frequency.exponentialRampToValueAtTime(1100, now + 0.16);
 
-    gain.gain.setValueAtTime(0.06, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+    gain.gain.setValueAtTime(0.03, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
 
     osc.connect(gain);
     gain.connect(ctx.destination);
 
     osc.start(now);
-    osc.stop(now + 0.25);
+    osc.stop(now + 0.22);
   } catch {
     // Ignore audio errors
   }
 }
 
+/** Retro laser beam for commands */
 export function playLaser(): void {
   if (!isSoundEnabled()) return;
   try {
@@ -252,17 +258,86 @@ export function playLaser(): void {
     const gain = ctx.createGain();
 
     osc.type = "sawtooth";
-    osc.frequency.setValueAtTime(880, now);
-    osc.frequency.exponentialRampToValueAtTime(110, now + 0.12);
+    osc.frequency.setValueAtTime(950, now);
+    osc.frequency.exponentialRampToValueAtTime(120, now + 0.1);
 
-    gain.gain.setValueAtTime(0.05, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+    gain.gain.setValueAtTime(0.04, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
 
     osc.connect(gain);
     gain.connect(ctx.destination);
 
     osc.start(now);
-    osc.stop(now + 0.12);
+    osc.stop(now + 0.1);
+  } catch {
+    // Ignore audio errors
+  }
+}
+
+/** Subtle slider tick when dragging */
+export function playSliderTick(): void {
+  if (!isSoundEnabled()) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(720, now);
+    osc.frequency.exponentialRampToValueAtTime(400, now + 0.02);
+
+    gain.gain.setValueAtTime(0.02, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.02);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.02);
+  } catch {
+    // Ignore audio errors
+  }
+}
+
+/** Secret Konami arcade unlock sound */
+export function playKonamiSuccess(): void {
+  if (!isSoundEnabled()) return;
+  try {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    const now = ctx.currentTime;
+    const melody = [
+      { f: 523.25, d: 0.08 }, // C5
+      { f: 659.25, d: 0.08 }, // E5
+      { f: 783.99, d: 0.08 }, // G5
+      { f: 1046.5, d: 0.12 }, // C6
+      { f: 880.0, d: 0.08 },  // A5
+      { f: 1174.66, d: 0.25 }, // D6
+    ];
+
+    let t = now;
+    melody.forEach((note) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = "square";
+      osc.frequency.setValueAtTime(note.f, t);
+
+      gain.gain.setValueAtTime(0.05, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + note.d);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(t);
+      osc.stop(t + note.d);
+
+      t += note.d;
+    });
   } catch {
     // Ignore audio errors
   }

@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Youtube, MessageSquare, Flame, ArrowRight, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import PixelIcon from "@/components/PixelIcon";
 import { playBlip, playClick, playCoin } from "@/lib/sound";
 
 interface Project {
@@ -30,8 +29,8 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
 };
 
 function ProjectCard({ project }: { project: Project }) {
@@ -45,26 +44,25 @@ function ProjectCard({ project }: { project: Project }) {
         playBlip();
       }}
       onHoverEnd={() => setHovered(false)}
-      className="group relative pixel-hud-card rounded-xl overflow-hidden flex flex-col transition-all duration-200"
+      className="group relative pixel-hud-card rounded-xl overflow-hidden flex flex-col transition-all duration-200 bg-[#131622] border border-border"
     >
       {/* Top color accent bar */}
       <div
         className="h-1.5 w-full"
-        style={{ background: `linear-gradient(90deg, ${project.color}, #FFC837)` }}
+        style={{ background: `linear-gradient(90deg, ${project.color}, #f59e0b)` }}
       />
 
       <div className="p-5 sm:p-6 flex flex-col h-full relative z-10">
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div
-            className="w-10 h-10 rounded-lg flex items-center justify-center border border-white/15 shadow-pixel-sm"
-            style={{ background: `${project.color}25` }}
+            className="w-10 h-10 rounded-lg flex items-center justify-center border border-white/10 bg-black/40 shadow-pixel-sm"
           >
             <Youtube className="w-5 h-5" style={{ color: project.color }} />
           </div>
           {project.metrics && (
-            <span className="pixel-badge bg-accent/15 border border-accent/40 text-accent font-bold">
-              <Flame className="w-3.5 h-3.5 text-accent shrink-0" />
+            <span className="pixel-badge bg-amber/15 border border-amber/40 text-amber font-bold">
+              <Flame className="w-3.5 h-3.5 text-amber shrink-0" />
               {project.metrics}
             </span>
           )}
@@ -72,19 +70,19 @@ function ProjectCard({ project }: { project: Project }) {
 
         {/* Role & Channel Name */}
         <div className="mb-3">
-          <div className="text-[10px] uppercase font-silkscreen text-white/50 mb-1 tracking-wider">
+          <div className="text-[10px] uppercase font-silkscreen text-text-muted mb-1 tracking-wider">
             {project.role || "Managed Channel"}
           </div>
           <h3
-            className="text-lg sm:text-xl font-bold font-retro text-text-main group-hover:text-accent transition-colors"
+            className="text-base sm:text-lg font-bold font-retro text-text-main group-hover:text-amber transition-colors"
             style={{ color: hovered ? project.color : undefined }}
           >
             {project.channelName || project.title}
           </h3>
         </div>
 
-        {/* Description with enhanced legibility */}
-        <p className="text-white/85 text-xs sm:text-sm leading-relaxed mb-5 flex-1 font-pixel font-medium">
+        {/* Multi-line Description in Accessible Readable Font (WCAG AA Compliant) */}
+        <p className="text-text-muted text-xs sm:text-sm leading-relaxed mb-5 flex-1 font-readable">
           {project.description}
         </p>
 
@@ -93,7 +91,7 @@ function ProjectCard({ project }: { project: Project }) {
           {project.tech.map((t) => (
             <span
               key={t}
-              className="text-[10px] font-silkscreen text-white/75 bg-white/5 border border-white/10 px-2 py-0.5 rounded"
+              className="text-[10px] font-silkscreen text-text-muted bg-surface-elevated border border-border px-2 py-0.5 rounded"
             >
               {t}
             </span>
@@ -101,7 +99,7 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
 
         {/* Actions / Channel Links */}
-        <div className="flex items-center justify-between pt-4 border-t border-white/[0.08] gap-2">
+        <div className="flex items-center justify-between pt-4 border-t border-border gap-2">
           {project.youtubeUrl && (
             <a
               href={project.youtubeUrl}
@@ -111,7 +109,7 @@ function ProjectCard({ project }: { project: Project }) {
               className="pixel-btn pixel-btn-accent text-[10px] py-1.5 px-3 rounded flex items-center gap-1.5 font-bold"
               aria-label={`Visit YouTube channel for ${project.channelName || project.title}`}
             >
-              <Youtube className="w-3.5 h-3.5 text-black" />
+              <Youtube className="w-3.5 h-3.5 text-canvas" />
               <span>Visit Channel →</span>
             </a>
           )}
@@ -122,7 +120,7 @@ function ProjectCard({ project }: { project: Project }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => playClick()}
-              className="flex items-center gap-1 text-xs font-silkscreen text-white/60 hover:text-secondary transition-colors"
+              className="flex items-center gap-1 text-xs font-silkscreen text-text-muted hover:text-purple transition-colors"
               aria-label={`Join Discord for ${project.channelName || project.title}`}
             >
               <MessageSquare className="w-3.5 h-3.5" />
@@ -149,9 +147,23 @@ export default function Projects({ data, showFilterTabs = false }: ProjectsProps
 
   let filtered = data;
   if (selectedFilter === "youtube") {
-    filtered = data.filter((p) => p.tech.some((t) => t.toLowerCase().includes("youtube") || t.toLowerCase().includes("seo") || t.toLowerCase().includes("ctr")));
+    filtered = data.filter((p) =>
+      p.tech.some(
+        (t) =>
+          t.toLowerCase().includes("youtube") ||
+          t.toLowerCase().includes("seo") ||
+          t.toLowerCase().includes("ctr")
+      )
+    );
   } else if (selectedFilter === "discord") {
-    filtered = data.filter((p) => p.tech.some((t) => t.toLowerCase().includes("discord") || t.toLowerCase().includes("community") || t.toLowerCase().includes("bot")));
+    filtered = data.filter((p) =>
+      p.tech.some(
+        (t) =>
+          t.toLowerCase().includes("discord") ||
+          t.toLowerCase().includes("community") ||
+          t.toLowerCase().includes("bot")
+      )
+    );
   }
 
   const displayed = showAll || showFilterTabs ? filtered : filtered.filter((p) => p.featured);
@@ -160,12 +172,9 @@ export default function Projects({ data, showFilterTabs = false }: ProjectsProps
     <section
       ref={ref}
       id="projects"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 overflow-hidden"
+      className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden"
       aria-label="Managed YouTubers section"
     >
-      <div className="absolute top-1/3 right-0 w-80 h-80 bg-accent/4 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-primary/4 rounded-full blur-3xl pointer-events-none" />
-
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -211,8 +220,8 @@ export default function Projects({ data, showFilterTabs = false }: ProjectsProps
                 className={cn(
                   "px-3.5 py-1.5 rounded text-xs font-silkscreen uppercase transition-all duration-150 border",
                   selectedFilter === f.id
-                    ? "bg-accent text-background font-bold border-accent shadow-pixel-sm"
-                    : "bg-white/5 text-white/60 hover:text-white border-white/10 hover:bg-white/10"
+                    ? "bg-amber text-canvas font-bold border-amber shadow-pixel-sm"
+                    : "bg-surface text-text-muted hover:text-white border-border hover:bg-surface-elevated"
                 )}
               >
                 {f.label}

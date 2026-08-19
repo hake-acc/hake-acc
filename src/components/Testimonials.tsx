@@ -31,7 +31,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
     const interval = setInterval(() => {
       setDirection(1);
       setCurrent((c) => (c + 1) % data.length);
-    }, 6000);
+    }, 6500);
     return () => clearInterval(interval);
   }, [data.length]);
 
@@ -48,12 +48,12 @@ export default function Testimonials({ data }: TestimonialsProps) {
 
   const slideVariants = {
     enter: (dir: number) => ({
-      x: dir > 0 ? 40 : -40,
+      x: dir > 0 ? 30 : -30,
       opacity: 0,
     }),
     center: { x: 0, opacity: 1 },
     exit: (dir: number) => ({
-      x: dir > 0 ? -40 : 40,
+      x: dir > 0 ? -30 : 30,
       opacity: 0,
     }),
   };
@@ -62,7 +62,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
     <section
       ref={ref}
       id="testimonials"
-      className="relative py-20 sm:py-28 px-4 sm:px-6 overflow-hidden"
+      className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden"
       aria-label="Testimonials section"
     >
       <div className="max-w-4xl mx-auto">
@@ -72,7 +72,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
           transition={{ duration: 0.45 }}
           className="text-center mb-10"
         >
-          <p className="section-label mb-2">06 // Reviews & Trust</p>
+          <p className="section-label mb-2">06 // Reviews &amp; Trust</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-retro text-text-main leading-tight">
             Kind words from
             <br />
@@ -84,12 +84,12 @@ export default function Testimonials({ data }: TestimonialsProps) {
         <div className="relative">
           <div
             onClick={handleStarClick}
-            className="pixel-card rounded-2xl p-6 sm:p-10 relative overflow-hidden cursor-pointer transition-all hover:border-accent/40"
+            className="pixel-hud-card rounded-2xl p-6 sm:p-10 relative overflow-hidden cursor-pointer transition-all hover:border-amber/50 bg-[#131622] border border-border"
             title="Click to send appreciation"
           >
             {/* Quote icon */}
             <div className="absolute top-6 right-6 opacity-10">
-              <Quote className="w-16 h-16 text-accent" />
+              <Quote className="w-16 h-16 text-amber" />
             </div>
 
             {/* Stars with interactive click */}
@@ -97,19 +97,19 @@ export default function Testimonials({ data }: TestimonialsProps) {
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`w-4 h-4 fill-accent text-accent transition-transform duration-150 ${
+                  className={`w-4 h-4 fill-amber text-amber transition-transform duration-150 ${
                     starBurst ? "scale-125 rotate-12 text-yellow-300" : ""
                   }`}
                 />
               ))}
               {starBurst && (
-                <span className="text-[10px] font-silkscreen text-accent ml-2 animate-bounce flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-accent" /> 5-STAR RATING
+                <span className="text-[10px] font-silkscreen text-amber ml-2 animate-bounce flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-amber" /> 5-STAR VERIFIED
                 </span>
               )}
             </div>
 
-            {/* Quote text */}
+            {/* Quote text in Readable accessible typography */}
             <div className="relative min-h-[110px] sm:min-h-[90px] mb-6">
               <AnimatePresence custom={direction} mode="wait">
                 <motion.blockquote
@@ -120,7 +120,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
                   animate="center"
                   exit="exit"
                   transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-text-main text-base sm:text-lg leading-relaxed font-pixel"
+                  className="text-text-main text-base sm:text-lg leading-relaxed font-readable italic"
                 >
                   &ldquo;{data[current].quote}&rdquo;
                 </motion.blockquote>
@@ -128,7 +128,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
             </div>
 
             {/* Author */}
-            <div className="flex items-center justify-between pt-4 border-t border-white/10 flex-wrap gap-4">
+            <div className="flex items-center justify-between pt-4 border-t border-border flex-wrap gap-4">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`author-${current}`}
@@ -138,14 +138,14 @@ export default function Testimonials({ data }: TestimonialsProps) {
                   transition={{ duration: 0.25 }}
                   className="flex items-center gap-3"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-accent/20 border border-accent/40 flex items-center justify-center text-xs font-bold font-retro text-accent">
+                  <div className="w-9 h-9 rounded-lg bg-amber/20 border border-amber/40 flex items-center justify-center text-xs font-bold font-retro text-amber">
                     {data[current].author.charAt(0)}
                   </div>
                   <div>
                     <p className="font-bold font-silkscreen text-text-main text-xs sm:text-sm">
                       {data[current].author}
                     </p>
-                    <p className="text-accent text-[11px] font-mono">{data[current].role}</p>
+                    <p className="text-amber text-[11px] font-mono">{data[current].role}</p>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -187,7 +187,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
                   className="h-2 rounded-sm transition-all duration-200"
                   style={{
                     width: i === current ? 20 : 6,
-                    background: i === current ? "#F4B860" : "rgba(255,255,255,0.2)",
+                    background: i === current ? "#f59e0b" : "rgba(255,255,255,0.2)",
                   }}
                 />
               </button>

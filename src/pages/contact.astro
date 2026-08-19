@@ -20,8 +20,8 @@ import PageNav from "@/components/PageNav";
     <main id="main-content" class="flex-1 pt-16 lg:pt-0">
       {/* Page Header */}
       <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-accent/15 border border-accent/30 rounded text-accent font-silkscreen text-xs mb-4">
-          <span class="w-2 h-2 rounded-sm bg-accent" />
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber/15 border border-amber/30 rounded text-amber font-silkscreen text-xs mb-4">
+          <span class="w-2 h-2 rounded-sm bg-amber" />
           <span>INQUIRIES &amp; BOOKINGS</span>
         </div>
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold font-retro text-text-main leading-tight mb-4">
@@ -29,30 +29,30 @@ import PageNav from "@/components/PageNav";
           <br />
           <span class="gradient-text">Legendary Together.</span>
         </h1>
-        <p class="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-pixel leading-relaxed">
+        <p class="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-readable leading-relaxed">
           Submit your channel details or project requirements below. I typically review and respond to inquiries within 24 hours.
         </p>
       </section>
 
-      {/* Onboarding Steps */}
+      {/* Onboarding Steps in Accessible Typography */}
       <section class="pb-12 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-readable">
           {[
             { step: "01", title: "Inquiry & Goals", desc: "Submit your channel link, current metrics, and key growth objectives." },
             { step: "02", title: "14-Day Audit", desc: "We review your analytics, CTR drop-offs, SEO tags, and Discord engagement." },
             { step: "03", title: "Custom Roadmap", desc: "Receive a tailored packaging, upload schedule, and community blueprint." },
             { step: "04", title: "Launch & Scale", desc: "We deploy custom bots, manage upload pipelines, and start scaling." },
           ].map((item) => (
-            <div key={item.step} class="pixel-card rounded-xl p-5 border border-white/10">
-              <div class="text-xl font-bold font-retro text-accent mb-2">{item.step}</div>
+            <div key={item.step} class="pixel-hud-card rounded-xl p-5 bg-[#131622] border border-border">
+              <div class="text-xl font-bold font-retro text-amber mb-2">{item.step}</div>
               <h3 class="text-sm font-bold font-retro text-text-main mb-1.5">{item.title}</h3>
-              <p class="text-text-muted text-xs font-pixel leading-relaxed">{item.desc}</p>
+              <p class="text-text-muted text-xs leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <SectionDivider color="#F4B860" />
+      <SectionDivider color="#f59e0b" />
 
       {/* Main Contact Form */}
       <ContactForm client:load data={content.contact} />

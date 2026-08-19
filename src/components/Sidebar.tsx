@@ -51,7 +51,7 @@ export default function Sidebar() {
   return (
     <aside
       aria-label="Desktop Sidebar Navigation"
-      className="hidden lg:flex fixed left-0 top-0 h-screen w-[220px] flex-col z-50 bg-[#0B0D12]/98 border-r border-white/[0.08] backdrop-blur-md"
+      className="hidden lg:flex fixed left-0 top-0 h-screen w-[220px] flex-col z-50 bg-[#090a0f]/98 border-r border-border backdrop-blur-md"
     >
       <div className="flex flex-col h-full py-5">
         {/* Logo / Avatar */}
@@ -66,9 +66,9 @@ export default function Sidebar() {
             <div
               className="w-16 h-16 rounded-xl flex items-center justify-center overflow-hidden p-0.5 transition-transform duration-200 group-hover:scale-105"
               style={{
-                background: "rgba(106,169,255,0.12)",
-                border: "1px solid rgba(244,184,96,0.4)",
-                boxShadow: "0 0 16px rgba(244,184,96,0.25)",
+                background: "rgba(245,158,11,0.12)",
+                border: "1px solid rgba(245,158,11,0.4)",
+                boxShadow: "0 0 16px rgba(245,158,11,0.25)",
               }}
             >
               <img
@@ -78,20 +78,20 @@ export default function Sidebar() {
               />
             </div>
             {/* Online indicator */}
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-success rounded-full border-2 border-[#0d0f14]" />
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-success rounded-full border-2 border-[#090a0f] animate-pulse" />
           </div>
           <div className="text-center">
-            <div className="font-bold text-text-main text-sm font-retro tracking-wide group-hover:text-accent transition-colors">
+            <div className="font-bold text-text-main text-sm font-retro tracking-wide group-hover:text-amber transition-colors">
               HAKE ACC
             </div>
-            <div className="text-[10px] text-accent font-silkscreen tracking-wider uppercase mt-0.5">
+            <div className="text-[10px] text-amber font-silkscreen tracking-wider uppercase mt-0.5">
               AGENCY FOUNDER
             </div>
           </div>
         </a>
 
         {/* Divider */}
-        <div className="h-px bg-white/[0.08] mb-3 mx-4" />
+        <div className="h-px bg-border mb-3 mx-4" />
 
         {/* Nav Links */}
         <nav className="flex-1 flex flex-col gap-1 px-3 overflow-y-auto">
@@ -113,19 +113,19 @@ export default function Sidebar() {
                 className={cn(
                   "relative flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-silkscreen tracking-wide transition-all duration-150 group",
                   isActive
-                    ? "text-white font-bold bg-accent/15 border border-accent/30 shadow-pixel-sm"
-                    : "text-white/60 hover:text-white hover:bg-white/5 border border-transparent"
+                    ? "text-white font-bold bg-amber/15 border border-amber/40 shadow-pixel-sm"
+                    : "text-text-muted hover:text-white hover:bg-surface border border-transparent"
                 )}
               >
                 <Icon
                   className={cn(
                     "w-4 h-4 relative z-10 shrink-0 transition-colors",
-                    isActive ? "text-accent" : "text-white/40 group-hover:text-accent"
+                    isActive ? "text-amber" : "text-text-muted/60 group-hover:text-amber"
                   )}
                 />
                 <span className="relative z-10">{link.label}</span>
                 {isActive && (
-                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-accent" />
+                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-amber" />
                 )}
               </a>
             );
@@ -147,7 +147,7 @@ export default function Sidebar() {
         </nav>
 
         {/* Sound FX Toggle & Bottom section */}
-        <div className="px-4 mt-3 pt-3 border-t border-white/[0.08] space-y-3">
+        <div className="px-4 mt-3 pt-3 border-t border-border space-y-3">
           <div className="flex justify-center">
             <SoundToggle />
           </div>
@@ -163,7 +163,7 @@ export default function Sidebar() {
                 aria-label={label}
                 onMouseEnter={() => playBlip()}
                 onClick={() => playClick()}
-                className="w-8 h-8 flex items-center justify-center rounded-lg border border-white/10 text-white/40 hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-all duration-150 active:translate-y-[1px]"
+                className="w-8 h-8 flex items-center justify-center rounded-lg border border-border bg-surface text-text-muted hover:text-amber hover:border-amber/40 hover:bg-amber/10 transition-all duration-150 active:translate-y-[1px]"
               >
                 <Icon className="w-3.5 h-3.5" />
               </a>
@@ -171,7 +171,7 @@ export default function Sidebar() {
           </div>
 
           {/* Status / Copyright */}
-          <div className="text-center text-white/40 text-[10px] font-mono leading-relaxed">
+          <div className="text-center text-text-muted/60 text-[10px] font-mono leading-relaxed">
             <div className="text-success font-silkscreen text-[9px] mb-0.5">● READY FOR CONTRACTS</div>
             <div>© 2026 Hake Acc</div>
           </div>

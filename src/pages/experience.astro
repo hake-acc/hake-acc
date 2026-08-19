@@ -22,8 +22,8 @@ import PageNav from "@/components/PageNav";
     <main id="main-content" class="flex-1 pt-16 lg:pt-0">
       {/* Page Header */}
       <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-accent/15 border border-accent/30 rounded text-accent font-silkscreen text-xs mb-4">
-          <span class="w-2 h-2 rounded-sm bg-accent" />
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber/15 border border-amber/30 rounded text-amber font-silkscreen text-xs mb-4">
+          <span class="w-2 h-2 rounded-sm bg-amber" />
           <span>TRACK RECORD &amp; EXPERTISE</span>
         </div>
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold font-retro text-text-main leading-tight mb-4">
@@ -31,7 +31,7 @@ import PageNav from "@/components/PageNav";
           <br />
           <span class="gradient-text">Career Milestones.</span>
         </h1>
-        <p class="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-pixel leading-relaxed">
+        <p class="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-readable leading-relaxed">
           5+ years scaling YouTube channels, engineering Discord communities, and building high-performance creator systems.
         </p>
       </section>
@@ -39,12 +39,12 @@ import PageNav from "@/components/PageNav";
       {/* Experience Timeline */}
       <Experience client:load data={content.experience} />
 
-      <SectionDivider color="#6AA9FF" />
+      <SectionDivider color="#38bdf8" />
 
       {/* Skills Matrix */}
       <Skills client:load data={content.skills} />
 
-      <SectionDivider color="#8B7CF6" />
+      <SectionDivider color="#818cf8" />
 
       {/* Agency Achievements Matrix */}
       <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">
@@ -56,28 +56,28 @@ import PageNav from "@/components/PageNav";
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="pixel-card rounded-xl p-6 text-center">
-            <div class="text-3xl sm:text-4xl font-bold font-retro text-accent mb-2">150M+</div>
+          <div class="pixel-hud-card rounded-xl p-6 text-center bg-[#131622] border border-border">
+            <div class="text-3xl sm:text-4xl font-bold font-retro text-amber mb-2">150M+</div>
             <div class="text-xs font-silkscreen text-white/70 uppercase mb-1">TOTAL VIEWS DRIVEN</div>
-            <div class="text-[11px] font-mono text-text-muted">Across 25+ managed creator channels</div>
+            <div class="text-xs font-readable text-text-muted">Across 25+ managed creator channels</div>
           </div>
 
-          <div class="pixel-card rounded-xl p-6 text-center">
-            <div class="text-3xl sm:text-4xl font-bold font-retro text-[#6AA9FF] mb-2">100K+</div>
+          <div class="pixel-hud-card rounded-xl p-6 text-center bg-[#131622] border border-border">
+            <div class="text-3xl sm:text-4xl font-bold font-retro text-cyan mb-2">100K+</div>
             <div class="text-xs font-silkscreen text-white/70 uppercase mb-1">DISCORD MEMBERS</div>
-            <div class="text-[11px] font-mono text-text-muted">Safeguarded with 0 raid incidents</div>
+            <div class="text-xs font-readable text-text-muted">Safeguarded with 0 raid incidents</div>
           </div>
 
-          <div class="pixel-card rounded-xl p-6 text-center">
-            <div class="text-3xl sm:text-4xl font-bold font-retro text-[#8B7CF6] mb-2">+38%</div>
+          <div class="pixel-hud-card rounded-xl p-6 text-center bg-[#131622] border border-border">
+            <div class="text-3xl sm:text-4xl font-bold font-retro text-purple mb-2">+38%</div>
             <div class="text-xs font-silkscreen text-white/70 uppercase mb-1">AVG CTR LIFT</div>
-            <div class="text-[11px] font-mono text-text-muted">Through thumbnail &amp; title packaging</div>
+            <div class="text-xs font-readable text-text-muted">Through thumbnail &amp; title packaging</div>
           </div>
 
-          <div class="pixel-card rounded-xl p-6 text-center">
-            <div class="text-3xl sm:text-4xl font-bold font-retro text-[#4ADE80] mb-2">100%</div>
+          <div class="pixel-hud-card rounded-xl p-6 text-center bg-[#131622] border border-border">
+            <div class="text-3xl sm:text-4xl font-bold font-retro text-success mb-2">100%</div>
             <div class="text-xs font-silkscreen text-white/70 uppercase mb-1">SECURITY UPTIME</div>
-            <div class="text-[11px] font-mono text-text-muted">Custom bot infrastructure reliability</div>
+            <div class="text-xs font-readable text-text-muted">Custom bot infrastructure reliability</div>
           </div>
         </div>
       </section>

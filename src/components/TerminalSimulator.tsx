@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Terminal, Send, Sparkles, RefreshCw } from "lucide-react";
+import { Terminal, Send, RefreshCw } from "lucide-react";
 import { playClick, playLaser, playSuccess } from "@/lib/sound";
 
 interface HistoryItem {
@@ -71,10 +71,10 @@ export default function TerminalSimulator() {
         case "/stats":
         case "stats":
           botResponse = (
-            <div className="space-y-1 text-accent">
-              <div>📊 [AGENCY STATS MATRIX]</div>
-              <div>• Total Creators Managed: 25+</div>
-              <div>• Total Organic Views Driven: 150,000,000+</div>
+            <div className="space-y-1 text-amber font-readable">
+              <div className="font-bold font-retro text-xs">📊 [AGENCY STATS MATRIX]</div>
+              <div>• Total Creators Managed: 25+ verified channels</div>
+              <div>• Total Organic Views Driven: 150,000,000+ views</div>
               <div>• Discord Community Reach: 100,000+ members</div>
               <div>• Avg CTR Lift: +38% across managed channels</div>
               <div>• Server Raid Incidents: 0 (100% security uptime)</div>
@@ -86,16 +86,16 @@ export default function TerminalSimulator() {
         case "/projects":
         case "channels":
           botResponse = (
-            <div className="space-y-1 text-[#6AA9FF]">
-              <div>🎮 [FEATURED CREATORS & CHANNELS]</div>
-              <div>1. Alex Adi XD — Gaming & Entertainment (@alexadixdofficial)</div>
-              <div>2. Mc thunder Playz — Gaming & Community Hub (@mcthunderxdofficial)</div>
-              <div>3. Not Vangid — Creator & Content Channel (@notvangid)</div>
-              <div>4. Sky Plays — Gameplay & Streams (@oneskyplayz)</div>
-              <div>5. Upper Gaming — Gaming Network & Hub (@upper_gaming)</div>
+            <div className="space-y-1 text-cyan font-readable">
+              <div className="font-bold font-retro text-xs">🎮 [FEATURED CREATORS &amp; CHANNELS]</div>
+              <div>1. Alex Adi XD — Gaming &amp; Entertainment (@alexadixdofficial)</div>
+              <div>2. Mc thunder Playz — Gaming &amp; Community Hub (@mcthunderxdofficial)</div>
+              <div>3. Not Vangid — Creator &amp; Content Channel (@notvangid)</div>
+              <div>4. Sky Plays — Gameplay &amp; Streams (@oneskyplayz)</div>
+              <div>5. Upper Gaming — Gaming Network &amp; Hub (@upper_gaming)</div>
               <div>6. Cappy Mc — Main Gaming Channel (@cappy-mc)</div>
               <div>7. CappuXD — Secondary Highlights Channel (@CappuXD)</div>
-              <div>8. Arpan GamzO — Gaming & Entertainment (@arpangamzo_official)</div>
+              <div>8. Arpan GamzO — Gaming &amp; Entertainment (@arpangamzo_official)</div>
               <div className="text-white/60 text-xs">→ Explore full direct links at /projects</div>
             </div>
           );
@@ -104,12 +104,12 @@ export default function TerminalSimulator() {
         case "/services":
         case "services":
           botResponse = (
-            <div className="space-y-1 text-[#4ADE80]">
-              <div>⚡ [AVAILABLE SOLUTIONS]</div>
+            <div className="space-y-1 text-success font-readable">
+              <div className="font-bold font-retro text-xs">⚡ [AVAILABLE SOLUTIONS]</div>
               <div>[1] End-to-End YouTube Channel Management (SEO, CTR, Retention)</div>
-              <div>[2] High-Security Discord Server Architecture & Custom Bots</div>
+              <div>[2] High-Security Discord Server Architecture &amp; Custom Bots</div>
               <div>[3] Multi-Platform Short-Form Scaling (Shorts / TikTok / X)</div>
-              <div>[4] Creator Monetization, Sponsorships & VIP Memberships</div>
+              <div>[4] Creator Monetization, Sponsorships &amp; VIP Memberships</div>
             </div>
           );
           break;
@@ -118,10 +118,10 @@ export default function TerminalSimulator() {
         case "verify":
           playSuccess();
           botResponse = (
-            <div className="space-y-1 text-[#4ADE80]">
-              <div>🛡️ [VERIFICATION PASSED]</div>
+            <div className="space-y-1 text-success font-readable">
+              <div className="font-bold font-retro text-xs">🛡️ [VERIFICATION PASSED]</div>
               <div>Role granted: VIP Creator Partner [Level 99]</div>
-              <div>Access unlocked to private growth blueprints & priority onboarding.</div>
+              <div>Access unlocked to private growth blueprints &amp; priority onboarding.</div>
             </div>
           );
           break;
@@ -129,8 +129,8 @@ export default function TerminalSimulator() {
         case "/skills":
         case "skills":
           botResponse = (
-            <div className="space-y-1 text-[#8B7CF6]">
-              <div>🛠️ [OPERATIONAL STACK]</div>
+            <div className="space-y-1 text-purple font-readable">
+              <div className="font-bold font-retro text-xs">🛠️ [OPERATIONAL STACK]</div>
               <div>• YouTube Studio, VidIQ, TubeBuddy, Advanced Retention Analytics</div>
               <div>• Discord.js, Custom Discord Bots, Auto-Mod, Ticket Systems</div>
               <div>• Thumbnail A/B Packaging, Title Hook Engineering, Viral Repurposing</div>
@@ -147,18 +147,18 @@ export default function TerminalSimulator() {
             "\"Your Discord server shouldn't just be a chat room — it's the heartbeat of your creator empire.\"",
           ];
           const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-          botResponse = <div className="text-accent italic">{randomQuote} — Hake Acc</div>;
+          botResponse = <div className="text-amber italic font-readable">{randomQuote} — Hake Acc</div>;
           break;
 
         case "/contact":
         case "contact":
           botResponse = (
-            <div className="space-y-1 text-accent">
-              <div>📬 [DIRECT CONTACT]</div>
+            <div className="space-y-1 text-amber font-readable">
+              <div className="font-bold font-retro text-xs">📬 [DIRECT CONTACT]</div>
               <div>• Email: contact@hakeacc.com</div>
               <div>• Discord: hake_acc</div>
               <div>• X/Twitter: @hake_acc</div>
-              <div>Status: Accepting select creator channel & Discord contracts for Q3/Q4.</div>
+              <div>Status: Accepting select creator channel &amp; Discord contracts for 2026.</div>
             </div>
           );
           break;
@@ -199,17 +199,17 @@ export default function TerminalSimulator() {
   };
 
   return (
-    <div className="pixel-card rounded-lg overflow-hidden border border-white/10 bg-[#0d1117]/90">
+    <div className="pixel-hud-card rounded-xl overflow-hidden border border-border bg-[#131622]">
       {/* Terminal Titlebar */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-[#161b22] border-b border-white/10">
+      <div className="flex items-center justify-between px-4 py-2.5 bg-surface-elevated border-b border-border">
         <div className="flex items-center gap-2">
           <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#f87171]/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#f43f5e]/80" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#fbbf24]/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#4ade80]/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#10b981]/80" />
           </div>
           <div className="flex items-center gap-1.5 ml-2 text-xs font-retro text-white/70">
-            <Terminal className="w-3.5 h-3.5 text-accent" />
+            <Terminal className="w-3.5 h-3.5 text-amber" />
             <span>HAKE-ACC // DISCORD BOT CONSOLE v2.6</span>
           </div>
         </div>
@@ -219,7 +219,7 @@ export default function TerminalSimulator() {
           </span>
           <button
             onClick={() => handleQuickCommand("/clear")}
-            className="p-1 text-white/40 hover:text-white transition-colors"
+            className="p-1 text-text-muted hover:text-white transition-colors"
             title="Clear Console"
             aria-label="Clear Console"
           >
@@ -229,21 +229,21 @@ export default function TerminalSimulator() {
       </div>
 
       {/* Terminal Output Area */}
-      <div className="p-4 sm:p-5 font-vt323 text-base sm:text-lg min-h-[220px] max-h-[300px] overflow-y-auto space-y-3 bg-[#0a0d13]/95 text-white/90">
-        <div className="text-white/40 text-sm font-mono border-b border-white/5 pb-2">
+      <div className="p-4 sm:p-5 text-sm sm:text-base min-h-[220px] max-h-[300px] overflow-y-auto space-y-3 bg-[#090a0f] text-text-main font-mono">
+        <div className="text-text-muted/60 text-xs border-b border-white/5 pb-2">
           Hake Acc Creator Infrastructure [Ready]. Run slash commands below or click preset buttons.
         </div>
 
         {history.map((item) => (
           <div key={item.id} className="space-y-1">
             {item.type === "user" ? (
-              <div className="flex items-center gap-2 text-accent">
-                <span className="text-white/40 font-mono text-xs">[{item.time}]</span>
-                <span className="text-accent font-bold">$</span>
+              <div className="flex items-center gap-2 text-amber">
+                <span className="text-text-muted/50 text-xs">[{item.time}]</span>
+                <span className="text-amber font-bold">$</span>
                 <span className="font-retro text-xs sm:text-sm">{item.command}</span>
               </div>
             ) : (
-              <div className="pl-4 border-l-2 border-accent/30 py-0.5 text-white/90 font-mono text-sm leading-relaxed">
+              <div className="pl-4 border-l-2 border-amber/40 py-0.5 text-text-main text-xs sm:text-sm leading-relaxed">
                 {item.response}
               </div>
             )}
@@ -251,9 +251,9 @@ export default function TerminalSimulator() {
         ))}
 
         {isTyping && (
-          <div className="flex items-center gap-2 text-white/40 text-sm font-mono animate-pulse">
+          <div className="flex items-center gap-2 text-text-muted text-xs animate-pulse">
             <span>Executing...</span>
-            <span className="inline-block w-2 h-4 bg-accent animate-pixel-blink" />
+            <span className="inline-block w-2 h-4 bg-amber animate-pulse" />
           </div>
         )}
 
@@ -261,13 +261,13 @@ export default function TerminalSimulator() {
       </div>
 
       {/* Quick Action Presets */}
-      <div className="px-4 py-2 bg-[#12161f] border-t border-white/5 flex flex-wrap gap-1.5 items-center">
-        <span className="text-[10px] font-silkscreen text-white/40 mr-1">QUICK:</span>
+      <div className="px-4 py-2 bg-surface-elevated border-t border-border flex flex-wrap gap-1.5 items-center">
+        <span className="text-[10px] font-silkscreen text-text-muted mr-1">QUICK:</span>
         {["/stats", "/channels", "/services", "/verify", "/skills", "/quote", "/contact"].map((cmd) => (
           <button
             key={cmd}
             onClick={() => handleQuickCommand(cmd)}
-            className="px-2 py-1 rounded bg-white/5 hover:bg-accent/20 border border-white/10 hover:border-accent/40 text-[11px] font-silkscreen text-white/70 hover:text-accent transition-all active:translate-y-[1px]"
+            className="px-2 py-1 rounded bg-surface hover:bg-amber/20 border border-border hover:border-amber/40 text-[11px] font-silkscreen text-text-muted hover:text-amber transition-all active:translate-y-[1px]"
           >
             {cmd}
           </button>
@@ -275,15 +275,15 @@ export default function TerminalSimulator() {
       </div>
 
       {/* Command Input Bar */}
-      <form onSubmit={handleSubmit} className="flex items-center gap-2 p-3 bg-[#161b22] border-t border-white/10">
-        <span className="text-accent font-retro text-xs sm:text-sm pl-1">$</span>
+      <form onSubmit={handleSubmit} className="flex items-center gap-2 p-3 bg-surface-elevated border-t border-border">
+        <span className="text-amber font-retro text-xs sm:text-sm pl-1">$</span>
         <input
           ref={inputRef}
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type a command (e.g. /stats, /channels, /verify)..."
-          className="flex-1 bg-transparent border-none outline-none text-white text-sm font-mono placeholder:text-white/30 focus:ring-0"
+          className="flex-1 bg-transparent border-none outline-none text-white text-xs sm:text-sm font-mono placeholder:text-text-muted/40 focus:ring-0"
         />
         <button
           type="submit"

@@ -56,7 +56,7 @@ export default function Navigation() {
     <>
       {/* Mobile & Tablet Header Bar (Hidden on desktop lg:) */}
       <header
-        className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-[#0B0D12]/95 border-b border-white/[0.08] backdrop-blur-md px-4 py-2.5 transition-all duration-200"
+        className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-[#090a0f]/95 border-b border-border backdrop-blur-md px-4 py-2.5 transition-all duration-200"
       >
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           {/* Logo */}
@@ -67,7 +67,7 @@ export default function Navigation() {
             onClick={() => playClick()}
             className="flex items-center gap-2.5 group"
           >
-            <div className="relative w-8 h-8 overflow-hidden rounded-lg border border-accent/40 bg-accent/10 p-0.5 transition-transform duration-150 group-hover:scale-105">
+            <div className="relative w-8 h-8 overflow-hidden rounded-lg border border-amber/40 bg-amber/10 p-0.5 transition-transform duration-150 group-hover:scale-105">
               <img
                 src="/assets/hake-logo.png"
                 alt="Hake Acc logo"
@@ -76,12 +76,12 @@ export default function Navigation() {
             </div>
             <div className="flex flex-col">
               <span
-                className="text-text-main font-retro text-xs tracking-wide group-hover:text-accent transition-colors"
-                style={{ textShadow: "0 0 12px rgba(244,184,96,0.6)" }}
+                className="text-text-main font-retro text-xs tracking-wide group-hover:text-amber transition-colors"
+                style={{ textShadow: "0 0 12px rgba(245,158,11,0.6)" }}
               >
                 HAKE ACC
               </span>
-              <span className="text-[8px] font-silkscreen text-accent uppercase">AGENCY FOUNDER</span>
+              <span className="text-[8px] font-silkscreen text-amber uppercase">AGENCY FOUNDER</span>
             </div>
           </a>
 
@@ -94,7 +94,7 @@ export default function Navigation() {
                 playClick();
                 setMobileOpen(!mobileOpen);
               }}
-              className="p-2 rounded-lg bg-white/5 border border-white/10 text-white/80 hover:text-white hover:border-accent/40 active:translate-y-[1px] transition-colors"
+              className="p-2 rounded-lg bg-surface border border-border text-text-main hover:text-white hover:border-amber/40 active:translate-y-[1px] transition-colors"
               aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileOpen}
             >
@@ -114,7 +114,7 @@ export default function Navigation() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="absolute inset-0 bg-black/75 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
               onClick={() => setMobileOpen(false)}
             />
 
@@ -124,20 +124,20 @@ export default function Navigation() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", bounce: 0, duration: 0.28 }}
-              className="absolute right-0 top-0 bottom-0 w-[280px] bg-[#0d1117] border-l border-white/10 flex flex-col p-5 shadow-2xl z-10"
+              className="absolute right-0 top-0 bottom-0 w-[280px] bg-[#090a0f] border-l border-border flex flex-col p-5 shadow-2xl z-10"
             >
               {/* Drawer Header */}
-              <div className="flex items-center justify-between pb-4 mb-3 border-b border-white/10">
+              <div className="flex items-center justify-between pb-4 mb-3 border-b border-border">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-success" />
-                  <span className="font-retro text-xs text-accent">NAVIGATION</span>
+                  <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+                  <span className="font-retro text-xs text-amber">NAVIGATION</span>
                 </div>
                 <button
                   onClick={() => {
                     playClick();
                     setMobileOpen(false);
                   }}
-                  className="p-1.5 rounded text-white/50 hover:text-white hover:bg-white/10 transition-colors"
+                  className="p-1.5 rounded text-text-muted hover:text-white hover:bg-surface transition-colors"
                   aria-label="Close menu"
                 >
                   <X className="w-5 h-5" />
@@ -166,19 +166,19 @@ export default function Navigation() {
                       className={cn(
                         "flex items-center gap-3 px-3.5 py-3 rounded-lg text-xs font-silkscreen uppercase tracking-wide transition-colors border",
                         isActive
-                          ? "text-white bg-accent/20 border-accent/40 font-bold shadow-pixel-sm"
-                          : "text-text-muted hover:text-white hover:bg-white/5 border-transparent"
+                          ? "text-white bg-amber/20 border-amber/40 font-bold shadow-pixel-sm"
+                          : "text-text-muted hover:text-white hover:bg-surface border-transparent"
                       )}
                     >
                       <Icon
                         className={cn(
                           "w-4 h-4 shrink-0",
-                          isActive ? "text-accent" : "text-white/40"
+                          isActive ? "text-amber" : "text-text-muted/60"
                         )}
                       />
                       <span>{link.label}</span>
                       {isActive && (
-                        <span className="ml-auto w-1.5 h-1.5 rounded-full bg-accent" />
+                        <span className="ml-auto w-1.5 h-1.5 rounded-full bg-amber" />
                       )}
                     </a>
                   );
@@ -186,7 +186,7 @@ export default function Navigation() {
               </nav>
 
               {/* Bottom Quick Action */}
-              <div className="pt-4 border-t border-white/10 space-y-3">
+              <div className="pt-4 border-t border-border space-y-3">
                 <a
                   href="/contact"
                   data-astro-prefetch
@@ -200,7 +200,7 @@ export default function Navigation() {
                   <span>Hire Me / Book Project</span>
                 </a>
 
-                <div className="text-center text-[10px] font-mono text-white/40">
+                <div className="text-center text-[10px] font-mono text-text-muted/60">
                   © 2026 Hake Acc • Ready For Contracts
                 </div>
               </div>

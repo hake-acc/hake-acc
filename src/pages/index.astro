@@ -7,6 +7,7 @@ import Sidebar from "@/components/Sidebar";
 import Navigation from "@/components/Navigation";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
+import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import TerminalSimulator from "@/components/TerminalSimulator";
 import GrowthCalculator from "@/components/GrowthCalculator";
 import Skills from "@/components/Skills";
@@ -19,8 +20,8 @@ import SectionDivider from "@/components/SectionDivider";
 ---
 
 <Layout
-  title="Hake Acc — Social Media Manager, Discord Developer & Agency Founder"
-  description="Official portfolio of Hake Acc. Scaling top YouTube channels, engineering high-retention Discord communities, and building unstoppable creator brands."
+  title="Hake Acc — Senior Content Strategist & Discord Architect"
+  description="Official portfolio of Hake Acc. Senior content strategist and Discord architect managing top YouTubers, scaling communities, and engineering high-retention creator ecosystems."
 >
   <Sidebar client:load />
   <div class="lg:pl-[220px] flex flex-col min-h-screen">
@@ -32,7 +33,14 @@ import SectionDivider from "@/components/SectionDivider";
       {/* 15-Second Executive Hiring Pitch */}
       <ExecutivePitch client:visible />
       
-      <SectionDivider color="#6AA9FF" />
+      <SectionDivider color="#f59e0b" />
+
+      {/* Touch/Mouse Draggable Before/After Comparison Slider */}
+      <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <BeforeAfterSlider client:visible />
+      </section>
+
+      <SectionDivider color="#38bdf8" />
 
       {/* Interactive Micro-Interactions Showcase: Terminal Simulator */}
       <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
@@ -45,10 +53,10 @@ import SectionDivider from "@/components/SectionDivider";
         <TerminalSimulator client:visible />
       </section>
 
-      <SectionDivider color="#6AA9FF" />
+      <SectionDivider color="#818cf8" />
       <About client:visible data={content.about} />
       
-      <SectionDivider color="#8B7CF6" />
+      <SectionDivider color="#f59e0b" />
       <Projects client:visible data={content.projects} />
 
       {/* Interactive Growth Calculator */}
@@ -56,19 +64,19 @@ import SectionDivider from "@/components/SectionDivider";
         <GrowthCalculator client:visible />
       </section>
       
-      <SectionDivider color="#F4B860" />
+      <SectionDivider color="#38bdf8" />
       <Skills client:visible data={content.skills} />
       
-      <SectionDivider color="#6AA9FF" />
+      <SectionDivider color="#818cf8" />
       <Experience client:visible data={content.experience} />
       
-      <SectionDivider color="#8B7CF6" />
+      <SectionDivider color="#f59e0b" />
       <Services client:visible data={content.services} />
       
-      <SectionDivider color="#F4B860" />
+      <SectionDivider color="#38bdf8" />
       <Testimonials client:visible data={content.testimonials} />
       
-      <SectionDivider color="#6AA9FF" />
+      <SectionDivider color="#f59e0b" />
       <ContactForm client:visible data={content.contact} />
     </main>
     
