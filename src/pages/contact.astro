@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/SectionDivider";
+import PageNav from "@/components/PageNav";
 ---
 
 <Layout
@@ -16,7 +17,7 @@ import SectionDivider from "@/components/SectionDivider";
   <div class="lg:pl-[220px] flex flex-col min-h-screen">
     <Navigation client:load />
     
-    <main id="main-content" class="flex-1 pt-20">
+    <main id="main-content" class="flex-1 pt-16 lg:pt-0">
       {/* Page Header */}
       <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full text-center">
         <div class="inline-flex items-center gap-2 px-3 py-1 bg-accent/15 border border-accent/30 rounded text-accent font-silkscreen text-xs mb-4">
@@ -55,6 +56,9 @@ import SectionDivider from "@/components/SectionDivider";
 
       {/* Main Contact Form */}
       <ContactForm client:load data={content.contact} />
+
+      {/* Sequence Page Nav */}
+      <PageNav client:load prevHref="/experience" prevLabel="Experience & Skills" nextHref="/" nextLabel="Back To Home" />
     </main>
     
     <Footer client:visible />

@@ -8,6 +8,7 @@ import Skills from "@/components/Skills";
 import TerminalSimulator from "@/components/TerminalSimulator";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/SectionDivider";
+import PageNav from "@/components/PageNav";
 ---
 
 <Layout
@@ -18,7 +19,7 @@ import SectionDivider from "@/components/SectionDivider";
   <div class="lg:pl-[220px] flex flex-col min-h-screen">
     <Navigation client:load />
     
-    <main id="main-content" class="flex-1 pt-20">
+    <main id="main-content" class="flex-1 pt-16 lg:pt-0">
       {/* Page Header */}
       <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full text-center">
         <div class="inline-flex items-center gap-2 px-3 py-1 bg-accent/15 border border-accent/30 rounded text-accent font-silkscreen text-xs mb-4">
@@ -28,7 +29,7 @@ import SectionDivider from "@/components/SectionDivider";
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold font-retro text-text-main leading-tight mb-4">
           Battle-Tested Skills &amp;
           <br />
-          <span className="gradient-text">Career Milestones.</span>
+          <span class="gradient-text">Career Milestones.</span>
         </h1>
         <p class="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-pixel leading-relaxed">
           5+ years scaling YouTube channels, engineering Discord communities, and building high-performance creator systems.
@@ -92,23 +93,8 @@ import SectionDivider from "@/components/SectionDivider";
         <TerminalSimulator client:visible />
       </section>
 
-      {/* CTA */}
-      <section class="py-16 px-4 sm:px-6 max-w-4xl mx-auto w-full text-center">
-        <div class="pixel-card rounded-2xl p-8 sm:p-12 border border-accent/40 bg-accent/5">
-          <h2 class="text-2xl sm:text-3xl font-bold font-retro text-text-main mb-4">
-            Partner With An Experienced Creator Strategist
-          </h2>
-          <p class="text-text-muted text-sm sm:text-base max-w-lg mx-auto font-pixel mb-6">
-            Let's build a dedicated growth pipeline for your YouTube and Discord brand.
-          </p>
-          <a
-            href="/contact"
-            class="pixel-btn pixel-btn-accent text-xs sm:text-sm py-3.5 px-8 rounded inline-flex items-center gap-2"
-          >
-            Get In Touch →
-          </a>
-        </div>
-      </section>
+      {/* Sequence Page Nav */}
+      <PageNav client:load prevHref="/services" prevLabel="Services & Solutions" nextHref="/contact" nextLabel="Book A Call & Inquire" />
     </main>
     
     <Footer client:visible />

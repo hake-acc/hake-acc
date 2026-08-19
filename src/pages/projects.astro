@@ -7,6 +7,7 @@ import Projects from "@/components/Projects";
 import GrowthCalculator from "@/components/GrowthCalculator";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/SectionDivider";
+import PageNav from "@/components/PageNav";
 ---
 
 <Layout
@@ -17,7 +18,7 @@ import SectionDivider from "@/components/SectionDivider";
   <div class="lg:pl-[220px] flex flex-col min-h-screen">
     <Navigation client:load />
     
-    <main id="main-content" class="flex-1 pt-20">
+    <main id="main-content" class="flex-1 pt-16 lg:pt-0">
       {/* Page Header */}
       <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full text-center">
         <div class="inline-flex items-center gap-2 px-3 py-1 bg-accent/15 border border-accent/30 rounded text-accent font-silkscreen text-xs mb-4">
@@ -80,23 +81,8 @@ import SectionDivider from "@/components/SectionDivider";
         <GrowthCalculator client:visible />
       </section>
 
-      {/* CTA */}
-      <section class="py-16 px-4 sm:px-6 max-w-4xl mx-auto w-full text-center">
-        <div class="pixel-card rounded-2xl p-8 sm:p-12 border border-accent/40 bg-accent/5">
-          <h2 class="text-2xl sm:text-3xl font-bold font-retro text-text-main mb-4">
-            Want Your Channel Featured Here Next?
-          </h2>
-          <p class="text-text-muted text-sm sm:text-base max-w-lg mx-auto font-pixel mb-6">
-            Submit your channel for a full growth audit and management proposal.
-          </p>
-          <a
-            href="/contact"
-            class="pixel-btn pixel-btn-accent text-xs sm:text-sm py-3.5 px-8 rounded inline-flex items-center gap-2"
-          >
-            Submit Channel For Review →
-          </a>
-        </div>
-      </section>
+      {/* Sequence Page Nav */}
+      <PageNav client:load prevHref="/about" prevLabel="About Founder" nextHref="/services" nextLabel="Services & Deliverables" />
     </main>
     
     <Footer client:visible />

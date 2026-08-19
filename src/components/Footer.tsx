@@ -81,6 +81,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
+                    data-astro-prefetch
                     onMouseEnter={() => playBlip()}
                     onClick={() => playClick()}
                     className="text-xs font-silkscreen text-white/60 hover:text-accent transition-colors block py-0.5"
@@ -102,6 +103,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
+                    data-astro-prefetch
                     onMouseEnter={() => playBlip()}
                     onClick={() => playClick()}
                     className="text-xs font-silkscreen text-white/60 hover:text-accent transition-colors block py-0.5"

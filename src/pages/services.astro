@@ -8,6 +8,7 @@ import GrowthCalculator from "@/components/GrowthCalculator";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/SectionDivider";
+import PageNav from "@/components/PageNav";
 ---
 
 <Layout
@@ -18,7 +19,7 @@ import SectionDivider from "@/components/SectionDivider";
   <div class="lg:pl-[220px] flex flex-col min-h-screen">
     <Navigation client:load />
     
-    <main id="main-content" class="flex-1 pt-20">
+    <main id="main-content" class="flex-1 pt-16 lg:pt-0">
       {/* Page Header */}
       <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full text-center">
         <div class="inline-flex items-center gap-2 px-3 py-1 bg-accent/15 border border-accent/30 rounded text-accent font-silkscreen text-xs mb-4">
@@ -82,13 +83,13 @@ import SectionDivider from "@/components/SectionDivider";
               </span>
             </div>
             <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed mb-4">
-              Bulletproof, zero-raid community infrastructure with gamified engagement and custom bot automation.
+              Design, deployment, and security hardening of high-engagement Discord hubs built to turn viewers into loyal superfans.
             </p>
             <ul class="space-y-2 text-xs sm:text-sm font-pixel text-text-muted">
-              <li class="flex items-center gap-2"><span class="text-[#8B7CF6] font-retro text-[9px]">▶</span> Anti-raid &amp; anti-nuke token security hardening</li>
-              <li class="flex items-center gap-2"><span class="text-[#8B7CF6] font-retro text-[9px]">▶</span> Custom Discord bot development (XP, alerts, mini-games)</li>
-              <li class="flex items-center gap-2"><span class="text-[#8B7CF6] font-retro text-[9px]">▶</span> VIP / Member role onboarding &amp; Twitch/YT sync</li>
-              <li class="flex items-center gap-2"><span class="text-[#8B7CF6] font-retro text-[9px]">▶</span> Automated ticketing &amp; community moderator systems</li>
+              <li class="flex items-center gap-2"><span class="text-[#8B7CF6] font-retro text-[9px]">▶</span> Anti-nuke &amp; anti-raid security permissions hardening</li>
+              <li class="flex items-center gap-2"><span class="text-[#8B7CF6] font-retro text-[9px]">▶</span> Custom bot logic, economy &amp; gamified leveling</li>
+              <li class="flex items-center gap-2"><span class="text-[#8B7CF6] font-retro text-[9px]">▶</span> Automated YouTube &amp; Twitch stream alert channels</li>
+              <li class="flex items-center gap-2"><span class="text-[#8B7CF6] font-retro text-[9px]">▶</span> VIP subscriber role assignment &amp; Nitro booster perks</li>
             </ul>
           </div>
 
@@ -99,17 +100,17 @@ import SectionDivider from "@/components/SectionDivider";
                 Shorts &amp; Multi-Platform Scaling
               </h3>
               <span class="pixel-badge bg-[#F4B860]/15 border border-[#F4B860]/30 text-[#F4B860]">
-                VIRAL FUNNELS
+                VIRAL GROWTH
               </span>
             </div>
             <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed mb-4">
-              Turn your long-form streams and videos into dozens of viral micro-clips that flood top-of-funnel discovery.
+              Repurpose long-form content into viral clips on YouTube Shorts, TikTok, and Instagram Reels to flood top-of-funnel discovery.
             </p>
             <ul class="space-y-2 text-xs sm:text-sm font-pixel text-text-muted">
-              <li class="flex items-center gap-2"><span class="text-[#F4B860] font-retro text-[9px]">▶</span> Fast-paced clip extraction &amp; animated pixel captions</li>
-              <li class="flex items-center gap-2"><span class="text-[#F4B860] font-retro text-[9px]">▶</span> Daily automated posting across YouTube Shorts &amp; TikTok</li>
-              <li class="flex items-center gap-2"><span class="text-[#F4B860] font-retro text-[9px]">▶</span> Pinned comment conversion funnels to main channel</li>
-              <li class="flex items-center gap-2"><span class="text-[#F4B860] font-retro text-[9px]">▶</span> Sound selection &amp; algorithmic trend capitalization</li>
+              <li class="flex items-center gap-2"><span class="text-[#F4B860] font-retro text-[9px]">▶</span> High-intensity clip extraction from streams/videos</li>
+              <li class="flex items-center gap-2"><span class="text-[#F4B860] font-retro text-[9px]">▶</span> Dynamic subtitle styling, sound effects &amp; pacing</li>
+              <li class="flex items-center gap-2"><span class="text-[#F4B860] font-retro text-[9px]">▶</span> Trend audio alignment &amp; viral hook positioning</li>
+              <li class="flex items-center gap-2"><span class="text-[#F4B860] font-retro text-[9px]">▶</span> Cross-platform syndication across all short-form apps</li>
             </ul>
           </div>
 
@@ -117,24 +118,26 @@ import SectionDivider from "@/components/SectionDivider";
           <div class="pixel-card rounded-xl p-6 sm:p-8 border-t-4 border-[#4ADE80]">
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-lg sm:text-xl font-bold font-retro text-text-main">
-                Creator Monetization &amp; Agency
+                Creator Agency &amp; Monetization
               </h3>
               <span class="pixel-badge bg-[#4ADE80]/15 border border-[#4ADE80]/30 text-[#4ADE80]">
                 REVENUE MAX
               </span>
             </div>
             <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed mb-4">
-              Maximize CPMs, secure recurring sponsor partnerships, and engineer high-margin creator merchandise &amp; VIP tiers.
+              Transform audience attention into revenue through brand sponsorships, merchandise, and membership tiers.
             </p>
             <ul class="space-y-2 text-xs sm:text-sm font-pixel text-text-muted">
-              <li class="flex items-center gap-2"><span class="text-[#4ADE80] font-retro text-[9px]">▶</span> Inbound brand sponsor pitch deck &amp; rate card creation</li>
-              <li class="flex items-center gap-2"><span class="text-[#4ADE80] font-retro text-[9px]">▶</span> Sponsor read script optimization &amp; integration</li>
-              <li class="flex items-center gap-2"><span class="text-[#4ADE80] font-retro text-[9px]">▶</span> Patreon / YouTube Membership / Discord VIP perks setup</li>
-              <li class="flex items-center gap-2"><span class="text-[#4ADE80] font-retro text-[9px]">▶</span> Monthly analytics &amp; revenue performance reporting</li>
+              <li class="flex items-center gap-2"><span class="text-[#4ADE80] font-retro text-[9px]">▶</span> Brand sponsorship pitch deck creation &amp; rate cards</li>
+              <li class="flex items-center gap-2"><span class="text-[#4ADE80] font-retro text-[9px]">▶</span> Sponsor read script review &amp; post-campaign analytics</li>
+              <li class="flex items-center gap-2"><span class="text-[#4ADE80] font-retro text-[9px]">▶</span> Patreon &amp; YouTube Channel Memberships setup</li>
+              <li class="flex items-center gap-2"><span class="text-[#4ADE80] font-retro text-[9px]">▶</span> Creator affiliate marketing funnels &amp; tracking links</li>
             </ul>
           </div>
         </div>
       </section>
+
+      <SectionDivider color="#6AA9FF" />
 
       {/* Growth Calculator Section */}
       <section class="py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
@@ -146,23 +149,8 @@ import SectionDivider from "@/components/SectionDivider";
       {/* Testimonials preview */}
       <Testimonials client:visible data={content.testimonials} />
 
-      {/* CTA */}
-      <section class="py-16 px-4 sm:px-6 max-w-4xl mx-auto w-full text-center">
-        <div class="pixel-card rounded-2xl p-8 sm:p-12 border border-accent/40 bg-accent/5">
-          <h2 class="text-2xl sm:text-3xl font-bold font-retro text-text-main mb-4">
-            Need A Custom Creator Scope?
-          </h2>
-          <p class="text-text-muted text-sm sm:text-base max-w-lg mx-auto font-pixel mb-6">
-            Let's structure a tailored channel management and community agreement that fits your exact workflow.
-          </p>
-          <a
-            href="/contact"
-            class="pixel-btn pixel-btn-accent text-xs sm:text-sm py-3.5 px-8 rounded inline-flex items-center gap-2"
-          >
-            Request Custom Scope &amp; Pricing →
-          </a>
-        </div>
-      </section>
+      {/* Sequence Page Nav */}
+      <PageNav client:load prevHref="/projects" prevLabel="Channels Showcase" nextHref="/experience" nextLabel="Experience & Stack" />
     </main>
     
     <Footer client:visible />

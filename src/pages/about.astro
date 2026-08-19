@@ -7,6 +7,7 @@ import About from "@/components/About";
 import TerminalSimulator from "@/components/TerminalSimulator";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/SectionDivider";
+import PageNav from "@/components/PageNav";
 ---
 
 <Layout
@@ -17,7 +18,7 @@ import SectionDivider from "@/components/SectionDivider";
   <div class="lg:pl-[220px] flex flex-col min-h-screen">
     <Navigation client:load />
     
-    <main id="main-content" class="flex-1 pt-20">
+    <main id="main-content" class="flex-1 pt-16 lg:pt-0">
       {/* Page Header */}
       <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full text-center">
         <div class="inline-flex items-center gap-2 px-3 py-1 bg-accent/15 border border-accent/30 rounded text-accent font-silkscreen text-xs mb-4">
@@ -51,7 +52,7 @@ import SectionDivider from "@/components/SectionDivider";
           <div class="pixel-card rounded-xl p-6 sm:p-7 border-t-4 border-[#6AA9FF]">
             <div class="text-2xl font-bold font-retro text-[#6AA9FF] mb-3">01</div>
             <h3 class="text-lg font-bold font-retro text-text-main mb-2">High-Retention Packaging</h3>
-            <p className="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
+            <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
               Great content fails without magnetic packaging. We test dozens of title hooks, custom thumbnail variants, and initial 30-second pacing to guarantee peak CTR and watch time.
             </p>
           </div>
@@ -59,7 +60,7 @@ import SectionDivider from "@/components/SectionDivider";
           <div class="pixel-card rounded-xl p-6 sm:p-7 border-t-4 border-[#8B7CF6]">
             <div class="text-2xl font-bold font-retro text-[#8B7CF6] mb-3">02</div>
             <h3 class="text-lg font-bold font-retro text-text-main mb-2">Superfan Architecture</h3>
-            <p className="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
+            <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
               Viewers are temporary, but community members are lifelong. We turn passive video viewers into dedicated Discord superfans with custom economy bots, VIP tiers, and interactive events.
             </p>
           </div>
@@ -67,81 +68,70 @@ import SectionDivider from "@/components/SectionDivider";
           <div class="pixel-card rounded-xl p-6 sm:p-7 border-t-4 border-[#F4B860]">
             <div class="text-2xl font-bold font-retro text-[#F4B860] mb-3">03</div>
             <h3 class="text-lg font-bold font-retro text-text-main mb-2">Compounding Creator Equity</h3>
-            <p className="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
-              We build systems that don't rely solely on the algorithm. Through cross-platform shorts funnels, email captures, and multi-tier monetization, your brand builds lasting equity.
+            <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
+              We don't just optimize single video uploads — we build sustainable creator infrastructure that generates recurring brand deals, higher sponsorship rates, and passive member conversions.
             </p>
           </div>
         </div>
       </section>
 
+      <SectionDivider color="#6AA9FF" />
+
       {/* Interactive Terminal Sandbox */}
-      <section class="py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <div class="text-center mb-6">
-          <p class="section-label mb-2">// COMMAND TERMINAL</p>
-          <h2 class="text-2xl sm:text-3xl font-bold font-retro text-text-main">
-            Run Bot Commands &amp; Explore Blueprints
+      <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <div class="text-center mb-8">
+          <p class="section-label mb-2">// COMMAND INTERFACE</p>
+          <h2 class="text-3xl sm:text-4xl font-bold font-retro text-text-main">
+            Interact With The Bot
           </h2>
         </div>
         <TerminalSimulator client:visible />
       </section>
 
+      <SectionDivider color="#F4B860" />
+
       {/* FAQ Accordion */}
-      <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-5xl mx-auto w-full">
+      <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto w-full">
         <div class="text-center mb-12">
-          <p class="section-label mb-2">// FAQ</p>
+          <p class="section-label mb-2">// FREQUENTLY ASKED QUESTIONS</p>
           <h2 class="text-3xl sm:text-4xl font-bold font-retro text-text-main">
-            Frequently Asked Questions
+            How We Work With Creators
           </h2>
         </div>
 
         <div class="space-y-4">
           {[
             {
-              q: "What size channels do you manage?",
-              a: "We work primarily with creators ranging from 100K to 5M+ subscribers, as well as high-growth emerging creators who are ready to scale their production and community backend.",
+              q: "What types of YouTube channels do you work with?",
+              a: "We specialize in gaming, variety, Minecraft, entertainment, commentary, and creator network brands. We typically work with creators looking to scale from 50K+ subscribers into the millions."
             },
             {
-              q: "How does Discord server security and anti-raid protection work?",
-              a: "We deploy custom hardened verification bots, captcha gating, automated anti-nuke permissions, webhook monitoring, and role hierarchies that make servers immune to raids and unauthorized token attacks.",
+              q: "Do you handle complete video production or just packaging?",
+              a: "We provide end-to-end management: title hook strategy, custom thumbnail art direction, upload scheduling, video SEO metadata, Shorts repurposing, and Discord community management."
             },
             {
-              q: "What is your onboarding process for new channels?",
-              a: "We begin with a comprehensive 14-day channel & audience audit, followed by thumbnail A/B infrastructure setup, upload schedule alignment, and Discord bot integration.",
+              q: "How fast can you set up a high-security Discord server?",
+              a: "Standard custom Discord server setups with anti-raid security, custom role hierarchy, automated Twitch/YouTube alerts, and onboarding flows are fully deployed within 3 to 5 business days."
             },
             {
-              q: "Do you handle sponsorships and brand deals?",
-              a: "Yes. Our agency team assists in sponsor read integration, rate card negotiations, contract reviews, and brand delivery reports.",
-            },
-          ].map((item, idx) => (
-            <div key={idx} class="pixel-card rounded-xl p-5 sm:p-6 border border-white/10">
-              <h3 class="text-base sm:text-lg font-bold font-retro text-accent mb-2">
-                Q: {item.q}
+              q: "What are your engagement terms?",
+              a: "We offer both monthly retainer management contracts for active YouTubers and fixed-scope project agreements for Discord infrastructure builds and creator consulting."
+            }
+          ].map((faq) => (
+            <div class="pixel-card rounded-xl p-6 border border-white/10 hover:border-accent/30 transition-colors">
+              <h3 class="text-base font-bold font-retro text-text-main mb-2">
+                {faq.q}
               </h3>
               <p class="text-text-muted text-xs sm:text-sm font-pixel leading-relaxed">
-                {item.a}
+                {faq.a}
               </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section class="py-16 px-4 sm:px-6 max-w-4xl mx-auto w-full text-center">
-        <div class="pixel-card rounded-2xl p-8 sm:p-12 border border-accent/40 bg-accent/5">
-          <h2 class="text-2xl sm:text-3xl font-bold font-retro text-text-main mb-4">
-            Ready To Upgrade Your Channel Operations?
-          </h2>
-          <p class="text-text-muted text-sm sm:text-base max-w-lg mx-auto font-pixel mb-6">
-            Let's discuss how Hake Acc Agency can scale your views, retention, and community.
-          </p>
-          <a
-            href="/contact"
-            class="pixel-btn pixel-btn-accent text-xs sm:text-sm py-3.5 px-8 rounded inline-flex items-center gap-2"
-          >
-            Schedule A Strategy Call →
-          </a>
-        </div>
-      </section>
+      {/* Page navigation */}
+      <PageNav client:load prevHref="/" prevLabel="Home" nextHref="/projects" nextLabel="Explore Channels" />
     </main>
     
     <Footer client:visible />
