@@ -718,6 +718,7 @@ export default function ChannelDefenderGame() {
               onTouchEnd={() => handleTouchControl("left", false)}
               onMouseDown={() => handleTouchControl("left", true)}
               onMouseUp={() => handleTouchControl("left", false)}
+              aria-label="Move ship left"
               className="w-14 h-12 rounded-lg bg-surface border border-border text-amber font-retro text-lg active:bg-amber/20 flex items-center justify-center select-none"
             >
               ◀
@@ -727,6 +728,7 @@ export default function ChannelDefenderGame() {
               onTouchEnd={() => handleTouchControl("right", false)}
               onMouseDown={() => handleTouchControl("right", true)}
               onMouseUp={() => handleTouchControl("right", false)}
+              aria-label="Move ship right"
               className="w-14 h-12 rounded-lg bg-surface border border-border text-amber font-retro text-lg active:bg-amber/20 flex items-center justify-center select-none"
             >
               ▶
@@ -738,6 +740,7 @@ export default function ChannelDefenderGame() {
             onTouchEnd={() => handleTouchControl("shoot", false)}
             onMouseDown={() => handleTouchControl("shoot", true)}
             onMouseUp={() => handleTouchControl("shoot", false)}
+            aria-label="Fire defense laser"
             className="flex-1 h-12 rounded-lg bg-amber text-canvas font-silkscreen text-xs font-bold active:bg-amber-light shadow-pixel-sm flex items-center justify-center select-none"
           >
             FIRE LASER

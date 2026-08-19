@@ -16,9 +16,9 @@ import PageNav from "@/components/PageNav";
   title="Experience & Skills Matrix — Hake Acc"
   description="Career timeline, agency track record, and technical proficiency matrix of Hake Acc."
 >
-  <Sidebar client:load />
+  <Sidebar client:media="(min-width: 1024px)" />
   <div class="lg:pl-[220px] flex flex-col min-h-screen">
-    <Navigation client:load />
+    <Navigation client:idle />
     
     <main id="main-content" class="flex-1 pt-16 lg:pt-0">
       {/* Page Header */}

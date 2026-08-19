@@ -24,9 +24,9 @@ import SectionDivider from "@/components/SectionDivider";
   title="Hake Acc — Senior Content Strategist & Discord Architect"
   description="Official portfolio of Hake Acc. Senior content strategist and Discord architect managing top YouTubers, scaling communities, and engineering high-retention creator ecosystems."
 >
-  <Sidebar client:load />
+  <Sidebar client:media="(min-width: 1024px)" />
   <div class="lg:pl-[220px] flex flex-col min-h-screen">
-    <Navigation client:load />
+    <Navigation client:idle />
     
     <main id="main-content" class="flex-1">
       <Hero client:load data={content.hero} contact={content.contact} />

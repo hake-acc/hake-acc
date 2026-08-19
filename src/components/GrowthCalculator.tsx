@@ -40,7 +40,7 @@ export default function GrowthCalculator() {
             Simulate Channel &amp; Discord Growth
           </h3>
         </div>
-        <div className="px-3 py-1 bg-amber/15 border border-amber/40 rounded text-amber font-silkscreen text-xs">
+        <div className="px-3 py-1 bg-amber/15 border border-amber/40 rounded text-amber font-silkscreen text-xs font-semibold">
           HAKE ACC GROWTH ENGINE
         </div>
       </div>
@@ -51,7 +51,7 @@ export default function GrowthCalculator() {
           {/* Slider 1: Monthly Views */}
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="flex items-center gap-2 text-xs sm:text-sm font-silkscreen text-white/90">
+              <label htmlFor="views-range" className="flex items-center gap-2 text-xs sm:text-sm font-silkscreen text-white cursor-pointer">
                 <Eye className="w-4 h-4 text-cyan" />
                 <span>Monthly YouTube Views</span>
               </label>
@@ -60,11 +60,13 @@ export default function GrowthCalculator() {
               </span>
             </div>
             <input
+              id="views-range"
               type="range"
               min="50000"
               max="10000000"
               step="50000"
               value={views}
+              aria-label="Monthly YouTube Views Slider"
               onChange={(e) => {
                 setViews(Number(e.target.value));
                 playSliderTick();
@@ -82,7 +84,7 @@ export default function GrowthCalculator() {
           {/* Slider 2: Discord Members */}
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="flex items-center gap-2 text-xs sm:text-sm font-silkscreen text-white/90">
+              <label htmlFor="discord-range" className="flex items-center gap-2 text-xs sm:text-sm font-silkscreen text-white cursor-pointer">
                 <Users className="w-4 h-4 text-purple" />
                 <span>Target Discord Community Size</span>
               </label>
@@ -91,11 +93,13 @@ export default function GrowthCalculator() {
               </span>
             </div>
             <input
+              id="discord-range"
               type="range"
               min="1000"
               max="100000"
               step="1000"
               value={discordMembers}
+              aria-label="Target Discord Community Size Slider"
               onChange={(e) => {
                 setDiscordMembers(Number(e.target.value));
                 playSliderTick();
@@ -113,7 +117,7 @@ export default function GrowthCalculator() {
           {/* Slider 3: Uploads per Month */}
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="flex items-center gap-2 text-xs sm:text-sm font-silkscreen text-white/90">
+              <label htmlFor="uploads-range" className="flex items-center gap-2 text-xs sm:text-sm font-silkscreen text-white cursor-pointer">
                 <Video className="w-4 h-4 text-amber" />
                 <span>Upload Cadence (Videos / Month)</span>
               </label>
@@ -122,11 +126,13 @@ export default function GrowthCalculator() {
               </span>
             </div>
             <input
+              id="uploads-range"
               type="range"
               min="1"
               max="20"
               step="1"
               value={uploadsPerMonth}
+              aria-label="Upload Cadence Videos per Month Slider"
               onChange={(e) => {
                 setUploadsPerMonth(Number(e.target.value));
                 playSliderTick();

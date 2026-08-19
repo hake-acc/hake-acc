@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { Sparkles, Eye, TrendingUp, ShieldCheck, Flame, ArrowLeftRight, CheckCircle2 } from "lucide-react";
+import { Sparkles, ArrowLeftRight } from "lucide-react";
 import { playSliderTick, playClick } from "@/lib/sound";
 
 type ComparisonMode = "thumbnail" | "discord";
@@ -19,7 +19,7 @@ export default function BeforeAfterSlider() {
       const percent = Math.min(Math.max((x / rect.width) * 100, 0), 100);
       setSliderPos(percent);
 
-      // Play tick sound when moved at least 5%
+      // Play tick sound when moved at least 6%
       if (Math.abs(percent - lastSoundPos.current) > 6) {
         playSliderTick();
         lastSoundPos.current = percent;
@@ -63,6 +63,26 @@ export default function BeforeAfterSlider() {
     };
   }, [isDragging, handleMouseMove, handleTouchMove, handleEnd]);
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      setSliderPos((p) => Math.max(0, p - 5));
+      playSliderTick();
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      setSliderPos((p) => Math.min(100, p + 5));
+      playSliderTick();
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      setSliderPos(0);
+      playSliderTick();
+    } else if (e.key === "End") {
+      e.preventDefault();
+      setSliderPos(100);
+      playSliderTick();
+    }
+  };
+
   return (
     <div className="w-full pixel-hud-card rounded-xl p-5 sm:p-8 bg-[#131622] border border-border space-y-6">
       {/* Section Header */}
@@ -93,6 +113,7 @@ export default function BeforeAfterSlider() {
                 ? "bg-amber text-canvas font-bold shadow-pixel-sm"
                 : "text-text-muted hover:text-white"
             }`}
+            aria-pressed={mode === "thumbnail"}
           >
             YouTube Packaging
           </button>
@@ -108,6 +129,7 @@ export default function BeforeAfterSlider() {
                 ? "bg-purple text-canvas font-bold shadow-pixel-sm"
                 : "text-text-muted hover:text-white"
             }`}
+            aria-pressed={mode === "discord"}
           >
             Discord Architecture
           </button>
@@ -124,6 +146,13 @@ export default function BeforeAfterSlider() {
       {/* Interactive Draggable Split View Box */}
       <div
         ref={containerRef}
+        tabIndex={0}
+        role="slider"
+        aria-label="Comparison split slider between before and after results"
+        aria-valuenow={Math.round(sliderPos)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        onKeyDown={handleKeyDown}
         onMouseDown={(e) => {
           setIsDragging(true);
           handleMove(e.clientX);
@@ -134,7 +163,7 @@ export default function BeforeAfterSlider() {
             handleMove(e.touches[0].clientX);
           }
         }}
-        className="relative w-full h-[320px] sm:h-[380px] md:h-[420px] rounded-xl overflow-hidden select-none border-2 border-border cursor-ew-resize bg-[#090a0f]"
+        className="relative w-full h-[320px] sm:h-[380px] md:h-[420px] rounded-xl overflow-hidden select-none border-2 border-border cursor-ew-resize bg-[#090a0f] focus:outline-none focus:ring-2 focus:ring-amber"
       >
         {/* RIGHT (AFTER) LAYER - FULL BACKGROUND */}
         <div className="absolute inset-0 bg-[#0d121f] flex flex-col justify-between p-5 sm:p-8">
@@ -163,7 +192,7 @@ export default function BeforeAfterSlider() {
                     <span>145,000 Views</span>
                   </div>
                 </div>
-                <p className="text-xs font-readable text-white/80">
+                <p className="text-xs font-readable text-white/90">
                   Engineered 3-point contrast hierarchy, expressive facial reaction, saturated lighting, and 0.5s visual hook comprehension.
                 </p>
               </>
@@ -182,7 +211,7 @@ export default function BeforeAfterSlider() {
                     <span>45% Active Engagement</span>
                   </div>
                 </div>
-                <p className="text-xs font-readable text-white/80">
+                <p className="text-xs font-readable text-white/90">
                   Multi-tier role verification, custom bot leveling rewards, automated YouTube stream sync, and dedicated Nitro VIP perks.
                 </p>
               </>
@@ -190,7 +219,7 @@ export default function BeforeAfterSlider() {
           </div>
 
           {/* Bottom Metrics Bar */}
-          <div className="flex justify-end gap-2 text-[10px] font-silkscreen text-white/60">
+          <div className="flex justify-end gap-2 text-[10px] font-silkscreen text-white/70">
             <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-success">
               +38% AVG CONVERSION
             </span>
@@ -204,7 +233,7 @@ export default function BeforeAfterSlider() {
         >
           {/* Top Label */}
           <div className="flex items-center justify-start">
-            <span className="pixel-badge bg-white/10 border border-white/20 text-white/70">
+            <span className="pixel-badge bg-white/10 border border-white/20 text-white/80">
               BEFORE: UNOPTIMIZED BASELINE
             </span>
           </div>
@@ -217,11 +246,11 @@ export default function BeforeAfterSlider() {
                   <div className="text-xs font-silkscreen text-error uppercase mb-1">
                     ✗ Low Contrast &amp; Cluttered Text
                   </div>
-                  <div className="text-sm sm:text-base font-readable text-white/60">
+                  <div className="text-sm sm:text-base font-readable text-white/70">
                     &quot;Playing Minecraft Episode 14 - building my base&quot;
                   </div>
                   <div className="flex items-center gap-3 mt-3 text-xs font-mono text-text-muted">
-                    <span className="text-error">CTR: 4.2% (Low)</span>
+                    <span className="text-error font-semibold">CTR: 4.2% (Low)</span>
                     <span>•</span>
                     <span>18,000 Views</span>
                   </div>
@@ -236,11 +265,11 @@ export default function BeforeAfterSlider() {
                   <div className="text-xs font-silkscreen text-error uppercase mb-1">
                     ✗ Unmoderated &amp; Unstructured
                   </div>
-                  <div className="text-sm sm:text-base font-readable text-white/60">
+                  <div className="text-sm sm:text-base font-readable text-white/70">
                     #general • #spam • #unverified-chat
                   </div>
                   <div className="flex items-center gap-3 mt-3 text-xs font-mono text-text-muted">
-                    <span className="text-error">Frequent Spam Raids</span>
+                    <span className="text-error font-semibold">Frequent Spam Raids</span>
                     <span>•</span>
                     <span>3% Active Retention</span>
                   </div>
@@ -254,7 +283,7 @@ export default function BeforeAfterSlider() {
 
           {/* Bottom Metrics Bar */}
           <div className="flex justify-start gap-2 text-[10px] font-silkscreen text-text-muted">
-            <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-error">
+            <span className="px-2.5 py-1 rounded bg-white/5 border border-white/10 text-error font-semibold">
               BASELINE BENCHMARK
             </span>
           </div>
@@ -279,7 +308,7 @@ export default function BeforeAfterSlider() {
       <div className="flex items-center justify-between text-xs font-mono text-text-muted">
         <span className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-amber animate-pulse" />
-          <span>Interactive: Click or drag anywhere on the comparison box</span>
+          <span>Interactive: Drag anywhere or use Left/Right arrow keys</span>
         </span>
         <span className="font-silkscreen text-amber">
           SPLIT: {Math.round(sliderPos)}%

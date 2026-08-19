@@ -27,22 +27,17 @@ export default function Hero({ data, contact }: HeroProps) {
   const [clickedStat, setClickedStat] = useState<string | null>(null);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = true;
-    const tryPlay = () => {
+    // Only attempt video playback on desktop or fast connections to protect mobile Lighthouse score
+    if (typeof window !== "undefined" && window.innerWidth >= 768) {
+      const video = videoRef.current;
+      if (!video) return;
+      video.muted = true;
       video.play().catch(() => {});
-    };
-    if (video.readyState >= 2) {
-      tryPlay();
-    } else {
-      video.addEventListener("canplay", tryPlay, { once: true });
     }
-    return () => video.removeEventListener("canplay", tryPlay);
   }, []);
 
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 600], [0, 80]);
+  const y = useTransform(scrollY, [0, 600], [0, 60]);
 
   const titleParts = data.title.split(" ");
   const firstName = titleParts[0] || "Hake";
@@ -69,27 +64,25 @@ export default function Hero({ data, contact }: HeroProps) {
     <section
       ref={containerRef}
       id="hero"
-      className="relative w-full min-h-[88vh] flex flex-col items-center justify-center overflow-hidden pt-10 pb-16"
+      className="relative w-full min-h-[85vh] flex flex-col items-center justify-center overflow-hidden pt-8 pb-14"
       aria-label="Hero section"
     >
-      {/* Background video with arcade overlay */}
-      <motion.div className="absolute inset-0 z-0" style={{ y }}>
+      {/* Background arcade atmosphere */}
+      <motion.div className="absolute inset-0 z-0 pointer-events-none" style={{ y }}>
         <video
           ref={videoRef}
-          className="w-full h-full object-cover pixel-crisp opacity-45"
-          autoPlay
+          className="hidden md:block w-full h-full object-cover pixel-crisp opacity-40"
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="none"
           aria-hidden="true"
         >
           <source src="/assets/pixelart-bg.webm" type="video/webm" />
-          <source src="/assets/pixelart-bg.mp4" type="video/mp4" />
         </video>
         {/* Darkening overlays for high contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#090a0f]/85 via-[#090a0f]/40 to-[#090a0f]/95" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#090a0f]/50 via-transparent to-[#090a0f]/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#090a0f]/90 via-[#090a0f]/50 to-[#090a0f]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#090a0f]/60 via-transparent to-[#090a0f]/60" />
       </motion.div>
 
       {/* Hero content */}
@@ -104,24 +97,26 @@ export default function Hero({ data, contact }: HeroProps) {
           <span className="h-px w-8 sm:w-12 bg-amber/40" />
         </div>
 
-        {/* Strictly Display Pixel Title */}
+        {/* Semantic H1 with Interactive Easter Egg */}
         <div className="anim-enter anim-enter-d2 mb-5 relative inline-block">
-          <button
-            type="button"
+          <h1
             onClick={triggerTitleInteraction}
             onMouseEnter={() => playBlip()}
-            className="cursor-pointer text-left focus:outline-none transition-transform active:scale-95 group"
-            title="Click for Easter Egg Sound & XP"
+            tabIndex={0}
+            role="button"
             aria-label={`Interactive Title: ${data.title}`}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                triggerTitleInteraction();
+              }
+            }}
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold font-retro tracking-tight leading-none text-text-main hover:text-white transition-colors cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-amber/50 rounded-lg p-1"
+            style={{ textShadow: "0 0 32px rgba(245,158,11,0.4)" }}
           >
-            <h1
-              className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold font-retro tracking-tight leading-none text-text-main group-hover:text-white transition-colors select-none"
-              style={{ textShadow: "0 0 32px rgba(245,158,11,0.4)" }}
-            >
-              <span>{firstName}</span>
-              <span className="block gradient-text mt-1">{lastName}</span>
-            </h1>
-          </button>
+            <span>{firstName}</span>
+            <span className="block gradient-text mt-1">{lastName}</span>
+          </h1>
 
           {/* Floating XP Popups */}
           {xpPopups.map((popup) => (
@@ -136,7 +131,7 @@ export default function Hero({ data, contact }: HeroProps) {
 
         {/* Tagline in Silkscreen */}
         <div className="anim-enter anim-enter-d3 mb-4">
-          <p className="text-amber text-sm sm:text-base md:text-lg font-silkscreen tracking-widest uppercase">
+          <p className="text-amber text-sm sm:text-base md:text-lg font-silkscreen tracking-widest uppercase font-semibold">
             {data.tagline}
           </p>
         </div>
@@ -176,7 +171,7 @@ export default function Hero({ data, contact }: HeroProps) {
             href="#executive-pitch"
             onMouseEnter={() => playBlip()}
             onClick={() => playClick()}
-            className="inline-flex items-center gap-1.5 text-xs font-silkscreen text-amber/90 hover:text-amber bg-amber/10 hover:bg-amber/20 border border-amber/30 px-3.5 py-1.5 rounded transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-silkscreen text-amber hover:text-white bg-amber/15 hover:bg-amber/25 border border-amber/40 px-3.5 py-1.5 rounded transition-colors"
           >
             <Sparkles className="w-3.5 h-3.5 text-amber" />
             <span>Hiring in a hurry? Jump to 15s Executive Pitch ↓</span>
@@ -204,6 +199,7 @@ export default function Hero({ data, contact }: HeroProps) {
                     : "border-border hover:border-amber/50"
                 }`}
                 title="Click to verify metric"
+                aria-label={`Metric ${stat.label}: ${stat.val}`}
               >
                 <div className="text-sm sm:text-base font-bold font-retro text-amber flex items-center justify-center gap-1">
                   <span>{stat.val}</span>
@@ -217,14 +213,14 @@ export default function Hero({ data, contact }: HeroProps) {
           })}
         </div>
 
-        {/* Social links */}
+        {/* Social links with Accessible Names */}
         <div className="anim-enter anim-enter-d6 flex items-center justify-center gap-3">
           {contact.youtube && (
             <a
               href={contact.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="YouTube"
+              aria-label="Visit Hake Acc YouTube Channel"
               onMouseEnter={() => playBlip()}
               onClick={() => playClick()}
               className="w-9 h-9 flex items-center justify-center rounded-lg border border-border bg-surface text-text-muted hover:text-error hover:border-error/50 hover:bg-error/10 transition-all active:translate-y-[1px]"
@@ -237,7 +233,7 @@ export default function Hero({ data, contact }: HeroProps) {
               href={contact.twitter}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Twitter / X"
+              aria-label="Visit Hake Acc Twitter/X Profile"
               onMouseEnter={() => playBlip()}
               onClick={() => playClick()}
               className="w-9 h-9 flex items-center justify-center rounded-lg border border-border bg-surface text-text-muted hover:text-cyan hover:border-cyan/50 hover:bg-cyan/10 transition-all active:translate-y-[1px]"
@@ -250,7 +246,7 @@ export default function Hero({ data, contact }: HeroProps) {
               href={contact.github}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
+              aria-label="Visit Hake Acc GitHub Profile"
               onMouseEnter={() => playBlip()}
               onClick={() => playClick()}
               className="w-9 h-9 flex items-center justify-center rounded-lg border border-border bg-surface text-text-muted hover:text-purple hover:border-purple/50 hover:bg-purple/10 transition-all active:translate-y-[1px]"

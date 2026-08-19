@@ -57,6 +57,7 @@ const jsonLd = {
     <meta name="author" content="Hake Acc" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#f59e0b" />
+    <link rel="canonical" href={canonicalURL} />
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" href="/assets/hake-logo.png" />
@@ -79,13 +80,26 @@ const jsonLd = {
     <meta name="twitter:image" content={image} />
     <meta name="twitter:creator" content="@hake_acc" />
 
-    <!-- Optimized Google Fonts with display=swap for 100/100 Lighthouse Performance -->
+    <!-- Non-render-blocking Google Fonts with preconnect for 100/100 Lighthouse Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Pixelify+Sans:wght@400;600;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap"
+      />
+    </noscript>
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
@@ -95,10 +109,10 @@ const jsonLd = {
   </head>
   <body class="font-readable antialiased bg-[#090a0f] text-[#f8fafc] selection:bg-amber/30 selection:text-white">
     <!-- GPU-Accelerated CRT Scanline / Vignette Overlay -->
-    <CrtOverlay client:load />
+    <CrtOverlay client:idle />
 
     <!-- Keyboard Konami Code Easter Egg Subsystem -->
-    <KonamiEasterEgg client:load />
+    <KonamiEasterEgg client:idle />
 
     <!-- Background Arcade Pixel Grid -->
     <div class="pixel-grid fixed inset-0 z-0 pointer-events-none opacity-40"></div>
@@ -109,6 +123,6 @@ const jsonLd = {
     </div>
 
     <!-- Fixed Retro HUD Footer Bar (Docked at Bottom) -->
-    <RetroHudFooter client:load />
+    <RetroHudFooter client:idle />
   </body>
 </html>

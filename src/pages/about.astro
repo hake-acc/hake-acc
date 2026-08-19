@@ -14,9 +14,9 @@ import PageNav from "@/components/PageNav";
   title="About Hake Acc — Content Strategist & Agency Founder"
   description="Learn more about Hake Acc, creator growth strategist, Discord architect, and founder of Hake Acc Agency."
 >
-  <Sidebar client:load />
+  <Sidebar client:media="(min-width: 1024px)" />
   <div class="lg:pl-[220px] flex flex-col min-h-screen">
-    <Navigation client:load />
+    <Navigation client:idle />
     
     <main id="main-content" class="flex-1 pt-16 lg:pt-0">
       {/* Page Header */}

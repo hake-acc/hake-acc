@@ -13,9 +13,9 @@ import PageNav from "@/components/PageNav";
   title="Contact & Booking — Hake Acc"
   description="Get in touch with Hake Acc for YouTube channel management, Discord server development, and creator agency inquiries."
 >
-  <Sidebar client:load />
+  <Sidebar client:media="(min-width: 1024px)" />
   <div class="lg:pl-[220px] flex flex-col min-h-screen">
-    <Navigation client:load />
+    <Navigation client:idle />
     
     <main id="main-content" class="flex-1 pt-16 lg:pt-0">
       {/* Page Header */}
