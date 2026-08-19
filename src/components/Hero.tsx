@@ -114,25 +114,37 @@ export default function Hero({ data, contact }: HeroProps) {
           </p>
         </div>
 
-        {/* CTAs - Clean tactile pixel buttons without weird shining sweeps */}
-        <div className="anim-enter anim-enter-d5 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8">
+        {/* CTAs */}
+        <div className="anim-enter anim-enter-d5 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-5">
           <a
-            href="/projects"
+            href="/contact"
             onClick={() => playClick()}
             className="pixel-btn pixel-btn-accent text-xs sm:text-sm px-6 sm:px-8 py-3 sm:py-3.5 rounded flex items-center gap-2"
+          >
+            <span>{data.ctaSecondary}</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
+
+          <a
+            href="/projects"
+            onMouseEnter={() => playBlip()}
+            onClick={() => playClick()}
+            className="pixel-btn pixel-btn-outline text-xs sm:text-sm px-6 sm:px-8 py-3 sm:py-3.5 rounded flex items-center gap-2"
           >
             <Gamepad2 className="w-4 h-4" />
             <span>{data.ctaLabel}</span>
           </a>
+        </div>
 
+        {/* 15-Second Recruiter Fast Track link */}
+        <div className="anim-enter anim-enter-d5 mb-8">
           <a
-            href="/contact"
+            href="#executive-pitch"
             onMouseEnter={() => playBlip()}
             onClick={() => playClick()}
-            className="pixel-btn pixel-btn-outline text-xs sm:text-sm px-6 sm:px-8 py-3 sm:py-3.5 rounded flex items-center gap-1.5"
+            className="inline-flex items-center gap-1.5 text-[11px] font-silkscreen text-accent/80 hover:text-accent bg-accent/10 hover:bg-accent/20 border border-accent/30 px-3 py-1 rounded transition-colors"
           >
-            <span>{data.ctaSecondary}</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>⚡ Hiring in a hurry? Jump to 15s Executive Pitch ↓</span>
           </a>
         </div>
 

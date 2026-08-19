@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import content from "@/data/content.json";
 import Hero from "@/components/Hero";
+import ExecutivePitch from "@/components/ExecutivePitch";
 import Sidebar from "@/components/Sidebar";
 import Navigation from "@/components/Navigation";
 import About from "@/components/About";
@@ -27,7 +28,12 @@ import SectionDivider from "@/components/SectionDivider";
     
     <main id="main-content" class="flex-1">
       <Hero client:load data={content.hero} contact={content.contact} />
+
+      {/* 15-Second Executive Hiring Pitch */}
+      <ExecutivePitch client:visible />
       
+      <SectionDivider color="#6AA9FF" />
+
       {/* Interactive Micro-Interactions Showcase: Terminal Simulator */}
       <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
         <div class="mb-6 text-center">
