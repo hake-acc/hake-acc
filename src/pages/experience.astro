@@ -5,6 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import Navigation from "@/components/Navigation";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
+import ChannelDefenderGame from "@/components/ChannelDefenderGame";
 import TerminalSimulator from "@/components/TerminalSimulator";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/SectionDivider";
@@ -43,6 +44,13 @@ import PageNav from "@/components/PageNav";
 
       {/* Skills Matrix */}
       <Skills client:load data={content.skills} />
+
+      <SectionDivider color="#f59e0b" />
+
+      {/* Retro Arcade Mini-Game: Channel Defender */}
+      <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <ChannelDefenderGame client:visible />
+      </section>
 
       <SectionDivider color="#818cf8" />
 

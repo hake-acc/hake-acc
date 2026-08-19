@@ -8,6 +8,7 @@ import Navigation from "@/components/Navigation";
 import About from "@/components/About";
 import Projects from "@/components/Projects";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
+import ChannelDefenderGame from "@/components/ChannelDefenderGame";
 import TerminalSimulator from "@/components/TerminalSimulator";
 import GrowthCalculator from "@/components/GrowthCalculator";
 import Skills from "@/components/Skills";
@@ -42,6 +43,13 @@ import SectionDivider from "@/components/SectionDivider";
 
       <SectionDivider color="#38bdf8" />
 
+      {/* Retro Arcade Mini-Game: Channel Defender */}
+      <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
+        <ChannelDefenderGame client:visible />
+      </section>
+
+      <SectionDivider color="#818cf8" />
+
       {/* Interactive Micro-Interactions Showcase: Terminal Simulator */}
       <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
         <div class="mb-6 text-center">
@@ -53,10 +61,10 @@ import SectionDivider from "@/components/SectionDivider";
         <TerminalSimulator client:visible />
       </section>
 
-      <SectionDivider color="#818cf8" />
+      <SectionDivider color="#f59e0b" />
       <About client:visible data={content.about} />
       
-      <SectionDivider color="#f59e0b" />
+      <SectionDivider color="#38bdf8" />
       <Projects client:visible data={content.projects} />
 
       {/* Interactive Growth Calculator */}
@@ -64,16 +72,16 @@ import SectionDivider from "@/components/SectionDivider";
         <GrowthCalculator client:visible />
       </section>
       
-      <SectionDivider color="#38bdf8" />
+      <SectionDivider color="#818cf8" />
       <Skills client:visible data={content.skills} />
       
-      <SectionDivider color="#818cf8" />
+      <SectionDivider color="#f59e0b" />
       <Experience client:visible data={content.experience} />
       
-      <SectionDivider color="#f59e0b" />
+      <SectionDivider color="#38bdf8" />
       <Services client:visible data={content.services} />
       
-      <SectionDivider color="#38bdf8" />
+      <SectionDivider color="#818cf8" />
       <Testimonials client:visible data={content.testimonials} />
       
       <SectionDivider color="#f59e0b" />
