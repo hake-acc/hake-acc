@@ -156,37 +156,20 @@
               <span class="proof-subtext">Trusted by 25+ top creator communities (100K+ Reach)</span>
               <div class="creators-avatar-list">
                 <a 
-                  href="https://youtube.com/@cappy-mc?si=OejN4xeqeLOyf4xl" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  class="creator-avatar" 
-                  title="Cappy Mc (@cappy-mc) • 95.3K Subs — Visit Channel" 
-                  aria-label="Visit Cappy Mc YouTube Channel"
-                >
-                  <span class="avatar-ring">
-                    <picture>
-                      <source srcset="/creators/cappy-mc.webp" type="image/webp" />
-                      <img src="/creators/cappy-mc.png" alt="Cappy Mc YouTube Avatar" width="44" height="44" loading="lazy" class="creator-pfp-img" />
-                    </picture>
-                  </span>
-                  <span class="creator-tooltip-bubble">Cappy Mc ↗</span>
-                </a>
-
-                <a 
                   href="https://www.youtube.com/@CappuXD" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   class="creator-avatar" 
-                  title="CappuXD (@CappuXD) • 17.7K Subs — Visit Channel" 
-                  aria-label="Visit CappuXD YouTube Channel"
+                  title="CappuMC XD (@CappuXD) • 17.7K Subs — Visit Channel" 
+                  aria-label="Visit CappuMC XD YouTube Channel"
                 >
                   <span class="avatar-ring">
                     <picture>
                       <source srcset="/creators/cappuxd.webp" type="image/webp" />
-                      <img src="/creators/cappuxd.png" alt="CappuXD YouTube Avatar" width="44" height="44" loading="lazy" class="creator-pfp-img" />
+                      <img src="/creators/cappuxd.png" alt="CappuMC XD YouTube Avatar" width="44" height="44" loading="lazy" class="creator-pfp-img" />
                     </picture>
                   </span>
-                  <span class="creator-tooltip-bubble">CappuXD ↗</span>
+                  <span class="creator-tooltip-bubble">CappuMC XD ↗</span>
                 </a>
 
                 <a 
@@ -380,39 +363,20 @@
           </div>
 
           <div class="brands-flex-row">
-            <!-- Cappy Mc -->
-            <a 
-              href="https://youtube.com/@cappy-mc?si=OejN4xeqeLOyf4xl" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="brand-link-item" 
-              aria-label="Cappy Mc YouTube Channel"
-            >
-              <span class="brand-icon-box">
-                <img src="/creators/icons/cappy-mc-icon.webp" alt="Cappy Mc Icon" class="brand-mark-img" width="26" height="26" loading="lazy" />
-              </span>
-              <span class="brand-name font-cappymc">CAPPY MC</span>
-              <div class="brand-info-popover">
-                <div class="popover-head">Cappy Mc</div>
-                <div class="popover-stat">95.3K Subs • 28K Discord</div>
-                <div class="popover-metric">+180% CTR Lift ↗</div>
-              </div>
-            </a>
-
-            <!-- CappuXD -->
+            <!-- CappuMC XD -->
             <a 
               href="https://www.youtube.com/@CappuXD" 
               target="_blank" 
               rel="noopener noreferrer" 
               class="brand-link-item" 
-              aria-label="CappuXD YouTube Channel"
+              aria-label="CappuMC XD YouTube Channel"
             >
               <span class="brand-icon-box">
-                <img src="/creators/icons/cappuxd-icon.webp" alt="CappuXD Icon" class="brand-mark-img" width="26" height="26" loading="lazy" />
+                <img src="/creators/icons/cappuxd-icon.webp" alt="CappuMC XD Icon" class="brand-mark-img" width="26" height="26" loading="lazy" />
               </span>
-              <span class="brand-name font-cappuxd">CAPPU<span class="brand-accent-tag">XD</span></span>
+              <span class="brand-name font-cappuxd">CAPPUMC<span class="brand-accent-tag">XD</span></span>
               <div class="brand-info-popover">
-                <div class="popover-head">CappuXD</div>
+                <div class="popover-head">CappuMC XD</div>
                 <div class="popover-stat">17.7K Subs • 18K Discord</div>
                 <div class="popover-metric">1M+ Viral Hit ↗</div>
               </div>
@@ -517,20 +481,6 @@
             <div class="brand-item pill-more" title="25+ Creator Hubs & Discord Communities Managed">
               <span>+ 25 More</span>
             </div>
-          </div>
-
-          <!-- Rotating Circular Creator Seal Emblem with Blue Star -->
-          <div class="creator-seal-container" title="Verified Discord Architect">
-            <svg viewBox="0 0 100 100" class="seal-rotating-svg">
-              <path id="circlePathHake" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
-              <text font-family="'Plus Jakarta Sans', sans-serif" font-size="8" font-weight="800" fill="#64748B" letter-spacing="2.6">
-                <textPath href="#circlePathHake" startOffset="0%">
-                  • DISCORD ARCHITECT • 100K+ REACH • ZERO-RAID
-                </textPath>
-              </text>
-              <!-- Center 4-pointed sparkle star in Electric Blue -->
-              <path d="M50 38 L52 47 L61 50 L52 53 L50 62 L48 53 L39 50 L48 47 Z" fill="#0066FF" />
-            </svg>
           </div>
         </footer>
 
@@ -859,14 +809,20 @@
     transition: background-color 0.3s ease;
   }
 
-  @media (max-width: 1100px), (max-height: 800px) {
+  @media (max-width: 1024px), (max-height: 800px) {
     .hake-viewport-wrapper {
       padding: 0;
+      display: block;
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--bg-page);
     }
     .hake-page-container {
       aspect-ratio: auto;
       min-height: 100vh;
       box-shadow: none;
+      overflow-x: hidden;
+      overflow-y: visible;
     }
   }
 
@@ -1685,12 +1641,13 @@
   .brands-flex-row {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: clamp(10px, 1.3vw, 18px);
-    padding: 6px 4px;
-    margin-right: 120px;
+    justify-content: center;
+    gap: clamp(14px, 2.2vw, 32px);
+    padding: 8px 4px;
+    margin: 0 auto;
     position: relative;
-    max-width: calc(100% - 120px);
+    max-width: 100%;
+    width: 100%;
   }
 
   .brand-link-item {
@@ -1755,12 +1712,6 @@
   }
 
   /* Custom typography & accents for each creator brand */
-  .font-cappymc {
-    font-weight: 900;
-    font-size: 14px;
-    letter-spacing: -0.01em;
-  }
-
   .font-cappuxd {
     font-weight: 800;
     font-size: 13.5px;
@@ -1913,36 +1864,6 @@
     font-weight: 700;
     color: var(--text-subtle);
     background-color: var(--card-bg);
-  }
-
-  /* Rotating Seal Badge */
-  .creator-seal-container {
-    position: absolute;
-    right: 54px;
-    bottom: 24px;
-    width: 90px;
-    height: 90px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-
-  .creator-seal-container:hover {
-    transform: scale(1.1);
-  }
-
-  .creator-seal-container:hover .seal-rotating-svg {
-    animation-play-state: paused;
-  }
-
-  .seal-rotating-svg {
-    width: 100%;
-    height: 100%;
-    animation: spinEmblem 24s linear infinite;
-  }
-
-  @keyframes spinEmblem {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
   }
 
   /* Universal High-Contrast Accessible Focus Ring */
@@ -2284,19 +2205,76 @@
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
   }
 
-  /* ----------------------------------------------------
-     RESPONSIVE BREAKPOINTS
-     ---------------------------------------------------- */
-  @media (max-width: 1100px) {
+  /* ====================================================
+     DESKTOP GUARDS (Screens >= 1025px)
+     Guarantees that mobile-only components never leak or
+     conflict with the canonical 1:1 desktop layout.
+     ==================================================== */
+  @media (min-width: 1025px) {
+    .mobile-menu-btn {
+      display: none !important;
+    }
+    .mobile-quickbar {
+      display: none !important;
+    }
+    .mobile-drawer {
+      display: none !important;
+    }
+    .mobile-drawer-overlay {
+      display: none !important;
+    }
+  }
+
+  /* ====================================================
+     TABLET & MEDIUM SCREENS (769px - 1024px)
+     ==================================================== */
+  @media (max-width: 1024px) {
+    .hake-viewport-wrapper {
+      padding: 0;
+      display: block;
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--bg-page);
+    }
+
+    .hake-page-container {
+      aspect-ratio: auto;
+      min-height: 100vh;
+      box-shadow: none;
+      overflow-x: hidden;
+      overflow-y: visible;
+      padding-bottom: calc(100px + env(safe-area-inset-bottom, 20px));
+    }
+
+    .floating-dock {
+      display: none !important;
+    }
+
+    .nav-links {
+      display: none !important;
+    }
+
+    .hake-navbar .btn-cta-nav {
+      display: none !important;
+    }
+
+    .mobile-menu-btn {
+      display: flex !important;
+    }
+
+    .mobile-quickbar {
+      display: flex !important;
+    }
+
     .hake-hero-grid {
       grid-template-columns: 1fr;
-      padding: 30px 40px;
-      gap: 40px;
+      padding: 32px 36px 40px;
+      gap: 36px;
     }
 
     .art-visual-frame {
       width: 100%;
-      max-width: 600px;
+      max-width: 520px;
       height: auto;
       aspect-ratio: 1 / 1;
       margin: 0 auto;
@@ -2306,68 +2284,262 @@
       display: none;
     }
 
-    .brands-flex-row {
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      margin-right: 0;
+    .hake-footer-proof {
+      padding: 32px 36px;
+      margin-top: 24px;
     }
 
-    .creator-seal-container {
-      position: static;
-      margin: 20px auto 0;
+    .brands-flex-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .brand-link-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-line);
+      border-radius: 12px;
+      width: 100%;
+      box-sizing: border-box;
+      opacity: 1;
+    }
+
+    .pill-more {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px 16px;
+      border-radius: 12px;
+    }
+
+    @media (hover: none) {
+      .brand-info-popover,
+      .creator-tooltip-bubble {
+        display: none !important;
+      }
     }
   }
 
+  /* ====================================================
+     MOBILE SCREENS (< 768px)
+     Dedicated mobile app-feel UI with thumb-first interactions
+     ==================================================== */
   @media (max-width: 768px) {
     .hake-viewport-wrapper {
-      padding: 12px 12px 90px 12px;
+      padding: 0;
+      display: block;
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--bg-page);
+    }
+
+    .hake-page-container {
+      aspect-ratio: auto;
+      min-height: 100vh;
+      box-shadow: none;
+      overflow-x: hidden;
+      overflow-y: visible;
+      padding-bottom: calc(115px + env(safe-area-inset-bottom, 20px));
     }
 
     .hake-navbar {
       padding: 0 16px;
-      height: 64px;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg-page);
+      border-bottom: 1px solid var(--border-line);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
-    .hake-navbar .btn-cta-nav {
-      display: none;
+    .brand-text {
+      font-size: 24px;
     }
 
-    .mobile-menu-btn {
-      display: flex;
+    .hake-hero-grid {
+      padding: 20px 16px 28px 16px;
+      gap: 28px;
     }
 
-    .mobile-quickbar {
-      display: flex;
+    .role-badge-capsule {
+      padding: 6px 13px;
+      margin-bottom: 18px;
     }
 
-    .nav-links {
-      display: none;
-    }
-
-    .floating-dock {
-      display: none;
+    .badge-label {
+      font-size: 11.5px;
     }
 
     .hero-main-title {
-      font-size: 36px;
+      font-size: clamp(32px, 8.5vw, 42px);
+      line-height: 1.14;
       letter-spacing: -1.2px;
+      margin-bottom: 18px;
+    }
+
+    .brush-stroke {
+      bottom: -6px;
+      height: 14px;
+    }
+
+    .hero-description {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 100%;
     }
 
     .hero-button-group {
       flex-direction: column;
       width: 100%;
+      gap: 12px;
+      margin-bottom: 28px;
     }
 
     .btn-pill-primary, .btn-pill-secondary {
       width: 100%;
-      min-height: 48px;
+      min-height: 50px;
+      font-size: 15px;
+      font-weight: 700;
       justify-content: center;
+      border-radius: 9999px;
+    }
+
+    .creators-proof-block {
+      margin-bottom: 24px;
+    }
+
+    .proof-subtext {
+      font-size: 12.5px;
+      margin-bottom: 10px;
+    }
+
+    .creators-avatar-list {
+      gap: 6px;
+    }
+
+    .avatar-ring {
+      width: 38px;
+      height: 38px;
+    }
+
+    .creator-pfp-img {
+      width: 34px;
+      height: 34px;
+    }
+
+    .creator-count-badge {
+      width: 38px;
+      height: 38px;
+      font-size: 12px;
+      margin-left: -6px;
     }
 
     .status-banner-card {
       width: 100%;
       max-width: 100%;
+      padding: 12px 16px;
+    }
+
+    .status-heading {
+      font-size: 13px;
+    }
+
+    .status-details {
+      font-size: 11px;
+    }
+
+    .art-visual-frame {
+      width: 100%;
+      max-width: 380px;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      margin: 0 auto;
+    }
+
+    .hake-footer-proof {
+      padding: 24px 16px 20px 16px;
+      margin-top: 10px;
+    }
+
+    .divider-title {
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .brands-flex-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .brand-link-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-line);
+      border-radius: 12px;
+      text-decoration: none;
+      width: 100%;
+      box-sizing: border-box;
+      opacity: 1;
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+
+    .brand-link-item:active {
+      transform: scale(0.96);
+      background-color: var(--card-elevated);
+    }
+
+    .brand-name {
+      font-size: 11.5px;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-mark-img {
+      filter: grayscale(0%) opacity(0.9);
+    }
+
+    .pill-more {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      font-size: 12px;
+      border-radius: 12px;
+      background: var(--card-elevated);
+      border: 1px dashed var(--border-strong);
+      text-align: center;
+    }
+
+    @media (hover: none) {
+      .brand-info-popover,
+      .creator-tooltip-bubble {
+        display: none !important;
+      }
     }
   }
 </style>
