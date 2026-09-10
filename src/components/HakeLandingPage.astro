@@ -129,7 +129,7 @@
             <h1 class="hero-main-title">
               <span class="line-1">I manage.</span>
               <span class="line-2">You create.</span>
-              <span class="line-3">We grow <span class="accent-container">together.<svg class="brush-stroke" viewBox="0 0 210 20" fill="none" aria-hidden="true"><path d="M4 14C65 7 145 7 206 13" stroke="#0066FF" stroke-width="4.5" stroke-linecap="round"/><path d="M14 17C75 13 140 13 192 16" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/></svg></span></span>
+              <span class="line-3">We grow <span class="accent-container" id="heroTogetherAccent" role="button" tabindex="0" aria-label="We grow together - click to replay underline effect" title="We grow together (Click to replay)">together.<svg class="brush-stroke" viewBox="0 0 210 20" fill="none" aria-hidden="true"><path class="brush-path-primary" d="M4 14C65 7 145 7 206 13" stroke="#0066FF" stroke-width="4.5" stroke-linecap="round"/><path class="brush-path-secondary" d="M14 17C75 13 140 13 192 16" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/></svg></span></span>
             </h1>
 
             <!-- Subhead Narrative: Accurate Discord & Community Focus -->
@@ -727,6 +727,44 @@
           closeDrawer();
         });
       });
+
+      // "We grow together" SVG Underline First-time Animation & Session Caching
+      const togetherAccent = document.getElementById('heroTogetherAccent');
+      if (togetherAccent) {
+        try {
+          const isCached = sessionStorage.getItem('hake_underline_animated');
+          if (isCached) {
+            togetherAccent.classList.add('underline-cached');
+          } else {
+            sessionStorage.setItem('hake_underline_animated', 'true');
+          }
+        } catch (e) {
+          // Graceful fallback if storage is unavailable in sandbox
+        }
+
+        // Interactive replay on click or keyboard Enter
+        const replayUnderline = () => {
+          togetherAccent.classList.remove('underline-cached');
+          const p1 = togetherAccent.querySelector('.brush-path-primary') as HTMLElement | null;
+          const p2 = togetherAccent.querySelector('.brush-path-secondary') as HTMLElement | null;
+          if (p1 && p2) {
+            p1.style.animation = 'none';
+            p2.style.animation = 'none';
+            void p1.offsetWidth; // Trigger browser reflow to reset keyframe state
+            void p2.offsetWidth;
+            p1.style.animation = '';
+            p2.style.animation = '';
+          }
+        };
+
+        togetherAccent.addEventListener('click', replayUnderline);
+        togetherAccent.addEventListener('keydown', (e: KeyboardEvent) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            replayUnderline();
+          }
+        });
+      }
     </script>
   </body>
 </html>
@@ -1063,6 +1101,14 @@
     position: relative;
     display: inline-block;
     color: var(--text-main);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+  }
+
+  .accent-container:focus-visible {
+    border-radius: 4px;
+    box-shadow: 0 0 0 2px var(--accent-blue);
   }
 
   .brush-stroke {
@@ -1073,6 +1119,91 @@
     height: 16px;
     overflow: visible;
     pointer-events: none;
+    transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1), filter 0.25s ease;
+    transform-origin: left center;
+  }
+
+  /* First-time load drawing animation (left-to-right) */
+  .brush-path-primary {
+    stroke-dasharray: 220;
+    stroke-dashoffset: 220;
+    animation: drawStrokePrimary 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.25s forwards;
+    will-change: stroke-dashoffset;
+  }
+
+  .brush-path-secondary {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: drawStrokeSecondary 0.72s cubic-bezier(0.23, 1, 0.32, 1) 0.33s forwards;
+    will-change: stroke-dashoffset;
+  }
+
+  @keyframes drawStrokePrimary {
+    0% {
+      stroke-dashoffset: 220;
+      opacity: 0.15;
+    }
+    15% {
+      opacity: 1;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+
+  @keyframes drawStrokeSecondary {
+    0% {
+      stroke-dashoffset: 200;
+      opacity: 0.1;
+    }
+    20% {
+      opacity: 0.7;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 0.7;
+    }
+  }
+
+  /* Cached state: instantaneous 100% rendered on subsequent page loads in session */
+  .accent-container.underline-cached .brush-path-primary,
+  .accent-container.underline-cached .brush-path-secondary {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1;
+  }
+  .accent-container.underline-cached .brush-path-secondary {
+    opacity: 0.7;
+  }
+
+  /* Tactile hover feedback */
+  @media (hover: hover) and (pointer: fine) {
+    .accent-container:hover .brush-stroke {
+      filter: drop-shadow(0 2px 8px rgba(0, 102, 255, 0.45));
+      transform: scale(1.025);
+    }
+    .accent-container:active .brush-stroke {
+      transform: scale(0.99);
+    }
+  }
+
+  body.hake-theme-dark .accent-container:hover .brush-stroke {
+    filter: drop-shadow(0 2px 10px rgba(56, 189, 248, 0.55));
+  }
+
+  /* Accessibility: Prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .brush-path-primary,
+    .brush-path-secondary {
+      stroke-dasharray: none !important;
+      stroke-dashoffset: 0 !important;
+      animation: none !important;
+      opacity: 1 !important;
+    }
+    .brush-path-secondary {
+      opacity: 0.7 !important;
+    }
   }
 
   .hero-description {
