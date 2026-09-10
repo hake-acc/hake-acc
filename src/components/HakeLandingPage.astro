@@ -285,11 +285,18 @@
           <!-- Right Column: Extracted Character Artwork Scene + 1:1 Mathematical SVG Stars -->
           <div class="hero-art-column">
             <div class="art-visual-frame">
-              <!-- Real visual asset with stars cleanly bifurcated out -->
+              <!-- Dual-mode character illustrations preserving 100% opaque white hoodie, coffee mug, and Discord-themed atmosphere -->
               <img 
-                src="/assets/hero_illustration_blue_nostars.png" 
-                alt="Creator Character typing on Hake laptop at workspace desk" 
-                class="extracted-hero-asset"
+                src="/assets/hero_illustration_light.png" 
+                alt="Creator Character typing on Hake laptop at workspace desk (Light Mode)" 
+                class="extracted-hero-asset hero-art-light"
+                loading="eager"
+                decoding="async"
+              />
+              <img 
+                src="/assets/hero_illustration_dark.png" 
+                alt="Creator Character typing on Hake laptop at workspace desk (Discord Dark Mode)" 
+                class="extracted-hero-asset hero-art-dark"
                 loading="eager"
                 decoding="async"
               />
@@ -800,17 +807,19 @@
   }
 
   body.hake-theme-dark {
-    --bg-page: #0B0F19;
-    --text-main: #F8FAFC;
-    --text-muted: #94A3B8;
-    --text-subtle: #64748B;
-    --border-line: #1E293B;
-    --border-strong: #334155;
-    --dock-bg: #111827;
-    --card-bg: #111827;
-    --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
-    --shadow-float: 0 8px 30px rgba(0, 0, 0, 0.4);
-    --shadow-btn: 0 6px 20px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.4);
+    /* Discord-inspired refined dark mode: soft light grey + dark tones */
+    --bg-page: #313338;          /* Discord primary canvas background */
+    --text-main: #F2F3F5;        /* Discord crisp off-white primary text */
+    --text-muted: #B5BAC1;       /* Discord channel muted text */
+    --text-subtle: #949BA4;      /* Discord subtle tertiary text */
+    --border-line: #3F4147;      /* Discord subtle separator line */
+    --border-strong: #4E5058;    /* Discord interactive boundary line */
+    --dock-bg: #2B2D31;          /* Discord channel list / dock surface */
+    --card-bg: #2B2D31;          /* Discord card surface */
+    --card-elevated: #383A40;    /* Discord elevated chip / pill / popover surface */
+    --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+    --shadow-float: 0 8px 30px rgba(0, 0, 0, 0.45);
+    --shadow-btn: 0 6px 20px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   html, body {
@@ -821,6 +830,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body.hake-theme-dark {
+    background-color: #1E1F22;   /* Discord deep dark outer viewport shell */
   }
 
   /* Viewport wrapper for responsive centering */
@@ -1247,13 +1260,30 @@
 
   body.hake-theme-dark .btn-pill-primary,
   body.hake-theme-dark .btn-cta-nav {
-    border-color: rgba(255, 255, 255, 0.16);
+    background-color: #F2F3F5;
+    color: #2B2D31;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   }
 
   body.hake-theme-dark .btn-pill-primary:hover,
   body.hake-theme-dark .btn-cta-nav:hover {
-    border-color: rgba(56, 189, 248, 0.5);
-    background-color: #1E293B;
+    border-color: rgba(56, 189, 248, 0.6);
+    background-color: #FFFFFF;
+    color: #1E1F22;
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.25);
+  }
+
+  body.hake-theme-dark .btn-pill-secondary {
+    background-color: var(--card-elevated);
+    color: var(--text-main);
+    border-color: var(--border-strong);
+  }
+
+  body.hake-theme-dark .btn-pill-secondary:hover {
+    background-color: #4E5058;
+    color: #FFFFFF;
+    border-color: #4E5058;
   }
 
   .btn-pill-secondary {
@@ -1433,19 +1463,25 @@
   }
 
   body.hake-theme-dark .creator-tooltip-bubble {
-    background: #1E293B;
-    border-color: rgba(56, 189, 248, 0.35);
-    color: #F8FAFC;
+    background: var(--card-elevated);
+    border-color: var(--border-strong);
+    color: var(--text-main);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
   }
 
   body.hake-theme-dark .creator-tooltip-bubble::after {
-    border-color: transparent transparent #1E293B transparent;
+    border-color: transparent transparent var(--card-elevated) transparent;
   }
 
   body.hake-theme-dark .creator-count-badge {
     background-color: rgba(0, 102, 255, 0.15);
     border-color: var(--accent-blue-bright);
     color: var(--accent-blue-bright);
+  }
+
+  body.hake-theme-dark .status-banner-card:hover {
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
   }
 
   /* Status Card */
@@ -1544,10 +1580,25 @@
     height: 100%;
     object-fit: contain;
     object-position: center;
-    display: block;
     user-select: none;
     -webkit-user-drag: none;
     z-index: 1;
+  }
+
+  .hero-art-light {
+    display: block;
+  }
+
+  .hero-art-dark {
+    display: none;
+  }
+
+  body.hake-theme-dark .hero-art-light {
+    display: none !important;
+  }
+
+  body.hake-theme-dark .hero-art-dark {
+    display: block !important;
   }
 
   /* SVG Stars Overlay Container (1:1 Ratio Matched) */
@@ -1829,11 +1880,11 @@
 
   /* Dark mode */
   body.hake-theme-dark .brand-name {
-    color: #94A3B8;
+    color: var(--text-muted);
   }
 
   body.hake-theme-dark .brand-link-item:hover .brand-name {
-    color: #F8FAFC;
+    color: var(--text-main);
   }
 
   body.hake-theme-dark .brand-mark-img {
@@ -1845,12 +1896,13 @@
   }
 
   body.hake-theme-dark .brand-info-popover {
-    background-color: #1E293B;
-    border-color: rgba(56, 189, 248, 0.3);
+    background-color: var(--card-elevated);
+    border-color: var(--border-strong);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   }
 
   body.hake-theme-dark .brand-info-popover::after {
-    border-color: #1E293B transparent transparent transparent;
+    border-color: var(--card-elevated) transparent transparent transparent;
   }
 
   .pill-more {
@@ -2174,9 +2226,9 @@
   }
 
   body.hake-theme-dark .mobile-quickbar {
-    background: rgba(17, 24, 39, 0.9);
-    border-color: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+    background: rgba(43, 45, 49, 0.92);
+    border-color: #3F4147;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
   }
 
   .quickbar-btn {
