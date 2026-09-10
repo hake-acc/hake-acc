@@ -12,10 +12,10 @@
     <title>hake. — Discord Server Manager & Creator Services Coordinator</title>
     <meta name="description" content="Official portfolio of Hake. Discord server manager and creator services coordinator helping YouTubers and gaming communities with clean server architecture, bot automation, video editing coordination, and sponsorships." />
 
-    <!-- Google Fonts: Outfit (Headings) & Plus Jakarta Sans (Body) -->
+    <!-- Google Fonts: Outfit (Headings) & DM Sans (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Outfit:wght@400;500;600;700;800&display=swap" />
 
     <!-- Zero FOUC Theme & Underline Cache Init -->
     <script is:inline>
@@ -962,12 +962,12 @@
 
 <style is:global>
   /* ====================================================
-     DESIGN SYSTEM TOKENS — OUTFIT & PLUS JAKARTA SANS
+     DESIGN SYSTEM TOKENS — OUTFIT & DM SANS
      Clean Typography • Discord Dark Mode • Balanced Geometry
      ==================================================== */
   :root {
-    --font-heading: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
-    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-heading: 'Outfit', -apple-system, sans-serif;
+    --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
     /* Light Theme Palette */
     --bg-viewport: #F1F5F9;
@@ -1218,7 +1218,7 @@
      ==================================================== */
   .floating-dock {
     position: fixed;
-    left: 36px;
+    left: max(16px, calc((100vw - 1280px) / 2 - 68px));
     top: 50%;
     transform: translateY(-50%);
     z-index: 90;
@@ -1226,6 +1226,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    transition: left 0.25s ease, opacity 0.25s ease;
   }
 
   .dock-capsule {
@@ -1264,7 +1265,7 @@
     height: 8px;
     background-color: var(--accent-green);
     border-radius: 50%;
-    box-shadow: 0 0 8px var(--accent-green);
+    box-shadow: 0 1px 3px rgba(34, 197, 94, 0.4);
   }
 
   /* ====================================================
@@ -2025,11 +2026,13 @@
   }
 
   .about-closing-note {
-    font-size: 15px;
+    font-size: 14px;
     color: var(--text-main);
     font-weight: 600;
-    border-left: 3px solid var(--accent-blue);
-    padding-left: 14px;
+    padding: 14px 18px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-line);
+    border-radius: 12px;
     margin-top: 24px;
   }
 
@@ -2326,34 +2329,129 @@
 
   /* ====================================================
      RESPONSIVE ADAPTATION (/adapt)
-     Conflict-free Desktop and Mobile UI separation
+     Full-spectrum scaling across all device viewports:
+     - Ultrawide / 4K Desktop (> 1400px)
+     - Standard Desktop (1200px - 1399px)
+     - Tablet Landscape / Small Laptop (960px - 1199px)
+     - Tablet Portrait / Phablet (768px - 959px)
+     - Mobile Phones (381px - 767px)
+     - Compact Phones (<= 380px)
+     - Touch & Coarse Pointer Optimizations
      ==================================================== */
-  @media (min-width: 1025px) {
+
+  /* 1. Large Screen Social Dock Visibility */
+  @media (max-width: 1399px) {
+    .floating-dock {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .floating-dock {
+      display: flex !important;
+    }
+  }
+
+  /* 2. Desktop Navigation vs Mobile Drawer / Quickbar Separation */
+  @media (min-width: 960px) {
     .mobile-menu-btn,
     .mobile-drawer,
     .mobile-drawer-overlay,
     .mobile-quickbar {
       display: none !important;
     }
+
+    .nav-links,
+    .btn-cta-nav {
+      display: flex !important;
+    }
   }
 
-  @media (max-width: 1024px) {
+  /* 3. Tablet Landscape & Small Laptops (960px to 1199px) */
+  @media (min-width: 960px) and (max-width: 1199px) {
+    .hake-viewport-wrapper {
+      padding: 24px 16px;
+    }
+
+    .hake-hero-section {
+      padding: 48px 36px 36px;
+      gap: 32px;
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+
+    .hero-main-title {
+      font-size: clamp(32px, 3.8vw, 48px);
+    }
+
+    .hero-description {
+      font-size: 15px;
+    }
+
+    .floating-badges-layer {
+      transform: scale(0.82);
+      transform-origin: center right;
+    }
+
+    .services-cards-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .about-grid-container,
+    .contact-grid-container {
+      gap: 24px;
+    }
+  }
+
+  /* 4. Tablet Portrait & Phablets (768px to 959px) */
+  @media (max-width: 959px) {
     .hake-viewport-wrapper {
       padding: 16px 12px;
     }
 
     .hake-navbar {
-      padding: 16px 28px;
+      padding: 14px 24px;
     }
 
+    .nav-links,
+    .btn-cta-nav {
+      display: none !important;
+    }
+
+    .mobile-menu-btn {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: 1px solid var(--border-line);
+      border-radius: 10px;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .hamburger-line {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: var(--text-main);
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    /* Centered Hero on Tablet Portrait */
     .hake-hero-section {
       grid-template-columns: 1fr;
-      padding: 48px 28px;
-      gap: 40px;
+      padding: 44px 24px 36px;
+      gap: 36px;
+      text-align: center;
     }
 
     .hero-left-content {
       max-width: 100%;
+      margin: 0 auto;
       text-align: center;
     }
 
@@ -2364,6 +2462,8 @@
     .hero-description {
       margin-left: auto;
       margin-right: auto;
+      max-width: 56ch;
+      font-size: 15px;
     }
 
     .hero-button-group {
@@ -2381,28 +2481,42 @@
       margin-right: auto;
     }
 
-    .floating-dock {
-      display: none !important;
-    }
-
-    .services-cards-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .about-grid-container {
-      grid-template-columns: 1fr;
-    }
-
-    .contact-grid-container {
-      grid-template-columns: 1fr;
+    .hero-art-column {
+      max-width: 440px;
+      margin: 0 auto;
     }
 
     .floating-badges-layer {
       display: none !important;
     }
+
+    /* Services Grid on Tablet: 2x3 */
+    .services-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    /* About Section: Story full-width, Stats in responsive row */
+    .about-grid-container {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .about-stats-column {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    /* Contact Section: Stacked */
+    .contact-grid-container {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
   }
 
-  @media (max-width: 768px) {
+  /* 5. Mobile Phones (< 768px) */
+  @media (max-width: 767px) {
     .hake-viewport-wrapper {
       padding: 0;
       min-height: 100vh;
@@ -2412,81 +2526,135 @@
 
     .hake-page-container {
       border-radius: 0;
+      border-left: none;
+      border-right: none;
       box-shadow: none;
       min-height: 100vh;
-      padding-bottom: calc(90px + env(safe-area-inset-bottom, 20px));
+      padding-bottom: calc(84px + env(safe-area-inset-bottom, 16px));
     }
 
     .hake-navbar {
-      padding: 14px 20px;
-    }
-
-    .nav-links,
-    .btn-cta-nav {
-      display: none !important;
-    }
-
-    .mobile-menu-btn {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      width: 38px;
-      height: 38px;
-      background: transparent;
-      border: 1px solid var(--border-line);
-      border-radius: 10px;
-      cursor: pointer;
-      padding: 8px;
-    }
-
-    .hamburger-line {
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: var(--text-main);
-      border-radius: 2px;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      padding: 12px 18px;
+      padding-top: max(12px, env(safe-area-inset-top));
     }
 
     .hake-hero-section {
-      padding: 32px 18px 24px;
-      gap: 32px;
+      padding: 24px 16px 20px;
+      gap: 24px;
     }
 
     .hero-main-title {
-      font-size: 34px;
+      font-size: clamp(28px, 8vw, 36px);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .hero-description {
+      font-size: 14px;
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+
+    .hero-button-group {
+      flex-direction: column;
+      width: 100%;
+      gap: 10px;
+    }
+
+    .btn-primary-hero,
+    .btn-secondary-hero {
+      width: 100%;
+      justify-content: center;
+      min-height: 48px;
+    }
+
+    .status-banner-card {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 12px 14px;
+    }
+
+    .hero-art-column {
+      max-width: 310px;
+      margin: 12px auto 0;
+    }
+
+    .scene-paper-plane-img {
+      width: 60px;
+      height: auto;
+    }
+
+    .scene-pencil-img {
+      width: 28px;
+      height: auto;
     }
 
     .hake-section {
-      padding: 48px 18px;
+      padding: 40px 16px;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 6.5vw, 30px);
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      margin-bottom: 24px;
     }
 
     .services-cards-grid {
       grid-template-columns: 1fr;
-      gap: 16px;
+      gap: 14px;
+    }
+
+    .service-card-item {
+      padding: 20px 18px;
     }
 
     .brands-flex-row {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 8px;
     }
 
     .brand-link-item {
-      padding: 10px 12px;
+      padding: 10px 10px;
       justify-content: center;
+      font-size: 12px;
     }
 
-    /* Disable hover popovers on touch screens */
-    @media (hover: none) {
-      .brand-info-popover {
-        display: none !important;
-      }
+    .about-story-card {
+      padding: 22px 18px;
+    }
+
+    .about-stats-column {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .stat-card-item {
+      padding: 16px 18px;
+    }
+
+    .stat-big-number {
+      font-size: 32px;
+    }
+
+    .direct-channels-card,
+    .inquiry-form-card {
+      padding: 22px 18px;
+    }
+
+    .form-input-field,
+    .form-textarea-field,
+    .form-select-field {
+      font-size: 16px; /* Prevents iOS Safari auto-zoom on input focus */
+      padding: 12px 14px;
     }
 
     .hake-site-footer {
-      padding: 32px 20px 24px;
+      padding: 28px 18px 20px;
     }
 
     .footer-content-wrap {
@@ -2636,7 +2804,7 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-top: 1px solid var(--border-line);
-      padding: 10px 20px calc(10px + env(safe-area-inset-bottom, 12px));
+      padding: 8px 16px calc(8px + env(safe-area-inset-bottom, 12px));
     }
 
     body.hake-theme-dark .mobile-quickbar {
@@ -2647,7 +2815,7 @@
       display: flex;
       align-items: center;
       justify-content: space-around;
-      max-width: 440px;
+      max-width: 420px;
       margin: 0 auto;
     }
 
@@ -2663,12 +2831,14 @@
       font-weight: 600;
       text-decoration: none;
       cursor: pointer;
+      min-width: 52px;
+      padding: 4px 0;
     }
 
     .quickbar-cta-pill {
       display: inline-flex;
       align-items: center;
-      padding: 10px 24px;
+      padding: 9px 22px;
       background-color: var(--accent-blue);
       color: #FFFFFF;
       font-family: var(--font-heading);
@@ -2677,6 +2847,67 @@
       border-radius: 12px;
       text-decoration: none;
       box-shadow: 0 2px 10px rgba(0, 102, 255, 0.35);
+    }
+  }
+
+  /* 6. Compact Phones (<= 380px, e.g. iPhone SE, Galaxy Fold cover) */
+  @media (max-width: 380px) {
+    .hero-main-title {
+      font-size: 26px;
+    }
+
+    .status-tag-text {
+      font-size: 11px;
+    }
+
+    .avatar-ring {
+      width: 34px;
+      height: 34px;
+    }
+
+    .creator-count-badge {
+      width: 34px;
+      height: 34px;
+      font-size: 11px;
+    }
+
+    .brands-flex-row {
+      grid-template-columns: 1fr;
+    }
+
+    .brand-link-item {
+      justify-content: flex-start;
+      padding: 9px 12px;
+    }
+  }
+
+  /* 7. Touch & Pointer Ergonomics */
+  @media (pointer: coarse) {
+    .btn-primary-hero,
+    .btn-secondary-hero,
+    .btn-cta-nav,
+    .service-inquire-link,
+    .brand-link-item,
+    .channel-link-card,
+    .form-submit-btn,
+    .quickbar-action-item,
+    .drawer-nav-item,
+    .theme-toggle-btn,
+    .mobile-menu-btn,
+    .drawer-close-btn {
+      min-height: 44px;
+    }
+
+    .brand-link-item:active,
+    .service-card-item:active,
+    .channel-link-card:active {
+      transform: scale(0.98);
+    }
+  }
+
+  @media (hover: none) {
+    .brand-info-popover {
+      display: none !important;
     }
   }
 </style>
