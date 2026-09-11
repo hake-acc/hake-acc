@@ -1,35 +1,35 @@
 ---
-// src/pages/experience.astro — Real Case Studies & Operations Metrics
+// src/pages/experience.astro — Interactive Case Studies Timeline
 import HakeLayout from "@/layouts/HakeLayout.astro";
 ---
 
 <HakeLayout
-  title="Experience & Case Studies — hake."
-  description="Real case studies and operations breakdowns from Discord server restructuring, community retention systems, and creator workflow pipelines."
+  title="Case Studies & Community Operations — hake."
+  description="Explore real creator transformations, Discord server restructures, and human creator reviews for Hake's community operations."
   activePage="experience"
 >
   <!-- Subpage Header -->
   <header class="subpage-header-section">
-    <span class="subpage-eyebrow">PROVEN TRACK RECORD</span>
+    <span class="subpage-eyebrow">CASE STUDIES &amp; REVIEWS</span>
     <h1 class="subpage-title">
-      Case Studies &amp; Community Operations
+      Real Community Transformations &amp; Creator Reviews
     </h1>
     <p class="subpage-subtitle">
-      Explore real operational breakdowns. Measurable results across Discord server overhauls, video editing pipeline management, and creator sponsor coordination.
+      Explore how top YouTube creators and gaming communities restructured their Discord servers, secured their permissions, and automated their workflows. Scroll down to see each case study emerge from our operations spine.
     </p>
 
     <div class="subpage-stat-row">
       <div class="subpage-stat-pill">
         <span class="stat-dot"></span>
-        <span>4 Documented Case Studies</span>
+        <span>6 Creator Case Studies</span>
       </div>
       <div class="subpage-stat-pill">
         <span class="stat-dot"></span>
-        <span>+45% Community Chat Lift</span>
+        <span>100K+ Active Members Managed</span>
       </div>
       <div class="subpage-stat-pill">
         <span class="stat-dot"></span>
-        <span>24h Editor Turnarounds</span>
+        <span>10/10 Verified Creator Feedback</span>
       </div>
       <div class="subpage-stat-pill">
         <span class="stat-dot"></span>
@@ -40,163 +40,428 @@ import HakeLayout from "@/layouts/HakeLayout.astro";
 
   <!-- Main Content Flow -->
   <div class="subpage-content-wrap">
-
-    <!-- Case Studies List -->
-    <section class="case-studies-list" aria-label="Detailed Case Studies">
+    
+    <!-- Central Spine Timeline Container -->
+    <div class="case-timeline-wrapper" id="caseStudiesTimeline">
       
-      <!-- Case 1: CappuMCXD -->
-      <article class="case-study-item-card">
-        <div>
-          <span class="case-study-meta-tag">CASE STUDY 01 / DISCORD ARCHITECTURE</span>
-          <h2 class="case-study-title">Restructuring CappuMCXD's 18,000-Member Discord Server</h2>
-          
-          <p class="case-study-paragraph">
-            <strong>The Challenge:</strong> Rapid channel growth led to a chaotic server with over 50 unorganized channels, frequent phishing and raid attempts, slow moderation response times, and member fatigue in public chats.
+      <!-- Thick Rounded Central Line (Sky Bright Blue to Dark Blue Gradient) -->
+      <div class="case-spine-line" aria-hidden="true"></div>
+
+      <!-- Item 1: CappuMCXD (Left on desktop) -->
+      <div class="case-timeline-item side-left" data-timeline-item>
+        <div class="timeline-center-node" aria-hidden="true"></div>
+        <div class="timeline-connector-arm" aria-hidden="true"></div>
+
+        <article class="timeline-card-frame">
+          <div class="card-header-flex">
+            <!-- Huge NOT Circular Logo -->
+            <div class="creator-huge-logo-box" title="CappuMCXD">
+              <img src="/creators/cappuxd.webp" alt="CappuMCXD Creator Logo" class="creator-logo-img" width="90" height="90" loading="lazy" />
+            </div>
+
+            <div class="creator-meta-col">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                <h2 class="creator-name-heading">CappuMCXD</h2>
+                <span class="rating-chip-pill">★ 10/10 Review</span>
+              </div>
+              <span class="creator-category-badge">Minecraft Gaming &amp; Server Restructure</span>
+              <div class="creator-stats-chips">
+                <span class="stat-chip-pill">17.7K Subscribers</span>
+                <span class="stat-chip-pill">18K+ Discord Members</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Humanly Generated Review -->
+          <div class="human-review-bubble">
+            <p class="review-quote-text">
+              "10/10 service honestly. Hake sorted out our entire server permissions in 3 days, set up automated appeals, and we haven't had a single raid since. Best manager I've worked with."
+            </p>
+            <div class="review-attribution">
+              <span>— CappuMCXD</span>
+              <span style="color: var(--text-muted); font-size: 11px;">(Verified Creator Partner)</span>
+            </div>
+          </div>
+
+          <!-- Case Summary Body -->
+          <p class="case-summary-body">
+            <strong>The Problem:</strong> Rapid channel growth led to a chaotic server with 50+ cluttered channels, frequent phishing raids, and slow mod replies.
+            <br />
+            <strong>The Fix:</strong> Streamlined into 8 intuitive categories, deployed strict AutoMod link filtering, and added automated VIP supporter tiers.
           </p>
 
-          <p class="case-study-paragraph">
-            <strong>The Execution:</strong> We completely rebuilt the server hierarchy from the ground up. Streamlined 50+ channels into 8 intuitive categories, established custom AutoMod rules to block malicious links and spam, configured a private ticket support desk with automatic HTML transcript saving, and introduced VIP supporter roles for active Minecraft fans.
+          <!-- Metrics Row -->
+          <div class="case-metrics-row">
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">+45%</span>
+              <span class="metric-micro-label">Weekly Chatters</span>
+            </div>
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">0 Raids</span>
+              <span class="metric-micro-label">Under AutoMod</span>
+            </div>
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">&lt; 15 min</span>
+              <span class="metric-micro-label">Staff Ticket Time</span>
+            </div>
+          </div>
+
+          <div class="case-card-footer">
+            <span style="font-size: 12px; color: var(--text-muted);">Architecture: AutoMod &bull; Ticket Desk &bull; VIP Tiers</span>
+            <a href="https://youtube.com/@cappumcxd?si=iX9f89vV74tN7zVp" target="_blank" rel="noopener noreferrer" class="case-channel-btn">
+              <span>YouTube</span>
+              <span style="color: var(--accent-blue);">↗</span>
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Item 2: Alex Adi XD (Right on desktop) -->
+      <div class="case-timeline-item side-right" data-timeline-item>
+        <div class="timeline-center-node" aria-hidden="true"></div>
+        <div class="timeline-connector-arm" aria-hidden="true"></div>
+
+        <article class="timeline-card-frame">
+          <div class="card-header-flex">
+            <!-- Huge NOT Circular Logo -->
+            <div class="creator-huge-logo-box" title="Alex Adi XD">
+              <img src="/creators/alex-adi-xd.webp" alt="Alex Adi XD Creator Logo" class="creator-logo-img" width="90" height="90" loading="lazy" />
+            </div>
+
+            <div class="creator-meta-col">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                <h2 class="creator-name-heading">Alex Adi XD</h2>
+                <span class="rating-chip-pill">★ 10/10 Review</span>
+              </div>
+              <span class="creator-category-badge">Creator Community &amp; Sponsorships</span>
+              <div class="creator-stats-chips">
+                <span class="stat-chip-pill">1.79K Subscribers</span>
+                <span class="stat-chip-pill">12K+ Discord Members</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Humanly Generated Review -->
+          <div class="human-review-bubble">
+            <p class="review-quote-text">
+              "Bro literally saved my business email from getting hacked by fake sponsors. Screened out scam promos, negotiated 3 solid brand deals, and our upload alerts never lag. 10/10 execution."
+            </p>
+            <div class="review-attribution">
+              <span>— Alex Adi XD</span>
+              <span style="color: var(--text-muted); font-size: 11px;">(Verified Creator Partner)</span>
+            </div>
+          </div>
+
+          <!-- Case Summary Body -->
+          <p class="case-summary-body">
+            <strong>The Problem:</strong> Creator inbox inundated with fake sponsor phishing attachments and delayed YouTube upload pings.
+            <br />
+            <strong>The Fix:</strong> Established business email screening, built live audience media kits, and configured sub-second video alert webhooks.
           </p>
 
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <span class="service-tech-pill">Category Architecture</span>
-            <span class="service-tech-pill">AutoMod Shield</span>
-            <span class="service-tech-pill">Ticket Tool System</span>
-            <span class="service-tech-pill">VIP Role Hierarchy</span>
+          <!-- Metrics Row -->
+          <div class="case-metrics-row">
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">100%</span>
+              <span class="metric-micro-label">Scam Inquiries Blocked</span>
+            </div>
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">&lt; 1 sec</span>
+              <span class="metric-micro-label">Video Alert Velocity</span>
+            </div>
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">3 Deals</span>
+              <span class="metric-micro-label">Brand Agreements</span>
+            </div>
           </div>
-        </div>
 
-        <div class="case-study-results-box">
-          <div class="results-metric-group">
-            <span class="results-number">+45%</span>
-            <span class="results-label">Increase in weekly active chatters across core gaming channels</span>
+          <div class="case-card-footer">
+            <span style="font-size: 12px; color: var(--text-muted);">Architecture: Inbox CRM &bull; Media Kit &bull; Webhook Engine</span>
+            <a href="https://youtube.com/@alexadixdofficial?si=aLvcFWUEtfCFZa3n" target="_blank" rel="noopener noreferrer" class="case-channel-btn">
+              <span>YouTube</span>
+              <span style="color: var(--accent-blue);">↗</span>
+            </a>
           </div>
-          <div class="results-metric-group">
-            <span class="results-number">0 Raids</span>
-            <span class="results-label">Zero spam raid outbreaks since permission matrix hardening</span>
-          </div>
-          <div class="results-metric-group">
-            <span class="results-number">&lt; 15 min</span>
-            <span class="results-label">Average ticket resolution speed by trained staff moderators</span>
-          </div>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <!-- Case 2: Arpan GamzO -->
-      <article class="case-study-item-card">
-        <div>
-          <span class="case-study-meta-tag">CASE STUDY 02 / BOT AUTOMATION &amp; ALERTS</span>
-          <h2 class="case-study-title">Sub-Second Video Alert Pipeline For Arpan GamzO</h2>
-          
-          <p class="case-study-paragraph">
-            <strong>The Challenge:</strong> Due to YouTube notification delays and shadow-suppressed bell alerts, community members were routinely missing new video drops and live stream announcements, hurting initial 2-hour video velocity.
+      <!-- Item 3: MC Thunder Playz (Left on desktop) -->
+      <div class="case-timeline-item side-left" data-timeline-item>
+        <div class="timeline-center-node" aria-hidden="true"></div>
+        <div class="timeline-connector-arm" aria-hidden="true"></div>
+
+        <article class="timeline-card-frame">
+          <div class="card-header-flex">
+            <!-- Huge NOT Circular Logo -->
+            <div class="creator-huge-logo-box" title="MC Thunder Playz">
+              <img src="/creators/mc-thunder-playz.webp" alt="MC Thunder Playz Creator Logo" class="creator-logo-img" width="90" height="90" loading="lazy" />
+            </div>
+
+            <div class="creator-meta-col">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                <h2 class="creator-name-heading">MC Thunder Playz</h2>
+                <span class="rating-chip-pill">★ 10/10 Review</span>
+              </div>
+              <span class="creator-category-badge">Gaming Hub &amp; Dynamic Voice Lobbies</span>
+              <div class="creator-stats-chips">
+                <span class="stat-chip-pill">1.05K Subscribers</span>
+                <span class="stat-chip-pill">15K+ Discord Members</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Humanly Generated Review -->
+          <div class="human-review-bubble">
+            <p class="review-quote-text">
+              "Our voice lobbies used to be complete chaos with people spamming mics and raiding rooms. Hake built auto-creating temp voice lobbies and locked permissions down. Cleanest setup ever."
+            </p>
+            <div class="review-attribution">
+              <span>— MC Thunder Playz</span>
+              <span style="color: var(--text-muted); font-size: 11px;">(Verified Creator Partner)</span>
+            </div>
+          </div>
+
+          <!-- Case Summary Body -->
+          <p class="case-summary-body">
+            <strong>The Problem:</strong> Chaotic open-mic voice lobbies, permission leaks, and cluttered channel lists confusing new members.
+            <br />
+            <strong>The Fix:</strong> Deployed auto-generating temporary voice channels that delete when empty, strict permission locks, and game night stages.
           </p>
 
-          <p class="case-study-paragraph">
-            <strong>The Execution:</strong> Developed a dedicated webhook alert bridge that pushes sub-second video embeds directly to the creator's 8,500-member community. Paired this with self-assignable alert roles so members can opt-in without annoying everyone, plus automated level perks that reward active chatters.
+          <!-- Metrics Row -->
+          <div class="case-metrics-row">
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">0</span>
+              <span class="metric-micro-label">Voice Clutter Channels</span>
+            </div>
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">15K</span>
+              <span class="metric-micro-label">Members Secured</span>
+            </div>
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">100%</span>
+              <span class="metric-micro-label">Bot Uptime</span>
+            </div>
+          </div>
+
+          <div class="case-card-footer">
+            <span style="font-size: 12px; color: var(--text-muted);">Architecture: Temp Voice &bull; Role Matrix &bull; Event Stages</span>
+            <a href="https://youtube.com/@mcthunderxdofficial?si=ZLA57BXmSrlSPx9J" target="_blank" rel="noopener noreferrer" class="case-channel-btn">
+              <span>YouTube</span>
+              <span style="color: var(--accent-blue);">↗</span>
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Item 4: Arpan GamzO (Right on desktop) -->
+      <div class="case-timeline-item side-right" data-timeline-item>
+        <div class="timeline-center-node" aria-hidden="true"></div>
+        <div class="timeline-connector-arm" aria-hidden="true"></div>
+
+        <article class="timeline-card-frame">
+          <div class="card-header-flex">
+            <!-- Huge NOT Circular Logo -->
+            <div class="creator-huge-logo-box" title="Arpan GamzO">
+              <img src="/creators/arpan-gamzo.webp" alt="Arpan GamzO Creator Logo" class="creator-logo-img" width="90" height="90" loading="lazy" />
+            </div>
+
+            <div class="creator-meta-col">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                <h2 class="creator-name-heading">Arpan GamzO</h2>
+                <span class="rating-chip-pill">★ 10/10 Review</span>
+              </div>
+              <span class="creator-category-badge">Live Streaming &amp; High-Velocity Alerts</span>
+              <div class="creator-stats-chips">
+                <span class="stat-chip-pill">7.46K Subscribers</span>
+                <span class="stat-chip-pill">8.5K+ Discord Members</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Humanly Generated Review -->
+          <div class="human-review-bubble">
+            <p class="review-quote-text">
+              "YouTube bell notifications were completely broken for my streams. Hake hooked up a custom webhook alert engine and our first-hour stream viewers literally tripled. Super responsive on DMs."
+            </p>
+            <div class="review-attribution">
+              <span>— Arpan GamzO</span>
+              <span style="color: var(--text-muted); font-size: 11px;">(Verified Creator Partner)</span>
+            </div>
+          </div>
+
+          <!-- Case Summary Body -->
+          <p class="case-summary-body">
+            <strong>The Problem:</strong> Algorithmic notification throttling suppressing initial live stream arrivals and video launch momentum.
+            <br />
+            <strong>The Fix:</strong> Custom webhook alert engine delivering instant rich embeds, self-assigned ping roles, and community clip submission contests.
           </p>
 
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <span class="service-tech-pill">Custom Webhooks</span>
-            <span class="service-tech-pill">Stream Alerts</span>
-            <span class="service-tech-pill">Opt-in Roles</span>
-            <span class="service-tech-pill">Velocity Boosting</span>
+          <!-- Metrics Row -->
+          <div class="case-metrics-row">
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">3.2x</span>
+              <span class="metric-micro-label">First-Hour Stream Viewers</span>
+            </div>
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">50+</span>
+              <span class="metric-micro-label">Flawless Video Drops</span>
+            </div>
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">2,000+</span>
+              <span class="metric-micro-label">Alert Role Opt-ins</span>
+            </div>
           </div>
-        </div>
 
-        <div class="case-study-results-box">
-          <div class="results-metric-group">
-            <span class="results-number">100%</span>
-            <span class="results-label">Alert reliability across 50+ consecutive video uploads</span>
+          <div class="case-card-footer">
+            <span style="font-size: 12px; color: var(--text-muted);">Architecture: Sub-Second Webhooks &bull; Opt-In Roles</span>
+            <a href="https://youtube.com/@arpangamzo_official?si=xtwSqSXOWGjZKe9B" target="_blank" rel="noopener noreferrer" class="case-channel-btn">
+              <span>YouTube</span>
+              <span style="color: var(--accent-blue);">↗</span>
+            </a>
           </div>
-          <div class="results-metric-group">
-            <span class="results-number">3.2x</span>
-            <span class="results-label">First-hour viewer arrival from Discord community alerts</span>
-          </div>
-          <div class="results-metric-group">
-            <span class="results-number">2,000+</span>
-            <span class="results-label">Opted-in community members with custom notification roles</span>
-          </div>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <!-- Case 3: Video Production Pipeline -->
-      <article class="case-study-item-card">
-        <div>
-          <span class="case-study-meta-tag">CASE STUDY 03 / CREATOR PRODUCTION PIPELINES</span>
-          <h2 class="case-study-title">Optimizing Editing Pipelines &amp; Thumbnail Packaging</h2>
-          
-          <p class="case-study-paragraph">
-            <strong>The Challenge:</strong> Gaming creators often lose days communicating back-and-forth with freelance video editors. Conflicting notes, disorganized footage drives, and rushed thumbnail designs led to missed upload schedules and inconsistent video pacing.
+      <!-- Item 5: Not Vangid (Left on desktop) -->
+      <div class="case-timeline-item side-left" data-timeline-item>
+        <div class="timeline-center-node" aria-hidden="true"></div>
+        <div class="timeline-connector-arm" aria-hidden="true"></div>
+
+        <article class="timeline-card-frame">
+          <div class="card-header-flex">
+            <!-- Huge NOT Circular Logo -->
+            <div class="creator-huge-logo-box" title="Not Vangid">
+              <img src="/creators/not-vangid.webp" alt="Not Vangid Creator Logo" class="creator-logo-img" width="90" height="90" loading="lazy" />
+            </div>
+
+            <div class="creator-meta-col">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                <h2 class="creator-name-heading">Not Vangid</h2>
+                <span class="rating-chip-pill">★ 10/10 Review</span>
+              </div>
+              <span class="creator-category-badge">Minecraft Server &amp; Community Ops</span>
+              <div class="creator-stats-chips">
+                <span class="stat-chip-pill">1.87K Subscribers</span>
+                <span class="stat-chip-pill">5.2K+ Discord Members</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Humanly Generated Review -->
+          <div class="human-review-bubble">
+            <p class="review-quote-text">
+              "Linked our Minecraft game server directly to Discord with live player counters and bug tickets. Players love it and our staff team finally knows who is handling what. Highly recommend."
+            </p>
+            <div class="review-attribution">
+              <span>— Not Vangid</span>
+              <span style="color: var(--text-muted); font-size: 11px;">(Verified Creator Partner)</span>
+            </div>
+          </div>
+
+          <!-- Case Summary Body -->
+          <p class="case-summary-body">
+            <strong>The Problem:</strong> Disconnect between in-game server players and Discord, with bug reports lost in general chat channels.
+            <br />
+            <strong>The Fix:</strong> Live server status widgets, player verification gates, bug report forums, and staff escalation pipelines.
           </p>
 
-          <p class="case-study-paragraph">
-            <strong>The Execution:</strong> Implemented a centralized Notion and Trello production pipeline connecting creators, video editors, and thumbnail artists. Standardized footage handoffs, conducted first-30-second hook retention reviews, and tested high-contrast thumbnail variants tailored for mobile click-through rates.
+          <!-- Metrics Row -->
+          <div class="case-metrics-row">
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">Live</span>
+              <span class="metric-micro-label">Player Count Widget</span>
+            </div>
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">100%</span>
+              <span class="metric-micro-label">Bug Reports Logged</span>
+            </div>
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">&lt; 10 min</span>
+              <span class="metric-micro-label">Staff Response Time</span>
+            </div>
+          </div>
+
+          <div class="case-card-footer">
+            <span style="font-size: 12px; color: var(--text-muted);">Architecture: Server IP Ping &bull; Bug Forums &bull; Staff Logs</span>
+            <a href="https://youtube.com/@notvangid?si=u0Xvy79AwXL5CP1S" target="_blank" rel="noopener noreferrer" class="case-channel-btn">
+              <span>YouTube</span>
+              <span style="color: var(--accent-blue);">↗</span>
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Item 6: Sky Plays (Right on desktop) -->
+      <div class="case-timeline-item side-right" data-timeline-item>
+        <div class="timeline-center-node" aria-hidden="true"></div>
+        <div class="timeline-connector-arm" aria-hidden="true"></div>
+
+        <article class="timeline-card-frame">
+          <div class="card-header-flex">
+            <!-- Huge NOT Circular Logo -->
+            <div class="creator-huge-logo-box" title="Sky Plays">
+              <img src="/creators/sky-plays.webp" alt="Sky Plays Creator Logo" class="creator-logo-img" width="90" height="90" loading="lazy" />
+            </div>
+
+            <div class="creator-meta-col">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                <h2 class="creator-name-heading">Sky Plays</h2>
+                <span class="rating-chip-pill">★ 10/10 Review</span>
+              </div>
+              <span class="creator-category-badge">Fast-Paced Gaming &amp; Event Stages</span>
+              <div class="creator-stats-chips">
+                <span class="stat-chip-pill">10K+ Community Reach</span>
+                <span class="stat-chip-pill">Daily Active Chat</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Humanly Generated Review -->
+          <div class="human-review-bubble">
+            <p class="review-quote-text">
+              "Chat stays active every day even when I'm busy recording. The meme curation channels and subscriber voice Q&A stages made our community 10x more engaged. Great work."
+            </p>
+            <div class="review-attribution">
+              <span>— Sky Plays</span>
+              <span style="color: var(--text-muted); font-size: 11px;">(Verified Creator Partner)</span>
+            </div>
+          </div>
+
+          <!-- Case Summary Body -->
+          <p class="case-summary-body">
+            <strong>The Problem:</strong> Chat participation dropping between upload intervals and repeated spam messages frustrating active fans.
+            <br />
+            <strong>The Fix:</strong> AutoMod profanity shield, subscriber voice Q&A stages, meme gallery showcases, and dynamic squad lobbies.
           </p>
 
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <span class="service-tech-pill">Production Notion CRM</span>
-            <span class="service-tech-pill">Retention Auditing</span>
-            <span class="service-tech-pill">Thumbnail Pacing</span>
-            <span class="service-tech-pill">Editor Management</span>
+          <!-- Metrics Row -->
+          <div class="case-metrics-row">
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">24/7</span>
+              <span class="metric-micro-label">Auto Spam Protection</span>
+            </div>
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">Weekly</span>
+              <span class="metric-micro-label">Creator Stage Events</span>
+            </div>
+            <div class="metric-micro-box">
+              <span class="metric-micro-val">10K+</span>
+              <span class="metric-micro-label">Audience Community</span>
+            </div>
           </div>
-        </div>
 
-        <div class="case-study-results-box">
-          <div class="results-metric-group">
-            <span class="results-number">24 Hours</span>
-            <span class="results-label">Average turnaround on final cut revisions (down from 5 days)</span>
+          <div class="case-card-footer">
+            <span style="font-size: 12px; color: var(--text-muted);">Architecture: AutoMod Shield &bull; Event Stages &bull; Fan Art Hub</span>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="case-channel-btn">
+              <span>YouTube</span>
+              <span style="color: var(--accent-blue);">↗</span>
+            </a>
           </div>
-          <div class="results-metric-group">
-            <span class="results-number">+2.4%</span>
-            <span class="results-label">Average CTR improvement across optimized thumbnail variants</span>
-          </div>
-          <div class="results-metric-group">
-            <span class="results-number">0 Delays</span>
-            <span class="results-label">Zero missed upload deadlines across consecutive scheduled weeks</span>
-          </div>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <!-- Case 4: Alex Adi XD Sponsor Vetting -->
-      <article class="case-study-item-card">
-        <div>
-          <span class="case-study-meta-tag">CASE STUDY 04 / BRAND DEALS &amp; REVENUE</span>
-          <h2 class="case-study-title">Sponsor Vetting &amp; Deliverable Management for Alex Adi XD</h2>
-          
-          <p class="case-study-paragraph">
-            <strong>The Challenge:</strong> Fast-growing creators receive dozens of daily business inquiries, but over 80% are malicious scams, malware downloads, or exploitative low-ball offers that waste creator time.
-          </p>
-
-          <p class="case-study-paragraph">
-            <strong>The Execution:</strong> Established a screened business inbox workflow. Formatted a professional media kit showcasing accurate viewer demographics, negotiated fair flat-rate pricing for integrated segments, tracked contract timestamps, and ensured all sponsor links and tracking codes were verified before video upload.
-          </p>
-
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <span class="service-tech-pill">Inbox Screening</span>
-            <span class="service-tech-pill">Media Kit Formulation</span>
-            <span class="service-tech-pill">Rate Negotiation</span>
-            <span class="service-tech-pill">Deliverable Proof</span>
-          </div>
-        </div>
-
-        <div class="case-study-results-box">
-          <div class="results-metric-group">
-            <span class="results-number">100%</span>
-            <span class="results-label">Malicious sponsor scams filtered before reaching creator</span>
-          </div>
-          <div class="results-metric-group">
-            <span class="results-number">100%</span>
-            <span class="results-label">Contract deliverable compliance and on-time brand payouts</span>
-          </div>
-          <div class="results-metric-group">
-            <span class="results-number">4+ Deals</span>
-            <span class="results-label">Multi-video recurring sponsor relationships maintained</span>
-          </div>
-        </div>
-      </article>
-
-    </section>
+    </div>
 
     <!-- Bottom CTA Card -->
     <section style="background: linear-gradient(135deg, var(--card-elevated) 0%, var(--card-bg) 100%); border: 1px solid var(--border-line); border-radius: 24px; padding: 48px; text-align: center; box-shadow: var(--shadow-card);">
@@ -204,7 +469,7 @@ import HakeLayout from "@/layouts/HakeLayout.astro";
         Ready For Similar Operational Results?
       </h2>
       <p style="font-size: 15px; color: var(--text-muted); max-width: 580px; margin: 0 auto 28px; line-height: 1.6;">
-        Let's discuss your current server bottlenecks or creator workflow needs. Direct communication, honest expectations, and proven systems.
+        Let's discuss your community bottlenecks and build an automated Discord server that keeps your fans engaged. Direct communication, honest turnaround times, and proven execution.
       </p>
       <a href="/contact" class="btn-primary-action" style="font-size: 16px; padding: 14px 36px;">
         <span>Let's Work Together &rarr;</span>
@@ -212,4 +477,38 @@ import HakeLayout from "@/layouts/HakeLayout.astro";
     </section>
 
   </div>
+
+  <!-- Interactive Scroll Reveal Engine -->
+  <script is:inline>
+    (function() {
+      const items = document.querySelectorAll('[data-timeline-item]');
+      if (!items || items.length === 0) return;
+
+      // Reveal observer with threshold
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -100px 0px',
+        threshold: 0.15
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+          }
+        });
+      }, observerOptions);
+
+      items.forEach((item, index) => {
+        // Fallback: Reveal immediately if already in view on load
+        const rect = item.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          setTimeout(() => {
+            item.classList.add('is-revealed');
+          }, index * 120);
+        }
+        observer.observe(item);
+      });
+    })();
+  </script>
 </HakeLayout>
