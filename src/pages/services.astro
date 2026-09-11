@@ -1,166 +1,521 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import content from "@/data/content.json";
-import Sidebar from "@/components/Sidebar";
-import Navigation from "@/components/Navigation";
-import Services from "@/components/Services";
-import BeforeAfterSlider from "@/components/BeforeAfterSlider";
-import GrowthCalculator from "@/components/GrowthCalculator";
-import Testimonials from "@/components/Testimonials";
-import Footer from "@/components/Footer";
-import SectionDivider from "@/components/SectionDivider";
-import PageNav from "@/components/PageNav";
+// src/pages/services.astro — Comprehensive Creator Services & Discord Architecture
+import HakeLayout from "@/layouts/HakeLayout.astro";
 ---
 
-<Layout
-  title="Services & Agency Solutions — Hake Acc"
-  description="Comprehensive YouTube channel management, high-security Discord server architecture, Shorts scaling, and creator monetization solutions."
+<HakeLayout
+  title="Services & Deliverables — hake."
+  description="Explore comprehensive Discord server architecture, automated bot setups, video editing coordination, and creator talent operations by Hake."
+  activePage="services"
 >
-  <Sidebar client:media="(min-width: 1024px)" />
-  <div class="lg:pl-[220px] flex flex-col min-h-screen">
-    <Navigation client:idle />
+  <!-- Subpage Header -->
+  <header class="subpage-header-section">
+    <span class="subpage-eyebrow">SERVICES &amp; DELIVERABLES</span>
+    <h1 class="subpage-title">
+      Engineering High-Retention Creator Operations
+    </h1>
+    <p class="subpage-subtitle">
+      I manage the operational weight behind fast-growing YouTubers and gaming communities. From ground-up Discord server restructures to video editing coordination and sponsor deal flows.
+    </p>
+
+    <div class="subpage-stat-row">
+      <div class="subpage-stat-pill">
+        <span class="stat-dot"></span>
+        <span>6 Core Operational Deliverables</span>
+      </div>
+      <div class="subpage-stat-pill">
+        <span class="stat-dot"></span>
+        <span>24h Direct Discord Response</span>
+      </div>
+      <div class="subpage-stat-pill">
+        <span class="stat-dot"></span>
+        <span>100K+ Community Reach</span>
+      </div>
+      <div class="subpage-stat-pill">
+        <span class="stat-dot"></span>
+        <span>Zero-Fluff Execution</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Flow -->
+  <div class="subpage-content-wrap">
     
-    <main id="main-content" class="flex-1 pt-16 lg:pt-0">
-      {/* Page Header */}
-      <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber/15 border border-amber/30 rounded text-amber font-silkscreen text-xs mb-4">
-          <span class="w-2 h-2 rounded-sm bg-amber" />
-          <span>SOLUTIONS &amp; DELIVERABLES</span>
+    <!-- 6 Deep-Dive Service Cards -->
+    <section class="services-deepdive-grid" aria-label="Core Services">
+      
+      <!-- Service 1: Discord Architecture -->
+      <article class="service-deep-card">
+        <div class="service-card-top">
+          <div class="service-card-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+              <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+            </svg>
+          </div>
+          <span class="service-badge-num">01 / ARCHITECTURE</span>
         </div>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold font-retro text-text-main leading-tight mb-4">
-          Comprehensive Creator
-          <br />
-          <span class="gradient-text">Growth Systems.</span>
-        </h1>
-        <p class="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-readable leading-relaxed">
-          From YouTube thumbnail packaging and upload workflows to custom Discord bots and multi-platform monetization.
+        <h2 class="service-deep-title">Custom Discord Server Architecture</h2>
+        <p class="service-deep-desc">
+          Most creator Discord servers are messy, cluttered, and overwhelming for new members. I rebuild servers with intuitive category pacing, clear channel functions, and rock-solid permission hierarchies.
         </p>
-      </section>
 
-      {/* Services Grid */}
-      <Services client:load data={content.services} />
+        <ul class="service-deliverables-list">
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Streamlined category hierarchy (8-10 focused categories max, no channel clutter)</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Granular role permission matrix preventing unauthorized pings and role leaks</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Frictionless onboarding flow with rule acceptance verification</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Custom formatted announcement &amp; rules embeds with branded aesthetic headers</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Dedicated booster lounges, VIP patron tiers, and private creator staff backstages</span>
+          </li>
+        </ul>
 
-      <SectionDivider color="#818cf8" />
+        <div class="service-tags-row">
+          <span class="service-tech-pill">Discord API</span>
+          <span class="service-tech-pill">Permission Auditing</span>
+          <span class="service-tech-pill">Discohook Formatting</span>
+          <span class="service-tech-pill">Channel UX</span>
+        </div>
+      </article>
 
-      {/* Interactive Before & After Comparator */}
-      <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <BeforeAfterSlider client:visible />
-      </section>
+      <!-- Service 2: Bot Automation -->
+      <article class="service-deep-card">
+        <div class="service-card-top">
+          <div class="service-card-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <span class="service-badge-num">02 / AUTOMATION</span>
+        </div>
+        <h2 class="service-deep-title">Automated Community Bot Ecosystems</h2>
+        <p class="service-deep-desc">
+          A server shouldn't require you to be online 24/7 to stay safe and active. I set up automated moderation, custom webhooks, role selection, and instant notification systems that keep the server running autonomously.
+        </p>
 
-      <SectionDivider color="#38bdf8" />
+        <ul class="service-deliverables-list">
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Multi-layered AutoMod: anti-spam, malicious phishing shields, and invite link filtering</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Interactive reaction roles for upload alerts, game roles, and event notifications</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Private staff ticket system with automatic transcript saving for appeals and disputes</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Sub-second YouTube &amp; Twitch stream alert webhooks with customized rich embeds</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Automated leveling loops with custom perks for high-activity community members</span>
+          </li>
+        </ul>
 
-      {/* In-Depth Service Matrix */}
-      <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <div class="text-center mb-12">
-          <p class="section-label mb-2">// SCOPE &amp; DELIVERABLES</p>
-          <h2 class="text-3xl sm:text-4xl font-bold font-retro text-text-main">
-            What Every Service Includes
-          </h2>
+        <div class="service-tags-row">
+          <span class="service-tech-pill">AutoMod</span>
+          <span class="service-tech-pill">Ticket Tool</span>
+          <span class="service-tech-pill">Sapphire / Carl-bot</span>
+          <span class="service-tech-pill">Webhooks</span>
+        </div>
+      </article>
+
+      <!-- Service 3: Video Editing Coordination -->
+      <article class="service-deep-card">
+        <div class="service-card-top">
+          <div class="service-card-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="23 7 16 12 23 17 23 7"></polygon>
+              <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+            </svg>
+          </div>
+          <span class="service-badge-num">03 / PRODUCTION</span>
+        </div>
+        <h2 class="service-deep-title">Video Editing &amp; Thumbnail Coordination</h2>
+        <p class="service-deep-desc">
+          You film the footage; I help coordinate with editors, review drafts, and ensure videos are packaged for high click-through rates and peak viewer retention without missing upload deadlines.
+        </p>
+
+        <ul class="service-deliverables-list">
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Centralized Notion &amp; Trello pipeline for footage handoffs, notes, and revision rounds</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>First 30-second hook reviews and pacing audits before final creator sign-off</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Thumbnail concept variations with high-contrast framing and readable mobile typography</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Upload schedule enforcement ensuring edits are delivered 24 hours ahead of drop</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Video metadata packaging: titles, SEO descriptions, timestamp chapters, and end cards</span>
+          </li>
+        </ul>
+
+        <div class="service-tags-row">
+          <span class="service-tech-pill">Pacing Audits</span>
+          <span class="service-tech-pill">Thumbnail Packaging</span>
+          <span class="service-tech-pill">Notion Workflows</span>
+          <span class="service-tech-pill">Editor Management</span>
+        </div>
+      </article>
+
+      <!-- Service 4: Sponsorship & Brand Deals -->
+      <article class="service-deep-card">
+        <div class="service-card-top">
+          <div class="service-card-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <span class="service-badge-num">04 / REVENUE</span>
+        </div>
+        <h2 class="service-deep-title">Sponsorships &amp; Brand Deal Management</h2>
+        <p class="service-deep-desc">
+          Managing brand emails is time-consuming and full of shady outreach. I screen legitimate sponsors, negotiate favorable rates, manage contract checklists, and ensure deliverables are tracked accurately.
+        </p>
+
+        <ul class="service-deliverables-list">
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Business email inbox screening to filter out scam promos and sketchy software</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Updated creator media kit with accurate monthly analytics, view averages, and demographics</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Negotiation of competitive flat-rate and CPM pricing for integrated sponsorships</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Tracking talking points, discount codes, tracked URLs, and upload compliance dates</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Post-campaign metrics delivery and invoicing follow-up for timely creator payouts</span>
+          </li>
+        </ul>
+
+        <div class="service-tags-row">
+          <span class="service-tech-pill">Brand Vetting</span>
+          <span class="service-tech-pill">Media Kits</span>
+          <span class="service-tech-pill">Rate Negotiation</span>
+          <span class="service-tech-pill">Contract Tracking</span>
+        </div>
+      </article>
+
+      <!-- Service 5: Social Media Strategy -->
+      <article class="service-deep-card">
+        <div class="service-card-top">
+          <div class="service-card-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+            </svg>
+          </div>
+          <span class="service-badge-num">05 / STRATEGY</span>
+        </div>
+        <h2 class="service-deep-title">Community Growth &amp; Content Pacing</h2>
+        <p class="service-deep-desc">
+          Building a loyal audience requires converting casual YouTube viewers into active community participants. I develop simple cross-platform pacing calendars and event structures that keep fans engaged between video releases.
+        </p>
+
+        <ul class="service-deliverables-list">
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Clear conversion funnels directing YouTube pinned comments to specific Discord events</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Teaser clip scheduling on Twitter/X and community tabs leading up to premier drops</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Bi-weekly community game nights, Minecraft build contests, and creator Q&amp;A sessions</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Community meme and fan art curation channels feeding content back into YouTube videos</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Staff team management: hiring, onboarding, and training trusted volunteer moderators</span>
+          </li>
+        </ul>
+
+        <div class="service-tags-row">
+          <span class="service-tech-pill">Community Events</span>
+          <span class="service-tech-pill">Fan Retention</span>
+          <span class="service-tech-pill">Mod Training</span>
+          <span class="service-tech-pill">Content Pacing</span>
+        </div>
+      </article>
+
+      <!-- Service 6: Retention Reporting -->
+      <article class="service-deep-card">
+        <div class="service-card-top">
+          <div class="service-card-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+          </div>
+          <span class="service-badge-num">06 / ANALYTICS</span>
+        </div>
+        <h2 class="service-deep-title">Community Analytics &amp; Retention Auditing</h2>
+        <p class="service-deep-desc">
+          Know exactly what is working in your community. I track key engagement metrics—active daily chatters, voice channel peak hours, and member churn—delivering actionable weekly summaries without vanity metric fluff.
+        </p>
+
+        <ul class="service-deliverables-list">
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Weekly Discord Server Insights reports highlighting active message volume and growth</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Voice channel utilization mapping to identify ideal times for streams and events</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Member retention analysis to pinpoint why new joins become inactive after 7 days</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Moderation log reviews tracking ticket resolution speeds and flagged automod triggers</span>
+          </li>
+          <li class="deliverable-item">
+            <span class="deliverable-check">✓</span>
+            <span>Actionable recommendations to revive quiet channels and optimize role incentives</span>
+          </li>
+        </ul>
+
+        <div class="service-tags-row">
+          <span class="service-tech-pill">Server Insights</span>
+          <span class="service-tech-pill">Churn Prevention</span>
+          <span class="service-tech-pill">Weekly Reports</span>
+          <span class="service-tech-pill">Actionable Data</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- 4-Step Process Roadmap -->
+    <section class="roadmap-section" aria-label="Process Workflow">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <span class="subpage-eyebrow">HOW WE WORK</span>
+        <h2 style="font-family: var(--font-heading); font-size: 28px; font-weight: 800; color: var(--text-main); margin-bottom: 10px;">
+          The 4-Step Operations Workflow
+        </h2>
+        <p style="font-size: 14.5px; color: var(--text-muted);">
+          A disciplined, step-by-step approach that prevents chaos and ensures your community setup is bulletproof from day one.
+        </p>
+      </div>
+
+      <div class="roadmap-grid">
+        <div class="roadmap-step-card">
+          <span class="roadmap-step-badge">1</span>
+          <h3 class="roadmap-step-title">Audit &amp; Bottlenecks</h3>
+          <p class="roadmap-step-desc">
+            We review your current Discord server, permissions, moderation backlog, and creator workflows to identify exactly what is broken or inefficient.
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 font-readable">
-          {/* Service 1 */}
-          <div class="pixel-hud-card rounded-xl p-6 sm:p-8 border-t-4 border-cyan bg-[#131622]">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-lg sm:text-xl font-bold font-retro text-text-main">
-                YouTube Channel Management
-              </h3>
-              <span class="pixel-badge bg-cyan/15 border border-cyan/30 text-cyan">
-                FULL SUITE
-              </span>
-            </div>
-            <p class="text-text-muted text-xs sm:text-sm leading-relaxed mb-4">
-              Complete ownership of your YouTube upload pipeline, metadata, and packaging to guarantee maximum viewer retention.
-            </p>
-            <ul class="space-y-2 text-xs sm:text-sm text-text-muted">
-              <li class="flex items-center gap-2"><span class="text-cyan font-retro text-[9px]">▶</span> Thumbnail A/B packaging &amp; design art direction</li>
-              <li class="flex items-center gap-2"><span class="text-cyan font-retro text-[9px]">▶</span> Video title hook testing &amp; high-CTR formulations</li>
-              <li class="flex items-center gap-2"><span class="text-cyan font-retro text-[9px]">▶</span> Deep video SEO: search tags, cards &amp; end-screens</li>
-              <li class="flex items-center gap-2"><span class="text-cyan font-retro text-[9px]">▶</span> Community tab marketing &amp; subscriber polling</li>
-            </ul>
-          </div>
-
-          {/* Service 2 */}
-          <div class="pixel-hud-card rounded-xl p-6 sm:p-8 border-t-4 border-purple bg-[#131622]">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-lg sm:text-xl font-bold font-retro text-text-main">
-                Discord Server Architecture
-              </h3>
-              <span class="pixel-badge bg-purple/15 border border-purple/30 text-purple">
-                HIGH SECURITY
-              </span>
-            </div>
-            <p class="text-text-muted text-xs sm:text-sm leading-relaxed mb-4">
-              Design, deployment, and security hardening of high-engagement Discord hubs built to turn viewers into loyal superfans.
-            </p>
-            <ul class="space-y-2 text-xs sm:text-sm text-text-muted">
-              <li class="flex items-center gap-2"><span class="text-purple font-retro text-[9px]">▶</span> Anti-nuke &amp; anti-raid security permissions hardening</li>
-              <li class="flex items-center gap-2"><span class="text-purple font-retro text-[9px]">▶</span> Custom bot logic, economy &amp; gamified leveling</li>
-              <li class="flex items-center gap-2"><span class="text-purple font-retro text-[9px]">▶</span> Automated YouTube &amp; Twitch stream alert channels</li>
-              <li class="flex items-center gap-2"><span class="text-purple font-retro text-[9px]">▶</span> VIP subscriber role assignment &amp; Nitro booster perks</li>
-            </ul>
-          </div>
-
-          {/* Service 3 */}
-          <div class="pixel-hud-card rounded-xl p-6 sm:p-8 border-t-4 border-amber bg-[#131622]">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-lg sm:text-xl font-bold font-retro text-text-main">
-                Shorts &amp; Multi-Platform Scaling
-              </h3>
-              <span class="pixel-badge bg-amber/15 border border-amber/30 text-amber">
-                VIRAL GROWTH
-              </span>
-            </div>
-            <p class="text-text-muted text-xs sm:text-sm leading-relaxed mb-4">
-              Repurpose long-form content into viral clips on YouTube Shorts, TikTok, and Instagram Reels to flood top-of-funnel discovery.
-            </p>
-            <ul class="space-y-2 text-xs sm:text-sm text-text-muted">
-              <li class="flex items-center gap-2"><span class="text-amber font-retro text-[9px]">▶</span> High-intensity clip extraction from streams/videos</li>
-              <li class="flex items-center gap-2"><span class="text-amber font-retro text-[9px]">▶</span> Dynamic subtitle styling, sound effects &amp; pacing</li>
-              <li class="flex items-center gap-2"><span class="text-amber font-retro text-[9px]">▶</span> Trend audio alignment &amp; viral hook positioning</li>
-              <li class="flex items-center gap-2"><span class="text-amber font-retro text-[9px]">▶</span> Cross-platform syndication across all short-form apps</li>
-            </ul>
-          </div>
-
-          {/* Service 4 */}
-          <div class="pixel-hud-card rounded-xl p-6 sm:p-8 border-t-4 border-success bg-[#131622]">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-lg sm:text-xl font-bold font-retro text-text-main">
-                Creator Agency &amp; Monetization
-              </h3>
-              <span class="pixel-badge bg-success/15 border border-success/30 text-success">
-                REVENUE MAX
-              </span>
-            </div>
-            <p class="text-text-muted text-xs sm:text-sm leading-relaxed mb-4">
-              Transform audience attention into revenue through brand sponsorships, merchandise, and membership tiers.
-            </p>
-            <ul class="space-y-2 text-xs sm:text-sm text-text-muted">
-              <li class="flex items-center gap-2"><span class="text-success font-retro text-[9px]">▶</span> Brand sponsorship pitch deck creation &amp; rate cards</li>
-              <li class="flex items-center gap-2"><span class="text-success font-retro text-[9px]">▶</span> Sponsor read script review &amp; post-campaign analytics</li>
-              <li class="flex items-center gap-2"><span class="text-success font-retro text-[9px]">▶</span> Patreon &amp; YouTube Channel Memberships setup</li>
-              <li class="flex items-center gap-2"><span class="text-success font-retro text-[9px]">▶</span> Creator affiliate marketing funnels &amp; tracking links</li>
-            </ul>
-          </div>
+        <div class="roadmap-step-card">
+          <span class="roadmap-step-badge">2</span>
+          <h3 class="roadmap-step-title">Architecture Blueprint</h3>
+          <p class="roadmap-step-desc">
+            I draft a clean category layout, role hierarchy wireframe, and bot requirement checklist customized to your specific content style and community size.
+          </p>
         </div>
-      </section>
 
-      <SectionDivider color="#f59e0b" />
+        <div class="roadmap-step-card">
+          <span class="roadmap-step-badge">3</span>
+          <h3 class="roadmap-step-title">Setup &amp; Hardening</h3>
+          <p class="roadmap-step-desc">
+            I configure channels, write clear embed guidelines, configure automod defenses, set up alert webhooks, and test permissions across all roles.
+          </p>
+        </div>
 
-      {/* Growth Calculator Section */}
-      <section class="py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <GrowthCalculator client:visible />
-      </section>
+        <div class="roadmap-step-card">
+          <span class="roadmap-step-badge">4</span>
+          <h3 class="roadmap-step-title">Handoff &amp; Ongoing Ops</h3>
+          <p class="roadmap-step-desc">
+            I train your moderators, establish simple daily moderation protocols, and remain on call to handle ongoing maintenance, bot updates, and events.
+          </p>
+        </div>
+      </div>
+    </section>
 
-      <SectionDivider color="#818cf8" />
+    <!-- Service Packages / Engagement Options -->
+    <section class="pricing-section" aria-label="Service Packages">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <span class="subpage-eyebrow">ENGAGEMENT MODELS</span>
+        <h2 style="font-family: var(--font-heading); font-size: 28px; font-weight: 800; color: var(--text-main); margin-bottom: 10px;">
+          Tailored Options For Every Creator Stage
+        </h2>
+        <p style="font-size: 14.5px; color: var(--text-muted);">
+          Transparent, straightforward scopes designed for creators looking for immediate fixes or ongoing monthly management.
+        </p>
+      </div>
 
-      {/* Testimonials preview */}
-      <Testimonials client:visible data={content.testimonials} />
+      <div class="pricing-cards-grid">
+        <!-- Tier 1 -->
+        <div class="pricing-card">
+          <h3 class="pricing-tier-name">Server Overhaul</h3>
+          <p class="pricing-tier-desc">Complete one-time restructuring of your existing Discord server or fresh ground-up build.</p>
 
-      {/* Sequence Page Nav */}
-      <PageNav client:load prevHref="/projects" prevLabel="Channels Showcase" nextHref="/experience" nextLabel="Experience & Stack" />
-    </main>
-    
-    <Footer client:visible />
+          <ul class="pricing-features-list">
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Full channel &amp; category overhaul</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Permissions security matrix</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>AutoMod spam &amp; raid hardening</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Reaction roles &amp; ticket system</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Formatted rules &amp; info embeds</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>14 days of post-launch tuning</span>
+            </li>
+          </ul>
+
+          <a href="/contact?service=Discord+Server+Setup" class="btn-primary-action" style="justify-content: center; width: 100%;">
+            <span>Inquire About Overhaul</span>
+          </a>
+        </div>
+
+        <!-- Tier 2 (Featured) -->
+        <div class="pricing-card featured">
+          <span class="pricing-badge-popular">Most Requested</span>
+          <h3 class="pricing-tier-name">Community Ops Retainer</h3>
+          <p class="pricing-tier-desc">Dedicated monthly operations management keeping your community secure, active, and running smoothly.</p>
+
+          <ul class="pricing-features-list">
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Everything in Server Overhaul</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Daily moderation oversight &amp; tickets</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>YouTube upload notification pings</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Bi-weekly community events coordination</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Weekly retention &amp; chat health reports</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Direct Discord DM priority support</span>
+            </li>
+          </ul>
+
+          <a href="/contact?service=Community+Management" class="btn-primary-action" style="justify-content: center; width: 100%;">
+            <span>Inquire About Retainer</span>
+          </a>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="pricing-card">
+          <h3 class="pricing-tier-name">Full Creator Operations</h3>
+          <p class="pricing-tier-desc">End-to-end management covering community, editing timelines, and sponsor inbound vetting.</p>
+
+          <ul class="pricing-features-list">
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Everything in Community Ops</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Video editor pipeline coordination</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Thumbnail variation review &amp; CTR focus</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Sponsorship screening &amp; negotiation</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Contract deliverable compliance checks</span>
+            </li>
+            <li class="pricing-feature-item">
+              <span style="color: var(--accent-green);">✓</span>
+              <span>Dedicated 24/7 creator operations partner</span>
+            </li>
+          </ul>
+
+          <a href="/contact?service=Full+Management" class="btn-primary-action" style="justify-content: center; width: 100%;">
+            <span>Inquire About Full Suite</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Card -->
+    <section style="margin-top: 48px; background: linear-gradient(135deg, var(--card-elevated) 0%, var(--card-bg) 100%); border: 1px solid var(--border-line); border-radius: 24px; padding: 48px; text-align: center; box-shadow: var(--shadow-card);">
+      <h2 style="font-family: var(--font-heading); font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: var(--text-main); margin-bottom: 12px;">
+        Ready To Take Your Community To The Next Level?
+      </h2>
+      <p style="font-size: 15px; color: var(--text-muted); max-width: 580px; margin: 0 auto 28px; line-height: 1.6;">
+        Let's discuss what your channel or gaming server needs. Direct communication, realistic expectations, and zero corporate fluff.
+      </p>
+      <a href="/contact" class="btn-primary-action" style="font-size: 16px; padding: 14px 36px;">
+        <span>Let's Work Together &rarr;</span>
+      </a>
+    </section>
+
   </div>
-</Layout>
+</HakeLayout>

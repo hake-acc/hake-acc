@@ -1,139 +1,207 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import content from "@/data/content.json";
-import Sidebar from "@/components/Sidebar";
-import Navigation from "@/components/Navigation";
-import About from "@/components/About";
-import TerminalSimulator from "@/components/TerminalSimulator";
-import Footer from "@/components/Footer";
-import SectionDivider from "@/components/SectionDivider";
-import PageNav from "@/components/PageNav";
+// src/pages/about.astro — About Hake, Growth Principles & Creator Operations
+import HakeLayout from "@/layouts/HakeLayout.astro";
 ---
 
-<Layout
-  title="About Hake Acc — Content Strategist & Agency Founder"
-  description="Learn more about Hake Acc, creator growth strategist, Discord architect, and founder of Hake Acc Agency."
+<HakeLayout
+  title="About Hake — Creator Operations & Discord Architect"
+  description="Learn about Hake, creator operations coordinator and Discord server architect managing top gaming communities and YouTube creators."
+  activePage="about"
 >
-  <Sidebar client:media="(min-width: 1024px)" />
-  <div class="lg:pl-[220px] flex flex-col min-h-screen">
-    <Navigation client:idle />
-    
-    <main id="main-content" class="flex-1 pt-16 lg:pt-0">
-      {/* Page Header */}
-      <section class="py-12 sm:py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber/15 border border-amber/30 rounded text-amber font-silkscreen text-xs mb-4">
-          <span class="w-2 h-2 rounded-sm bg-amber" />
-          <span>ABOUT THE FOUNDER</span>
-        </div>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold font-retro text-text-main leading-tight mb-4">
-          Engineering The Future Of
-          <br />
-          <span class="gradient-text">Creator Communities.</span>
-        </h1>
-        <p class="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-readable leading-relaxed">
-          From viral video packaging and high-security Discord bot ecosystems to end-to-end creator talent management.
-        </p>
-      </section>
+  <!-- Subpage Header -->
+  <header class="subpage-header-section">
+    <span class="subpage-eyebrow">ABOUT THE ARCHITECT</span>
+    <h1 class="subpage-title">
+      Behind The Scenes Of Fast-Growing Creators
+    </h1>
+    <p class="subpage-subtitle">
+      Hi, I'm Hake. I specialize in Discord community architecture, bot automation, and creator workflow coordination. No corporate buzzwords—just reliable execution that keeps your community running smoothly.
+    </p>
 
-      <About client:load data={content.about} />
+    <div class="subpage-stat-row">
+      <div class="subpage-stat-pill">
+        <span class="stat-dot"></span>
+        <span>25+ Communities Architected</span>
+      </div>
+      <div class="subpage-stat-pill">
+        <span class="stat-dot"></span>
+        <span>100,000+ Member Reach</span>
+      </div>
+      <div class="subpage-stat-pill">
+        <span class="stat-dot"></span>
+        <span>Direct 24h Discord Access</span>
+      </div>
+      <div class="subpage-stat-pill">
+        <span class="stat-dot"></span>
+        <span>Zero Raid Incidents</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Flow -->
+  <div class="subpage-content-wrap">
+    
+    <!-- Story & Mission Grid -->
+    <section style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: flex-start; margin-bottom: 64px;">
       
-      <SectionDivider color="#818cf8" />
+      <!-- Narrative Left -->
+      <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 24px; padding: 40px; box-shadow: var(--shadow-card);">
+        <span class="subpage-eyebrow" style="margin-bottom: 12px;">MY STORY &amp; MISSION</span>
+        <h2 style="font-family: var(--font-heading); font-size: 26px; font-weight: 800; color: var(--text-main); margin-bottom: 18px; letter-spacing: -0.02em;">
+          Taking The Operational Weight Off Creators
+        </h2>
 
-      {/* Core Philosophy Section */}
-      <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <div class="text-center mb-12">
-          <p class="section-label mb-2">// GROWTH PRINCIPLES</p>
-          <h2 class="text-3xl sm:text-4xl font-bold font-retro text-text-main">
-            The Hake Acc Agency Philosophy
-          </h2>
+        <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">
+          When a YouTube creator's channel starts blowing up, their community grows exponentially overnight. Hundreds of comments turn into thousands of Discord joins, unread DMs, and constant requests for attention.
+        </p>
+
+        <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">
+          Managing roles, setting up auto-moderation bots, resolving member appeals, scheduling upload alerts, and sorting through inbound sponsorship emails quickly turns into 4-6 hours of daily friction. That is time stolen directly from filming videos, brainstorming hooks, and creating great content.
+        </p>
+
+        <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
+          That's where I step in. I take that operational weight off creators' shoulders. I build clean, structured Discord servers with straightforward rules, bulletproof permissions, and automated bot systems. I help coordinate video editing handoffs so uploads stay on schedule, and I ensure your community remains a safe, welcoming, and high-energy home for fans.
+        </p>
+
+        <div style="background-color: var(--card-elevated); border: 1px solid var(--border-line); border-radius: 14px; padding: 18px; display: flex; align-items: center; gap: 14px;">
+          <div style="width: 10px; height: 10px; border-radius: 50%; background-color: var(--accent-blue); flex-shrink: 0;"></div>
+          <span style="font-size: 14px; font-weight: 600; color: var(--text-main);">
+            "Great creators focus on making content. Great operations ensure everything else runs without them having to worry."
+          </span>
         </div>
+      </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-readable">
-          <div class="pixel-hud-card rounded-xl p-6 sm:p-7 border-t-4 border-cyan bg-[#131622]">
-            <div class="text-2xl font-bold font-retro text-cyan mb-3">01</div>
-            <h3 class="text-lg font-bold font-retro text-text-main mb-2">High-Retention Packaging</h3>
-            <p class="text-text-muted text-xs sm:text-sm leading-relaxed">
-              Great content fails without magnetic packaging. We test dozens of title hooks, custom thumbnail variants, and initial 30-second pacing to guarantee peak CTR and watch time.
-            </p>
-          </div>
-
-          <div class="pixel-hud-card rounded-xl p-6 sm:p-7 border-t-4 border-purple bg-[#131622]">
-            <div class="text-2xl font-bold font-retro text-purple mb-3">02</div>
-            <h3 class="text-lg font-bold font-retro text-text-main mb-2">Superfan Architecture</h3>
-            <p class="text-text-muted text-xs sm:text-sm leading-relaxed">
-              Viewers are temporary, but community members are lifelong. We turn passive video viewers into dedicated Discord superfans with custom economy bots, VIP tiers, and interactive events.
-            </p>
-          </div>
-
-          <div class="pixel-hud-card rounded-xl p-6 sm:p-7 border-t-4 border-amber bg-[#131622]">
-            <div class="text-2xl font-bold font-retro text-amber mb-3">03</div>
-            <h3 class="text-lg font-bold font-retro text-text-main mb-2">Compounding Creator Equity</h3>
-            <p class="text-text-muted text-xs sm:text-sm leading-relaxed">
-              We don&apos;t just optimize single video uploads — we build sustainable creator infrastructure that generates recurring brand deals, higher sponsorship rates, and passive member conversions.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <SectionDivider color="#38bdf8" />
-
-      {/* Interactive Terminal Sandbox */}
-      <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto w-full">
-        <div class="text-center mb-8">
-          <p class="section-label mb-2">// COMMAND INTERFACE</p>
-          <h2 class="text-3xl sm:text-4xl font-bold font-retro text-text-main">
-            Interact With The Bot
-          </h2>
-        </div>
-        <TerminalSimulator client:visible />
-      </section>
-
-      <SectionDivider color="#f59e0b" />
-
-      {/* FAQ Accordion in Accessible Typography */}
-      <section class="py-16 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto w-full font-readable">
-        <div class="text-center mb-12">
-          <p class="section-label mb-2">// FREQUENTLY ASKED QUESTIONS</p>
-          <h2 class="text-3xl sm:text-4xl font-bold font-retro text-text-main">
-            How We Work With Creators
-          </h2>
-        </div>
-
-        <div class="space-y-4">
-          {[
-            {
-              q: "What types of YouTube channels do you work with?",
-              a: "We specialize in gaming, variety, Minecraft, entertainment, commentary, and creator network brands. We typically work with creators looking to scale from 50K+ subscribers into the millions."
-            },
-            {
-              q: "Do you handle complete video production or just packaging?",
-              a: "We provide end-to-end management: title hook strategy, custom thumbnail art direction, upload scheduling, video SEO metadata, Shorts repurposing, and Discord community management."
-            },
-            {
-              q: "How fast can you set up a high-security Discord server?",
-              a: "Standard custom Discord server setups with anti-raid security, custom role hierarchy, automated Twitch/YouTube alerts, and onboarding flows are fully deployed within 3 to 5 business days."
-            },
-            {
-              q: "What are your engagement terms?",
-              a: "We offer both monthly retainer management contracts for active YouTubers and fixed-scope project agreements for Discord infrastructure builds and creator consulting."
-            }
-          ].map((faq) => (
-            <div key={faq.q} class="pixel-hud-card rounded-xl p-6 bg-[#131622] border border-border hover:border-amber/40 transition-colors">
-              <h3 class="text-base font-bold font-retro text-text-main mb-2">
-                {faq.q}
-              </h3>
-              <p class="text-text-muted text-xs sm:text-sm leading-relaxed">
-                {faq.a}
-              </p>
+      <!-- Quick Highlights Right -->
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        
+        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 28px; box-shadow: var(--shadow-card);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background-color: rgba(0,102,255,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent-blue);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             </div>
-          ))}
+            <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: var(--text-main);">Security-First Mindset</h3>
+          </div>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6;">
+            Every server is configured with strict permission hierarchies, multi-tier verification gates, and zero permission leaks. No unauthorized webhooks or crypto scams.
+          </p>
         </div>
-      </section>
 
-      {/* Page navigation */}
-      <PageNav client:load prevHref="/" prevLabel="Home" nextHref="/projects" nextLabel="Explore Channels" />
-    </main>
-    
-    <Footer client:visible />
+        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 28px; box-shadow: var(--shadow-card);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background-color: rgba(34,197,94,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent-green);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: var(--text-main);">Proven Creator Track Record</h3>
+          </div>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6;">
+            Trusted by creators like CappuMCXD, Alex Adi XD, MC Thunder Playz, Arpan Gamzo, Not Vangid, and Sky Plays, managing over 100,000 community members.
+          </p>
+        </div>
+
+        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 28px; box-shadow: var(--shadow-card);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background-color: rgba(99,102,241,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent-purple);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            </div>
+            <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: var(--text-main);">Direct, Fast Communication</h3>
+          </div>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6;">
+            Direct Discord DM line with guaranteed fast turnaround. You don't deal with account managers or support tickets; you talk straight to the person managing your ops.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4 Growth Principles Section -->
+    <section style="margin-bottom: 64px;" aria-label="Growth Principles">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto 36px;">
+        <span class="subpage-eyebrow">CORE PHILOSOPHY</span>
+        <h2 style="font-family: var(--font-heading); font-size: 28px; font-weight: 800; color: var(--text-main); margin-bottom: 10px;">
+          The 4 Principles Behind High-Retention Servers
+        </h2>
+        <p style="font-size: 14.5px; color: var(--text-muted);">
+          Principles refined across tens of thousands of members to maximize engagement and minimize creator headaches.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+        
+        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-card);">
+          <div style="font-family: var(--font-heading); font-size: 14px; font-weight: 800; color: var(--accent-blue); margin-bottom: 10px;">01 / RETENTION FIRST</div>
+          <h3 style="font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 10px;">Superfans Over Casual Visitors</h3>
+          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65;">
+            Casual viewers come and go with YouTube algorithms. But an active Discord server turns one-time viewers into lifelong superfans who participate in events, support sponsors, and create community memes that fuel future content.
+          </p>
+        </div>
+
+        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-card);">
+          <div style="font-family: var(--font-heading); font-size: 14px; font-weight: 800; color: var(--accent-blue); margin-bottom: 10px;">02 / SIMPLICITY &amp; PACING</div>
+          <h3 style="font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 10px;">Less Noise, More Meaningful Chat</h3>
+          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65;">
+            Having 60 dead channels makes a server feel abandoned. We keep categories tight (8-10 channels max), focusing conversation into lively, active spaces where new members feel immediately welcomed and compelled to participate.
+          </p>
+        </div>
+
+        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-card);">
+          <div style="font-family: var(--font-heading); font-size: 14px; font-weight: 800; color: var(--accent-blue); margin-bottom: 10px;">03 / AUTOMATION THAT WORKS</div>
+          <h3 style="font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 10px;">Autonomous Operations</h3>
+          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65;">
+            Your Discord should run seamlessly even when you are asleep or editing. AutoMod rules catch 99% of spam instantly, ticket tools log disputes cleanly, and alert bots push video drops with sub-second precision.
+          </p>
+        </div>
+
+        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-card);">
+          <div style="font-family: var(--font-heading); font-size: 14px; font-weight: 800; color: var(--accent-blue); margin-bottom: 10px;">04 / ZERO FLUFF</div>
+          <h3 style="font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 10px;">No Generic AI Corporate Speak</h3>
+          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65;">
+            I don't boast about theoretical 'Zero Raid Security Frameworks' or inflated metrics. I use real tools, tested bot configs, and disciplined daily execution to make sure creators get tangible results they can see every single day.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Operational Tech Stack Section -->
+    <section style="background-color: var(--card-elevated); border: 1px solid var(--border-line); border-radius: 24px; padding: 40px; margin-bottom: 64px;">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto 28px;">
+        <span class="subpage-eyebrow">TOOLKIT &amp; TECHNOLOGIES</span>
+        <h2 style="font-family: var(--font-heading); font-size: 26px; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">
+          The Operational Toolset
+        </h2>
+        <p style="font-size: 14px; color: var(--text-muted);">
+          Industry-standard developer tools, automation bots, and coordination platforms utilized daily.
+        </p>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 800px; margin: 0 auto;">
+        <span class="subpage-stat-pill">Discord Developer Portal</span>
+        <span class="subpage-stat-pill">Discord AutoMod Engine</span>
+        <span class="subpage-stat-pill">Custom Python Webhooks</span>
+        <span class="subpage-stat-pill">Discohook Embed Formatter</span>
+        <span class="subpage-stat-pill">Ticket Tool System</span>
+        <span class="subpage-stat-pill">Sapphire Moderation Bot</span>
+        <span class="subpage-stat-pill">Carl-bot Reaction Matrix</span>
+        <span class="subpage-stat-pill">Notion Creator Pipelines</span>
+        <span class="subpage-stat-pill">Trello Editor Workflows</span>
+        <span class="subpage-stat-pill">Google Sheets Analytics</span>
+        <span class="subpage-stat-pill">Discord Server Insights</span>
+        <span class="subpage-stat-pill">OBS &amp; Stream Alert Bridges</span>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Card -->
+    <section style="background: linear-gradient(135deg, var(--card-elevated) 0%, var(--card-bg) 100%); border: 1px solid var(--border-line); border-radius: 24px; padding: 48px; text-align: center; box-shadow: var(--shadow-card);">
+      <h2 style="font-family: var(--font-heading); font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: var(--text-main); margin-bottom: 12px;">
+        Let's Build Something Great Together
+      </h2>
+      <p style="font-size: 15px; color: var(--text-muted); max-width: 580px; margin: 0 auto 28px; line-height: 1.6;">
+        Have a server that needs restructuring, or looking for reliable operations coordination? Reach out directly.
+      </p>
+      <a href="/contact" class="btn-primary-action" style="font-size: 16px; padding: 14px 36px;">
+        <span>Get In Touch &rarr;</span>
+      </a>
+    </section>
+
   </div>
-</Layout>
+</HakeLayout>
