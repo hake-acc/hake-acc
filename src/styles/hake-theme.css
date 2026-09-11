@@ -138,11 +138,16 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-line);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  body.hake-theme-dark .hake-navbar {
-    background-color: rgba(49, 51, 56, 0.88);
+  body.hake-theme-dark .hake-navbar,
+  html.dark-theme .hake-navbar {
+    background-color: rgba(30, 31, 34, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
   }
 
   .nav-brand .brand-logo {
@@ -161,6 +166,13 @@
     font-size: 32px;
     line-height: 0;
     margin-left: 2px;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+  }
+
+  body.hake-theme-dark .brand-dot,
+  html.dark-theme .brand-dot {
+    color: #38BDF8;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.75);
   }
 
   .nav-links {
@@ -193,6 +205,29 @@
     height: 2px;
     background-color: var(--accent-blue);
     border-radius: 2px;
+  }
+
+  body.hake-theme-dark .nav-item,
+  html.dark-theme .nav-item {
+    color: #949BA4;
+  }
+
+  body.hake-theme-dark .nav-item:hover,
+  html.dark-theme .nav-item:hover {
+    color: #FFFFFF;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+  }
+
+  body.hake-theme-dark .nav-item.active,
+  html.dark-theme .nav-item.active {
+    color: #FFFFFF;
+  }
+
+  body.hake-theme-dark .nav-item.active::after,
+  html.dark-theme .nav-item.active::after {
+    background: linear-gradient(90deg, #38BDF8 0%, #0066FF 100%);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+    height: 2.5px;
   }
 
   .nav-actions {
@@ -257,17 +292,57 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: transparent;
-    border: 1px solid var(--border-line);
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.09);
     border-radius: 12px;
-    color: var(--text-main);
+    color: #475569;
     cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   }
 
   .theme-toggle-btn:hover {
-    background-color: var(--card-elevated);
-    border-color: var(--border-strong);
+    background: rgba(0, 0, 0, 0.07);
+    border-color: rgba(0, 0, 0, 0.16);
+    color: #0F172A;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Default (Light Mode): show Moon, hide Sun */
+  .theme-toggle-btn .icon-moon {
+    display: block;
+  }
+  .theme-toggle-btn .icon-sun {
+    display: none;
+  }
+
+  body.hake-theme-dark .theme-toggle-btn,
+  html.dark-theme .theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    color: #FBBF24;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 12px rgba(251, 191, 36, 0.15);
+  }
+
+  body.hake-theme-dark .theme-toggle-btn:hover,
+  html.dark-theme .theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(251, 191, 36, 0.45);
+    color: #FDE047;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 16px rgba(251, 191, 36, 0.35);
+  }
+
+  /* Dark Mode: show radiant Sun, hide Moon */
+  body.hake-theme-dark .theme-toggle-btn .icon-moon,
+  html.dark-theme .theme-toggle-btn .icon-moon {
+    display: none !important;
+  }
+  body.hake-theme-dark .theme-toggle-btn .icon-sun,
+  html.dark-theme .theme-toggle-btn .icon-sun {
+    display: block !important;
   }
 
   .mobile-menu-btn {
@@ -1722,11 +1797,25 @@
       gap: 5px;
       width: 40px;
       height: 40px;
-      background: transparent;
-      border: 1px solid var(--border-line);
+      background: rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(0, 0, 0, 0.09);
       border-radius: 10px;
       cursor: pointer;
       padding: 8px;
+      transition: all 0.2s ease;
+    }
+
+    body.hake-theme-dark .mobile-menu-btn,
+    html.dark-theme .mobile-menu-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    body.hake-theme-dark .mobile-menu-btn:hover,
+    html.dark-theme .mobile-menu-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.24);
     }
 
     .hamburger-line {
@@ -1736,6 +1825,11 @@
       background-color: var(--text-main);
       border-radius: 2px;
       transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    body.hake-theme-dark .hamburger-line,
+    html.dark-theme .hamburger-line {
+      background-color: #F2F3F5;
     }
 
     /* Centered Hero on Tablet Portrait */
@@ -2019,6 +2113,21 @@
       justify-content: center;
       color: var(--text-main);
       cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    body.hake-theme-dark .drawer-close-btn,
+    html.dark-theme .drawer-close-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #F2F3F5;
+    }
+
+    body.hake-theme-dark .drawer-close-btn:hover,
+    html.dark-theme .drawer-close-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.24);
+      color: #FFFFFF;
     }
 
     .drawer-status-pill {
