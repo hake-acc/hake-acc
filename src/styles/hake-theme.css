@@ -411,7 +411,7 @@
     display: grid;
     grid-template-columns: 1fr 1.15fr;
     align-items: center;
-    padding: 48px 48px 36px;
+    padding: 44px 44px 32px;
     gap: 24px;
     position: relative;
     z-index: 10;
@@ -419,7 +419,7 @@
   }
 
   .hero-left-content {
-    max-width: 520px;
+    max-width: 500px;
   }
 
   .hero-status-tag {
@@ -743,8 +743,8 @@
   .art-visual-frame {
     position: relative;
     width: 100%;
-    max-width: 640px;
-    transform: scale(1.14) translateX(-18px) translateY(16px);
+    max-width: 630px;
+    transform: scale(1.12) translateX(-4px) translateY(16px);
     transform-origin: center center;
   }
 
@@ -846,13 +846,13 @@
   /* Badges positioning matching exact reference:
      Left badges stacked cleanly outside character and above coffee mug/laptop (y <= 46%)
      Right badges stacked cleanly outside character, above desk and left of pencil (y <= 48%) */
-  .badge-left-1 { left: -2%; top: 9%; }
-  .badge-left-2 { left: -3%; top: 27%; }
-  .badge-left-3 { left: -4%; top: 45%; }
+  .badge-left-1 { left: 3%; top: 9%; }
+  .badge-left-2 { left: 2%; top: 27%; }
+  .badge-left-3 { left: 1%; top: 45%; }
 
-  .badge-right-1 { right: -2%; top: 11%; }
-  .badge-right-2 { right: -3%; top: 29%; }
-  .badge-right-3 { right: -1%; top: 47%; }
+  .badge-right-1 { right: 2%; top: 11%; }
+  .badge-right-2 { right: 1%; top: 29%; }
+  .badge-right-3 { right: 3%; top: 47%; }
 
   /* Sparkle Stars */
   .svg-stars-overlay {
@@ -1755,14 +1755,18 @@
     }
 
     .hake-hero-section {
-      padding: 40px 32px 32px;
-      gap: 24px;
-      grid-template-columns: 1fr 1fr;
+      padding: 36px 28px 28px;
+      gap: 20px;
+      grid-template-columns: 1fr 1.05fr;
+    }
+
+    .hero-left-content {
+      max-width: 460px;
     }
 
     .art-visual-frame {
-      max-width: 600px;
-      transform: scale(1.10) translateY(12px);
+      max-width: 560px;
+      transform: scale(1.06) translateY(10px);
     }
 
     .hero-main-title {
