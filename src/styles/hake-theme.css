@@ -417,11 +417,7 @@
   }
 
   .dock-status-dot {
-    width: 8px;
-    height: 8px;
-    background-color: var(--accent-green);
-    border-radius: 50%;
-    box-shadow: 0 1px 3px rgba(34, 197, 94, 0.4);
+    display: none !important;
   }
 
   /* ====================================================
@@ -690,37 +686,12 @@
     margin-left: 2px;
   }
 
-  /* Available Card */
   .status-banner-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 18px;
-    background-color: var(--card-elevated);
-    border: 1px solid var(--border-line);
-    border-radius: 14px;
-    text-decoration: none;
-    max-width: 420px;
-    transition: border-color 0.2s ease, transform 0.2s ease;
-  }
-
-  .status-banner-card:hover {
-    border-color: var(--border-strong);
-    transform: translateY(-1px);
-  }
-
-  .status-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: none !important;
   }
 
   .green-live-beacon {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: var(--accent-green);
-    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+    display: none !important;
   }
 
   .status-copy {
@@ -1578,28 +1549,11 @@
   }
 
   .footer-status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 5px 12px;
-    background: var(--card-elevated);
-    border: 1px solid var(--border-line);
-    border-radius: 9999px;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text-main);
-    width: fit-content;
-    margin-bottom: 14px;
+    display: none !important;
   }
 
   .status-pulse-beacon {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background-color: #23A55A;
-    box-shadow: 0 0 8px rgba(35, 165, 90, 0.7);
-    flex-shrink: 0;
-    animation: beaconGlow 2s infinite ease-in-out;
+    display: none !important;
   }
 
   @keyframes beaconGlow {
@@ -2399,17 +2353,7 @@
     }
 
     .drawer-status-pill {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      background-color: var(--card-elevated);
-      border: 1px solid var(--border-line);
-      border-radius: 10px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 24px;
+      display: none !important;
     }
 
     .drawer-nav-list {
@@ -2657,10 +2601,10 @@ body.hake-theme-dark .subpage-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 16px;
+  padding: 6px 14px;
   background-color: var(--card-bg);
   border: 1px solid var(--border-line);
-  border-radius: 30px;
+  border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
   color: var(--text-main);
@@ -2668,10 +2612,7 @@ body.hake-theme-dark .subpage-eyebrow {
 }
 
 .subpage-stat-pill .stat-dot {
-  width: 6px;
-  height: 6px;
-  background-color: var(--accent-green);
-  border-radius: 50%;
+  display: none !important;
 }
 
 /* Subpage Main Content Layout */
@@ -3506,9 +3447,9 @@ body.hake-theme-dark .community-card-banner {
   font-weight: 700;
   padding: 3px 8px;
   border-radius: 6px;
-  background-color: rgba(34, 197, 94, 0.1);
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  color: var(--accent-green);
+  background-color: rgba(0, 102, 255, 0.08);
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  color: var(--accent-blue);
   display: inline-flex;
   align-items: center;
   gap: 4px;
