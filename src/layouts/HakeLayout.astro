@@ -6,7 +6,7 @@ import '../styles/hake-theme.css';
 interface Props {
   title?: string;
   description?: string;
-  activePage?: "home" | "services" | "communities" | "about" | "experience" | "contact";
+  activePage?: "home" | "services" | "experience" | "about" | "contact";
 }
 
 const {
@@ -21,6 +21,7 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1e1f22" />
     <link rel="icon" type="image/svg+xml" href="/brand/logo.png" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -31,10 +32,14 @@ const {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@hake_acc" />
 
-    <!-- Google Fonts: Outfit (Headings) & DM Sans (Body) -->
+    <!-- Google Fonts: Outfit (Headings) & DM Sans (Body) - Preconnected & Preloaded -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Outfit:wght@400;500;600;700;800&display=swap" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Outfit:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Outfit:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Outfit:wght@400;500;600;700;800&display=swap" />
+    </noscript>
 
     <!-- Zero FOUC Theme & Underline Cache Init -->
     <script is:inline>
@@ -86,9 +91,8 @@ const {
           <nav class="nav-links" aria-label="Main Navigation">
             <a href="/" class={`nav-item ${activePage === "home" ? "active" : ""}`}>Home</a>
             <a href="/services" class={`nav-item ${activePage === "services" ? "active" : ""}`}>Services</a>
-            <a href="/communities" class={`nav-item ${activePage === "communities" ? "active" : ""}`}>Communities</a>
+            <a href="/experience" class={`nav-item ${activePage === "experience" ? "active" : ""}`}>Case Studies</a>
             <a href="/about" class={`nav-item ${activePage === "about" ? "active" : ""}`}>About</a>
-            <a href="/experience" class={`nav-item ${activePage === "experience" ? "active" : ""}`}>Experience</a>
             <a href="/contact" class={`nav-item ${activePage === "contact" ? "active" : ""}`}>Contact</a>
           </nav>
 
@@ -218,7 +222,6 @@ const {
               <ul class="footer-nav-links">
                 <li><a href="/" class="footer-link">Home</a></li>
                 <li><a href="/services" class="footer-link">Services</a></li>
-                <li><a href="/communities" class="footer-link">Communities</a></li>
                 <li><a href="/experience" class="footer-link">Case Studies</a></li>
                 <li><a href="/about" class="footer-link">About Hake</a></li>
                 <li><a href="/contact" class="footer-link">Contact</a></li>
@@ -310,16 +313,12 @@ const {
           <span>Services</span>
           <span class="drawer-arrow">&rarr;</span>
         </a>
-        <a href="/communities" class={`drawer-nav-item ${activePage === "communities" ? "active" : ""}`}>
-          <span>Communities</span>
+        <a href="/experience" class={`drawer-nav-item ${activePage === "experience" ? "active" : ""}`}>
+          <span>Case Studies</span>
           <span class="drawer-arrow">&rarr;</span>
         </a>
         <a href="/about" class={`drawer-nav-item ${activePage === "about" ? "active" : ""}`}>
           <span>About</span>
-          <span class="drawer-arrow">&rarr;</span>
-        </a>
-        <a href="/experience" class={`drawer-nav-item ${activePage === "experience" ? "active" : ""}`}>
-          <span>Experience</span>
           <span class="drawer-arrow">&rarr;</span>
         </a>
         <a href="/contact" class={`drawer-nav-item ${activePage === "contact" ? "active" : ""}`}>
@@ -352,14 +351,11 @@ const {
           </svg>
           <span>Services</span>
         </a>
-        <a href="/communities" class="quickbar-action-item">
+        <a href="/experience" class={`quickbar-action-item ${activePage === "experience" ? "active" : ""}`}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-            <circle cx="9" cy="7" r="4"></circle>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
           </svg>
-          <span>Creators</span>
+          <span>Cases</span>
         </a>
         <a href="/about" class="quickbar-action-item">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
