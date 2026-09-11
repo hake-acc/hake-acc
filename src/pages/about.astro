@@ -41,71 +41,71 @@ import HakeLayout from "@/layouts/HakeLayout.astro";
   <!-- Main Content Flow -->
   <div class="subpage-content-wrap">
     
-    <!-- Story & Mission Grid -->
-    <section style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: flex-start; margin-bottom: 64px;">
+    <!-- Story & Highlights Grid -->
+    <section class="about-hero-grid" aria-label="Story and Mission">
       
       <!-- Narrative Left -->
-      <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 24px; padding: 40px; box-shadow: var(--shadow-card);">
+      <div class="about-narrative-card">
         <span class="subpage-eyebrow" style="margin-bottom: 12px;">MY STORY &amp; MISSION</span>
-        <h2 style="font-family: var(--font-heading); font-size: 26px; font-weight: 800; color: var(--text-main); margin-bottom: 18px; letter-spacing: -0.02em;">
+        <h2 class="about-card-heading">
           Taking The Operational Weight Off Creators
         </h2>
 
-        <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">
+        <p class="about-card-text">
           When a YouTube creator's channel starts blowing up, their community grows exponentially overnight. Hundreds of comments turn into thousands of Discord joins, unread DMs, and constant requests for attention.
         </p>
 
-        <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">
-          Managing roles, setting up auto-moderation bots, resolving member appeals, scheduling upload alerts, and sorting through inbound sponsorship emails quickly turns into 4-6 hours of daily friction. That is time stolen directly from filming videos, brainstorming hooks, and creating great content.
+        <p class="about-card-text">
+          Managing roles, setting up auto-moderation bots, resolving member appeals, scheduling upload alerts, and sorting through inbound sponsorship emails quickly turns into 4 to 6 hours of daily friction. That is time stolen directly from filming videos, brainstorming hooks, and creating great content.
         </p>
 
-        <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
+        <p class="about-card-text">
           That's where I step in. I take that operational weight off creators' shoulders. I build clean, structured Discord servers with straightforward rules, bulletproof permissions, and automated bot systems. I help coordinate video editing handoffs so uploads stay on schedule, and I ensure your community remains a safe, welcoming, and high-energy home for fans.
         </p>
 
-        <div style="background-color: var(--card-elevated); border: 1px solid var(--border-line); border-radius: 14px; padding: 18px; display: flex; align-items: center; gap: 14px;">
-          <div style="width: 10px; height: 10px; border-radius: 50%; background-color: var(--accent-blue); flex-shrink: 0;"></div>
-          <span style="font-size: 14px; font-weight: 600; color: var(--text-main);">
+        <div class="about-quote-box">
+          <div class="quote-dot"></div>
+          <span class="quote-text">
             "Great creators focus on making content. Great operations ensure everything else runs without them having to worry."
           </span>
         </div>
       </div>
 
       <!-- Quick Highlights Right -->
-      <div style="display: flex; flex-direction: column; gap: 20px;">
+      <div class="about-highlights-col">
         
-        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 28px; box-shadow: var(--shadow-card);">
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
-            <div style="width: 40px; height: 40px; border-radius: 10px; background-color: rgba(0,102,255,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent-blue);">
+        <div class="about-highlight-card">
+          <div class="highlight-head">
+            <div class="highlight-icon-box icon-blue">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             </div>
-            <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: var(--text-main);">Security-First Mindset</h3>
+            <h3 class="highlight-title">Security-First Mindset</h3>
           </div>
-          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6;">
+          <p class="highlight-desc">
             Every server is configured with strict permission hierarchies, multi-tier verification gates, and zero permission leaks. No unauthorized webhooks or crypto scams.
           </p>
         </div>
 
-        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 28px; box-shadow: var(--shadow-card);">
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
-            <div style="width: 40px; height: 40px; border-radius: 10px; background-color: rgba(34,197,94,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent-green);">
+        <div class="about-highlight-card">
+          <div class="highlight-head">
+            <div class="highlight-icon-box icon-green">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </div>
-            <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: var(--text-main);">Proven Creator Track Record</h3>
+            <h3 class="highlight-title">Proven Creator Track Record</h3>
           </div>
-          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6;">
+          <p class="highlight-desc">
             Trusted by creators like CappuMCXD, Alex Adi XD, MC Thunder Playz, Arpan Gamzo, Not Vangid, and Sky Plays, managing over 100,000 community members.
           </p>
         </div>
 
-        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 28px; box-shadow: var(--shadow-card);">
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
-            <div style="width: 40px; height: 40px; border-radius: 10px; background-color: rgba(99,102,241,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent-purple);">
+        <div class="about-highlight-card">
+          <div class="highlight-head">
+            <div class="highlight-icon-box icon-purple">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
             </div>
-            <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 700; color: var(--text-main);">Direct, Fast Communication</h3>
+            <h3 class="highlight-title">Direct, Fast Communication</h3>
           </div>
-          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6;">
+          <p class="highlight-desc">
             Direct Discord DM line with guaranteed fast turnaround. You don't deal with account managers or support tickets; you talk straight to the person managing your ops.
           </p>
         </div>
@@ -114,48 +114,48 @@ import HakeLayout from "@/layouts/HakeLayout.astro";
     </section>
 
     <!-- 4 Growth Principles Section -->
-    <section style="margin-bottom: 64px;" aria-label="Growth Principles">
-      <div style="text-align: center; max-width: 600px; margin: 0 auto 36px;">
+    <section class="about-principles-section" aria-label="Growth Principles">
+      <div class="about-section-head">
         <span class="subpage-eyebrow">CORE PHILOSOPHY</span>
-        <h2 style="font-family: var(--font-heading); font-size: 28px; font-weight: 800; color: var(--text-main); margin-bottom: 10px;">
+        <h2 class="section-title">
           The 4 Principles Behind High-Retention Servers
         </h2>
-        <p style="font-size: 14.5px; color: var(--text-muted);">
+        <p class="section-subtitle">
           Principles refined across tens of thousands of members to maximize engagement and minimize creator headaches.
         </p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+      <div class="about-principles-grid">
         
-        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-card);">
-          <div style="font-family: var(--font-heading); font-size: 14px; font-weight: 800; color: var(--accent-blue); margin-bottom: 10px;">01 / RETENTION FIRST</div>
-          <h3 style="font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 10px;">Superfans Over Casual Visitors</h3>
-          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65;">
+        <div class="about-principle-card">
+          <div class="principle-number">01 / RETENTION FIRST</div>
+          <h3 class="principle-title">Superfans Over Casual Visitors</h3>
+          <p class="principle-desc">
             Casual viewers come and go with YouTube algorithms. But an active Discord server turns one-time viewers into lifelong superfans who participate in events, support sponsors, and create community memes that fuel future content.
           </p>
         </div>
 
-        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-card);">
-          <div style="font-family: var(--font-heading); font-size: 14px; font-weight: 800; color: var(--accent-blue); margin-bottom: 10px;">02 / SIMPLICITY &amp; PACING</div>
-          <h3 style="font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 10px;">Less Noise, More Meaningful Chat</h3>
-          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65;">
-            Having 60 dead channels makes a server feel abandoned. We keep categories tight (8-10 channels max), focusing conversation into lively, active spaces where new members feel immediately welcomed and compelled to participate.
+        <div class="about-principle-card">
+          <div class="principle-number">02 / SIMPLICITY &amp; PACING</div>
+          <h3 class="principle-title">Less Noise, More Meaningful Chat</h3>
+          <p class="principle-desc">
+            Having 60 dead channels makes a server feel abandoned. We keep categories tight (8 to 10 channels max), focusing conversation into lively, active spaces where new members feel immediately welcomed and compelled to participate.
           </p>
         </div>
 
-        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-card);">
-          <div style="font-family: var(--font-heading); font-size: 14px; font-weight: 800; color: var(--accent-blue); margin-bottom: 10px;">03 / AUTOMATION THAT WORKS</div>
-          <h3 style="font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 10px;">Autonomous Operations</h3>
-          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65;">
+        <div class="about-principle-card">
+          <div class="principle-number">03 / AUTOMATION THAT WORKS</div>
+          <h3 class="principle-title">Autonomous Operations</h3>
+          <p class="principle-desc">
             Your Discord should run seamlessly even when you are asleep or editing. AutoMod rules catch 99% of spam instantly, ticket tools log disputes cleanly, and alert bots push video drops with sub-second precision.
           </p>
         </div>
 
-        <div style="background-color: var(--card-bg); border: 1px solid var(--border-line); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-card);">
-          <div style="font-family: var(--font-heading); font-size: 14px; font-weight: 800; color: var(--accent-blue); margin-bottom: 10px;">04 / ZERO FLUFF</div>
-          <h3 style="font-family: var(--font-heading); font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 10px;">No Generic AI Corporate Speak</h3>
-          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65;">
-            I don't boast about theoretical 'Zero Raid Security Frameworks' or inflated metrics. I use real tools, tested bot configs, and disciplined daily execution to make sure creators get tangible results they can see every single day.
+        <div class="about-principle-card">
+          <div class="principle-number">04 / ZERO FLUFF</div>
+          <h3 class="principle-title">Clear, Grounded Execution</h3>
+          <p class="principle-desc">
+            I don't boast about theoretical security frameworks or inflated metrics. I use real tools, tested bot configs, and disciplined daily execution to make sure creators get tangible results they can see every single day.
           </p>
         </div>
 
@@ -163,18 +163,18 @@ import HakeLayout from "@/layouts/HakeLayout.astro";
     </section>
 
     <!-- Operational Tech Stack Section -->
-    <section style="background-color: var(--card-elevated); border: 1px solid var(--border-line); border-radius: 24px; padding: 40px; margin-bottom: 64px;">
-      <div style="text-align: center; max-width: 600px; margin: 0 auto 28px;">
+    <section class="about-toolkit-card" aria-label="Operational Toolset">
+      <div class="about-section-head">
         <span class="subpage-eyebrow">TOOLKIT &amp; TECHNOLOGIES</span>
-        <h2 style="font-family: var(--font-heading); font-size: 26px; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">
+        <h2 class="section-title">
           The Operational Toolset
         </h2>
-        <p style="font-size: 14px; color: var(--text-muted);">
+        <p class="section-subtitle">
           Industry-standard developer tools, automation bots, and coordination platforms utilized daily.
         </p>
       </div>
 
-      <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 800px; margin: 0 auto;">
+      <div class="about-toolkit-pills">
         <span class="subpage-stat-pill">Discord Developer Portal</span>
         <span class="subpage-stat-pill">Discord AutoMod Engine</span>
         <span class="subpage-stat-pill">Custom Python Webhooks</span>
@@ -191,17 +191,368 @@ import HakeLayout from "@/layouts/HakeLayout.astro";
     </section>
 
     <!-- Bottom CTA Card -->
-    <section style="background: linear-gradient(135deg, var(--card-elevated) 0%, var(--card-bg) 100%); border: 1px solid var(--border-line); border-radius: 24px; padding: 48px; text-align: center; box-shadow: var(--shadow-card);">
-      <h2 style="font-family: var(--font-heading); font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: var(--text-main); margin-bottom: 12px;">
+    <section class="about-cta-card" aria-label="Contact Call to Action">
+      <h2 class="cta-title">
         Let's Build Something Great Together
       </h2>
-      <p style="font-size: 15px; color: var(--text-muted); max-width: 580px; margin: 0 auto 28px; line-height: 1.6;">
+      <p class="cta-subtitle">
         Have a server that needs restructuring, or looking for reliable operations coordination? Reach out directly.
       </p>
-      <a href="/contact" class="btn-primary-action" style="font-size: 16px; padding: 14px 36px;">
+      <a href="/contact" class="btn-primary-action cta-btn">
         <span>Get In Touch &rarr;</span>
       </a>
     </section>
 
   </div>
 </HakeLayout>
+
+<style>
+  /* ====================================================
+     RESPONSIVE ABOUT PAGE STYLING
+     Fully responsive across mobile (< 768px, < 480px, < 380px)
+     ==================================================== */
+  
+  .about-hero-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 36px;
+    align-items: flex-start;
+    margin-bottom: 64px;
+    width: 100%;
+  }
+
+  .about-narrative-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-line);
+    border-radius: 24px;
+    padding: 36px;
+    box-shadow: var(--shadow-card);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .about-card-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(20px, 3.2vw, 26px);
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0 0 18px 0;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .about-card-text {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin: 0 0 16px 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .about-quote-box {
+    background-color: var(--card-elevated);
+    border: 1px solid var(--border-line);
+    border-radius: 14px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .quote-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--accent-blue);
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  .quote-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1.5;
+    word-break: break-word;
+  }
+
+  .about-highlights-col {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+  }
+
+  .about-highlight-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-line);
+    border-radius: 20px;
+    padding: 24px 26px;
+    box-shadow: var(--shadow-card);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .highlight-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .highlight-icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .highlight-icon-box.icon-blue {
+    background-color: rgba(0, 102, 255, 0.1);
+    color: var(--accent-blue);
+  }
+
+  .highlight-icon-box.icon-green {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: var(--accent-green);
+  }
+
+  .highlight-icon-box.icon-purple {
+    background-color: rgba(99, 102, 241, 0.1);
+    color: var(--accent-purple);
+  }
+
+  .highlight-title {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  .highlight-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    word-break: break-word;
+  }
+
+  /* 4 Principles Section */
+  .about-principles-section {
+    margin-bottom: 64px;
+    width: 100%;
+  }
+
+  .about-section-head {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 36px;
+  }
+
+  .about-section-head .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(22px, 3.5vw, 28px);
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0 0 10px 0;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  .about-section-head .section-subtitle {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .about-principles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    width: 100%;
+  }
+
+  .about-principle-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-line);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: var(--shadow-card);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .principle-number {
+    font-family: var(--font-heading);
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--accent-blue);
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+
+  .principle-title {
+    font-family: var(--font-heading);
+    font-size: clamp(17px, 2.5vw, 20px);
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  .principle-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0;
+    word-break: break-word;
+  }
+
+  /* Toolkit Section */
+  .about-toolkit-card {
+    background-color: var(--card-elevated);
+    border: 1px solid var(--border-line);
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 64px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .about-toolkit-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* Bottom CTA */
+  .about-cta-card {
+    background: linear-gradient(135deg, var(--card-elevated) 0%, var(--card-bg) 100%);
+    border: 1px solid var(--border-line);
+    border-radius: 24px;
+    padding: 44px 32px;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .cta-title {
+    font-family: var(--font-heading);
+    font-size: clamp(22px, 3.5vw, 32px);
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0 0 12px 0;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  .cta-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 580px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+
+  .cta-btn {
+    font-size: 15px;
+    padding: 13px 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ====================================================
+     MOBILE BREAKPOINTS (< 860px and < 640px)
+     ==================================================== */
+  @media (max-width: 860px) {
+    .about-hero-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .about-narrative-card {
+      padding: 28px 22px;
+      border-radius: 20px;
+    }
+
+    .about-principles-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .about-principle-card {
+      padding: 24px 20px;
+      border-radius: 18px;
+    }
+
+    .about-toolkit-card {
+      padding: 32px 20px;
+      margin-bottom: 48px;
+    }
+
+    .about-cta-card {
+      padding: 36px 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-narrative-card {
+      padding: 22px 16px;
+      border-radius: 16px;
+    }
+
+    .about-highlight-card {
+      padding: 18px 16px;
+      border-radius: 16px;
+    }
+
+    .about-principle-card {
+      padding: 20px 16px;
+      border-radius: 16px;
+    }
+
+    .about-toolkit-card {
+      padding: 24px 14px;
+      border-radius: 18px;
+      margin-bottom: 36px;
+    }
+
+    .about-toolkit-pills {
+      gap: 8px;
+    }
+
+    .about-toolkit-pills .subpage-stat-pill {
+      font-size: 12px;
+      padding: 5px 12px;
+    }
+
+    .about-cta-card {
+      padding: 28px 16px;
+      border-radius: 18px;
+    }
+
+    .cta-btn {
+      width: 100%;
+    }
+  }
+</style>
