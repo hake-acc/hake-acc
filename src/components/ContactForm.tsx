@@ -108,7 +108,7 @@ export default function ContactForm({ data }: ContactProps) {
             variants={itemVariants}
             className="text-text-muted mt-4 max-w-xl mx-auto text-sm sm:text-base leading-relaxed font-readable"
           >
-            Whether you&apos;re looking for YouTube management, need a high-security Discord server, or want creator agency growth — transmit an inquiry below.
+            Whether you&apos;re looking for YouTube management, need a high-security Discord server, or want creator agency growth: transmit an inquiry below.
           </motion.p>
         </motion.div>
 

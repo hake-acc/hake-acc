@@ -71,7 +71,7 @@ export default function ExecutivePitch() {
             </h2>
 
             <p className="text-text-muted text-sm sm:text-base font-readable leading-relaxed">
-              If you run an active YouTube channel, you don&apos;t just need an editor — you need an <strong className="text-white font-semibold">end-to-end Content Strategist and Discord Architect</strong>. I handle thumbnail A/B packaging, title hook formulas, video SEO metadata, Shorts scaling, and high-security Discord community infrastructure so you can focus entirely on creating.
+              If you run an active YouTube channel, you don&apos;t just need an editor, you need an <strong className="text-white font-semibold">end-to-end Content Strategist and Discord Architect</strong>. I handle thumbnail A/B packaging, title hook formulas, video SEO metadata, Shorts scaling, and high-security Discord community infrastructure so you can focus entirely on creating.
             </p>
 
             {/* 4 Pillars */}

@@ -88,14 +88,14 @@ export default function TerminalSimulator() {
           botResponse = (
             <div className="space-y-1 text-cyan font-readable">
               <div className="font-bold font-retro text-xs">🎮 [FEATURED CREATORS &amp; CHANNELS]</div>
-              <div>1. Alex Adi XD — Gaming &amp; Entertainment (@alexadixdofficial)</div>
-              <div>2. Mc thunder Playz — Gaming &amp; Community Hub (@mcthunderxdofficial)</div>
-              <div>3. Not Vangid — Creator &amp; Content Channel (@notvangid)</div>
-              <div>4. Sky Plays — Gameplay &amp; Streams (@oneskyplayz)</div>
-              <div>5. Upper Gaming — Gaming Network &amp; Hub (@upper_gaming)</div>
-              <div>6. Cappy Mc — Main Gaming Channel (@cappy-mc)</div>
-              <div>7. CappuXD — Secondary Highlights Channel (@CappuXD)</div>
-              <div>8. Arpan GamzO — Gaming &amp; Entertainment (@arpangamzo_official)</div>
+              <div>1. Alex Adi XD - Gaming &amp; Entertainment (@alexadixdofficial)</div>
+              <div>2. Mc thunder Playz - Gaming &amp; Community Hub (@mcthunderxdofficial)</div>
+              <div>3. Not Vangid | Creator &amp; Content Channel (@notvangid)</div>
+              <div>4. Sky Plays - Gameplay &amp; Streams (@oneskyplayz)</div>
+              <div>5. Upper Gaming - Gaming Network &amp; Hub (@upper_gaming)</div>
+              <div>6. Cappy Mc - Main Gaming Channel (@cappy-mc)</div>
+              <div>7. CappuXD - Secondary Highlights Channel (@CappuXD)</div>
+              <div>8. Arpan GamzO - Gaming &amp; Entertainment (@arpangamzo_official)</div>
               <div className="text-white/60 text-xs">→ Explore full direct links at /projects</div>
             </div>
           );
@@ -142,12 +142,12 @@ export default function TerminalSimulator() {
         case "/quote":
         case "quote":
           const quotes = [
-            "\"Great channels aren't born from algorithms — they're engineered with retention and superfan culture.\"",
+            "\"Great channels aren't born from algorithms; they're engineered with retention and superfan culture.\"",
             "\"A 1% increase in CTR compounded across 50 uploads equals hundreds of thousands of new subscribers.\"",
-            "\"Your Discord server shouldn't just be a chat room — it's the heartbeat of your creator empire.\"",
+            "\"Your Discord server shouldn't just be a chat room; it's the heartbeat of your creator empire.\"",
           ];
           const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-          botResponse = <div className="text-amber italic font-readable">{randomQuote} — Hake Acc</div>;
+          botResponse = <div className="text-amber italic font-readable">{randomQuote} (Hake Acc)</div>;
           break;
 
         case "/contact":

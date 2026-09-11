@@ -136,7 +136,7 @@ export default function Skills({ data }: SkillsProps) {
             variants={itemVariants}
             className="text-text-muted mt-4 max-w-xl mx-auto text-sm sm:text-base leading-relaxed font-readable"
           >
-            End-to-end creator growth stack — from video packaging and SEO to Discord bot architecture and viral content systems.
+            End-to-end creator growth stack - from video packaging and SEO to Discord bot architecture and viral content systems.
           </motion.p>
         </motion.div>
 

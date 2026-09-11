@@ -1,7 +1,7 @@
-/* hake-theme.css — Core Unified Design System Tokens & Components */
+/* hake-theme.css - Core Unified Design System Tokens & Components */
 
 /* ====================================================
-     DESIGN SYSTEM TOKENS — OUTFIT & DM SANS
+     DESIGN SYSTEM TOKENS - OUTFIT & DM SANS
      Clean Typography • Discord Dark Mode • Balanced Geometry
      ==================================================== */
   :root {
@@ -1733,7 +1733,7 @@
     }
   }
 
-  /* 3. Mid-range Desktop (1140px to 1320px) — Scaled Badges */
+  /* 3. Mid-range Desktop (1140px to 1320px) - Scaled Badges */
   @media (min-width: 1140px) and (max-width: 1320px) {
     .floating-badges-layer {
       transform: scale(0.88);
@@ -1741,7 +1741,7 @@
     }
   }
 
-  /* 4. Small Laptops, Tablet Landscape & Mobile (< 1140px) — Clean Character Focus */
+  /* 4. Small Laptops, Tablet Landscape & Mobile (< 1140px) - Clean Character Focus */
   @media (max-width: 1139px) {
     .floating-badges-layer {
       display: none !important;
