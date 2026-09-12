@@ -1402,7 +1402,7 @@
     z-index: 15;
   }
 
-  /* Ambient Footer CTA Card */
+  /* Ambient Footer CTA Card with Moving Bluish Glow Animated Border Beam */
   .footer-cta-card {
     background: var(--card-bg);
     border: 1px solid var(--border-line);
@@ -1413,26 +1413,95 @@
     justify-content: space-between;
     gap: 28px;
     margin-bottom: 48px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 0 20px rgba(56, 189, 248, 0.08);
     position: relative;
     overflow: hidden;
+    isolation: isolate;
+    transition: box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
   body.hake-theme-dark .footer-cta-card {
-    background: linear-gradient(135deg, rgba(43, 45, 49, 0.9) 0%, rgba(30, 31, 34, 0.95) 100%);
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    background: #1E1F22;
+    border-color: rgba(56, 189, 248, 0.18);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 28px rgba(56, 189, 248, 0.12);
   }
 
+  /* Rotating Conic Border Beam with Bluish Glow */
   .footer-cta-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
-    opacity: 0.8;
+    top: 50%;
+    left: 50%;
+    width: 2400px;
+    height: 2400px;
+    max-width: none;
+    max-height: none;
+    transform: translate(-50%, -50%) rotate(0deg);
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 240deg,
+      rgba(0, 85, 238, 0.2) 270deg,
+      rgba(56, 189, 248, 0.7) 310deg,
+      #38BDF8 335deg,
+      #BAE6FD 348deg,
+      rgba(56, 189, 248, 0.8) 356deg,
+      transparent 360deg
+    );
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.75)) drop-shadow(0 0 2px #38BDF8);
+    animation: cta-border-beam-spin 5s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.9;
+    will-change: transform;
+  }
+
+  /* Inner Content Mask Surface (leaves 1.5px border channel for the glowing beam) */
+  .footer-cta-card::after {
+    content: '';
+    position: absolute;
+    inset: 1.5px;
+    background: var(--card-bg);
+    border-radius: 18.5px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  body.hake-theme-dark .footer-cta-card::after {
+    background: linear-gradient(135deg, rgba(43, 45, 49, 0.97) 0%, rgba(30, 31, 34, 0.98) 100%);
+  }
+
+  .footer-cta-text,
+  .footer-cta-actions {
+    position: relative;
+    z-index: 2;
+  }
+
+  @keyframes cta-border-beam-spin {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-cta-card::before {
+      animation: none;
+      transform: translate(-50%, -50%) rotate(45deg);
+      opacity: 0.5;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .footer-cta-card:hover {
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45), 0 0 36px rgba(56, 189, 248, 0.24);
+    }
+    .footer-cta-card:hover::before {
+      opacity: 1;
+      animation-duration: 3.8s;
+    }
   }
 
   .footer-cta-text {
