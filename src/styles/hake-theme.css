@@ -771,7 +771,7 @@
     position: relative;
     width: 100%;
     max-width: 630px;
-    transform: scale(1.12) translateX(-4px) translateY(16px);
+    transform: scale(1.02) translateX(-18px) translateY(10px);
     transform-origin: center center;
   }
 
@@ -877,9 +877,9 @@
   .badge-left-2 { left: 2%; top: 27%; }
   .badge-left-3 { left: 1%; top: 45%; }
 
-  .badge-right-1 { right: 2%; top: 11%; }
-  .badge-right-2 { right: 1%; top: 29%; }
-  .badge-right-3 { right: 3%; top: 47%; }
+  .badge-right-1 { right: 14%; top: 11%; }
+  .badge-right-2 { right: 14%; top: 29%; }
+  .badge-right-3 { right: 14%; top: 47%; }
 
   /* Sparkle Stars */
   .svg-stars-overlay {
@@ -1234,6 +1234,125 @@
   /* ====================================================
      SECTION 5: CONTACT & DIRECT SOCIALS
      ==================================================== */
+  /* Contact Header Row with Paper Plane Ornament */
+  .contact-header-container {
+    position: relative;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .contact-plane-ornament {
+    position: absolute;
+    right: 28px;
+    top: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto;
+    z-index: 5;
+    user-select: none;
+  }
+
+  .subpage-plane-ornament {
+    right: 48px;
+    top: 24px;
+  }
+
+  .contact-plane-element {
+    width: 78px;
+    height: auto;
+    display: block;
+    transform: rotate(8deg);
+    filter: drop-shadow(0 10px 24px rgba(0, 102, 255, 0.16)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+    animation: planeGentleGlide 4.5s ease-in-out infinite alternate;
+  }
+
+  body.hake-theme-dark .contact-plane-element {
+    filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.28)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
+  }
+
+  .plane-flight-trail {
+    position: absolute;
+    bottom: -8px;
+    left: -28px;
+    width: 96px;
+    height: 48px;
+    color: var(--accent-blue);
+    opacity: 0.45;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .contact-plane-ornament:hover .contact-plane-element {
+    transform: translateY(-8px) rotate(14deg) scale(1.06);
+    filter: drop-shadow(0 14px 30px rgba(0, 102, 255, 0.28)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+  }
+
+  body.hake-theme-dark .contact-plane-ornament:hover .contact-plane-element {
+    filter: drop-shadow(0 0 26px rgba(56, 189, 248, 0.45)) drop-shadow(0 12px 30px rgba(0, 0, 0, 0.6));
+  }
+
+  .contact-plane-ornament:hover .plane-flight-trail {
+    opacity: 0.85;
+  }
+
+  @keyframes planeGentleGlide {
+    0% {
+      transform: translateY(0px) rotate(8deg);
+    }
+    50% {
+      transform: translateY(-7px) rotate(12deg) translateX(3px);
+    }
+    100% {
+      transform: translateY(3px) rotate(6deg) translateX(-2px);
+    }
+  }
+
+  @media (max-width: 1080px) {
+    .contact-plane-ornament {
+      right: 14px;
+      top: 6px;
+    }
+    .subpage-plane-ornament {
+      right: 24px;
+      top: 18px;
+    }
+    .contact-plane-element {
+      width: 62px;
+    }
+    .plane-flight-trail {
+      width: 76px;
+      left: -20px;
+      bottom: -6px;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .contact-plane-ornament {
+      right: 8px;
+      top: 6px;
+      transform: scale(0.85);
+      transform-origin: top right;
+    }
+    .subpage-plane-ornament {
+      right: 12px;
+      top: 14px;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .contact-plane-ornament {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-plane-element {
+      animation: none !important;
+    }
+  }
+
   .contact-grid-container {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
@@ -2079,7 +2198,7 @@
 
     .art-visual-frame {
       max-width: 560px;
-      transform: scale(1.06) translateY(10px);
+      transform: scale(1.0) translateX(-14px) translateY(8px);
     }
 
     .hero-main-title {
@@ -2205,7 +2324,7 @@
 
     .art-visual-frame {
       max-width: 480px;
-      transform: scale(1.08);
+      transform: scale(1.0);
     }
 
     .floating-badges-layer {
@@ -2298,13 +2417,13 @@
     }
 
     .hero-art-column {
-      max-width: 360px;
+      max-width: 340px;
       margin: 12px auto 0;
     }
 
     .art-visual-frame {
-      max-width: 360px;
-      transform: scale(1.06);
+      max-width: 340px;
+      transform: scale(1.0);
     }
 
     .hake-section {
@@ -3814,12 +3933,13 @@ body.hake-theme-dark .human-review-bubble {
 }
 
 /* =========================================================================
-   Hake Codrops 1:1 Page Transitions Architecture (Physical Motion, Zero Fade)
-   - Duration: 0.45s with Emil Kowalski cubic-bezier(0.23, 1, 0.32, 1)
-   - 1. Swipe from Right (slide-left): Incoming page slides from +100% to 0%
-   - 2. Swipe from Left (slide-right): Incoming page slides from -100% to 0%
-   - 3. Zoom In (zoom-in): Outgoing scales down to 70%, incoming zooms into 100%
-   - 4. Zoom Out (zoom-out): Outgoing zooms down, incoming scales up to 100%
+   Hake Modern Fluid Page Transitions Architecture (Apple & Emil Kowalski Standards)
+   - Duration: 0.36s with custom cubic-bezier(0.16, 1, 0.3, 1)
+   - 1. Swipe from Right (slide-left): Solid physical slide with iOS-style parallax
+   - 2. Swipe from Left (slide-right): Solid physical reverse slide revealing previous page
+   - 3. Forward Depth Zoom (zoom-in): In-page button / card CTA click
+   - 4. Reverse Depth Zoom (zoom-out): Back links or reverse CTA click
+   - Zero harsh border stripes, zero heavy black shadows, zero white-out dip
    ========================================================================= */
 
 .hake-content-body {
@@ -3827,6 +3947,7 @@ body.hake-theme-dark .human-review-bubble {
   position: relative;
   display: flex;
   flex-direction: column;
+  background-color: var(--bg-page);
 }
 
 /* Disable root crossfade so only main-content executes the physical transition */
@@ -3835,42 +3956,61 @@ body.hake-theme-dark .human-review-bubble {
   animation: none !important;
 }
 
-/* Allow incoming and outgoing surfaces to translate and scale beyond group bounds without clipping */
-::view-transition-group(main-content),
-::view-transition-image-pair(main-content) {
-  overflow: visible !important;
-  animation-duration: 0.45s !important;
-  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1) !important;
+/* Keep sticky navbar and floating social dock firmly anchored on top with zero flicker */
+::view-transition-group(site-header),
+::view-transition-group(site-dock) {
+  z-index: 1000 !important;
+  animation: none !important;
 }
 
-/* Force solid opaque page during transitions to eliminate transparent ghosting and fading */
+::view-transition-old(site-header),
+::view-transition-new(site-header),
+::view-transition-old(site-dock),
+::view-transition-new(site-dock) {
+  animation: none !important;
+}
+
+/* Main Content View Transition Group - clipped to container so offscreen slides don't cause page overflow */
+::view-transition-group(main-content) {
+  overflow: hidden !important;
+  z-index: 1 !important;
+  animation-duration: 0.36s !important;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+::view-transition-image-pair(main-content) {
+  overflow: hidden !important;
+}
+
+/* Base surface configuration for outgoing and incoming page snapshots */
 ::view-transition-old(main-content),
 ::view-transition-new(main-content) {
-  animation-duration: 0.45s !important;
-  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1) !important;
+  animation-duration: 0.36s !important;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
   animation-fill-mode: both !important;
   mix-blend-mode: normal !important;
   backface-visibility: hidden !important;
   transform-style: preserve-3d !important;
 }
 
-/* Solid background paints during transitions based on active theme */
+/* Solid background paints during transitions based on active theme to prevent transparent bleed */
 :root:not(.dark-theme) ::view-transition-old(main-content),
 :root:not(.dark-theme) ::view-transition-new(main-content) {
-  background-color: #FFFFFF !important;
+  background-color: var(--bg-page);
 }
 
 :root.dark-theme ::view-transition-old(main-content),
 :root.dark-theme ::view-transition-new(main-content) {
-  background-color: #313338 !important;
+  background-color: var(--bg-page);
 }
 
-/* 1. Swipe from Right / Move to Left (Forward: Homepage to Subpage, or forward nav) */
+/* 1. Swipe from Right (slide-left: Forward Navigation / Home to Subpage)
+   Incoming page slides in from right over outgoing page, while outgoing slides slightly left */
 :root[data-transition="slide-left"]::view-transition-old(main-content),
 :root[data-astro-transition="slide-left"]::view-transition-old(main-content),
 :root[data-astro-transition="forward"]::view-transition-old(main-content),
 :root:not([data-transition])::view-transition-old(main-content) {
-  animation-name: ptMoveToLeft !important;
+  animation-name: ptParallaxLeftOut !important;
   z-index: 1 !important;
 }
 
@@ -3878,30 +4018,42 @@ body.hake-theme-dark .human-review-bubble {
 :root[data-astro-transition="slide-left"]::view-transition-new(main-content),
 :root[data-astro-transition="forward"]::view-transition-new(main-content),
 :root:not([data-transition])::view-transition-new(main-content) {
-  animation-name: ptMoveFromRight !important;
+  animation-name: ptSlideFromRightIn !important;
   z-index: 2 !important;
-  box-shadow: -25px 0 60px rgba(0, 0, 0, 0.35) !important;
-  border-left: 2px solid #38BDF8 !important;
+  box-shadow: -16px 0 32px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* 2. Swipe from Left / Move to Right (Backward: Subpage to Homepage, or back nav) */
+:root.dark-theme[data-transition="slide-left"]::view-transition-new(main-content),
+:root.dark-theme[data-astro-transition="slide-left"]::view-transition-new(main-content),
+:root.dark-theme[data-astro-transition="forward"]::view-transition-new(main-content),
+:root.dark-theme:not([data-transition])::view-transition-new(main-content) {
+  box-shadow: -20px 0 40px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* 2. Swipe from Left (slide-right: Backward Navigation / Subpage to Home)
+   Outgoing page slides away to the right, revealing previous page underneath */
 :root[data-transition="slide-right"]::view-transition-old(main-content),
 :root[data-astro-transition="slide-right"]::view-transition-old(main-content),
 :root[data-astro-transition="back"]::view-transition-old(main-content) {
-  animation-name: ptMoveToRight !important;
-  z-index: 1 !important;
+  animation-name: ptSlideToRightOut !important;
+  z-index: 2 !important;
+  box-shadow: -16px 0 32px rgba(0, 0, 0, 0.08) !important;
+}
+
+:root.dark-theme[data-transition="slide-right"]::view-transition-old(main-content),
+:root.dark-theme[data-astro-transition="slide-right"]::view-transition-old(main-content),
+:root.dark-theme[data-astro-transition="back"]::view-transition-old(main-content) {
+  box-shadow: -20px 0 40px rgba(0, 0, 0, 0.45) !important;
 }
 
 :root[data-transition="slide-right"]::view-transition-new(main-content),
 :root[data-astro-transition="slide-right"]::view-transition-new(main-content),
 :root[data-astro-transition="back"]::view-transition-new(main-content) {
-  animation-name: ptMoveFromLeft !important;
-  z-index: 2 !important;
-  box-shadow: 25px 0 60px rgba(0, 0, 0, 0.35) !important;
-  border-right: 2px solid #38BDF8 !important;
+  animation-name: ptParallaxRightIn !important;
+  z-index: 1 !important;
 }
 
-/* 3. Zoom In (In-page Button / Card Click) */
+/* 3. Forward Depth Zoom (zoom-in: In-page Button / Card Click) */
 :root[data-transition="zoom-in"]::view-transition-old(main-content),
 :root[data-astro-transition="zoom-in"]::view-transition-old(main-content) {
   animation-name: ptScaleDown !important;
@@ -3912,19 +4064,25 @@ body.hake-theme-dark .human-review-bubble {
 :root[data-astro-transition="zoom-in"]::view-transition-new(main-content) {
   animation-name: ptZoomIn !important;
   z-index: 2 !important;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45) !important;
-  border: 2px solid rgba(56, 189, 248, 0.5) !important;
-  border-radius: 20px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* 4. Zoom Out (Back navigation from zoomed view) */
+:root.dark-theme[data-transition="zoom-in"]::view-transition-new(main-content),
+:root.dark-theme[data-astro-transition="zoom-in"]::view-transition-new(main-content) {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* 4. Reverse Depth Zoom (zoom-out: Back navigation from zoomed view) */
 :root[data-transition="zoom-out"]::view-transition-old(main-content),
 :root[data-astro-transition="zoom-out"]::view-transition-old(main-content) {
   animation-name: ptZoomOut !important;
   z-index: 2 !important;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45) !important;
-  border: 2px solid rgba(56, 189, 248, 0.5) !important;
-  border-radius: 20px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08) !important;
+}
+
+:root.dark-theme[data-transition="zoom-out"]::view-transition-old(main-content),
+:root.dark-theme[data-astro-transition="zoom-out"]::view-transition-old(main-content) {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45) !important;
 }
 
 :root[data-transition="zoom-out"]::view-transition-new(main-content),
@@ -3933,54 +4091,120 @@ body.hake-theme-dark .human-review-bubble {
   z-index: 1 !important;
 }
 
-/* Keyframes (Physical Solid Motion) */
-@keyframes ptMoveToLeft {
-  from { transform: translateX(0%); }
-  to { transform: translateX(-100%); }
+/* -------------------------------------------------------------------------
+   Fluid Directional Keyframes (iOS-grade physical slides and depth zooms)
+   ------------------------------------------------------------------------- */
+
+/* Forward: Outgoing page moves 25% left with subtle dimming */
+@keyframes ptParallaxLeftOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-25%);
+    opacity: 0.85;
+  }
 }
 
-@keyframes ptMoveFromRight {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0%); }
+/* Forward: Incoming page enters 100% from right fully opaque */
+@keyframes ptSlideFromRightIn {
+  from {
+    transform: translateX(100%);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-@keyframes ptMoveToRight {
-  from { transform: translateX(0%); }
-  to { transform: translateX(100%); }
+/* Backward: Outgoing page slides off to the right */
+@keyframes ptSlideToRightOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 1;
+  }
 }
 
-@keyframes ptMoveFromLeft {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0%); }
+/* Backward: Incoming page emerges from subtle 25% left offset */
+@keyframes ptParallaxRightIn {
+  from {
+    transform: translateX(-25%);
+    opacity: 0.85;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
+/* Forward Zoom: Outgoing page stays grounded and recedes into depth without dipping */
 @keyframes ptScaleDown {
-  from { transform: scale(1); opacity: 1; }
-  to { transform: scale(0.70); opacity: 0.2; }
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.96);
+    opacity: 0.85;
+  }
 }
 
+/* Forward Zoom: Incoming page emerges forward from 0.96 scale with fast opacity ramp */
 @keyframes ptZoomIn {
-  from { transform: scale(0.70); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
+/* Reverse Zoom: Outgoing page lifts outward while remaining visible */
 @keyframes ptZoomOut {
-  from { transform: scale(1); opacity: 1; }
-  to { transform: scale(0.70); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.02);
+    opacity: 0;
+  }
 }
 
+/* Reverse Zoom: Incoming page returns from depth */
 @keyframes ptScaleUp {
-  from { transform: scale(0.70); opacity: 0.2; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.96);
+    opacity: 0.85;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(main-content),
   ::view-transition-old(main-content),
   ::view-transition-new(main-content) {
-    animation-duration: 0.15s !important;
+    animation-duration: 0.05s !important;
     animation-name: none !important;
     transform: none !important;
   }
 }
+
 

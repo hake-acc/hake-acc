@@ -62,24 +62,11 @@ import '../styles/hake-theme.css';
       
       <!-- Main Canvas Container -->
       <div class="hake-page-container" id="landing-root">
-        
-        <!-- Faint Background Structural Geometry (No Harsh Glows) -->
-        <div class="bg-geometry-decor" aria-hidden="true">
-          <!-- Concentric Orbit Ring Behind Hero -->
-          <svg class="bg-circle-orbit" viewBox="0 0 700 700" fill="none">
-            <circle cx="350" cy="350" r="300" stroke="currentColor" stroke-width="1.5" stroke-dasharray="10 14" opacity="0.14" />
-            <circle cx="350" cy="350" r="210" stroke="currentColor" stroke-width="1" opacity="0.08" />
-          </svg>
-          <!-- Sweeping Curved Fluid Baseline Across Page -->
-          <svg class="bg-sweeping-curve" viewBox="0 0 1440 600" fill="none" preserveAspectRatio="none">
-            <path d="M-80 320 C 350 480, 850 140, 1520 380" stroke="currentColor" stroke-width="1.8" stroke-dasharray="8 10" opacity="0.12" />
-          </svg>
-        </div>
 
         <!-- ====================================================
              1. HEADER NAVIGATION
              ==================================================== -->
-        <header class="hake-navbar" id="siteHeader" transition:name="site-header" transition:persist>
+        <header class="hake-navbar" id="siteHeader" transition:name="site-header" transition:persist="site-header">
           <div class="nav-brand">
             <a href="/" class="brand-logo" aria-label="hake home">
               <span class="brand-text">hake</span><span class="brand-dot">.</span>
@@ -132,7 +119,7 @@ import '../styles/hake-theme.css';
         <!-- ====================================================
              2. FLOATING SOCIAL DOCK (DESKTOP ONLY)
              ==================================================== -->
-        <aside class="floating-dock" aria-label="Social Profiles" transition:name="site-dock" transition:persist>
+        <aside class="floating-dock" id="socialDock" aria-label="Social Profiles" transition:name="site-dock" transition:persist="social-dock">
           <div class="dock-capsule">
             <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="dock-btn" aria-label="Discord: hake_acc" title="Discord: hake_acc">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -159,6 +146,19 @@ import '../styles/hake-theme.css';
 
         <!-- Main Content Body (Slides or Zooms between pages) -->
         <div class="hake-content-body" transition:name="main-content">
+          <!-- Faint Background Structural Geometry (No Harsh Glows) -->
+          <div class="bg-geometry-decor" aria-hidden="true">
+            <!-- Concentric Orbit Ring Behind Hero -->
+            <svg class="bg-circle-orbit" viewBox="0 0 700 700" fill="none">
+              <circle cx="350" cy="350" r="300" stroke="currentColor" stroke-width="1.5" stroke-dasharray="10 14" opacity="0.14" />
+              <circle cx="350" cy="350" r="210" stroke="currentColor" stroke-width="1" opacity="0.08" />
+            </svg>
+            <!-- Sweeping Curved Fluid Baseline Across Page -->
+            <svg class="bg-sweeping-curve" viewBox="0 0 1440 600" fill="none" preserveAspectRatio="none">
+              <path d="M-80 320 C 350 480, 850 140, 1520 380" stroke="currentColor" stroke-width="1.8" stroke-dasharray="8 10" opacity="0.12" />
+            </svg>
+          </div>
+
           <!-- ====================================================
                MAIN PAGE CONTENT
                ==================================================== -->
@@ -700,10 +700,29 @@ import '../styles/hake-theme.css';
                SECTION 5: SOCIALS & DIRECT INQUIRY
                ================================================== -->
           <section class="hake-section contact-section" id="contact">
-            <div class="section-header-wrap">
-              <span class="section-eyebrow">GET IN TOUCH</span>
-              <h2 class="section-main-heading">Let's Build Something Great Together</h2>
-              <p class="section-subtext">Have a Discord server that needs restructuring, or need reliable management support for your community? Reach out directly through any platform below.</p>
+            <div class="contact-header-container">
+              <div class="section-header-wrap">
+                <span class="section-eyebrow">GET IN TOUCH</span>
+                <h2 class="section-main-heading">Let's Build Something Great Together</h2>
+                <p class="section-subtext">Have a Discord server that needs restructuring, or need reliable management support for your community? Reach out directly through any platform below.</p>
+              </div>
+
+              <!-- Right-side Paper Plane Accent from Hero Scene -->
+              <div class="contact-plane-ornament" aria-hidden="true">
+                <svg class="plane-flight-trail" viewBox="0 0 120 60" fill="none">
+                  <path d="M 10 52 C 28 50, 42 38, 48 24 C 54 10, 42 2, 32 8 C 22 16, 32 34, 48 36 C 72 38, 92 24, 110 16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="4 4"/>
+                  <path d="M 103 10 L 111 16 L 104 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <img 
+                  src="/assets/paper_plane.webp" 
+                  alt="" 
+                  class="contact-plane-element" 
+                  width="78" 
+                  height="70"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </div>
 
             <div class="contact-grid-container">
@@ -1956,7 +1975,7 @@ import '../styles/hake-theme.css';
     position: relative;
     width: 100%;
     max-width: 630px;
-    transform: scale(1.12) translateX(-4px) translateY(16px);
+    transform: scale(1.02) translateX(-18px) translateY(10px);
     transform-origin: center center;
   }
 
@@ -2062,9 +2081,9 @@ import '../styles/hake-theme.css';
   .badge-left-2 { left: 2%; top: 27%; }
   .badge-left-3 { left: 1%; top: 45%; }
 
-  .badge-right-1 { right: 2%; top: 11%; }
-  .badge-right-2 { right: 1%; top: 29%; }
-  .badge-right-3 { right: 3%; top: 47%; }
+  .badge-right-1 { right: 14%; top: 11%; }
+  .badge-right-2 { right: 14%; top: 29%; }
+  .badge-right-3 { right: 14%; top: 47%; }
 
   /* Sparkle Stars */
   .svg-stars-overlay {
@@ -2139,8 +2158,8 @@ import '../styles/hake-theme.css';
 
   .services-pencil-ornament {
     position: absolute;
-    right: 24px;
-    top: -12px;
+    right: 28px;
+    top: 4px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2199,8 +2218,8 @@ import '../styles/hake-theme.css';
 
   @media (max-width: 1080px) {
     .services-pencil-ornament {
-      right: 4px;
-      top: -4px;
+      right: 14px;
+      top: 6px;
     }
     .services-pencil-element {
       width: 62px;
@@ -2213,6 +2232,15 @@ import '../styles/hake-theme.css';
   }
 
   @media (max-width: 820px) {
+    .services-pencil-ornament {
+      right: 8px;
+      top: 6px;
+      transform: scale(0.85);
+      transform-origin: top right;
+    }
+  }
+
+  @media (max-width: 540px) {
     .services-pencil-ornament {
       display: none;
     }
@@ -2513,6 +2541,112 @@ import '../styles/hake-theme.css';
   /* ====================================================
      SECTION 5: CONTACT & DIRECT SOCIALS
      ==================================================== */
+  /* Contact Header Row with Paper Plane Ornament */
+  .contact-header-container {
+    position: relative;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .contact-plane-ornament {
+    position: absolute;
+    right: 28px;
+    top: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto;
+    z-index: 5;
+    user-select: none;
+  }
+
+  .contact-plane-element {
+    width: 78px;
+    height: auto;
+    display: block;
+    transform: rotate(8deg);
+    filter: drop-shadow(0 10px 24px rgba(0, 102, 255, 0.16)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+    animation: planeGentleGlide 4.5s ease-in-out infinite alternate;
+  }
+
+  body.hake-theme-dark .contact-plane-element {
+    filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.28)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
+  }
+
+  .plane-flight-trail {
+    position: absolute;
+    bottom: -8px;
+    left: -28px;
+    width: 96px;
+    height: 48px;
+    color: var(--accent-blue);
+    opacity: 0.45;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .contact-plane-ornament:hover .contact-plane-element {
+    transform: translateY(-8px) rotate(14deg) scale(1.06);
+    filter: drop-shadow(0 14px 30px rgba(0, 102, 255, 0.28)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+  }
+
+  body.hake-theme-dark .contact-plane-ornament:hover .contact-plane-element {
+    filter: drop-shadow(0 0 26px rgba(56, 189, 248, 0.45)) drop-shadow(0 12px 30px rgba(0, 0, 0, 0.6));
+  }
+
+  .contact-plane-ornament:hover .plane-flight-trail {
+    opacity: 0.85;
+  }
+
+  @keyframes planeGentleGlide {
+    0% {
+      transform: translateY(0px) rotate(8deg);
+    }
+    50% {
+      transform: translateY(-7px) rotate(12deg) translateX(3px);
+    }
+    100% {
+      transform: translateY(3px) rotate(6deg) translateX(-2px);
+    }
+  }
+
+  @media (max-width: 1080px) {
+    .contact-plane-ornament {
+      right: 14px;
+      top: 6px;
+    }
+    .contact-plane-element {
+      width: 62px;
+    }
+    .plane-flight-trail {
+      width: 76px;
+      left: -20px;
+      bottom: -6px;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .contact-plane-ornament {
+      right: 8px;
+      top: 6px;
+      transform: scale(0.85);
+      transform-origin: top right;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .contact-plane-ornament {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-plane-element {
+      animation: none !important;
+    }
+  }
+
   .contact-grid-container {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
@@ -3163,7 +3297,7 @@ import '../styles/hake-theme.css';
 
     .art-visual-frame {
       max-width: 560px;
-      transform: scale(1.06) translateY(10px);
+      transform: scale(1.0) translateX(-14px) translateY(8px);
     }
 
     .hero-main-title {
@@ -3289,7 +3423,7 @@ import '../styles/hake-theme.css';
 
     .art-visual-frame {
       max-width: 480px;
-      transform: scale(1.08);
+      transform: scale(1.0);
     }
 
     .floating-badges-layer {
@@ -3382,13 +3516,13 @@ import '../styles/hake-theme.css';
     }
 
     .hero-art-column {
-      max-width: 360px;
+      max-width: 340px;
       margin: 12px auto 0;
     }
 
     .art-visual-frame {
-      max-width: 360px;
-      transform: scale(1.06);
+      max-width: 340px;
+      transform: scale(1.0);
     }
 
     .hake-section {

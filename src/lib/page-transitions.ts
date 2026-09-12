@@ -118,6 +118,10 @@ export function initPageTransitions(): void {
     }
 
     const fromPath = window.location.pathname;
+    if (cleanPath(href) === cleanPath(fromPath) && href.includes('#')) {
+      return;
+    }
+
     const transitionType = determineTransition(target, fromPath, href);
 
     document.documentElement.setAttribute('data-transition', transitionType);

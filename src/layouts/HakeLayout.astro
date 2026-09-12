@@ -68,24 +68,11 @@ const {
       
       <!-- Main Canvas Container -->
       <div class="hake-page-container" id="landing-root">
-        
-        <!-- Faint Background Structural Geometry (No Harsh Glows) -->
-        <div class="bg-geometry-decor" aria-hidden="true">
-          <!-- Concentric Orbit Ring Behind Header/Hero -->
-          <svg class="bg-circle-orbit" viewBox="0 0 700 700" fill="none">
-            <circle cx="350" cy="350" r="300" stroke="currentColor" stroke-width="1.5" stroke-dasharray="10 14" opacity="0.14" />
-            <circle cx="350" cy="350" r="210" stroke="currentColor" stroke-width="1" opacity="0.08" />
-          </svg>
-          <!-- Sweeping Curved Fluid Baseline Across Page -->
-          <svg class="bg-sweeping-curve" viewBox="0 0 1440 600" fill="none" preserveAspectRatio="none">
-            <path d="M-80 320 C 350 480, 850 140, 1520 380" stroke="currentColor" stroke-width="1.8" stroke-dasharray="8 10" opacity="0.12" />
-          </svg>
-        </div>
 
         <!-- ====================================================
              1. HEADER NAVIGATION
              ==================================================== -->
-        <header class="hake-navbar" id="siteHeader" transition:name="site-header" transition:persist>
+        <header class="hake-navbar" id="siteHeader" transition:name="site-header" transition:persist="site-header">
           <div class="nav-brand">
             <a href="/" class="brand-logo" aria-label="hake home">
               <span class="brand-text">hake</span><span class="brand-dot">.</span>
@@ -138,7 +125,7 @@ const {
         <!-- ====================================================
              2. FLOATING SOCIAL DOCK (DESKTOP ONLY)
              ==================================================== -->
-        <aside class="floating-dock" aria-label="Social Profiles" transition:name="site-dock" transition:persist>
+        <aside class="floating-dock" id="socialDock" aria-label="Social Profiles" transition:name="site-dock" transition:persist="social-dock">
           <div class="dock-capsule">
             <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="dock-btn" aria-label="Discord: hake_acc" title="Discord: hake_acc">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -166,6 +153,19 @@ const {
 
         <!-- Main Content Body (Slides or Zooms between pages) -->
         <div class="hake-content-body" transition:name="main-content">
+          <!-- Faint Background Structural Geometry (No Harsh Glows) -->
+          <div class="bg-geometry-decor" aria-hidden="true">
+            <!-- Concentric Orbit Ring Behind Header/Hero -->
+            <svg class="bg-circle-orbit" viewBox="0 0 700 700" fill="none">
+              <circle cx="350" cy="350" r="300" stroke="currentColor" stroke-width="1.5" stroke-dasharray="10 14" opacity="0.14" />
+              <circle cx="350" cy="350" r="210" stroke="currentColor" stroke-width="1" opacity="0.08" />
+            </svg>
+            <!-- Sweeping Curved Fluid Baseline Across Page -->
+            <svg class="bg-sweeping-curve" viewBox="0 0 1440 600" fill="none" preserveAspectRatio="none">
+              <path d="M-80 320 C 350 480, 850 140, 1520 380" stroke="currentColor" stroke-width="1.8" stroke-dasharray="8 10" opacity="0.12" />
+            </svg>
+          </div>
+
           <!-- Main Page Content Slot -->
           <main class="hake-main-flow" id="mainContent">
             <slot />
