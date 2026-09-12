@@ -1,6 +1,8 @@
 ---
 // HakeLandingPage.astro - Complete Working Creator Services & Discord Architecture Portfolio
 // Clean Humanized Copy • Grounded Real Services • Cropped Reference Assets • Smooth Underline Animation
+import { ClientRouter } from 'astro:transitions';
+import '../styles/hake-theme.css';
 ---
 
 <!doctype html>
@@ -50,6 +52,9 @@
         } catch(e) {}
       })();
     </script>
+
+    <!-- Astro View Transitions for instant, smooth page navigation -->
+    <ClientRouter />
   </head>
   <body class="hake-theme-light">
     <!-- Responsive Viewport Wrapper -->
@@ -74,7 +79,7 @@
         <!-- ====================================================
              1. HEADER NAVIGATION
              ==================================================== -->
-        <header class="hake-navbar" id="siteHeader">
+        <header class="hake-navbar" id="siteHeader" transition:name="site-header" transition:persist>
           <div class="nav-brand">
             <a href="/" class="brand-logo" aria-label="hake home">
               <span class="brand-text">hake</span><span class="brand-dot">.</span>
@@ -127,7 +132,7 @@
         <!-- ====================================================
              2. FLOATING SOCIAL DOCK (DESKTOP ONLY)
              ==================================================== -->
-        <aside class="floating-dock" aria-label="Social Profiles">
+        <aside class="floating-dock" aria-label="Social Profiles" transition:name="site-dock" transition:persist>
           <div class="dock-capsule">
             <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="dock-btn" aria-label="Discord: hake_acc" title="Discord: hake_acc">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -152,10 +157,12 @@
           </div>
         </aside>
 
-        <!-- ====================================================
-             MAIN PAGE CONTENT
-             ==================================================== -->
-        <main class="hake-main-content">
+        <!-- Main Content Body (Slides or Zooms between pages) -->
+        <div class="hake-content-body" transition:name="main-content">
+          <!-- ====================================================
+               MAIN PAGE CONTENT
+               ==================================================== -->
+          <main class="hake-main-content">
 
           <!-- ==================================================
                SECTION 1: HERO (OPTIMIZED FOR IMPACT & HUMAN COPY)
@@ -859,6 +866,7 @@
             </a>
           </div>
         </footer>
+        </div> <!-- /hake-content-body -->
 
       </div> <!-- /hake-page-container -->
     </div> <!-- /hake-viewport-wrapper -->
@@ -944,8 +952,11 @@
       </div>
     </nav>
 
-    <!-- Interactive Logic -->
+    <!-- Interactive Logic & Page Transitions Controller -->
     <script>
+      import { initPageTransitions } from '../lib/page-transitions';
+      initPageTransitions();
+
       // 1. Theme Toggle (Light & Discord Dark)
       const themeToggle = document.getElementById('themeToggle');
 

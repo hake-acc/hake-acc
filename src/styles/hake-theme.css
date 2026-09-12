@@ -3813,3 +3813,174 @@ body.hake-theme-dark .human-review-bubble {
   }
 }
 
+/* =========================================================================
+   Hake Codrops 1:1 Page Transitions Architecture (Physical Motion, Zero Fade)
+   - Duration: 0.45s with Emil Kowalski cubic-bezier(0.23, 1, 0.32, 1)
+   - 1. Swipe from Right (slide-left): Incoming page slides from +100% to 0%
+   - 2. Swipe from Left (slide-right): Incoming page slides from -100% to 0%
+   - 3. Zoom In (zoom-in): Outgoing scales down to 70%, incoming zooms into 100%
+   - 4. Zoom Out (zoom-out): Outgoing zooms down, incoming scales up to 100%
+   ========================================================================= */
+
+.hake-content-body {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Disable root crossfade so only main-content executes the physical transition */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+}
+
+/* Allow incoming and outgoing surfaces to translate and scale beyond group bounds without clipping */
+::view-transition-group(main-content),
+::view-transition-image-pair(main-content) {
+  overflow: visible !important;
+  animation-duration: 0.45s !important;
+  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+/* Force solid opaque page during transitions to eliminate transparent ghosting and fading */
+::view-transition-old(main-content),
+::view-transition-new(main-content) {
+  animation-duration: 0.45s !important;
+  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1) !important;
+  animation-fill-mode: both !important;
+  mix-blend-mode: normal !important;
+  backface-visibility: hidden !important;
+  transform-style: preserve-3d !important;
+}
+
+/* Solid background paints during transitions based on active theme */
+:root:not(.dark-theme) ::view-transition-old(main-content),
+:root:not(.dark-theme) ::view-transition-new(main-content) {
+  background-color: #FFFFFF !important;
+}
+
+:root.dark-theme ::view-transition-old(main-content),
+:root.dark-theme ::view-transition-new(main-content) {
+  background-color: #313338 !important;
+}
+
+/* 1. Swipe from Right / Move to Left (Forward: Homepage to Subpage, or forward nav) */
+:root[data-transition="slide-left"]::view-transition-old(main-content),
+:root[data-astro-transition="slide-left"]::view-transition-old(main-content),
+:root[data-astro-transition="forward"]::view-transition-old(main-content),
+:root:not([data-transition])::view-transition-old(main-content) {
+  animation-name: ptMoveToLeft !important;
+  z-index: 1 !important;
+}
+
+:root[data-transition="slide-left"]::view-transition-new(main-content),
+:root[data-astro-transition="slide-left"]::view-transition-new(main-content),
+:root[data-astro-transition="forward"]::view-transition-new(main-content),
+:root:not([data-transition])::view-transition-new(main-content) {
+  animation-name: ptMoveFromRight !important;
+  z-index: 2 !important;
+  box-shadow: -25px 0 60px rgba(0, 0, 0, 0.35) !important;
+  border-left: 2px solid #38BDF8 !important;
+}
+
+/* 2. Swipe from Left / Move to Right (Backward: Subpage to Homepage, or back nav) */
+:root[data-transition="slide-right"]::view-transition-old(main-content),
+:root[data-astro-transition="slide-right"]::view-transition-old(main-content),
+:root[data-astro-transition="back"]::view-transition-old(main-content) {
+  animation-name: ptMoveToRight !important;
+  z-index: 1 !important;
+}
+
+:root[data-transition="slide-right"]::view-transition-new(main-content),
+:root[data-astro-transition="slide-right"]::view-transition-new(main-content),
+:root[data-astro-transition="back"]::view-transition-new(main-content) {
+  animation-name: ptMoveFromLeft !important;
+  z-index: 2 !important;
+  box-shadow: 25px 0 60px rgba(0, 0, 0, 0.35) !important;
+  border-right: 2px solid #38BDF8 !important;
+}
+
+/* 3. Zoom In (In-page Button / Card Click) */
+:root[data-transition="zoom-in"]::view-transition-old(main-content),
+:root[data-astro-transition="zoom-in"]::view-transition-old(main-content) {
+  animation-name: ptScaleDown !important;
+  z-index: 1 !important;
+}
+
+:root[data-transition="zoom-in"]::view-transition-new(main-content),
+:root[data-astro-transition="zoom-in"]::view-transition-new(main-content) {
+  animation-name: ptZoomIn !important;
+  z-index: 2 !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45) !important;
+  border: 2px solid rgba(56, 189, 248, 0.5) !important;
+  border-radius: 20px !important;
+}
+
+/* 4. Zoom Out (Back navigation from zoomed view) */
+:root[data-transition="zoom-out"]::view-transition-old(main-content),
+:root[data-astro-transition="zoom-out"]::view-transition-old(main-content) {
+  animation-name: ptZoomOut !important;
+  z-index: 2 !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45) !important;
+  border: 2px solid rgba(56, 189, 248, 0.5) !important;
+  border-radius: 20px !important;
+}
+
+:root[data-transition="zoom-out"]::view-transition-new(main-content),
+:root[data-astro-transition="zoom-out"]::view-transition-new(main-content) {
+  animation-name: ptScaleUp !important;
+  z-index: 1 !important;
+}
+
+/* Keyframes (Physical Solid Motion) */
+@keyframes ptMoveToLeft {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes ptMoveFromRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0%); }
+}
+
+@keyframes ptMoveToRight {
+  from { transform: translateX(0%); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes ptMoveFromLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0%); }
+}
+
+@keyframes ptScaleDown {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0.70); opacity: 0.2; }
+}
+
+@keyframes ptZoomIn {
+  from { transform: scale(0.70); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes ptZoomOut {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0.70); opacity: 0; }
+}
+
+@keyframes ptScaleUp {
+  from { transform: scale(0.70); opacity: 0.2; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(main-content),
+  ::view-transition-old(main-content),
+  ::view-transition-new(main-content) {
+    animation-duration: 0.15s !important;
+    animation-name: none !important;
+    transform: none !important;
+  }
+}
+

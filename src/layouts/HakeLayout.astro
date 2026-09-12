@@ -1,6 +1,7 @@
 ---
 // HakeLayout.astro - Universal Layout for Multi-Page Hake Portfolio
 // Provides sticky navbar, theme toggle, mobile drawer, social dock, quickbar, footer, and styling
+import { ClientRouter } from 'astro:transitions';
 import '../styles/hake-theme.css';
 
 interface Props {
@@ -57,6 +58,9 @@ const {
         } catch(e) {}
       })();
     </script>
+
+    <!-- Astro View Transitions for instant, smooth page navigation -->
+    <ClientRouter />
   </head>
   <body class="hake-theme-light">
     <!-- Responsive Viewport Wrapper -->
@@ -81,7 +85,7 @@ const {
         <!-- ====================================================
              1. HEADER NAVIGATION
              ==================================================== -->
-        <header class="hake-navbar" id="siteHeader">
+        <header class="hake-navbar" id="siteHeader" transition:name="site-header" transition:persist>
           <div class="nav-brand">
             <a href="/" class="brand-logo" aria-label="hake home">
               <span class="brand-text">hake</span><span class="brand-dot">.</span>
@@ -134,7 +138,7 @@ const {
         <!-- ====================================================
              2. FLOATING SOCIAL DOCK (DESKTOP ONLY)
              ==================================================== -->
-        <aside class="floating-dock" aria-label="Social Profiles">
+        <aside class="floating-dock" aria-label="Social Profiles" transition:name="site-dock" transition:persist>
           <div class="dock-capsule">
             <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="dock-btn" aria-label="Discord: hake_acc" title="Discord: hake_acc">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -160,10 +164,12 @@ const {
           </div>
         </aside>
 
-        <!-- Main Page Content Slot -->
-        <main class="hake-main-flow" id="mainContent">
-          <slot />
-        </main>
+        <!-- Main Content Body (Slides or Zooms between pages) -->
+        <div class="hake-content-body" transition:name="main-content">
+          <!-- Main Page Content Slot -->
+          <main class="hake-main-flow" id="mainContent">
+            <slot />
+          </main>
 
         <!-- ====================================================
              SITE FOOTER
@@ -279,6 +285,7 @@ const {
           </a>
         </div>
       </footer>
+      </div> <!-- /hake-content-body -->
 
       </div> <!-- /hake-page-container -->
     </div> <!-- /hake-viewport-wrapper -->
@@ -365,72 +372,10 @@ const {
       </div>
     </div>
 
-    <!-- Universal Interactive Scripts (Theme Toggle, Mobile Drawer) -->
-    <script is:inline>
-      // Theme Toggle Logic
-      (function() {
-        const themeToggleBtn = document.getElementById('themeToggle');
-
-        function updateIcons(isDark) {
-          if (themeToggleBtn) {
-            themeToggleBtn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
-            themeToggleBtn.setAttribute('title', isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme');
-          }
-        }
-
-        function setTheme(theme) {
-          const isDark = theme === 'dark';
-          document.documentElement.classList.toggle('dark-theme', isDark);
-          document.body.className = isDark ? 'hake-theme-dark' : 'hake-theme-light';
-          updateIcons(isDark);
-          try { localStorage.setItem('hake-theme', theme); } catch(e) {}
-        }
-
-        const savedTheme = localStorage.getItem('hake-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const initialDark = savedTheme ? (savedTheme === 'dark') : prefersDark;
-        updateIcons(initialDark);
-
-        if (themeToggleBtn) {
-          themeToggleBtn.addEventListener('click', function() {
-            const currentIsDark = document.body.classList.contains('hake-theme-dark');
-            setTheme(currentIsDark ? 'light' : 'dark');
-          });
-        }
-
-        // Mobile Drawer Logic
-        const menuBtn = document.getElementById('mobileMenuToggle');
-        const drawer = document.getElementById('mobileDrawer');
-        const overlay = document.getElementById('mobileDrawerOverlay');
-        const closeBtn = document.getElementById('mobileDrawerClose');
-
-        function openDrawer() {
-          if (drawer && overlay && menuBtn) {
-            drawer.classList.add('open');
-            drawer.removeAttribute('inert');
-            overlay.classList.add('active');
-            menuBtn.setAttribute('aria-expanded', 'true');
-            document.body.style.overflow = 'hidden';
-          }
-        }
-
-        function closeDrawer() {
-          if (drawer && overlay && menuBtn) {
-            drawer.classList.remove('open');
-            drawer.setAttribute('inert', '');
-            overlay.classList.remove('active');
-            menuBtn.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-          }
-        }
-
-        if (menuBtn) menuBtn.addEventListener('click', openDrawer);
-        if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-        if (overlay) overlay.addEventListener('click', closeDrawer);
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') closeDrawer();
-        });
-      })();
+    <!-- Universal Interactive & Page Transition Controller -->
+    <script>
+      import { initPageTransitions } from '../lib/page-transitions';
+      initPageTransitions();
     </script>
   </body>
 </html>
