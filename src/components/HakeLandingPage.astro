@@ -378,10 +378,28 @@ import '../styles/hake-theme.css';
                Direct from Reference: crop_services_row.png
                ================================================== -->
           <section class="hake-section services-section" id="services">
-            <div class="section-header-wrap">
-              <span class="section-eyebrow">WHAT I DO</span>
-              <h2 class="section-main-heading">Services I Provide (Through My Trusted Network)</h2>
-              <p class="section-subtext">Clear, reliable support so you never have to worry about the operational backend of your channel or community.</p>
+            <div class="services-header-container">
+              <div class="section-header-wrap">
+                <span class="section-eyebrow">WHAT I DO</span>
+                <h2 class="section-main-heading">Services I Provide (Through My Trusted Network)</h2>
+                <p class="section-subtext">Clear, reliable support so you never have to worry about the operational backend of your channel or community.</p>
+              </div>
+
+              <!-- Right-side Pencil Accent from Character PNG -->
+              <div class="services-pencil-ornament" aria-hidden="true">
+                <svg class="pencil-sketch-doodle" viewBox="0 0 110 50" fill="none">
+                  <path d="M8 42 C 30 48, 55 38, 72 24 C 88 10, 102 14, 94 36 C 84 52, 54 48, 44 34" stroke="currentColor" stroke-width="1.6" stroke-dasharray="4 4" stroke-linecap="round" />
+                </svg>
+                <img 
+                  src="/assets/pencil_element.webp" 
+                  alt="" 
+                  class="services-pencil-element" 
+                  width="78" 
+                  height="131" 
+                  loading="lazy" 
+                  decoding="async" 
+                />
+              </div>
             </div>
 
             <div class="services-cards-grid">
@@ -2079,6 +2097,100 @@ import '../styles/hake-theme.css';
     font-size: 16px;
     color: var(--text-muted);
     line-height: 1.6;
+  }
+
+  /* Services Header Row with Pencil Ornament */
+  .services-header-container {
+    position: relative;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .services-pencil-ornament {
+    position: absolute;
+    right: 24px;
+    top: -12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto;
+    z-index: 5;
+    user-select: none;
+  }
+
+  .services-pencil-element {
+    width: 78px;
+    height: auto;
+    display: block;
+    transform: rotate(-10deg);
+    filter: drop-shadow(0 10px 24px rgba(0, 102, 255, 0.16)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+    animation: pencilGentleFloat 4.2s ease-in-out infinite alternate;
+  }
+
+  body.hake-theme-dark .services-pencil-element {
+    filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.28)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
+  }
+
+  .pencil-sketch-doodle {
+    position: absolute;
+    bottom: -10px;
+    left: -28px;
+    width: 96px;
+    height: 44px;
+    color: var(--accent-blue);
+    opacity: 0.4;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .services-pencil-ornament:hover .services-pencil-element {
+    transform: translateY(-8px) rotate(-6deg) scale(1.06);
+    filter: drop-shadow(0 14px 30px rgba(0, 102, 255, 0.28)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+  }
+
+  body.hake-theme-dark .services-pencil-ornament:hover .services-pencil-element {
+    filter: drop-shadow(0 0 26px rgba(56, 189, 248, 0.45)) drop-shadow(0 12px 30px rgba(0, 0, 0, 0.6));
+  }
+
+  .services-pencil-ornament:hover .pencil-sketch-doodle {
+    opacity: 0.75;
+  }
+
+  @keyframes pencilGentleFloat {
+    0% {
+      transform: translateY(0px) rotate(-10deg);
+    }
+    100% {
+      transform: translateY(-7px) rotate(-6deg);
+    }
+  }
+
+  @media (max-width: 1080px) {
+    .services-pencil-ornament {
+      right: 4px;
+      top: -4px;
+    }
+    .services-pencil-element {
+      width: 62px;
+    }
+    .pencil-sketch-doodle {
+      width: 76px;
+      left: -20px;
+      bottom: -8px;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .services-pencil-ornament {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .services-pencil-element {
+      animation: none !important;
+    }
   }
 
   /* ====================================================
