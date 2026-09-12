@@ -99,10 +99,10 @@
             </a>
             
             <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle light or dark theme" title="Toggle Theme">
-              <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>
-              <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+              <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="5"></circle>
                 <line x1="12" y1="1" x2="12" y2="3"></line>
                 <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -948,13 +948,11 @@
     <script>
       // 1. Theme Toggle (Light & Discord Dark)
       const themeToggle = document.getElementById('themeToggle');
-      const iconSun = themeToggle?.querySelector('.icon-sun') as HTMLElement | null;
-      const iconMoon = themeToggle?.querySelector('.icon-moon') as HTMLElement | null;
 
       function updateThemeIcons(isDark: boolean) {
-        if (iconSun && iconMoon) {
-          iconSun.style.display = isDark ? 'block' : 'none';
-          iconMoon.style.display = isDark ? 'none' : 'block';
+        if (themeToggle) {
+          themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+          themeToggle.setAttribute('title', isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme');
         }
       }
 
@@ -1405,6 +1403,7 @@
   }
 
   .theme-toggle-btn {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1415,7 +1414,11 @@
     border-radius: 12px;
     color: #475569;
     cursor: pointer;
-    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    transition: background-color 0.2s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.2s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.2s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.16s cubic-bezier(0.23, 1, 0.32, 1);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   }
 
@@ -1427,20 +1430,41 @@
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
   }
 
-  /* Default (Light Mode): show Moon, hide Sun */
-  .theme-toggle-btn .icon-moon {
-    display: block;
-  }
-  .theme-toggle-btn .icon-sun {
-    display: none;
+  .theme-toggle-btn:active {
+    transform: scale(0.92);
   }
 
+  /* Shared Icon Properties: Centered, GPU-accelerated */
+  .theme-toggle-btn .icon-moon,
+  .theme-toggle-btn .icon-sun {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                opacity 0.28s cubic-bezier(0.23, 1, 0.32, 1),
+                color 0.24s ease;
+    will-change: transform, opacity;
+  }
+
+  /* Default (Light Mode): Moon visible, Sun rotated away */
+  .theme-toggle-btn .icon-moon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    color: #475569;
+  }
+
+  .theme-toggle-btn .icon-sun {
+    opacity: 0;
+    transform: scale(0.65) rotate(90deg);
+    color: #FBBF24;
+  }
+
+  /* Dark Mode Button Styling */
   body.hake-theme-dark .theme-toggle-btn,
   html.dark-theme .theme-toggle-btn {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 12px;
-    color: #FBBF24;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 12px rgba(251, 191, 36, 0.15);
   }
 
@@ -1448,19 +1472,29 @@
   html.dark-theme .theme-toggle-btn:hover {
     background: rgba(255, 255, 255, 0.12);
     border-color: rgba(251, 191, 36, 0.45);
-    color: #FDE047;
-    transform: translateY(-1px);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 16px rgba(251, 191, 36, 0.35);
   }
 
-  /* Dark Mode: show radiant Sun, hide Moon */
+  /* Dark Mode: Sun blooms in, Moon rotates away */
   body.hake-theme-dark .theme-toggle-btn .icon-moon,
   html.dark-theme .theme-toggle-btn .icon-moon {
-    display: none !important;
+    opacity: 0;
+    transform: scale(0.65) rotate(-90deg);
   }
+
   body.hake-theme-dark .theme-toggle-btn .icon-sun,
   html.dark-theme .theme-toggle-btn .icon-sun {
-    display: block !important;
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    color: #FBBF24;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle-btn .icon-moon,
+    .theme-toggle-btn .icon-sun {
+      transition: opacity 0.2s ease;
+      transform: none !important;
+    }
   }
 
   .mobile-menu-btn {
