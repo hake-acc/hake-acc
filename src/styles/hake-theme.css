@@ -16,11 +16,11 @@
     --border-line: rgba(0, 0, 0, 0.08);
     --border-strong: rgba(0, 0, 0, 0.14);
     --text-main: #0F172A;
-    --text-muted: #64748B;
+    --text-muted: #55657E;
     --text-subtle: #94A3B8;
 
     /* Brand Accents */
-    --accent-blue: #0066FF;
+    --accent-blue: #0055EE;
     --accent-blue-bright: #38BDF8;
     --accent-purple: #6366F1;
     --accent-green: #22C55E;
@@ -41,7 +41,7 @@
     --text-main: #F2F3F5;
     --text-muted: #B5BAC1;
     --text-subtle: #949BA4;
-    --accent-blue: #0066FF;
+    --accent-blue: #38BDF8;
     --accent-blue-bright: #38BDF8;
     --accent-purple: #818CF8;
     --accent-green: #23A55A;
@@ -1746,7 +1746,8 @@
      ==================================================== */
   @media (min-width: 901px) {
     .mobile-drawer-overlay,
-    .mobile-drawer-panel {
+    .mobile-drawer-panel,
+    .mobile-drawer {
       display: none !important;
     }
   }
@@ -1763,12 +1764,15 @@
     transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .mobile-drawer-overlay.active {
+  .mobile-drawer-overlay.active,
+  .mobile-drawer-overlay.open {
     opacity: 1;
     pointer-events: auto;
+    visibility: visible;
   }
 
-  .mobile-drawer-panel {
+  .mobile-drawer-panel,
+  .mobile-drawer {
     position: fixed;
     top: 0;
     right: 0;
@@ -1779,16 +1783,21 @@
     border-left: 1px solid var(--border-line);
     z-index: 9999;
     transform: translateX(100%);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
     display: flex;
     flex-direction: column;
     padding: 24px;
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.35);
     overflow-y: auto;
+    visibility: hidden;
+    pointer-events: none;
   }
 
-  .mobile-drawer-panel.open {
+  .mobile-drawer-panel.open,
+  .mobile-drawer.open {
     transform: translateX(0) !important;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .drawer-header {
@@ -2302,12 +2311,16 @@
       flex-direction: column;
       padding: 24px 20px;
       transform: translateX(100%);
-      transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1);
+      transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.32s ease;
       box-shadow: -8px 0 24px rgba(0, 0, 0, 0.2);
+      visibility: hidden;
+      pointer-events: none;
     }
 
     .mobile-drawer.open {
       transform: translateX(0);
+      visibility: visible;
+      pointer-events: auto;
     }
 
     .drawer-header {

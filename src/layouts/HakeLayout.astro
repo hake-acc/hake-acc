@@ -285,7 +285,7 @@ const {
 
     <!-- Mobile Drawer Navigation -->
     <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" aria-hidden="true"></div>
-    <div class="mobile-drawer-panel" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+    <div class="mobile-drawer-panel" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu" inert>
       <div class="drawer-header">
         <span class="drawer-brand-logo">
           <span class="brand-text">hake</span><span class="brand-dot">.</span>
@@ -409,6 +409,7 @@ const {
         function openDrawer() {
           if (drawer && overlay && menuBtn) {
             drawer.classList.add('open');
+            drawer.removeAttribute('inert');
             overlay.classList.add('active');
             menuBtn.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
@@ -418,6 +419,7 @@ const {
         function closeDrawer() {
           if (drawer && overlay && menuBtn) {
             drawer.classList.remove('open');
+            drawer.setAttribute('inert', '');
             overlay.classList.remove('active');
             menuBtn.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
