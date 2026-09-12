@@ -998,11 +998,6 @@ import '../styles/hake-theme.css';
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setTheme(savedTheme ? (savedTheme as 'light' | 'dark') : (prefersDark ? 'dark' : 'light'));
 
-      themeToggle?.addEventListener('click', () => {
-        const currentIsDark = document.body.classList.contains('hake-theme-dark');
-        setTheme(currentIsDark ? 'light' : 'dark');
-      });
-
       // 2. Smooth Left-to-Right SVG Underline Animation with Session Caching
       const togetherAccent = document.getElementById('heroTogetherAccent');
       if (togetherAccent) {
