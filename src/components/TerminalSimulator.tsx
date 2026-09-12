@@ -88,15 +88,16 @@ export default function TerminalSimulator() {
           botResponse = (
             <div className="space-y-1 text-cyan font-readable">
               <div className="font-bold font-retro text-xs">🎮 [FEATURED CREATORS &amp; CHANNELS]</div>
-              <div>1. Alex Adi XD - Gaming &amp; Entertainment (@alexadixdofficial)</div>
-              <div>2. Mc thunder Playz - Gaming &amp; Community Hub (@mcthunderxdofficial)</div>
-              <div>3. Not Vangid | Creator &amp; Content Channel (@notvangid)</div>
-              <div>4. Sky Plays - Gameplay &amp; Streams (@oneskyplayz)</div>
-              <div>5. Upper Gaming - Gaming Network &amp; Hub (@upper_gaming)</div>
-              <div>6. Cappy Mc - Main Gaming Channel (@cappy-mc)</div>
-              <div>7. CappuXD - Secondary Highlights Channel (@CappuXD)</div>
-              <div>8. Arpan GamzO - Gaming &amp; Entertainment (@arpangamzo_official)</div>
-              <div className="text-white/60 text-xs">→ Explore full direct links at /projects</div>
+              <div>1. Upper Gaming - Gaming Network &amp; Hub [2.1M Subs] (@upper_gaming)</div>
+              <div>2. Plugin Gamer - Gaming &amp; Modding Hub [41.5K Subs] (@plugingamerofficial)</div>
+              <div>3. Cappy Mc - Main Gaming Channel [95.3K Subs] (@cappy-mc)</div>
+              <div>4. CappuXD - Secondary Highlights Channel [17.7K Subs] (@CappuXD)</div>
+              <div>5. Arpan GamzO - Gaming &amp; Community [7.46K Subs] (@arpangamzo_official)</div>
+              <div>6. Alex Adi XD - Gaming &amp; Packaging [1.79K Subs] (@alexadixdofficial)</div>
+              <div>7. Not Vangid - Creator &amp; Content [1.87K Subs] (@notvangid)</div>
+              <div>8. Mc thunder Playz - Gaming Hub [1.05K Subs] (@mcthunderxdofficial)</div>
+              <div>9. Sky Plays - Gameplay &amp; Streams [10K+ Reach] (@oneskyplayz)</div>
+              <div className="text-white/60 text-xs">→ Explore full direct links at /experience</div>
             </div>
           );
           break;

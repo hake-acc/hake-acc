@@ -14,11 +14,12 @@ import {
 import { playClick, playCoin, playBlip } from "@/lib/sound";
 
 const clientChannels = [
+  { name: "Upper Gaming", url: "https://youtube.com/@upper_gaming?si=Izdq-Aj7jzz1Us2O", tag: "2.1M Subs • Gaming Network" },
+  { name: "Plugin Gamer", url: "https://youtube.com/@plugingamerofficial?si=4_gjgGs-NesFOR6R", tag: "41.5K Subs • Modding & Gaming" },
   { name: "Alex Adi XD", url: "https://youtube.com/@alexadixdofficial?si=aLvcFWUEtfCFZa3n", tag: "Gaming & Entertainment" },
   { name: "Mc thunder Playz", url: "https://youtube.com/@mcthunderxdofficial?si=ZLA57BXmSrlSPx9J", tag: "Gaming Creator" },
   { name: "Not Vangid", url: "https://youtube.com/@notvangid?si=u0Xvy79AwXL5CP1S", tag: "Creator & Content" },
   { name: "Sky Plays", url: "https://youtube.com/@oneskyplayz?si=z-opykPHHVZfbFEA", tag: "Gameplay & Streams" },
-  { name: "Upper Gaming", url: "https://youtube.com/@upper_gaming?si=htZgVcKuAG_lcGCE", tag: "Gaming Network" },
   { name: "Cappy Mc (CappuXD)", url: "https://youtube.com/@cappy-mc?si=OejN4xeqeLOyf4xl", tag: "Multi-Channel" },
   { name: "Arpan GamzO", url: "https://youtube.com/@arpangamzo_official?si=xtwSqSXOWGjZKe9B", tag: "Gaming & Community" },
 ];
