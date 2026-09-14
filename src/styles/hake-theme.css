@@ -1234,7 +1234,7 @@
   /* ====================================================
      SECTION 5: CONTACT & DIRECT SOCIALS
      ==================================================== */
-  /* Contact Header Row with Paper Plane Ornament */
+  /* Contact Header Row with Animated Flying Paper Plane & Breeze Light */
   .contact-header-container {
     position: relative;
     max-width: 1140px;
@@ -1244,13 +1244,14 @@
   .contact-plane-ornament {
     position: absolute;
     right: 28px;
-    top: 4px;
+    top: 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
     pointer-events: auto;
     z-index: 5;
     user-select: none;
+    cursor: pointer;
   }
 
   .subpage-plane-ornament {
@@ -1258,55 +1259,176 @@
     top: 24px;
   }
 
+  .plane-flight-stage {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Breeze Light Trail SVG System */
+  .breeze-light-system {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  .breeze-stream {
+    stroke: url(#breezeGlowLight);
+    transition: opacity 0.3s ease, stroke-width 0.3s ease;
+  }
+
+  body.hake-theme-dark .breeze-stream,
+  :root.dark-theme .breeze-stream {
+    stroke: url(#breezeGlowDark);
+  }
+
+  .breeze-glow-path {
+    stroke: url(#breezeGlowLight);
+    opacity: 0.35;
+  }
+
+  body.hake-theme-dark .breeze-glow-path,
+  :root.dark-theme .breeze-glow-path {
+    stroke: url(#breezeGlowDark);
+    opacity: 0.5;
+  }
+
+  /* Dynamic streaming dash flow: gives continuous forward air speed */
+  .breeze-stream-primary {
+    stroke-dasharray: 10 8;
+    animation: breezeStreamRun 1.5s linear infinite;
+  }
+
+  .breeze-stream-top {
+    stroke-dasharray: 8 10;
+    animation: breezeStreamRun 1.1s linear infinite;
+    opacity: 0.75;
+  }
+
+  .breeze-stream-bottom {
+    stroke-dasharray: 6 9;
+    animation: breezeStreamRun 1.8s linear infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes breezeStreamRun {
+    from {
+      stroke-dashoffset: 36;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* Breeze shimmer motes floating backward in the wind */
+  .breeze-mote {
+    fill: #38BDF8;
+    filter: drop-shadow(0 0 3px #38BDF8);
+    animation: breezeMoteShimmer 2.2s ease-in-out infinite alternate;
+  }
+
+  .mote-2 {
+    animation-delay: 0.7s;
+    fill: #60A5FA;
+  }
+
+  .mote-3 {
+    animation-delay: 1.4s;
+    fill: #BAE6FD;
+  }
+
+  @keyframes breezeMoteShimmer {
+    0% {
+      opacity: 0.2;
+      transform: translateX(0px) scale(0.8);
+    }
+    50% {
+      opacity: 0.9;
+      transform: translateX(-4px) scale(1.15);
+    }
+    100% {
+      opacity: 0.3;
+      transform: translateX(-8px) scale(0.7);
+    }
+  }
+
+  /* The Continuously Flying Glider (OG Hand-drawn Paper Plane riding thermal breeze) */
+  .plane-flight-glider {
+    position: absolute;
+    right: 0px;
+    top: 6px;
+    will-change: transform;
+    animation: planeContinuousFlight 3.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  }
+
   .contact-plane-element {
     width: 78px;
     height: auto;
     display: block;
-    transform: rotate(8deg);
-    filter: drop-shadow(0 10px 24px rgba(0, 102, 255, 0.16)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
-    animation: planeGentleGlide 4.5s ease-in-out infinite alternate;
+    filter: drop-shadow(0 8px 20px rgba(0, 102, 255, 0.18)) drop-shadow(0 2px 5px rgba(0, 0, 0, 0.08));
+    transition: filter 0.35s ease, transform 0.35s ease;
   }
 
-  body.hake-theme-dark .contact-plane-element {
-    filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.28)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
+  body.hake-theme-dark .contact-plane-element,
+  :root.dark-theme .contact-plane-element {
+    filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.35)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.5));
   }
 
-  .plane-flight-trail {
-    position: absolute;
-    bottom: -8px;
-    left: -28px;
-    width: 96px;
-    height: 48px;
-    color: var(--accent-blue);
-    opacity: 0.45;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+  /* Continuous Aerodynamic Flight Loop: pitch, altitude bob, subtle roll */
+  @keyframes planeContinuousFlight {
+    0% {
+      transform: translateY(0px) translateX(0px) rotate(8deg);
+    }
+    20% {
+      transform: translateY(-5px) translateX(2px) rotate(11deg);
+    }
+    40% {
+      transform: translateY(-9px) translateX(4px) rotate(9deg);
+    }
+    60% {
+      transform: translateY(-4px) translateX(1px) rotate(6deg);
+    }
+    80% {
+      transform: translateY(3px) translateX(-2px) rotate(7deg);
+    }
+    100% {
+      transform: translateY(0px) translateX(0px) rotate(8deg);
+    }
+  }
+
+  /* Hover State: banking surge into the breeze */
+  .contact-plane-ornament:hover .plane-flight-glider {
+    animation-play-state: paused;
+    transform: translateY(-10px) translateX(6px) rotate(14deg) scale(1.08);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .contact-plane-ornament:hover .contact-plane-element {
-    transform: translateY(-8px) rotate(14deg) scale(1.06);
-    filter: drop-shadow(0 14px 30px rgba(0, 102, 255, 0.28)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+    filter: drop-shadow(0 14px 32px rgba(0, 102, 255, 0.32)) drop-shadow(0 0 16px rgba(56, 189, 248, 0.6));
   }
 
   body.hake-theme-dark .contact-plane-ornament:hover .contact-plane-element {
-    filter: drop-shadow(0 0 26px rgba(56, 189, 248, 0.45)) drop-shadow(0 12px 30px rgba(0, 0, 0, 0.6));
+    filter: drop-shadow(0 0 24px rgba(56, 189, 248, 0.55)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
   }
 
-  .contact-plane-ornament:hover .plane-flight-trail {
-    opacity: 0.85;
+  .contact-plane-ornament:hover .breeze-stream-primary {
+    animation-duration: 0.8s;
   }
 
-  @keyframes planeGentleGlide {
-    0% {
-      transform: translateY(0px) rotate(8deg);
-    }
-    50% {
-      transform: translateY(-7px) rotate(12deg) translateX(3px);
-    }
-    100% {
-      transform: translateY(3px) rotate(6deg) translateX(-2px);
-    }
+  .contact-plane-ornament:hover .breeze-stream-top {
+    animation-duration: 0.6s;
+    opacity: 1;
+  }
+
+  .contact-plane-ornament:hover .breeze-stream-bottom {
+    animation-duration: 0.9s;
+    opacity: 1;
   }
 
   @media (max-width: 1080px) {
@@ -1318,13 +1440,12 @@
       right: 24px;
       top: 18px;
     }
-    .contact-plane-element {
-      width: 62px;
+    .plane-flight-stage {
+      width: 120px;
+      height: 70px;
     }
-    .plane-flight-trail {
-      width: 76px;
-      left: -20px;
-      bottom: -6px;
+    .contact-plane-element {
+      width: 64px;
     }
   }
 
@@ -1348,7 +1469,11 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .contact-plane-element {
+    .plane-flight-glider,
+    .breeze-stream-primary,
+    .breeze-stream-top,
+    .breeze-stream-bottom,
+    .breeze-mote {
       animation: none !important;
     }
   }
@@ -3933,13 +4058,11 @@ body.hake-theme-dark .human-review-bubble {
 }
 
 /* =========================================================================
-   Hake Modern Fluid Page Transitions Architecture (Apple & Emil Kowalski Standards)
-   - Duration: 0.36s with custom cubic-bezier(0.16, 1, 0.3, 1)
-   - 1. Swipe from Right (slide-left): Solid physical slide with iOS-style parallax
-   - 2. Swipe from Left (slide-right): Solid physical reverse slide revealing previous page
-   - 3. Forward Depth Zoom (zoom-in): In-page button / card CTA click
-   - 4. Reverse Depth Zoom (zoom-out): Back links or reverse CTA click
-   - Zero harsh border stripes, zero heavy black shadows, zero white-out dip
+   Codrops 1:1 Page Transitions Architecture (Physical Motion, Zero Fade)
+   - Synchronized from Zyolekai architecture
+   - Duration: 0.55s with Codrops cubic-bezier(0.7, 0, 0.3, 1)
+   - 1. Move to Left / Move to Right (Solid Physical Slide)
+   - 2. Zoom In / Zoom Out for In-page Actions
    ========================================================================= */
 
 .hake-content-body {
@@ -3950,7 +4073,7 @@ body.hake-theme-dark .human-review-bubble {
   background-color: var(--bg-page);
 }
 
-/* Disable root crossfade so only main-content executes the physical transition */
+/* Disable root crossfade so only main-content executes the Codrops transition */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none !important;
@@ -3970,47 +4093,39 @@ body.hake-theme-dark .human-review-bubble {
   animation: none !important;
 }
 
-/* Main Content View Transition Group - clipped to container so offscreen slides don't cause page overflow */
-::view-transition-group(main-content) {
-  overflow: hidden !important;
-  z-index: 1 !important;
-  animation-duration: 0.36s !important;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
+/* Allow incoming/outgoing surfaces to translate and scale beyond group bounds without clipping */
+::view-transition-group(main-content),
 ::view-transition-image-pair(main-content) {
-  overflow: hidden !important;
+  overflow: visible !important;
+  animation-duration: 0.55s !important;
+  animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1) !important;
 }
 
-/* Base surface configuration for outgoing and incoming page snapshots */
+/* Force solid opaque page during transitions to completely eliminate transparent ghosting/fading */
 ::view-transition-old(main-content),
 ::view-transition-new(main-content) {
-  animation-duration: 0.36s !important;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+  animation-duration: 0.55s !important;
+  animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1) !important;
   animation-fill-mode: both !important;
   mix-blend-mode: normal !important;
+  background-color: #FFFFFF !important;
   backface-visibility: hidden !important;
   transform-style: preserve-3d !important;
 }
 
-/* Solid background paints during transitions based on active theme to prevent transparent bleed */
-:root:not(.dark-theme) ::view-transition-old(main-content),
-:root:not(.dark-theme) ::view-transition-new(main-content) {
-  background-color: var(--bg-page);
-}
-
 :root.dark-theme ::view-transition-old(main-content),
-:root.dark-theme ::view-transition-new(main-content) {
-  background-color: var(--bg-page);
+:root.dark-theme ::view-transition-new(main-content),
+body.hake-theme-dark ::view-transition-old(main-content),
+body.hake-theme-dark ::view-transition-new(main-content) {
+  background-color: #0E121A !important;
 }
 
-/* 1. Swipe from Right (slide-left: Forward Navigation / Home to Subpage)
-   Incoming page slides in from right over outgoing page, while outgoing slides slightly left */
+/* 1. Codrops Move to Left / From Right (Forward Slide between standard pages) */
 :root[data-transition="slide-left"]::view-transition-old(main-content),
 :root[data-astro-transition="slide-left"]::view-transition-old(main-content),
 :root[data-astro-transition="forward"]::view-transition-old(main-content),
 :root:not([data-transition])::view-transition-old(main-content) {
-  animation-name: ptParallaxLeftOut !important;
+  animation-name: ptMoveToLeft !important;
   z-index: 1 !important;
 }
 
@@ -4018,42 +4133,30 @@ body.hake-theme-dark .human-review-bubble {
 :root[data-astro-transition="slide-left"]::view-transition-new(main-content),
 :root[data-astro-transition="forward"]::view-transition-new(main-content),
 :root:not([data-transition])::view-transition-new(main-content) {
-  animation-name: ptSlideFromRightIn !important;
+  animation-name: ptMoveFromRight !important;
   z-index: 2 !important;
-  box-shadow: -16px 0 32px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: -25px 0 60px rgba(0, 0, 0, 0.3) !important;
+  border-left: 3px solid #38BDF8 !important;
 }
 
-:root.dark-theme[data-transition="slide-left"]::view-transition-new(main-content),
-:root.dark-theme[data-astro-transition="slide-left"]::view-transition-new(main-content),
-:root.dark-theme[data-astro-transition="forward"]::view-transition-new(main-content),
-:root.dark-theme:not([data-transition])::view-transition-new(main-content) {
-  box-shadow: -20px 0 40px rgba(0, 0, 0, 0.45) !important;
-}
-
-/* 2. Swipe from Left (slide-right: Backward Navigation / Subpage to Home)
-   Outgoing page slides away to the right, revealing previous page underneath */
+/* 2. Codrops Move to Right / From Left (Backwards Slide between standard pages) */
 :root[data-transition="slide-right"]::view-transition-old(main-content),
 :root[data-astro-transition="slide-right"]::view-transition-old(main-content),
 :root[data-astro-transition="back"]::view-transition-old(main-content) {
-  animation-name: ptSlideToRightOut !important;
-  z-index: 2 !important;
-  box-shadow: -16px 0 32px rgba(0, 0, 0, 0.08) !important;
-}
-
-:root.dark-theme[data-transition="slide-right"]::view-transition-old(main-content),
-:root.dark-theme[data-astro-transition="slide-right"]::view-transition-old(main-content),
-:root.dark-theme[data-astro-transition="back"]::view-transition-old(main-content) {
-  box-shadow: -20px 0 40px rgba(0, 0, 0, 0.45) !important;
+  animation-name: ptMoveToRight !important;
+  z-index: 1 !important;
 }
 
 :root[data-transition="slide-right"]::view-transition-new(main-content),
 :root[data-astro-transition="slide-right"]::view-transition-new(main-content),
 :root[data-astro-transition="back"]::view-transition-new(main-content) {
-  animation-name: ptParallaxRightIn !important;
-  z-index: 1 !important;
+  animation-name: ptMoveFromLeft !important;
+  z-index: 2 !important;
+  box-shadow: 25px 0 60px rgba(0, 0, 0, 0.3) !important;
+  border-right: 3px solid #38BDF8 !important;
 }
 
-/* 3. Forward Depth Zoom (zoom-in: In-page Button / Card Click) */
+/* 3. Codrops Zoom In / Scale Down (In-page Button / Card Click) */
 :root[data-transition="zoom-in"]::view-transition-old(main-content),
 :root[data-astro-transition="zoom-in"]::view-transition-old(main-content) {
   animation-name: ptScaleDown !important;
@@ -4064,25 +4167,19 @@ body.hake-theme-dark .human-review-bubble {
 :root[data-astro-transition="zoom-in"]::view-transition-new(main-content) {
   animation-name: ptZoomIn !important;
   z-index: 2 !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4) !important;
+  border: 3px solid #38BDF8 !important;
+  border-radius: 20px !important;
 }
 
-:root.dark-theme[data-transition="zoom-in"]::view-transition-new(main-content),
-:root.dark-theme[data-astro-transition="zoom-in"]::view-transition-new(main-content) {
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45) !important;
-}
-
-/* 4. Reverse Depth Zoom (zoom-out: Back navigation from zoomed view) */
+/* 4. Codrops Zoom Out / Scale Up (Back navigation from zoomed view) */
 :root[data-transition="zoom-out"]::view-transition-old(main-content),
 :root[data-astro-transition="zoom-out"]::view-transition-old(main-content) {
   animation-name: ptZoomOut !important;
   z-index: 2 !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08) !important;
-}
-
-:root.dark-theme[data-transition="zoom-out"]::view-transition-old(main-content),
-:root.dark-theme[data-astro-transition="zoom-out"]::view-transition-old(main-content) {
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45) !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4) !important;
+  border: 3px solid #38BDF8 !important;
+  border-radius: 20px !important;
 }
 
 :root[data-transition="zoom-out"]::view-transition-new(main-content),
@@ -4091,110 +4188,51 @@ body.hake-theme-dark .human-review-bubble {
   z-index: 1 !important;
 }
 
-/* -------------------------------------------------------------------------
-   Fluid Directional Keyframes (iOS-grade physical slides and depth zooms)
-   ------------------------------------------------------------------------- */
+/* --- Exact Codrops PageTransitions Keyframes (Solid Physical Motion) --- */
 
-/* Forward: Outgoing page moves 25% left with subtle dimming */
-@keyframes ptParallaxLeftOut {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-25%);
-    opacity: 0.85;
-  }
+/* Pure physical slide: NO opacity changes, 100% solid horizontal movement */
+@keyframes ptMoveToLeft {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-100%); }
 }
 
-/* Forward: Incoming page enters 100% from right fully opaque */
-@keyframes ptSlideFromRightIn {
-  from {
-    transform: translateX(100%);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+@keyframes ptMoveFromRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0%); }
 }
 
-/* Backward: Outgoing page slides off to the right */
-@keyframes ptSlideToRightOut {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(100%);
-    opacity: 1;
-  }
+@keyframes ptMoveToRight {
+  from { transform: translateX(0%); }
+  to { transform: translateX(100%); }
 }
 
-/* Backward: Incoming page emerges from subtle 25% left offset */
-@keyframes ptParallaxRightIn {
-  from {
-    transform: translateX(-25%);
-    opacity: 0.85;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+@keyframes ptMoveFromLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0%); }
 }
 
-/* Forward Zoom: Outgoing page stays grounded and recedes into depth without dipping */
+/* Scale Down: Outgoing page shrinks into background */
 @keyframes ptScaleDown {
-  from {
-    transform: scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: scale(0.96);
-    opacity: 0.85;
-  }
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0.60); opacity: 0.2; }
 }
 
-/* Forward Zoom: Incoming page emerges forward from 0.96 scale with fast opacity ramp */
+/* Zoom In: Incoming page starts at 60% scale and zooms into camera - fully opaque! */
 @keyframes ptZoomIn {
-  0% {
-    transform: scale(0.96);
-    opacity: 0;
-  }
-  30% {
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+  from { transform: scale(0.60); opacity: 1; }
+  to { transform: scale(1); opacity: 1; }
 }
 
-/* Reverse Zoom: Outgoing page lifts outward while remaining visible */
+/* Zoom Out: Outgoing page shrinks down into distance */
 @keyframes ptZoomOut {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.02);
-    opacity: 0;
-  }
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0.60); opacity: 0; }
 }
 
-/* Reverse Zoom: Incoming page returns from depth */
+/* Scale Up: Incoming page grows from 60% back to full scale */
 @keyframes ptScaleUp {
-  from {
-    transform: scale(0.96);
-    opacity: 0.85;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+  from { transform: scale(0.60); opacity: 0.3; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {

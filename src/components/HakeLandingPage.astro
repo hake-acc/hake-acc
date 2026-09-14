@@ -707,21 +707,61 @@ import '../styles/hake-theme.css';
                 <p class="section-subtext">Have a Discord server that needs restructuring, or need reliable management support for your community? Reach out directly through any platform below.</p>
               </div>
 
-              <!-- Right-side Paper Plane Accent from Hero Scene -->
+              <!-- Right-side Animated Paper Plane Flying In Place with Breeze Light Trail -->
               <div class="contact-plane-ornament" aria-hidden="true">
-                <svg class="plane-flight-trail" viewBox="0 0 120 60" fill="none">
-                  <path d="M 10 52 C 28 50, 42 38, 48 24 C 54 10, 42 2, 32 8 C 22 16, 32 34, 48 36 C 72 38, 92 24, 110 16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="4 4"/>
-                  <path d="M 103 10 L 111 16 L 104 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <img 
-                  src="/assets/paper_plane.webp" 
-                  alt="" 
-                  class="contact-plane-element" 
-                  width="78" 
-                  height="70"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <div class="plane-flight-stage">
+                  <!-- Glowing Breeze Light Streamlines -->
+                  <svg class="breeze-light-system" viewBox="0 0 160 80" fill="none">
+                    <defs>
+                      <linearGradient id="breezeGlowLight" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#0066FF" stop-opacity="0" />
+                        <stop offset="35%" stop-color="#38BDF8" stop-opacity="0.35" />
+                        <stop offset="70%" stop-color="#0066FF" stop-opacity="0.75" />
+                        <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.95" />
+                      </linearGradient>
+                      <linearGradient id="breezeGlowDark" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#38BDF8" stop-opacity="0" />
+                        <stop offset="35%" stop-color="#60A5FA" stop-opacity="0.4" />
+                        <stop offset="70%" stop-color="#38BDF8" stop-opacity="0.85" />
+                        <stop offset="100%" stop-color="#BAE6FD" stop-opacity="1" />
+                      </linearGradient>
+                      <filter id="breezeSoftGlow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="1.5" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                      </filter>
+                    </defs>
+
+                    <!-- Atmospheric Breeze Glow Aura -->
+                    <path class="breeze-glow-path" d="M 14 62 C 36 60, 54 46, 62 30 C 70 14, 56 3, 42 11 C 28 20, 40 42, 64 44 C 92 46, 120 30, 146 18" stroke="url(#breezeGlowLight)" stroke-width="4.5" stroke-linecap="round" opacity="0.3" filter="url(#breezeSoftGlow)" />
+
+                    <!-- Primary Wind Streamline (Dynamic Continuous Dash Flow) -->
+                    <path class="breeze-stream breeze-stream-primary" d="M 14 62 C 36 60, 54 46, 62 30 C 70 14, 56 3, 42 11 C 28 20, 40 42, 64 44 C 92 46, 120 30, 146 18" stroke="url(#breezeGlowLight)" stroke-width="2.4" stroke-linecap="round" />
+
+                    <!-- Upper Wingtip Vortex Streamline -->
+                    <path class="breeze-stream breeze-stream-top" d="M 48 18 C 72 20, 104 14, 134 10" stroke="url(#breezeGlowLight)" stroke-width="1.8" stroke-linecap="round" />
+
+                    <!-- Lower Fuselage Slipstream -->
+                    <path class="breeze-stream breeze-stream-bottom" d="M 68 52 C 92 50, 120 38, 148 28" stroke="url(#breezeGlowLight)" stroke-width="1.6" stroke-linecap="round" />
+
+                    <!-- Wind Breeze Light Shimmer Motes -->
+                    <circle class="breeze-mote mote-1" cx="68" cy="20" r="1.8" />
+                    <circle class="breeze-mote mote-2" cx="108" cy="36" r="1.4" />
+                    <circle class="breeze-mote mote-3" cx="130" cy="14" r="1.6" />
+                  </svg>
+
+                  <!-- Continuously Flying Glider (OG Hand-drawn Paper Plane riding thermal breeze in place) -->
+                  <div class="plane-flight-glider">
+                    <img 
+                      src="/assets/paper_plane.webp" 
+                      alt="" 
+                      class="contact-plane-element" 
+                      width="78" 
+                      height="70"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -2541,7 +2581,7 @@ import '../styles/hake-theme.css';
   /* ====================================================
      SECTION 5: CONTACT & DIRECT SOCIALS
      ==================================================== */
-  /* Contact Header Row with Paper Plane Ornament */
+  /* Contact Header Row with Animated Flying Paper Plane & Breeze Light */
   .contact-header-container {
     position: relative;
     max-width: 1140px;
@@ -2551,64 +2591,181 @@ import '../styles/hake-theme.css';
   .contact-plane-ornament {
     position: absolute;
     right: 28px;
-    top: 4px;
+    top: 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
     pointer-events: auto;
     z-index: 5;
     user-select: none;
+    cursor: pointer;
+  }
+
+  .plane-flight-stage {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Breeze Light Trail SVG System */
+  .breeze-light-system {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+  }
+
+  .breeze-stream {
+    stroke: url(#breezeGlowLight);
+    transition: opacity 0.3s ease, stroke-width 0.3s ease;
+  }
+
+  body.hake-theme-dark .breeze-stream,
+  :root.dark-theme .breeze-stream {
+    stroke: url(#breezeGlowDark);
+  }
+
+  body.hake-theme-dark .breeze-glow-path,
+  :root.dark-theme .breeze-glow-path {
+    stroke: url(#breezeGlowDark);
+    opacity: 0.45;
+  }
+
+  /* Dynamic streaming dash flow: gives continuous forward air speed */
+  .breeze-stream-primary {
+    stroke-dasharray: 10 8;
+    animation: breezeStreamRun 1.5s linear infinite;
+  }
+
+  .breeze-stream-top {
+    stroke-dasharray: 8 10;
+    animation: breezeStreamRun 1.1s linear infinite;
+    opacity: 0.75;
+  }
+
+  .breeze-stream-bottom {
+    stroke-dasharray: 6 9;
+    animation: breezeStreamRun 1.8s linear infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes breezeStreamRun {
+    from {
+      stroke-dashoffset: 36;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* Breeze shimmer motes floating backward in the wind */
+  .breeze-mote {
+    fill: #38BDF8;
+    filter: drop-shadow(0 0 3px #38BDF8);
+    animation: breezeMoteShimmer 2.2s ease-in-out infinite alternate;
+  }
+
+  .mote-2 {
+    animation-delay: 0.7s;
+    fill: #60A5FA;
+  }
+
+  .mote-3 {
+    animation-delay: 1.4s;
+    fill: #BAE6FD;
+  }
+
+  @keyframes breezeMoteShimmer {
+    0% {
+      opacity: 0.2;
+      transform: translateX(0px) scale(0.8);
+    }
+    50% {
+      opacity: 0.9;
+      transform: translateX(-4px) scale(1.15);
+    }
+    100% {
+      opacity: 0.3;
+      transform: translateX(-8px) scale(0.7);
+    }
+  }
+
+  /* The Continuously Flying Glider (Paper Plane riding thermal breeze) */
+  .plane-flight-glider {
+    position: absolute;
+    right: 0px;
+    top: 6px;
+    will-change: transform;
+    animation: planeContinuousFlight 3.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
   }
 
   .contact-plane-element {
     width: 78px;
     height: auto;
     display: block;
-    transform: rotate(8deg);
-    filter: drop-shadow(0 10px 24px rgba(0, 102, 255, 0.16)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
-    animation: planeGentleGlide 4.5s ease-in-out infinite alternate;
+    filter: drop-shadow(0 8px 20px rgba(0, 102, 255, 0.18)) drop-shadow(0 2px 5px rgba(0, 0, 0, 0.08));
+    transition: filter 0.35s ease, transform 0.35s ease;
   }
 
-  body.hake-theme-dark .contact-plane-element {
-    filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.28)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
+  body.hake-theme-dark .contact-plane-element,
+  :root.dark-theme .contact-plane-element {
+    filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.35)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.5));
   }
 
-  .plane-flight-trail {
-    position: absolute;
-    bottom: -8px;
-    left: -28px;
-    width: 96px;
-    height: 48px;
-    color: var(--accent-blue);
-    opacity: 0.45;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+  /* Continuous Aerodynamic Flight Loop: pitch, altitude bob, subtle roll */
+  @keyframes planeContinuousFlight {
+    0% {
+      transform: translateY(0px) translateX(0px) rotate(8deg);
+    }
+    20% {
+      transform: translateY(-5px) translateX(2px) rotate(11deg);
+    }
+    40% {
+      transform: translateY(-9px) translateX(4px) rotate(9deg);
+    }
+    60% {
+      transform: translateY(-4px) translateX(1px) rotate(6deg);
+    }
+    80% {
+      transform: translateY(3px) translateX(-2px) rotate(7deg);
+    }
+    100% {
+      transform: translateY(0px) translateX(0px) rotate(8deg);
+    }
+  }
+
+  /* Hover State: banking surge into the breeze */
+  .contact-plane-ornament:hover .plane-flight-glider {
+    animation-play-state: paused;
+    transform: translateY(-10px) translateX(6px) rotate(14deg) scale(1.08);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .contact-plane-ornament:hover .contact-plane-element {
-    transform: translateY(-8px) rotate(14deg) scale(1.06);
-    filter: drop-shadow(0 14px 30px rgba(0, 102, 255, 0.28)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+    filter: drop-shadow(0 14px 32px rgba(0, 102, 255, 0.32)) drop-shadow(0 0 16px rgba(56, 189, 248, 0.6));
   }
 
   body.hake-theme-dark .contact-plane-ornament:hover .contact-plane-element {
-    filter: drop-shadow(0 0 26px rgba(56, 189, 248, 0.45)) drop-shadow(0 12px 30px rgba(0, 0, 0, 0.6));
+    filter: drop-shadow(0 0 24px rgba(56, 189, 248, 0.55)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
   }
 
-  .contact-plane-ornament:hover .plane-flight-trail {
-    opacity: 0.85;
+  .contact-plane-ornament:hover .breeze-stream-primary {
+    animation-duration: 0.8s;
   }
 
-  @keyframes planeGentleGlide {
-    0% {
-      transform: translateY(0px) rotate(8deg);
-    }
-    50% {
-      transform: translateY(-7px) rotate(12deg) translateX(3px);
-    }
-    100% {
-      transform: translateY(3px) rotate(6deg) translateX(-2px);
-    }
+  .contact-plane-ornament:hover .breeze-stream-top {
+    animation-duration: 0.6s;
+    opacity: 1;
+  }
+
+  .contact-plane-ornament:hover .breeze-stream-bottom {
+    animation-duration: 0.9s;
+    opacity: 1;
   }
 
   @media (max-width: 1080px) {
@@ -2616,13 +2773,12 @@ import '../styles/hake-theme.css';
       right: 14px;
       top: 6px;
     }
-    .contact-plane-element {
-      width: 62px;
+    .plane-flight-stage {
+      width: 120px;
+      height: 70px;
     }
-    .plane-flight-trail {
-      width: 76px;
-      left: -20px;
-      bottom: -6px;
+    .contact-plane-element {
+      width: 64px;
     }
   }
 
@@ -2642,7 +2798,11 @@ import '../styles/hake-theme.css';
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .contact-plane-element {
+    .plane-flight-glider,
+    .breeze-stream-primary,
+    .breeze-stream-top,
+    .breeze-stream-bottom,
+    .breeze-mote {
       animation: none !important;
     }
   }

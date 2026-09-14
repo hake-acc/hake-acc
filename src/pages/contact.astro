@@ -10,21 +10,61 @@ import HakeLayout from "@/layouts/HakeLayout.astro";
 >
   <!-- Subpage Header -->
   <header class="subpage-header-section">
-    <!-- Right-side Paper Plane Accent -->
+    <!-- Right-side Animated Paper Plane Flying In Place with Breeze Light Trail -->
     <div class="contact-plane-ornament subpage-plane-ornament" aria-hidden="true">
-      <svg class="plane-flight-trail" viewBox="0 0 120 60" fill="none">
-        <path d="M 10 52 C 28 50, 42 38, 48 24 C 54 10, 42 2, 32 8 C 22 16, 32 34, 48 36 C 72 38, 92 24, 110 16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="4 4"/>
-        <path d="M 103 10 L 111 16 L 104 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <img 
-        src="/assets/paper_plane.webp" 
-        alt="" 
-        class="contact-plane-element" 
-        width="78" 
-        height="70"
-        loading="lazy"
-        decoding="async"
-      />
+      <div class="plane-flight-stage">
+        <!-- Glowing Breeze Light Streamlines -->
+        <svg class="breeze-light-system" viewBox="0 0 160 80" fill="none">
+          <defs>
+            <linearGradient id="breezeGlowSubLight" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#0066FF" stop-opacity="0" />
+              <stop offset="35%" stop-color="#38BDF8" stop-opacity="0.35" />
+              <stop offset="70%" stop-color="#0066FF" stop-opacity="0.75" />
+              <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.95" />
+            </linearGradient>
+            <linearGradient id="breezeGlowSubDark" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#38BDF8" stop-opacity="0" />
+              <stop offset="35%" stop-color="#60A5FA" stop-opacity="0.4" />
+              <stop offset="70%" stop-color="#38BDF8" stop-opacity="0.85" />
+              <stop offset="100%" stop-color="#BAE6FD" stop-opacity="1" />
+            </linearGradient>
+            <filter id="breezeSoftGlowSub" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="1.5" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+
+          <!-- Atmospheric Breeze Glow Aura -->
+          <path class="breeze-glow-path" d="M 14 62 C 36 60, 54 46, 62 30 C 70 14, 56 3, 42 11 C 28 20, 40 42, 64 44 C 92 46, 120 30, 146 18" stroke="url(#breezeGlowSubLight)" stroke-width="4.5" stroke-linecap="round" opacity="0.3" filter="url(#breezeSoftGlowSub)" />
+
+          <!-- Primary Wind Streamline (Dynamic Continuous Dash Flow) -->
+          <path class="breeze-stream breeze-stream-primary" d="M 14 62 C 36 60, 54 46, 62 30 C 70 14, 56 3, 42 11 C 28 20, 40 42, 64 44 C 92 46, 120 30, 146 18" stroke="url(#breezeGlowSubLight)" stroke-width="2.4" stroke-linecap="round" />
+
+          <!-- Upper Wingtip Vortex Streamline -->
+          <path class="breeze-stream breeze-stream-top" d="M 48 18 C 72 20, 104 14, 134 10" stroke="url(#breezeGlowSubLight)" stroke-width="1.8" stroke-linecap="round" />
+
+          <!-- Lower Fuselage Slipstream -->
+          <path class="breeze-stream breeze-stream-bottom" d="M 68 52 C 92 50, 120 38, 148 28" stroke="url(#breezeGlowSubLight)" stroke-width="1.6" stroke-linecap="round" />
+
+          <!-- Wind Breeze Light Shimmer Motes -->
+          <circle class="breeze-mote mote-1" cx="68" cy="20" r="1.8" />
+          <circle class="breeze-mote mote-2" cx="108" cy="36" r="1.4" />
+          <circle class="breeze-mote mote-3" cx="130" cy="14" r="1.6" />
+        </svg>
+
+        <!-- Continuously Flying Glider (OG Hand-drawn Paper Plane riding thermal breeze in place) -->
+        <div class="plane-flight-glider">
+          <img 
+            src="/assets/paper_plane.webp" 
+            alt="" 
+            class="contact-plane-element" 
+            width="78" 
+            height="70"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
     </div>
 
     <span class="subpage-eyebrow">GET IN TOUCH</span>
