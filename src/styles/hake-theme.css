@@ -1261,7 +1261,7 @@
 
   .plane-flight-stage {
     position: relative;
-    width: 150px;
+    width: 160px;
     height: 80px;
   }
 
@@ -1303,53 +1303,39 @@
     }
   }
 
-  /* The Glider: anchored to the head of the trail at (101, 45) */
-  .plane-flight-glider {
-    position: absolute;
-    right: 0px;
-    top: 4px;
-    width: 68px;
-    height: 57px;
+  /* The Vector Paper Plane Glider: anchored to the head of the trail at (101, 50) */
+  .plane-vector-glider {
     will-change: transform;
-    animation: planeGentleGlider 3.2s ease-in-out infinite alternate;
+    animation: planeVectorGlider 3.2s ease-in-out infinite alternate;
+    transform-origin: 101px 50px;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+    filter: drop-shadow(0 4px 12px rgba(0, 85, 238, 0.16));
   }
 
-  .contact-plane-element {
-    width: 68px;
-    height: auto;
-    display: block;
-    filter: drop-shadow(0 6px 16px rgba(0, 85, 238, 0.16)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
-    transition: filter 0.35s ease, transform 0.35s ease;
+  body.hake-theme-dark .plane-vector-glider,
+  :root.dark-theme .plane-vector-glider {
+    filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.45)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.5));
   }
 
-  body.hake-theme-dark .contact-plane-element,
-  :root.dark-theme .contact-plane-element {
-    filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.4)) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.5));
-  }
-
-  /* Gentle physical glide: subtle sway so the tail remains anchored to the dashed trail */
-  @keyframes planeGentleGlider {
+  /* Gentle physical glide: subtle sway pivoting directly from the tail */
+  @keyframes planeVectorGlider {
     0% {
-      transform: translate(0px, 0px) rotate(0deg);
+      transform: translate(77px, -25px) rotate(0deg);
     }
     100% {
-      transform: translate(1px, -4px) rotate(2deg);
+      transform: translate(78px, -28px) rotate(2deg);
     }
   }
 
   /* Hover State: surging forward into the breeze */
-  .contact-plane-ornament:hover .plane-flight-glider {
+  .contact-plane-ornament:hover .plane-vector-glider {
     animation-play-state: paused;
-    transform: translate(2px, -6px) rotate(3.5deg) scale(1.05);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate(80px, -30px) rotate(3.5deg) scale(1.06);
+    filter: drop-shadow(0 8px 20px rgba(0, 85, 238, 0.32));
   }
 
-  .contact-plane-ornament:hover .contact-plane-element {
-    filter: drop-shadow(0 10px 24px rgba(0, 85, 238, 0.3)) drop-shadow(0 0 14px rgba(56, 189, 248, 0.5));
-  }
-
-  body.hake-theme-dark .contact-plane-ornament:hover .contact-plane-element {
-    filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.65)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
+  body.hake-theme-dark .contact-plane-ornament:hover .plane-vector-glider {
+    filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.75)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.6));
   }
 
   .contact-plane-ornament:hover .flight-trail-dash {
@@ -1367,9 +1353,9 @@
       top: 18px;
     }
     .plane-flight-stage {
-      width: 130px;
+      width: 135px;
       height: 70px;
-      transform: scale(0.9);
+      transform: scale(0.88);
       transform-origin: top right;
     }
   }
@@ -1378,7 +1364,7 @@
     .contact-plane-ornament {
       right: 8px;
       top: 6px;
-      transform: scale(0.82);
+      transform: scale(0.8);
       transform-origin: top right;
     }
     .subpage-plane-ornament {
@@ -1394,7 +1380,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .plane-flight-glider,
+    .plane-vector-glider,
     .flight-trail-dash {
       animation: none !important;
     }
