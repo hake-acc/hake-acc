@@ -1261,15 +1261,12 @@
 
   .plane-flight-stage {
     position: relative;
-    width: 140px;
+    width: 150px;
     height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
-  /* Breeze Light Trail SVG System */
-  .breeze-light-system {
+  /* Directional Dashed Flight Trail SVG */
+  .flight-trail-system {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -1278,157 +1275,86 @@
     overflow: visible;
   }
 
-  .breeze-stream {
-    stroke: url(#breezeGlowLight);
-    transition: opacity 0.3s ease, stroke-width 0.3s ease;
+  .flight-trail-dash {
+    stroke: url(#flightTrailLight);
+    animation: flightTrailStream 1.6s linear infinite;
+    transition: stroke-width 0.3s ease;
   }
 
-  body.hake-theme-dark .breeze-stream,
-  :root.dark-theme .breeze-stream {
-    stroke: url(#breezeGlowDark);
+  body.hake-theme-dark .flight-trail-dash,
+  :root.dark-theme .flight-trail-dash {
+    stroke: url(#flightTrailDark);
+    filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.45));
   }
 
-  .breeze-glow-path {
-    stroke: url(#breezeGlowLight);
+  body.hake-theme-dark .flight-trail-aura,
+  :root.dark-theme .flight-trail-aura {
+    stroke: url(#flightTrailDark);
     opacity: 0.35;
   }
 
-  body.hake-theme-dark .breeze-glow-path,
-  :root.dark-theme .breeze-glow-path {
-    stroke: url(#breezeGlowDark);
-    opacity: 0.5;
-  }
-
-  /* Dynamic streaming dash flow: gives continuous forward air speed */
-  .breeze-stream-primary {
-    stroke-dasharray: 10 8;
-    animation: breezeStreamRun 1.5s linear infinite;
-  }
-
-  .breeze-stream-top {
-    stroke-dasharray: 8 10;
-    animation: breezeStreamRun 1.1s linear infinite;
-    opacity: 0.75;
-  }
-
-  .breeze-stream-bottom {
-    stroke-dasharray: 6 9;
-    animation: breezeStreamRun 1.8s linear infinite;
-    opacity: 0.7;
-  }
-
-  @keyframes breezeStreamRun {
+  /* Smooth backward streaming of dashes out from the plane tail */
+  @keyframes flightTrailStream {
     from {
-      stroke-dashoffset: 36;
+      stroke-dashoffset: 28;
     }
     to {
       stroke-dashoffset: 0;
     }
   }
 
-  /* Breeze shimmer motes floating backward in the wind */
-  .breeze-mote {
-    fill: #38BDF8;
-    filter: drop-shadow(0 0 3px #38BDF8);
-    animation: breezeMoteShimmer 2.2s ease-in-out infinite alternate;
-  }
-
-  .mote-2 {
-    animation-delay: 0.7s;
-    fill: #60A5FA;
-  }
-
-  .mote-3 {
-    animation-delay: 1.4s;
-    fill: #BAE6FD;
-  }
-
-  @keyframes breezeMoteShimmer {
-    0% {
-      opacity: 0.2;
-      transform: translateX(0px) scale(0.8);
-    }
-    50% {
-      opacity: 0.9;
-      transform: translateX(-4px) scale(1.15);
-    }
-    100% {
-      opacity: 0.3;
-      transform: translateX(-8px) scale(0.7);
-    }
-  }
-
-  /* The Continuously Flying Glider (OG Hand-drawn Paper Plane riding thermal breeze) */
+  /* The Glider: anchored to the head of the trail at (101, 45) */
   .plane-flight-glider {
     position: absolute;
     right: 0px;
-    top: 6px;
+    top: 4px;
+    width: 68px;
+    height: 57px;
     will-change: transform;
-    animation: planeContinuousFlight 3.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+    animation: planeGentleGlider 3.2s ease-in-out infinite alternate;
   }
 
   .contact-plane-element {
-    width: 78px;
+    width: 68px;
     height: auto;
     display: block;
-    filter: drop-shadow(0 8px 20px rgba(0, 102, 255, 0.18)) drop-shadow(0 2px 5px rgba(0, 0, 0, 0.08));
+    filter: drop-shadow(0 6px 16px rgba(0, 85, 238, 0.16)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
     transition: filter 0.35s ease, transform 0.35s ease;
   }
 
   body.hake-theme-dark .contact-plane-element,
   :root.dark-theme .contact-plane-element {
-    filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.35)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.4)) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.5));
   }
 
-  /* Continuous Aerodynamic Flight Loop: pitch, altitude bob, subtle roll */
-  @keyframes planeContinuousFlight {
+  /* Gentle physical glide: subtle sway so the tail remains anchored to the dashed trail */
+  @keyframes planeGentleGlider {
     0% {
-      transform: translateY(0px) translateX(0px) rotate(8deg);
-    }
-    20% {
-      transform: translateY(-5px) translateX(2px) rotate(11deg);
-    }
-    40% {
-      transform: translateY(-9px) translateX(4px) rotate(9deg);
-    }
-    60% {
-      transform: translateY(-4px) translateX(1px) rotate(6deg);
-    }
-    80% {
-      transform: translateY(3px) translateX(-2px) rotate(7deg);
+      transform: translate(0px, 0px) rotate(0deg);
     }
     100% {
-      transform: translateY(0px) translateX(0px) rotate(8deg);
+      transform: translate(1px, -4px) rotate(2deg);
     }
   }
 
-  /* Hover State: banking surge into the breeze */
+  /* Hover State: surging forward into the breeze */
   .contact-plane-ornament:hover .plane-flight-glider {
     animation-play-state: paused;
-    transform: translateY(-10px) translateX(6px) rotate(14deg) scale(1.08);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate(2px, -6px) rotate(3.5deg) scale(1.05);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .contact-plane-ornament:hover .contact-plane-element {
-    filter: drop-shadow(0 14px 32px rgba(0, 102, 255, 0.32)) drop-shadow(0 0 16px rgba(56, 189, 248, 0.6));
+    filter: drop-shadow(0 10px 24px rgba(0, 85, 238, 0.3)) drop-shadow(0 0 14px rgba(56, 189, 248, 0.5));
   }
 
   body.hake-theme-dark .contact-plane-ornament:hover .contact-plane-element {
-    filter: drop-shadow(0 0 24px rgba(56, 189, 248, 0.55)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
+    filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.65)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
   }
 
-  .contact-plane-ornament:hover .breeze-stream-primary {
-    animation-duration: 0.8s;
-  }
-
-  .contact-plane-ornament:hover .breeze-stream-top {
-    animation-duration: 0.6s;
-    opacity: 1;
-  }
-
-  .contact-plane-ornament:hover .breeze-stream-bottom {
+  .contact-plane-ornament:hover .flight-trail-dash {
     animation-duration: 0.9s;
-    opacity: 1;
+    stroke-width: 2.8;
   }
 
   @media (max-width: 1080px) {
@@ -1441,11 +1367,10 @@
       top: 18px;
     }
     .plane-flight-stage {
-      width: 120px;
+      width: 130px;
       height: 70px;
-    }
-    .contact-plane-element {
-      width: 64px;
+      transform: scale(0.9);
+      transform-origin: top right;
     }
   }
 
@@ -1453,7 +1378,7 @@
     .contact-plane-ornament {
       right: 8px;
       top: 6px;
-      transform: scale(0.85);
+      transform: scale(0.82);
       transform-origin: top right;
     }
     .subpage-plane-ornament {
@@ -1470,10 +1395,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .plane-flight-glider,
-    .breeze-stream-primary,
-    .breeze-stream-top,
-    .breeze-stream-bottom,
-    .breeze-mote {
+    .flight-trail-dash {
       animation: none !important;
     }
   }
