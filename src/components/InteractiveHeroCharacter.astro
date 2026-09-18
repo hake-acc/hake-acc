@@ -80,6 +80,7 @@
       id="vidListening"
       class="char-video-track is-hidden"
       muted
+      loop
       playsinline
       preload="auto"
       src="/assets/character_states/clip_4_listening_wait.mp4"
@@ -142,7 +143,7 @@
     overflow: visible;
     user-select: none;
     cursor: pointer;
-    z-index: 5;
+    z-index: 25;
     outline: none;
   }
 
@@ -226,7 +227,7 @@
     box-shadow: 0 16px 36px -10px rgba(0, 85, 238, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.8);
     border-radius: 18px;
     padding: 14px 16px;
-    z-index: 30;
+    z-index: 50;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1), transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
@@ -481,6 +482,17 @@
       if (this.initialized) return;
       this.initialized = true;
 
+      // Ensure all videos have muted and playsInline set in JS for strict browser policies
+      Object.values(this.videos).forEach((v) => {
+        if (v) {
+          v.muted = true;
+          v.playsInline = true;
+        }
+      });
+      if (this.videos.listening) {
+        this.videos.listening.loop = true;
+      }
+
       // Start typing loop
       this.videos.typing.loop = true;
       this.videos.typing.play().catch(() => {
@@ -613,6 +625,8 @@
         }, 1200);
       }
 
+      nextVideo.muted = true;
+      nextVideo.playsInline = true;
       nextVideo.currentTime = 0;
       nextVideo.play().then(() => {
         // Crossfade: show next, hide prev
