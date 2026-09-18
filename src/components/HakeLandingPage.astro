@@ -2054,6 +2054,14 @@ import '../styles/hake-theme.css';
     inset: 0;
     pointer-events: none;
     z-index: 6;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .art-visual-frame.has-active-dialog .floating-badges-layer,
+  .art-visual-frame:has(.interactive-character-container.is-talking) .floating-badges-layer {
+    opacity: 0.25;
+    transform: scale(0.97);
+    pointer-events: none;
   }
 
   .scene-floating-badge {

@@ -1,11 +1,12 @@
 ---
 // InteractiveHeroCharacter.astro
-// Bulletproof 5-State Interactive Character Motion Engine for Hake
+// Seamless 5-State Interactive Character Motion Engine for Hake
+// 100% Character Consistency (Exact Hero Linework, Hair, and Palette)
 // States:
-// 1. Base Loop: Active typing with continuous steam & periodic coffee sip
+// 1. Base Loop: Active typing with screen glow, breathing, eye blinks, coffee steam
 // 2. Transition: Typing to Look up & wave
 // 3. Greeting: Enthusiastic wave with interactive speech bubble
-// 4. Listening: Attentive chin-on-hand listening with dialogue pills
+// 4. Listening: Attentive nod & listening wait with dialogue pills
 // 5. Transition: Smooth return to laptop keys
 ---
 
@@ -17,23 +18,13 @@
   aria-label="Interactive Hake character. Click to talk with Hake"
   title="Click to interact with Hake"
 >
-  <!-- Master Illustrated Pose Matrix (Hardware-accelerated, zero-stutter foundation) -->
+  <!-- Master Illustrated Pose Matrix (Hardware-accelerated, 100% consistent foundation) -->
   <div class="char-pose-stage" id="charPoseStage" aria-hidden="true">
     <img
       src="/assets/character_states/pose_typing.png"
       alt="Hake typing at laptop"
       class="char-pose-layer is-active"
       id="poseTyping"
-      width="600"
-      height="600"
-      loading="eager"
-      decoding="async"
-    />
-    <img
-      src="/assets/character_states/pose_coffee.png"
-      alt="Hake sipping coffee"
-      class="char-pose-layer is-hidden"
-      id="poseCoffee"
       width="600"
       height="600"
       loading="eager"
@@ -63,7 +54,7 @@
 
   <!-- 5-State Dedicated Preloaded Video Track Stage -->
   <div class="video-buffer-stage" id="videoBufferStage" aria-hidden="true">
-    <!-- State 1: Base Typing & Coffee Loop -->
+    <!-- State 1: Base Typing Loop -->
     <video
       id="vidTyping"
       class="char-video-track is-active"
@@ -81,7 +72,7 @@
       class="char-video-track is-hidden"
       muted
       playsinline
-      preload="auto"
+      preload="metadata"
       src="/assets/character_states/clip_2_typing_to_wave.mp4"
     ></video>
 
@@ -90,8 +81,9 @@
       id="vidWaving"
       class="char-video-track is-hidden"
       muted
+      loop
       playsinline
-      preload="auto"
+      preload="metadata"
       src="/assets/character_states/clip_3_waving_speech.mp4"
     ></video>
 
@@ -102,7 +94,7 @@
       muted
       loop
       playsinline
-      preload="auto"
+      preload="metadata"
       src="/assets/character_states/clip_4_listening_wait.mp4"
     ></video>
 
@@ -112,21 +104,9 @@
       class="char-video-track is-hidden"
       muted
       playsinline
-      preload="auto"
+      preload="metadata"
       src="/assets/character_states/clip_5_listen_to_typing.mp4"
     ></video>
-  </div>
-
-  <!-- Live Dynamic FX Layer: Rising Steam & Typing Light -->
-  <div class="char-live-fx" id="charLiveFx" aria-hidden="true">
-    <!-- Steam from Discord mug (left: 6.5%, bottom: 27%) -->
-    <div class="steam-container">
-      <span class="steam-puff puff-1"></span>
-      <span class="steam-puff puff-2"></span>
-      <span class="steam-puff puff-3"></span>
-    </div>
-    <!-- Subtle keystroke glow on keyboard -->
-    <div class="keystroke-glow" id="keystrokeGlow"></div>
   </div>
 
   <!-- Interactive Speech Bubble (State 3 & 4) -->
@@ -176,9 +156,13 @@
     overflow: visible;
     user-select: none;
     cursor: pointer;
-    z-index: 25;
+    z-index: 5;
     outline: none;
     animation: gentleBreathe 6s infinite ease-in-out;
+  }
+
+  .interactive-character-container.is-talking {
+    z-index: 25;
   }
 
   @keyframes gentleBreathe {
@@ -191,7 +175,7 @@
     outline-offset: 4px;
   }
 
-  /* Master Pose Image Layers (Always available, instant 60fps response) */
+  /* Master Pose Image Layers (Hardware-accelerated fallback) */
   .char-pose-stage {
     position: absolute;
     inset: 0;
@@ -211,23 +195,22 @@
     object-fit: contain;
     border-radius: 28px;
     pointer-events: none;
-    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, transform;
+    opacity: 0;
+    transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
   }
 
   .char-pose-layer.is-active {
     opacity: 1;
-    transform: scale(1);
     z-index: 2;
   }
 
   .char-pose-layer.is-hidden {
     opacity: 0;
-    transform: scale(0.99);
     z-index: 1;
   }
 
-  /* Video Stage (Direct high-definition motion overlay) */
+  /* Video Stage (Direct high-definition video overlay) */
   .video-buffer-stage {
     position: absolute;
     inset: 0;
@@ -246,7 +229,8 @@
     height: 100%;
     object-fit: contain;
     pointer-events: none;
-    transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: opacity;
   }
 
@@ -260,116 +244,18 @@
     z-index: 1;
   }
 
-  /* Live Dynamic FX Layer */
-  .char-live-fx {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 4;
-  }
-
-  /* Rising Steam from Mug */
-  .steam-container {
-    position: absolute;
-    left: 7%;
-    bottom: 27%;
-    width: 32px;
-    height: 64px;
-    pointer-events: none;
-  }
-
-  .steam-puff {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    border-radius: 50%;
-    background: rgba(235, 240, 255, 0.85);
-    filter: blur(4px);
-    opacity: 0;
-    transform: translateX(-50%);
-  }
-
-  .puff-1 {
-    width: 14px;
-    height: 14px;
-    animation: steamFloat 2.4s infinite ease-out;
-  }
-
-  .puff-2 {
-    width: 18px;
-    height: 18px;
-    animation: steamFloat 2.4s infinite ease-out 0.8s;
-  }
-
-  .puff-3 {
-    width: 12px;
-    height: 12px;
-    animation: steamFloat 2.4s infinite ease-out 1.6s;
-  }
-
-  @keyframes steamFloat {
-    0% {
-      opacity: 0;
-      transform: translateX(-50%) translateY(0) scale(0.6);
-    }
-    30% {
-      opacity: 0.75;
-      transform: translateX(calc(-50% + 4px)) translateY(-20px) scale(1);
-    }
-    70% {
-      opacity: 0.4;
-      transform: translateX(calc(-50% - 6px)) translateY(-45px) scale(1.4);
-    }
-    100% {
-      opacity: 0;
-      transform: translateX(calc(-50% + 8px)) translateY(-70px) scale(1.8);
-    }
-  }
-
-  /* Keystroke Reflection Glow */
-  .keystroke-glow {
-    position: absolute;
-    left: 36%;
-    bottom: 20%;
-    width: 170px;
-    height: 50px;
-    background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.28) 0%, rgba(0, 85, 238, 0.08) 55%, transparent 75%);
-    filter: blur(8px);
-    border-radius: 50%;
-    pointer-events: none;
-    animation: glowFlicker 0.45s infinite ease-in-out alternate;
-  }
-
-  @keyframes glowFlicker {
-    0% { opacity: 0.35; transform: scale(0.96); }
-    100% { opacity: 0.85; transform: scale(1.04); }
-  }
-
   /* Interactive Speech Bubble */
   .char-speech-bubble {
     position: absolute;
-    top: -42px;
+    top: 24px;
     left: 50%;
-    transform: translateX(-50%) translateY(-8px) scale(0.94);
-    width: min(320px, 92vw);
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 85, 238, 0.18);
-    box-shadow: 0 16px 36px -10px rgba(0, 85, 238, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.8);
-    border-radius: 18px;
-    padding: 14px 16px;
-    z-index: 50;
+    transform: translateX(-50%) translateY(-10px) scale(0.95);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1), transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  :global(.dark-theme) .char-speech-bubble,
-  :global(body.hake-theme-dark) .char-speech-bubble {
-    background: rgba(30, 31, 34, 0.94);
-    border-color: rgba(56, 189, 248, 0.25);
-    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 50;
+    width: max-content;
+    max-width: min(380px, 90vw);
   }
 
   .char-speech-bubble.active {
@@ -378,11 +264,28 @@
     transform: translateX(-50%) translateY(0) scale(1);
   }
 
+  .speech-bubble-content {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(0, 85, 238, 0.22);
+    border-radius: 20px;
+    padding: 16px 20px;
+    box-shadow: 0 16px 36px -8px rgba(0, 85, 238, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.85);
+  }
+
+  :global(.dark-theme) .speech-bubble-content,
+  :global(body.hake-theme-dark) .speech-bubble-content {
+    background: rgba(30, 31, 34, 0.94);
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+
   .speech-bubble-avatar {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin-bottom: 6px;
+    gap: 8px;
+    margin-bottom: 8px;
   }
 
   .speech-status-dot {
@@ -391,19 +294,13 @@
     border-radius: 50%;
     background: #22c55e;
     box-shadow: 0 0 8px #22c55e;
-    animation: statusPulse 2s infinite ease-in-out;
-  }
-
-  @keyframes statusPulse {
-    0%, 100% { opacity: 0.9; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.85); }
   }
 
   .speech-name {
     font-family: var(--font-heading, Outfit, sans-serif);
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    color: var(--text-heading, #0f172a);
+    color: var(--text-primary, #0f172a);
     letter-spacing: -0.01em;
   }
 
@@ -413,11 +310,11 @@
   }
 
   .speech-text {
-    font-size: 0.88rem;
-    line-height: 1.38;
+    font-size: 0.94rem;
+    line-height: 1.45;
     color: var(--text-body, #334155);
-    margin: 0 0 12px 0;
-    font-family: var(--font-body, "DM Sans", sans-serif);
+    margin: 0 0 14px 0;
+    font-weight: 500;
   }
 
   :global(.dark-theme) .speech-text,
@@ -428,24 +325,23 @@
   .speech-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
   }
 
   .speech-pill-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 5px 11px;
-    border-radius: 999px;
-    font-size: 0.76rem;
+    font-size: 0.82rem;
     font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 999px;
     background: #0055ee;
     color: #ffffff;
     text-decoration: none;
     border: none;
     cursor: pointer;
-    pointer-events: auto;
-    transition: all 0.16s ease;
+    transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
   }
 
   :global(.dark-theme) .speech-pill-btn,
@@ -508,7 +404,8 @@
     box-shadow: 0 10px 24px -4px rgba(0, 85, 238, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.9);
     border-radius: 999px;
     padding: 7px 16px;
-    pointer-events: none;
+    pointer-events: auto;
+    cursor: pointer;
     z-index: 20;
     transition: opacity 0.3s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -573,138 +470,113 @@
   }
 </style>
 
-<script>
-  // Robust Multi-Layer 5-State Interactive Character Motion Engine
-  // Synchronizes illustrated master poses and smooth video playback
-  // Completely immune to autoplay blocks, sleep states, or network stalls
-
-  type CharacterState = 'typing' | 'coffee' | 'transition_wave' | 'waving' | 'listening' | 'transition_typing';
+<script is:inline>
+  // Seamless 5-State Interactive Character Motion Engine for Hake
+  // 100% Consistent Master Illustrations + Smooth Video Track Playback
+  // Zero Stutter, Zero Ghosting, Zero Codec Issues
 
   class CharacterStateMachine {
-    private container: HTMLElement | null = null;
-    
-    // Poses
-    private poses: Record<string, HTMLImageElement | null> = {
-      typing: null,
-      coffee: null,
-      wave: null,
-      listen: null,
-    };
-
-    // Video tracks
-    private videos: Record<string, HTMLVideoElement | null> = {
-      typing: null,
-      transition_wave: null,
-      waving: null,
-      listening: null,
-      transition_typing: null,
-    };
-
-    private bubble: HTMLElement | null = null;
-    private triggerBtn: HTMLElement | null = null;
-    private dismissBtn: HTMLElement | null = null;
-    private keystrokeGlow: HTMLElement | null = null;
-
-    private currentState: CharacterState = 'typing';
-    private waitTimer: number | null = null;
-    private transitionWatchdog: number | null = null;
-    private coffeeLoopTimer: number | null = null;
-    private initialized: boolean = false;
-
     constructor() {
+      this.container = null;
+      this.poses = { typing: null, wave: null, listen: null };
+      this.videos = {
+        typing: null,
+        transition_wave: null,
+        waving: null,
+        listening: null,
+        transition_typing: null
+      };
+      this.bubble = null;
+      this.triggerBtn = null;
+      this.dismissBtn = null;
+      this.currentState = 'typing';
+      this.waitTimer = null;
+      this.transitionWatchdog = null;
+      this.waveLoopTimeout = null;
+      this.initialized = false;
+
       this.init();
     }
 
-    private clearWatchdog() {
+    clearAllTimers() {
       if (this.transitionWatchdog) {
         clearTimeout(this.transitionWatchdog);
         this.transitionWatchdog = null;
       }
+      if (this.waveLoopTimeout) {
+        clearTimeout(this.waveLoopTimeout);
+        this.waveLoopTimeout = null;
+      }
+      if (this.waitTimer) {
+        clearTimeout(this.waitTimer);
+        this.waitTimer = null;
+      }
     }
 
-    public init() {
+    clearWatchdog() {
+      this.clearAllTimers();
+    }
+
+    init() {
       if (typeof window === 'undefined') return;
       this.container = document.getElementById('interactiveCharContainer');
       
       // Poses
-      this.poses.typing = document.getElementById('poseTyping') as HTMLImageElement;
-      this.poses.coffee = document.getElementById('poseCoffee') as HTMLImageElement;
-      this.poses.wave = document.getElementById('poseWave') as HTMLImageElement;
-      this.poses.listen = document.getElementById('poseListen') as HTMLImageElement;
+      this.poses.typing = document.getElementById('poseTyping');
+      this.poses.wave = document.getElementById('poseWave');
+      this.poses.listen = document.getElementById('poseListen');
 
       // Videos
-      this.videos.typing = document.getElementById('vidTyping') as HTMLVideoElement;
-      this.videos.transition_wave = document.getElementById('vidTransWave') as HTMLVideoElement;
-      this.videos.waving = document.getElementById('vidWaving') as HTMLVideoElement;
-      this.videos.listening = document.getElementById('vidListening') as HTMLVideoElement;
-      this.videos.transition_typing = document.getElementById('vidTransTyping') as HTMLVideoElement;
+      this.videos.typing = document.getElementById('vidTyping');
+      this.videos.transition_wave = document.getElementById('vidTransWave');
+      this.videos.waving = document.getElementById('vidWaving');
+      this.videos.listening = document.getElementById('vidListening');
+      this.videos.transition_typing = document.getElementById('vidTransTyping');
 
       this.bubble = document.getElementById('charSpeechBubble');
       this.triggerBtn = document.getElementById('charInteractBtn');
       this.dismissBtn = document.getElementById('charDismissBtn');
-      this.keystrokeGlow = document.getElementById('keystrokeGlow');
 
       if (!this.container || !this.poses.typing) return;
       if (this.initialized) return;
       this.initialized = true;
 
-      // Configure video elements with muted and playsInline for browser policies
+      window.__hakeCharMachine = this;
+
+      // Configure video tracks
       Object.values(this.videos).forEach((v) => {
         if (v) {
           v.muted = true;
           v.playsInline = true;
         }
       });
-      if (this.videos.listening) {
-        this.videos.listening.loop = true;
-      }
+      if (this.videos.typing) this.videos.typing.loop = true;
+      if (this.videos.waving) this.videos.waving.loop = true;
+      if (this.videos.listening) this.videos.listening.loop = true;
 
-      // Start typing video loop
+      // Start base typing video
       if (this.videos.typing) {
-        this.videos.typing.loop = true;
         this.videos.typing.play().catch(() => {
-          // Strict browser policy: start on first touch/pointer
           const startOnTouch = () => {
             this.videos.typing?.play().catch(() => {});
             window.removeEventListener('pointerdown', startOnTouch);
           };
           window.addEventListener('pointerdown', startOnTouch, { once: true });
         });
-
-        this.videos.typing.onended = () => {
-          if (this.currentState === 'typing' && this.videos.typing) {
-            this.videos.typing.currentTime = 0;
-            this.videos.typing.play().catch(() => {});
-          }
-        };
       }
 
-      // Start periodic coffee sip cycle in State 1
-      this.scheduleCoffeeSip();
-
-      // Video event: Transition Wave ended -> Waving
+      // Transition Wave ended -> Switch to Waving Greeting
       if (this.videos.transition_wave) {
         this.videos.transition_wave.onended = () => {
           if (this.currentState === 'transition_wave') {
-            this.clearWatchdog();
+            this.clearAllTimers();
             this.showSpeechBubble();
             this.switchTo('waving');
           }
         };
       }
 
-      // Video event: Waving ended -> Listening
-      if (this.videos.waving) {
-        this.videos.waving.onended = () => {
-          if (this.currentState === 'waving') {
-            this.clearWatchdog();
-            this.switchTo('listening');
-            this.startWaitTimer();
-          }
-        };
-      }
-
-      // Video event: Transition Typing ended -> Return to Typing
+      // Transition Typing ended -> Return to Base Typing
       if (this.videos.transition_typing) {
         this.videos.transition_typing.onended = () => {
           if (this.currentState === 'transition_typing') {
@@ -715,23 +587,17 @@
               if (this.currentState === 'typing' && this.triggerBtn) {
                 this.triggerBtn.style.opacity = '1';
               }
-            }, 800);
+            }, 600);
           }
         };
       }
 
       // User click triggers state machine
       this.container.addEventListener('click', (e) => {
-        const target = e.target as HTMLElement;
-        if (target.closest('.speech-pill-btn')) return;
+        const target = e.target;
+        if (target && target.closest && target.closest('.speech-pill-btn')) return;
         this.handleUserClick();
       });
-
-      // Touch support for mobile devices
-      this.container.addEventListener('touchstart', (e) => {
-        const target = e.target as HTMLElement;
-        if (target.closest('.speech-pill-btn')) return;
-      }, { passive: true });
 
       // Keyboard accessibility
       this.container.addEventListener('keydown', (e) => {
@@ -742,64 +608,46 @@
       });
 
       // Dismiss button handler (Back to Work)
-      this.dismissBtn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        this.transitionToTyping();
-      });
-
-      // Explore Services pill click
-      const servicePill = this.bubble?.querySelector('[data-action="services"]');
-      servicePill?.addEventListener('click', () => {
-        this.transitionToTyping();
-      });
-    }
-
-    private scheduleCoffeeSip() {
-      if (this.coffeeLoopTimer) clearTimeout(this.coffeeLoopTimer);
-      // Take a coffee sip every 7.5 seconds in base loop
-      this.coffeeLoopTimer = window.setTimeout(() => {
-        if (this.currentState === 'typing') {
-          this.performCoffeeSip();
-        }
-      }, 7500);
-    }
-
-    private performCoffeeSip() {
-      if (this.currentState !== 'typing') return;
-      this.currentState = 'coffee';
-      this.setPoseActive('coffee');
-      
-      // Sips for 2.4 seconds with eyes closed & mug raised
-      setTimeout(() => {
-        if (this.currentState === 'coffee') {
-          this.currentState = 'typing';
-          this.setPoseActive('typing');
-          this.scheduleCoffeeSip();
-        }
-      }, 2400);
-    }
-
-    private handleUserClick() {
-      if (this.coffeeLoopTimer) {
-        clearTimeout(this.coffeeLoopTimer);
-        this.coffeeLoopTimer = null;
+      if (this.dismissBtn) {
+        this.dismissBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.transitionToTyping();
+        });
       }
 
-      if (this.currentState === 'typing' || this.currentState === 'coffee') {
+      // Explore Services pill click
+      const servicePill = this.bubble ? this.bubble.querySelector('[data-action="services"]') : null;
+      if (servicePill) {
+        servicePill.addEventListener('click', () => {
+          this.transitionToTyping();
+        });
+      }
+    }
+
+    isAttached() {
+      return !!this.container && document.body.contains(this.container);
+    }
+
+    handleUserClick() {
+      const now = Date.now();
+      if (this.lastClickTime && now - this.lastClickTime < 400) return;
+      this.lastClickTime = now;
+
+      if (this.currentState === 'typing') {
         if (this.triggerBtn) this.triggerBtn.style.opacity = '0';
         this.switchTo('transition_wave');
+      } else if (this.currentState === 'transition_wave') {
+        return;
       } else if (this.currentState === 'transition_typing') {
-        // Instant complete back to desk
-        this.clearWatchdog();
+        this.clearAllTimers();
         this.hideSpeechBubble();
         this.switchTo('typing');
       } else {
-        // In waving or listening: immediately transition back to work
         this.transitionToTyping();
       }
     }
 
-    private setPoseActive(poseName: 'typing' | 'coffee' | 'wave' | 'listen') {
+    setPoseActive(poseName) {
       Object.entries(this.poses).forEach(([name, el]) => {
         if (!el) return;
         if (name === poseName) {
@@ -810,134 +658,143 @@
       });
     }
 
-    private switchTo(nextState: CharacterState) {
-      this.clearWatchdog();
-      const prevVideoKey = this.currentState === 'coffee' ? 'typing' : this.currentState;
-      const prevVideo = this.videos[prevVideoKey];
-      
+    switchTo(nextState) {
+      this.clearAllTimers();
       this.currentState = nextState;
 
-      // Synchronize Illustrated Pose Layer immediately (0ms latency)
-      if (nextState === 'typing') {
-        this.setPoseActive('typing');
-        if (this.keystrokeGlow) this.keystrokeGlow.style.opacity = '1';
-        this.scheduleCoffeeSip();
-      } else if (nextState === 'coffee') {
-        this.setPoseActive('coffee');
-      } else if (nextState === 'transition_wave' || nextState === 'waving') {
-        this.setPoseActive('wave');
-        if (this.keystrokeGlow) this.keystrokeGlow.style.opacity = '0';
-      } else if (nextState === 'listening') {
-        this.setPoseActive('listen');
-        if (this.keystrokeGlow) this.keystrokeGlow.style.opacity = '0';
-      } else if (nextState === 'transition_typing') {
-        this.setPoseActive('typing');
-      }
-
-      // Synchronize Video Track Layer
-      const videoKeyMap: Record<string, string> = {
+      // Update matching master pose layer instantly
+      const poseMap = {
         typing: 'typing',
-        coffee: 'typing',
-        transition_wave: 'transition_wave',
-        waving: 'waving',
-        listening: 'listening',
-        transition_typing: 'transition_typing',
+        transition_wave: 'wave',
+        waving: 'wave',
+        listening: 'listen',
+        transition_typing: 'typing'
       };
-      const nextVideoKey = videoKeyMap[nextState];
-      const nextVideo = this.videos[nextVideoKey];
+      this.setPoseActive(poseMap[nextState] || 'typing');
 
-      // Watchdog safety timeouts so transitions always complete
+      // Synchronously manage playback and reveal video track only when ready
+      Object.entries(this.videos).forEach(([key, vid]) => {
+        if (!vid) return;
+        if (key === nextState) {
+          vid.currentTime = 0;
+          const playPromise = vid.play();
+          if (playPromise) {
+            playPromise.catch(() => {});
+          }
+          if (vid.readyState >= 2) {
+            vid.className = 'char-video-track is-active';
+          } else {
+            vid.className = 'char-video-track is-hidden';
+            vid.oncanplay = () => {
+              if (this.currentState === key) {
+                vid.className = 'char-video-track is-active';
+              }
+              vid.oncanplay = null;
+            };
+          }
+        } else {
+          vid.className = 'char-video-track is-hidden';
+          vid.oncanplay = null;
+          vid.pause();
+        }
+      });
+
+      // Safety watchdog timeouts so transitions always complete smoothly
       if (nextState === 'transition_wave') {
         this.transitionWatchdog = window.setTimeout(() => {
           if (this.currentState === 'transition_wave') {
             this.showSpeechBubble();
             this.switchTo('waving');
           }
-        }, 1400);
+        }, 850);
       } else if (nextState === 'waving') {
-        this.transitionWatchdog = window.setTimeout(() => {
+        // Wave for 2.8 seconds then ease into attentive listening
+        this.waveLoopTimeout = window.setTimeout(() => {
           if (this.currentState === 'waving') {
             this.switchTo('listening');
-            this.startWaitTimer();
           }
-        }, 3400);
+        }, 2800);
+      } else if (nextState === 'listening') {
+        this.startWaitTimer();
       } else if (nextState === 'transition_typing') {
         this.transitionWatchdog = window.setTimeout(() => {
           if (this.currentState === 'transition_typing') {
             this.hideSpeechBubble();
             this.switchTo('typing');
           }
-        }, 1200);
-      }
-
-      if (nextVideo) {
-        nextVideo.muted = true;
-        nextVideo.playsInline = true;
-        nextVideo.currentTime = 0;
-        nextVideo.play().then(() => {
-          nextVideo.className = 'char-video-track is-active';
-          if (prevVideo && prevVideo !== nextVideo) {
-            prevVideo.className = 'char-video-track is-hidden';
-            setTimeout(() => {
-              if (prevVideo.className.includes('is-hidden')) {
-                prevVideo.pause();
-              }
-            }, 200);
-          }
-        }).catch(() => {
-          // Direct fallback: make active anyway
-          nextVideo.className = 'char-video-track is-active';
-          if (prevVideo && prevVideo !== nextVideo) {
-            prevVideo.className = 'char-video-track is-hidden';
-          }
-        });
+        }, 850);
       }
     }
 
-    private startWaitTimer() {
+    startWaitTimer() {
       if (this.waitTimer) clearTimeout(this.waitTimer);
+      // Wait 8 seconds in listening state before returning to work
       this.waitTimer = window.setTimeout(() => {
         if (this.currentState === 'listening') {
           this.transitionToTyping();
         }
-      }, 5000);
+      }, 8000);
     }
 
-    private transitionToTyping() {
+    transitionToTyping() {
       if (this.currentState === 'typing') return;
-      if (this.waitTimer) {
-        clearTimeout(this.waitTimer);
-        this.waitTimer = null;
-      }
-      this.clearWatchdog();
+      this.clearAllTimers();
       this.hideSpeechBubble();
       this.switchTo('transition_typing');
     }
 
-    private showSpeechBubble() {
-      this.bubble?.classList.add('active');
-      this.bubble?.setAttribute('aria-hidden', 'false');
+    showSpeechBubble() {
+      if (this.bubble) {
+        this.bubble.classList.add('active');
+        this.bubble.setAttribute('aria-hidden', 'false');
+      }
+      if (this.container) {
+        this.container.classList.add('is-talking');
+        const frame = this.container.closest('.art-visual-frame');
+        if (frame) frame.classList.add('has-active-dialog');
+      }
     }
 
-    private hideSpeechBubble() {
-      this.bubble?.classList.remove('active');
-      this.bubble?.setAttribute('aria-hidden', 'true');
+    hideSpeechBubble() {
+      if (this.bubble) {
+        this.bubble.classList.remove('active');
+        this.bubble.setAttribute('aria-hidden', 'true');
+      }
+      if (this.container) {
+        this.container.classList.remove('is-talking');
+        const frame = this.container.closest('.art-visual-frame');
+        if (frame) frame.classList.remove('has-active-dialog');
+      }
     }
   }
 
-  // Initialize on load and on Astro view transition navigation
-  let stateMachine: CharacterStateMachine | null = null;
-  function initCharMachine() {
-    if (!stateMachine) {
-      stateMachine = new CharacterStateMachine();
-    } else {
-      stateMachine.init();
-    }
+  // Instant robust bootloader
+  function bootCharMachine() {
+    if (window.__hakeCharMachine && window.__hakeCharMachine.isAttached()) return;
+    if (!document.getElementById('interactiveCharContainer')) return;
+    new CharacterStateMachine();
   }
 
-  initCharMachine();
-  document.addEventListener('astro:page-load', () => {
-    stateMachine = null;
-    initCharMachine();
-  });
+  window.bootCharMachine = bootCharMachine;
+
+  // Immediate attempt
+  bootCharMachine();
+
+  if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', bootCharMachine);
+    document.addEventListener('astro:page-load', bootCharMachine);
+
+    // Fast polling fallback to guarantee initialization within milliseconds of element insertion
+    const bootInterval = setInterval(() => {
+      if (window.__hakeCharMachine && window.__hakeCharMachine.isAttached()) {
+        clearInterval(bootInterval);
+        return;
+      }
+      bootCharMachine();
+      if (window.__hakeCharMachine && window.__hakeCharMachine.isAttached()) {
+        clearInterval(bootInterval);
+      }
+    }, 40);
+    setTimeout(() => clearInterval(bootInterval), 5000);
+  }
 </script>
