@@ -1,6 +1,6 @@
 ---
 // InteractiveHeroCharacter.astro
-// Seamless 5-State Interactive Video State Machine for Hake
+// Robust 5-State Interactive Character Motion Engine for Hake
 // States:
 // 1. Base Loop: Typing with periodic coffee sipping (Infinite loop)
 // 2. Transition: Typing -> Look up & wave (Plays on click)
@@ -17,7 +17,7 @@
   aria-label="Interactive Hake character. Click to talk with Hake"
   title="Click to interact with Hake"
 >
-  <!-- Poster Images for Instant LCP, Dark Mode, & Fallback -->
+  <!-- Persistent Poster Layer (Always present underneath, never disappears) -->
   <img
     src="/assets/hero_illustration_light.webp"
     alt="Hake character working at desk on laptop"
@@ -41,29 +41,58 @@
     decoding="async"
   />
 
-  <!-- Dual-Video A/B Seamless Swap Buffer -->
+  <!-- 5-State Dedicated Preloaded Video Track Stage -->
   <div class="video-buffer-stage" id="videoBufferStage" aria-hidden="true">
+    <!-- State 1: Base Typing & Coffee Loop -->
     <video
-      id="charVideoA"
-      class="char-video-layer layer-active"
+      id="vidTyping"
+      class="char-video-track is-active"
       autoplay
       muted
       loop
       playsinline
       preload="auto"
-      aria-hidden="true"
-    >
-      <source src="/assets/character_states/clip_1_typing_loop.mp4" type="video/mp4" />
-      <source src="/assets/character_states/clip_1_typing_loop.webm" type="video/webm" />
-    </video>
+      src="/assets/character_states/clip_1_typing_loop.mp4"
+    ></video>
 
+    <!-- State 2: Transition Typing to Wave -->
     <video
-      id="charVideoB"
-      class="char-video-layer layer-standby"
+      id="vidTransWave"
+      class="char-video-track is-hidden"
       muted
       playsinline
       preload="auto"
-      aria-hidden="true"
+      src="/assets/character_states/clip_2_typing_to_wave.mp4"
+    ></video>
+
+    <!-- State 3: Waving Greeting -->
+    <video
+      id="vidWaving"
+      class="char-video-track is-hidden"
+      muted
+      playsinline
+      preload="auto"
+      src="/assets/character_states/clip_3_waving_speech.mp4"
+    ></video>
+
+    <!-- State 4: Listening Wait -->
+    <video
+      id="vidListening"
+      class="char-video-track is-hidden"
+      muted
+      playsinline
+      preload="auto"
+      src="/assets/character_states/clip_4_listening_wait.mp4"
+    ></video>
+
+    <!-- State 5: Transition Listening to Typing -->
+    <video
+      id="vidTransTyping"
+      class="char-video-track is-hidden"
+      muted
+      playsinline
+      preload="auto"
+      src="/assets/character_states/clip_5_listen_to_typing.mp4"
     ></video>
   </div>
 
@@ -122,15 +151,17 @@
     outline-offset: 4px;
   }
 
+  /* Persistent Poster Base (Always visible as foundation, never blank) */
   .char-poster-fallback {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: contain;
+    border-radius: 28px;
     z-index: 1;
-    transition: opacity 0.35s ease;
     pointer-events: none;
+    transition: opacity 0.3s ease;
   }
 
   .char-poster-light {
@@ -149,11 +180,6 @@
     display: block;
   }
 
-  .interactive-character-container.videos-ready .char-poster-fallback {
-    opacity: 0;
-    visibility: hidden;
-  }
-
   .video-buffer-stage {
     position: absolute;
     inset: 0;
@@ -165,23 +191,23 @@
     pointer-events: none;
   }
 
-  .char-video-layer {
+  .char-video-track {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: contain;
-    transition: opacity 0.12s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: opacity;
     pointer-events: none;
+    transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
   }
 
-  .char-video-layer.layer-active {
+  .char-video-track.is-active {
     opacity: 1;
     z-index: 2;
   }
 
-  .char-video-layer.layer-standby {
+  .char-video-track.is-hidden {
     opacity: 0;
     z-index: 1;
   }
@@ -397,9 +423,6 @@
     .video-buffer-stage {
       display: none;
     }
-    .char-poster-fallback {
-      opacity: 1 !important;
-    }
     .char-interaction-trigger {
       display: none;
     }
@@ -407,50 +430,27 @@
 </style>
 
 <script>
-  // Interactive Video State Machine Engine
-  // Seamless Dual-Buffer A/B Swapping with zero visible seams
+  // Robust 5-State Dedicated Preloaded Video Engine
+  // Zero dynamic URL switching, zero buffer stalls, zero disappearing
 
   type CharacterState = 'typing' | 'transition_wave' | 'waving' | 'listening' | 'transition_typing';
 
-  const CLIPS: Record<CharacterState, { mp4: string; webm: string; loop: boolean }> = {
-    typing: {
-      mp4: '/assets/character_states/clip_1_typing_loop.mp4',
-      webm: '/assets/character_states/clip_1_typing_loop.webm',
-      loop: true,
-    },
-    transition_wave: {
-      mp4: '/assets/character_states/clip_2_typing_to_wave.mp4',
-      webm: '/assets/character_states/clip_2_typing_to_wave.webm',
-      loop: false,
-    },
-    waving: {
-      mp4: '/assets/character_states/clip_3_waving_speech.mp4',
-      webm: '/assets/character_states/clip_3_waving_speech.webm',
-      loop: false,
-    },
-    listening: {
-      mp4: '/assets/character_states/clip_4_listening_wait.mp4',
-      webm: '/assets/character_states/clip_4_listening_wait.webm',
-      loop: false,
-    },
-    transition_typing: {
-      mp4: '/assets/character_states/clip_5_listen_to_typing.mp4',
-      webm: '/assets/character_states/clip_5_listen_to_typing.webm',
-      loop: false,
-    },
-  };
-
   class CharacterStateMachine {
     private container: HTMLElement | null = null;
-    private videoA: HTMLVideoElement | null = null;
-    private videoB: HTMLVideoElement | null = null;
+    private videos: Record<CharacterState, HTMLVideoElement | null> = {
+      typing: null,
+      transition_wave: null,
+      waving: null,
+      listening: null,
+      transition_typing: null,
+    };
     private bubble: HTMLElement | null = null;
     private triggerBtn: HTMLElement | null = null;
     private dismissBtn: HTMLElement | null = null;
 
-    private activeLayer: 'A' | 'B' = 'A';
     private currentState: CharacterState = 'typing';
     private waitTimer: number | null = null;
+    private transitionWatchdog: number | null = null;
     private isTransitioning: boolean = false;
     private initialized: boolean = false;
 
@@ -458,29 +458,90 @@
       this.init();
     }
 
+    private clearWatchdog() {
+      if (this.transitionWatchdog) {
+        clearTimeout(this.transitionWatchdog);
+        this.transitionWatchdog = null;
+      }
+    }
+
     public init() {
       if (typeof window === 'undefined') return;
       this.container = document.getElementById('interactiveCharContainer');
-      this.videoA = document.getElementById('charVideoA') as HTMLVideoElement;
-      this.videoB = document.getElementById('charVideoB') as HTMLVideoElement;
+      this.videos.typing = document.getElementById('vidTyping') as HTMLVideoElement;
+      this.videos.transition_wave = document.getElementById('vidTransWave') as HTMLVideoElement;
+      this.videos.waving = document.getElementById('vidWaving') as HTMLVideoElement;
+      this.videos.listening = document.getElementById('vidListening') as HTMLVideoElement;
+      this.videos.transition_typing = document.getElementById('vidTransTyping') as HTMLVideoElement;
       this.bubble = document.getElementById('charSpeechBubble');
       this.triggerBtn = document.getElementById('charInteractBtn');
       this.dismissBtn = document.getElementById('charDismissBtn');
 
-      if (!this.container || !this.videoA || !this.videoB) return;
+      if (!this.container || !this.videos.typing) return;
       if (this.initialized) return;
       this.initialized = true;
 
-      // Preload next clips in background to ensure 0ms latency when clicked
-      this.preloadClips();
+      // Start typing loop
+      this.videos.typing.loop = true;
+      this.videos.typing.play().catch(() => {
+        // Fallback for strict autoplay browsers: start on first touch/pointer
+        const startOnTouch = () => {
+          this.videos.typing?.play().catch(() => {});
+          window.removeEventListener('pointerdown', startOnTouch);
+        };
+        window.addEventListener('pointerdown', startOnTouch, { once: true });
+      });
 
-      // Start initial state (Typing Loop)
-      this.playInitialState();
+      // Loop fallback for typing video
+      this.videos.typing.onended = () => {
+        if (this.currentState === 'typing' && this.videos.typing) {
+          this.videos.typing.currentTime = 0;
+          this.videos.typing.play().catch(() => {});
+        }
+      };
+
+      // State 2: Transition Wave ended -> State 3 (Waving)
+      if (this.videos.transition_wave) {
+        this.videos.transition_wave.onended = () => {
+          if (this.currentState === 'transition_wave') {
+            this.clearWatchdog();
+            this.showSpeechBubble();
+            this.switchTo('waving');
+          }
+        };
+      }
+
+      // State 3: Waving ended -> State 4 (Listening)
+      if (this.videos.waving) {
+        this.videos.waving.onended = () => {
+          if (this.currentState === 'waving') {
+            this.clearWatchdog();
+            this.switchTo('listening');
+            this.startWaitTimer();
+          }
+        };
+      }
+
+      // State 5: Transition Typing ended -> State 1 (Return to Typing)
+      if (this.videos.transition_typing) {
+        this.videos.transition_typing.onended = () => {
+          if (this.currentState === 'transition_typing') {
+            this.clearWatchdog();
+            this.hideSpeechBubble();
+            this.switchTo('typing');
+            setTimeout(() => {
+              if (this.currentState === 'typing' && this.triggerBtn) {
+                this.triggerBtn.style.opacity = '1';
+              }
+            }, 800);
+          }
+        };
+      }
 
       // User click triggers state machine
       this.container.addEventListener('click', (e) => {
         const target = e.target as HTMLElement;
-        if (target.closest('.speech-pill-btn')) return; // let pill buttons handle their own actions
+        if (target.closest('.speech-pill-btn')) return;
         this.handleUserClick();
       });
 
@@ -492,145 +553,89 @@
         }
       });
 
-      // Dismiss / Action button handlers
+      // Dismiss button handler (Back to Work)
       this.dismissBtn?.addEventListener('click', (e) => {
         e.stopPropagation();
         this.transitionToTyping();
       });
 
+      // Explore Services pill click
       const servicePill = this.bubble?.querySelector('[data-action="services"]');
       servicePill?.addEventListener('click', () => {
-        // Return character to work when user navigates
         this.transitionToTyping();
-      });
-    }
-
-    private preloadClips() {
-      // Warm up HTTP cache for all clips
-      const clipsToWarm = [
-        CLIPS.transition_wave.mp4,
-        CLIPS.waving.mp4,
-        CLIPS.listening.mp4,
-        CLIPS.transition_typing.mp4,
-      ];
-      clipsToWarm.forEach((src) => {
-        const link = document.createElement('link');
-        link.rel = 'prefetch';
-        link.as = 'video';
-        link.href = src;
-        document.head.appendChild(link);
-      });
-    }
-
-    private playInitialState() {
-      if (!this.videoA) return;
-      this.currentState = 'typing';
-
-      const markReady = () => {
-        this.container?.classList.add('videos-ready');
-      };
-
-      this.videoA.addEventListener('playing', markReady, { once: true });
-      this.videoA.loop = true;
-
-      this.videoA.play().then(markReady).catch(() => {
-        // Autoplay policy fallback: start on first touch/interaction
-        const onFirstTouch = () => {
-          this.videoA?.play().then(markReady);
-          markReady();
-          window.removeEventListener('pointerdown', onFirstTouch);
-        };
-        window.addEventListener('pointerdown', onFirstTouch, { once: true });
       });
     }
 
     private handleUserClick() {
-      this.container?.classList.add('videos-ready');
-      if (this.isTransitioning) return;
       if (this.currentState === 'typing') {
         if (this.triggerBtn) this.triggerBtn.style.opacity = '0';
-        this.transitionToState('transition_wave');
-      } else if (this.currentState === 'listening' || this.currentState === 'waving') {
+        this.switchTo('transition_wave');
+      } else if (this.currentState === 'transition_typing') {
+        // Already returning to desk, instantly complete back to typing
+        this.clearWatchdog();
+        this.hideSpeechBubble();
+        this.switchTo('typing');
+      } else {
+        // In waving or listening: click brings character smoothly back to typing
         this.transitionToTyping();
       }
     }
 
-    private transitionToState(nextState: CharacterState) {
-      if (!this.videoA || !this.videoB) return;
-      this.isTransitioning = true;
+    private switchTo(nextState: CharacterState) {
+      const prevVideo = this.videos[this.currentState];
+      const nextVideo = this.videos[nextState];
+      if (!nextVideo) return;
+
+      this.clearWatchdog();
       this.currentState = nextState;
 
-      const currentVideo = this.activeLayer === 'A' ? this.videoA : this.videoB;
-      const nextVideo = this.activeLayer === 'A' ? this.videoB : this.videoA;
-      const nextLayer = this.activeLayer === 'A' ? 'B' : 'A';
-
-      const clipInfo = CLIPS[nextState];
-      this.setVideoSource(nextVideo, nextState);
-      nextVideo.loop = clipInfo.loop;
-      nextVideo.currentTime = 0;
-
-      // When next video has buffered enough to play smoothly
-      const startSwap = () => {
-        nextVideo.removeEventListener('canplay', startSwap);
-        nextVideo.play().then(() => {
-          // Crossfade: activate next, standby current
-          nextVideo.className = 'char-video-layer layer-active';
-          currentVideo.className = 'char-video-layer layer-standby';
-          this.activeLayer = nextLayer;
-          this.isTransitioning = false;
-
-          // Pause standby video after crossfade transition
-          setTimeout(() => {
-            if (currentVideo.className.includes('layer-standby')) {
-              currentVideo.pause();
-            }
-          }, 150);
-
-          // Wire onended for sequence
-          nextVideo.onended = () => {
-            this.handleVideoEnded(nextState);
-          };
-        }).catch(() => {
-          this.isTransitioning = false;
-        });
-      };
-
-      if (nextVideo.readyState >= 3) {
-        startSwap();
-      } else {
-        nextVideo.addEventListener('canplay', startSwap, { once: true });
-      }
-    }
-
-    private handleVideoEnded(state: CharacterState) {
-      if (state === 'transition_wave') {
-        // State 2 ended -> State 3 (Waving & Speech)
-        this.showSpeechBubble();
-        this.transitionToState('waving');
-      } else if (state === 'waving') {
-        // State 3 ended -> State 4 (5-second Attentive Listening Wait)
-        this.transitionToState('listening');
-        this.startWaitTimer();
-      } else if (state === 'listening') {
-        // State 4 ended -> State 5 (Return to Typing)
-        this.transitionToTyping();
-      } else if (state === 'transition_typing') {
-        // State 5 ended -> Return to State 1 Infinite Loop
-        this.hideSpeechBubble();
-        this.transitionToState('typing');
-
-        // Restore click-me trigger after a brief delay
-        setTimeout(() => {
-          if (this.currentState === 'typing' && this.triggerBtn) {
-            this.triggerBtn.style.opacity = '1';
+      // Watchdog safety timeouts so character can never freeze or get stuck
+      if (nextState === 'transition_wave') {
+        this.transitionWatchdog = window.setTimeout(() => {
+          if (this.currentState === 'transition_wave') {
+            this.showSpeechBubble();
+            this.switchTo('waving');
+          }
+        }, 1400);
+      } else if (nextState === 'waving') {
+        this.transitionWatchdog = window.setTimeout(() => {
+          if (this.currentState === 'waving') {
+            this.switchTo('listening');
+            this.startWaitTimer();
+          }
+        }, 3400);
+      } else if (nextState === 'transition_typing') {
+        this.transitionWatchdog = window.setTimeout(() => {
+          if (this.currentState === 'transition_typing') {
+            this.hideSpeechBubble();
+            this.switchTo('typing');
           }
         }, 1200);
       }
+
+      nextVideo.currentTime = 0;
+      nextVideo.play().then(() => {
+        // Crossfade: show next, hide prev
+        nextVideo.className = 'char-video-track is-active';
+        if (prevVideo && prevVideo !== nextVideo) {
+          prevVideo.className = 'char-video-track is-hidden';
+          setTimeout(() => {
+            if (prevVideo.className.includes('is-hidden')) {
+              prevVideo.pause();
+            }
+          }, 200);
+        }
+      }).catch(() => {
+        // Direct fallback: activate video track
+        nextVideo.className = 'char-video-track is-active';
+        if (prevVideo && prevVideo !== nextVideo) {
+          prevVideo.className = 'char-video-track is-hidden';
+        }
+      });
     }
 
     private startWaitTimer() {
       if (this.waitTimer) clearTimeout(this.waitTimer);
-      // Wait exactly 5 seconds before returning to work
       this.waitTimer = window.setTimeout(() => {
         if (this.currentState === 'listening') {
           this.transitionToTyping();
@@ -639,13 +644,14 @@
     }
 
     private transitionToTyping() {
-      if (this.currentState === 'transition_typing' || this.currentState === 'typing') return;
+      if (this.currentState === 'typing') return;
       if (this.waitTimer) {
         clearTimeout(this.waitTimer);
         this.waitTimer = null;
       }
+      this.clearWatchdog();
       this.hideSpeechBubble();
-      this.transitionToState('transition_typing');
+      this.switchTo('transition_typing');
     }
 
     private showSpeechBubble() {
@@ -656,13 +662,6 @@
     private hideSpeechBubble() {
       this.bubble?.classList.remove('active');
       this.bubble?.setAttribute('aria-hidden', 'true');
-    }
-
-    private setVideoSource(videoEl: HTMLVideoElement, state: CharacterState) {
-      const clip = CLIPS[state];
-      // Supports direct mp4 (universal cross-browser compatibility)
-      videoEl.src = clip.mp4;
-      videoEl.load();
     }
   }
 
