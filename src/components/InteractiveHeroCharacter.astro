@@ -1,12 +1,12 @@
 ---
 // InteractiveHeroCharacter.astro
-// Robust 5-State Interactive Character Motion Engine for Hake
+// Bulletproof 5-State Interactive Character Motion Engine for Hake
 // States:
-// 1. Base Loop: Typing with periodic coffee sipping (Infinite loop)
-// 2. Transition: Typing -> Look up & wave (Plays on click)
-// 3. Greeting: Waving with interactive speech bubble ("Hey! I'm Hake, wanna know more?")
-// 4. Listening: 5-second attentive wait loop with clickable dialogue pills
-// 5. Transition: Wave/Listen -> Smooth return to typing
+// 1. Base Loop: Active typing with continuous steam & periodic coffee sip
+// 2. Transition: Typing to Look up & wave
+// 3. Greeting: Enthusiastic wave with interactive speech bubble
+// 4. Listening: Attentive chin-on-hand listening with dialogue pills
+// 5. Transition: Smooth return to laptop keys
 ---
 
 <div 
@@ -17,29 +17,49 @@
   aria-label="Interactive Hake character. Click to talk with Hake"
   title="Click to interact with Hake"
 >
-  <!-- Persistent Poster Layer (Always present underneath, never disappears) -->
-  <img
-    src="/assets/hero_illustration_light.webp"
-    alt="Hake character working at desk on laptop"
-    class="char-poster-fallback char-poster-light"
-    id="charPosterLight"
-    width="600"
-    height="600"
-    loading="eager"
-    fetchpriority="high"
-    decoding="async"
-  />
-  <img
-    src="/assets/hero_illustration_dark.webp"
-    alt="Hake character working at desk on laptop"
-    class="char-poster-fallback char-poster-dark"
-    id="charPosterDark"
-    width="600"
-    height="600"
-    loading="eager"
-    fetchpriority="high"
-    decoding="async"
-  />
+  <!-- Master Illustrated Pose Matrix (Hardware-accelerated, zero-stutter foundation) -->
+  <div class="char-pose-stage" id="charPoseStage" aria-hidden="true">
+    <img
+      src="/assets/character_states/pose_typing.png"
+      alt="Hake typing at laptop"
+      class="char-pose-layer is-active"
+      id="poseTyping"
+      width="600"
+      height="600"
+      loading="eager"
+      decoding="async"
+    />
+    <img
+      src="/assets/character_states/pose_coffee.png"
+      alt="Hake sipping coffee"
+      class="char-pose-layer is-hidden"
+      id="poseCoffee"
+      width="600"
+      height="600"
+      loading="eager"
+      decoding="async"
+    />
+    <img
+      src="/assets/character_states/pose_wave.png"
+      alt="Hake waving hello"
+      class="char-pose-layer is-hidden"
+      id="poseWave"
+      width="600"
+      height="600"
+      loading="eager"
+      decoding="async"
+    />
+    <img
+      src="/assets/character_states/pose_listen.png"
+      alt="Hake listening attentively"
+      class="char-pose-layer is-hidden"
+      id="poseListen"
+      width="600"
+      height="600"
+      loading="eager"
+      decoding="async"
+    />
+  </div>
 
   <!-- 5-State Dedicated Preloaded Video Track Stage -->
   <div class="video-buffer-stage" id="videoBufferStage" aria-hidden="true">
@@ -97,7 +117,19 @@
     ></video>
   </div>
 
-  <!-- Interactive Speech Bubble (Shown in State 3 & 4) -->
+  <!-- Live Dynamic FX Layer: Rising Steam & Typing Light -->
+  <div class="char-live-fx" id="charLiveFx" aria-hidden="true">
+    <!-- Steam from Discord mug (left: 6.5%, bottom: 27%) -->
+    <div class="steam-container">
+      <span class="steam-puff puff-1"></span>
+      <span class="steam-puff puff-2"></span>
+      <span class="steam-puff puff-3"></span>
+    </div>
+    <!-- Subtle keystroke glow on keyboard -->
+    <div class="keystroke-glow" id="keystrokeGlow"></div>
+  </div>
+
+  <!-- Interactive Speech Bubble (State 3 & 4) -->
   <div class="char-speech-bubble" id="charSpeechBubble" aria-live="polite" aria-hidden="true">
     <div class="speech-bubble-content">
       <div class="speech-bubble-avatar">
@@ -129,7 +161,7 @@
     aria-label="Click to interact with Hake"
   >
     <span class="trigger-wave-icon" aria-hidden="true">👋</span>
-    <span class="trigger-label">Tap Hake to talk</span>
+    <span class="trigger-label">Click Hake to talk</span>
     <span class="trigger-pulse"></span>
   </div>
 </div>
@@ -146,6 +178,12 @@
     cursor: pointer;
     z-index: 25;
     outline: none;
+    animation: gentleBreathe 6s infinite ease-in-out;
+  }
+
+  @keyframes gentleBreathe {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
   }
 
   .interactive-character-container:focus-visible {
@@ -153,35 +191,43 @@
     outline-offset: 4px;
   }
 
-  /* Persistent Poster Base (Always visible as foundation, never blank) */
-  .char-poster-fallback {
+  /* Master Pose Image Layers (Always available, instant 60fps response) */
+  .char-pose-stage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 28px;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .char-pose-layer {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: contain;
     border-radius: 28px;
-    z-index: 1;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
   }
 
-  .char-poster-light {
-    display: block;
-  }
-  .char-poster-dark {
-    display: none;
-  }
-
-  :global(.dark-theme) .char-poster-light,
-  :global(body.hake-theme-dark) .char-poster-light {
-    display: none;
-  }
-  :global(.dark-theme) .char-poster-dark,
-  :global(body.hake-theme-dark) .char-poster-dark {
-    display: block;
+  .char-pose-layer.is-active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 2;
   }
 
+  .char-pose-layer.is-hidden {
+    opacity: 0;
+    transform: scale(0.99);
+    z-index: 1;
+  }
+
+  /* Video Stage (Direct high-definition motion overlay) */
   .video-buffer-stage {
     position: absolute;
     inset: 0;
@@ -214,10 +260,95 @@
     z-index: 1;
   }
 
+  /* Live Dynamic FX Layer */
+  .char-live-fx {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  /* Rising Steam from Mug */
+  .steam-container {
+    position: absolute;
+    left: 7%;
+    bottom: 27%;
+    width: 32px;
+    height: 64px;
+    pointer-events: none;
+  }
+
+  .steam-puff {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    border-radius: 50%;
+    background: rgba(235, 240, 255, 0.85);
+    filter: blur(4px);
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+
+  .puff-1 {
+    width: 14px;
+    height: 14px;
+    animation: steamFloat 2.4s infinite ease-out;
+  }
+
+  .puff-2 {
+    width: 18px;
+    height: 18px;
+    animation: steamFloat 2.4s infinite ease-out 0.8s;
+  }
+
+  .puff-3 {
+    width: 12px;
+    height: 12px;
+    animation: steamFloat 2.4s infinite ease-out 1.6s;
+  }
+
+  @keyframes steamFloat {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(0) scale(0.6);
+    }
+    30% {
+      opacity: 0.75;
+      transform: translateX(calc(-50% + 4px)) translateY(-20px) scale(1);
+    }
+    70% {
+      opacity: 0.4;
+      transform: translateX(calc(-50% - 6px)) translateY(-45px) scale(1.4);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(calc(-50% + 8px)) translateY(-70px) scale(1.8);
+    }
+  }
+
+  /* Keystroke Reflection Glow */
+  .keystroke-glow {
+    position: absolute;
+    left: 36%;
+    bottom: 20%;
+    width: 170px;
+    height: 50px;
+    background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.28) 0%, rgba(0, 85, 238, 0.08) 55%, transparent 75%);
+    filter: blur(8px);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: glowFlicker 0.45s infinite ease-in-out alternate;
+  }
+
+  @keyframes glowFlicker {
+    0% { opacity: 0.35; transform: scale(0.96); }
+    100% { opacity: 0.85; transform: scale(1.04); }
+  }
+
   /* Interactive Speech Bubble */
   .char-speech-bubble {
     position: absolute;
-    top: -36px;
+    top: -42px;
     left: 50%;
     transform: translateX(-50%) translateY(-8px) scale(0.94);
     width: min(320px, 92vw);
@@ -313,6 +444,7 @@
     text-decoration: none;
     border: none;
     cursor: pointer;
+    pointer-events: auto;
     transition: all 0.16s ease;
   }
 
@@ -439,40 +571,44 @@
   :global(body.hake-theme-dark) .trigger-label {
     color: #38bdf8;
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    .video-buffer-stage {
-      display: none;
-    }
-    .char-interaction-trigger {
-      display: none;
-    }
-  }
 </style>
 
 <script>
-  // Robust 5-State Dedicated Preloaded Video Engine
-  // Zero dynamic URL switching, zero buffer stalls, zero disappearing
+  // Robust Multi-Layer 5-State Interactive Character Motion Engine
+  // Synchronizes illustrated master poses and smooth video playback
+  // Completely immune to autoplay blocks, sleep states, or network stalls
 
-  type CharacterState = 'typing' | 'transition_wave' | 'waving' | 'listening' | 'transition_typing';
+  type CharacterState = 'typing' | 'coffee' | 'transition_wave' | 'waving' | 'listening' | 'transition_typing';
 
   class CharacterStateMachine {
     private container: HTMLElement | null = null;
-    private videos: Record<CharacterState, HTMLVideoElement | null> = {
+    
+    // Poses
+    private poses: Record<string, HTMLImageElement | null> = {
+      typing: null,
+      coffee: null,
+      wave: null,
+      listen: null,
+    };
+
+    // Video tracks
+    private videos: Record<string, HTMLVideoElement | null> = {
       typing: null,
       transition_wave: null,
       waving: null,
       listening: null,
       transition_typing: null,
     };
+
     private bubble: HTMLElement | null = null;
     private triggerBtn: HTMLElement | null = null;
     private dismissBtn: HTMLElement | null = null;
+    private keystrokeGlow: HTMLElement | null = null;
 
     private currentState: CharacterState = 'typing';
     private waitTimer: number | null = null;
     private transitionWatchdog: number | null = null;
-    private isTransitioning: boolean = false;
+    private coffeeLoopTimer: number | null = null;
     private initialized: boolean = false;
 
     constructor() {
@@ -489,20 +625,30 @@
     public init() {
       if (typeof window === 'undefined') return;
       this.container = document.getElementById('interactiveCharContainer');
+      
+      // Poses
+      this.poses.typing = document.getElementById('poseTyping') as HTMLImageElement;
+      this.poses.coffee = document.getElementById('poseCoffee') as HTMLImageElement;
+      this.poses.wave = document.getElementById('poseWave') as HTMLImageElement;
+      this.poses.listen = document.getElementById('poseListen') as HTMLImageElement;
+
+      // Videos
       this.videos.typing = document.getElementById('vidTyping') as HTMLVideoElement;
       this.videos.transition_wave = document.getElementById('vidTransWave') as HTMLVideoElement;
       this.videos.waving = document.getElementById('vidWaving') as HTMLVideoElement;
       this.videos.listening = document.getElementById('vidListening') as HTMLVideoElement;
       this.videos.transition_typing = document.getElementById('vidTransTyping') as HTMLVideoElement;
+
       this.bubble = document.getElementById('charSpeechBubble');
       this.triggerBtn = document.getElementById('charInteractBtn');
       this.dismissBtn = document.getElementById('charDismissBtn');
+      this.keystrokeGlow = document.getElementById('keystrokeGlow');
 
-      if (!this.container || !this.videos.typing) return;
+      if (!this.container || !this.poses.typing) return;
       if (this.initialized) return;
       this.initialized = true;
 
-      // Ensure all videos have muted and playsInline set in JS for strict browser policies
+      // Configure video elements with muted and playsInline for browser policies
       Object.values(this.videos).forEach((v) => {
         if (v) {
           v.muted = true;
@@ -513,26 +659,30 @@
         this.videos.listening.loop = true;
       }
 
-      // Start typing loop
-      this.videos.typing.loop = true;
-      this.videos.typing.play().catch(() => {
-        // Fallback for strict autoplay browsers: start on first touch/pointer
-        const startOnTouch = () => {
-          this.videos.typing?.play().catch(() => {});
-          window.removeEventListener('pointerdown', startOnTouch);
+      // Start typing video loop
+      if (this.videos.typing) {
+        this.videos.typing.loop = true;
+        this.videos.typing.play().catch(() => {
+          // Strict browser policy: start on first touch/pointer
+          const startOnTouch = () => {
+            this.videos.typing?.play().catch(() => {});
+            window.removeEventListener('pointerdown', startOnTouch);
+          };
+          window.addEventListener('pointerdown', startOnTouch, { once: true });
+        });
+
+        this.videos.typing.onended = () => {
+          if (this.currentState === 'typing' && this.videos.typing) {
+            this.videos.typing.currentTime = 0;
+            this.videos.typing.play().catch(() => {});
+          }
         };
-        window.addEventListener('pointerdown', startOnTouch, { once: true });
-      });
+      }
 
-      // Loop fallback for typing video
-      this.videos.typing.onended = () => {
-        if (this.currentState === 'typing' && this.videos.typing) {
-          this.videos.typing.currentTime = 0;
-          this.videos.typing.play().catch(() => {});
-        }
-      };
+      // Start periodic coffee sip cycle in State 1
+      this.scheduleCoffeeSip();
 
-      // State 2: Transition Wave ended -> State 3 (Waving)
+      // Video event: Transition Wave ended -> Waving
       if (this.videos.transition_wave) {
         this.videos.transition_wave.onended = () => {
           if (this.currentState === 'transition_wave') {
@@ -543,7 +693,7 @@
         };
       }
 
-      // State 3: Waving ended -> State 4 (Listening)
+      // Video event: Waving ended -> Listening
       if (this.videos.waving) {
         this.videos.waving.onended = () => {
           if (this.currentState === 'waving') {
@@ -554,7 +704,7 @@
         };
       }
 
-      // State 5: Transition Typing ended -> State 1 (Return to Typing)
+      // Video event: Transition Typing ended -> Return to Typing
       if (this.videos.transition_typing) {
         this.videos.transition_typing.onended = () => {
           if (this.currentState === 'transition_typing') {
@@ -577,7 +727,13 @@
         this.handleUserClick();
       });
 
-      // Keyboard support
+      // Touch support for mobile devices
+      this.container.addEventListener('touchstart', (e) => {
+        const target = e.target as HTMLElement;
+        if (target.closest('.speech-pill-btn')) return;
+      }, { passive: true });
+
+      // Keyboard accessibility
       this.container.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -598,30 +754,99 @@
       });
     }
 
+    private scheduleCoffeeSip() {
+      if (this.coffeeLoopTimer) clearTimeout(this.coffeeLoopTimer);
+      // Take a coffee sip every 7.5 seconds in base loop
+      this.coffeeLoopTimer = window.setTimeout(() => {
+        if (this.currentState === 'typing') {
+          this.performCoffeeSip();
+        }
+      }, 7500);
+    }
+
+    private performCoffeeSip() {
+      if (this.currentState !== 'typing') return;
+      this.currentState = 'coffee';
+      this.setPoseActive('coffee');
+      
+      // Sips for 2.4 seconds with eyes closed & mug raised
+      setTimeout(() => {
+        if (this.currentState === 'coffee') {
+          this.currentState = 'typing';
+          this.setPoseActive('typing');
+          this.scheduleCoffeeSip();
+        }
+      }, 2400);
+    }
+
     private handleUserClick() {
-      if (this.currentState === 'typing') {
+      if (this.coffeeLoopTimer) {
+        clearTimeout(this.coffeeLoopTimer);
+        this.coffeeLoopTimer = null;
+      }
+
+      if (this.currentState === 'typing' || this.currentState === 'coffee') {
         if (this.triggerBtn) this.triggerBtn.style.opacity = '0';
         this.switchTo('transition_wave');
       } else if (this.currentState === 'transition_typing') {
-        // Already returning to desk, instantly complete back to typing
+        // Instant complete back to desk
         this.clearWatchdog();
         this.hideSpeechBubble();
         this.switchTo('typing');
       } else {
-        // In waving or listening: click brings character smoothly back to typing
+        // In waving or listening: immediately transition back to work
         this.transitionToTyping();
       }
     }
 
-    private switchTo(nextState: CharacterState) {
-      const prevVideo = this.videos[this.currentState];
-      const nextVideo = this.videos[nextState];
-      if (!nextVideo) return;
+    private setPoseActive(poseName: 'typing' | 'coffee' | 'wave' | 'listen') {
+      Object.entries(this.poses).forEach(([name, el]) => {
+        if (!el) return;
+        if (name === poseName) {
+          el.className = 'char-pose-layer is-active';
+        } else {
+          el.className = 'char-pose-layer is-hidden';
+        }
+      });
+    }
 
+    private switchTo(nextState: CharacterState) {
       this.clearWatchdog();
+      const prevVideoKey = this.currentState === 'coffee' ? 'typing' : this.currentState;
+      const prevVideo = this.videos[prevVideoKey];
+      
       this.currentState = nextState;
 
-      // Watchdog safety timeouts so character can never freeze or get stuck
+      // Synchronize Illustrated Pose Layer immediately (0ms latency)
+      if (nextState === 'typing') {
+        this.setPoseActive('typing');
+        if (this.keystrokeGlow) this.keystrokeGlow.style.opacity = '1';
+        this.scheduleCoffeeSip();
+      } else if (nextState === 'coffee') {
+        this.setPoseActive('coffee');
+      } else if (nextState === 'transition_wave' || nextState === 'waving') {
+        this.setPoseActive('wave');
+        if (this.keystrokeGlow) this.keystrokeGlow.style.opacity = '0';
+      } else if (nextState === 'listening') {
+        this.setPoseActive('listen');
+        if (this.keystrokeGlow) this.keystrokeGlow.style.opacity = '0';
+      } else if (nextState === 'transition_typing') {
+        this.setPoseActive('typing');
+      }
+
+      // Synchronize Video Track Layer
+      const videoKeyMap: Record<string, string> = {
+        typing: 'typing',
+        coffee: 'typing',
+        transition_wave: 'transition_wave',
+        waving: 'waving',
+        listening: 'listening',
+        transition_typing: 'transition_typing',
+      };
+      const nextVideoKey = videoKeyMap[nextState];
+      const nextVideo = this.videos[nextVideoKey];
+
+      // Watchdog safety timeouts so transitions always complete
       if (nextState === 'transition_wave') {
         this.transitionWatchdog = window.setTimeout(() => {
           if (this.currentState === 'transition_wave') {
@@ -645,27 +870,28 @@
         }, 1200);
       }
 
-      nextVideo.muted = true;
-      nextVideo.playsInline = true;
-      nextVideo.currentTime = 0;
-      nextVideo.play().then(() => {
-        // Crossfade: show next, hide prev
-        nextVideo.className = 'char-video-track is-active';
-        if (prevVideo && prevVideo !== nextVideo) {
-          prevVideo.className = 'char-video-track is-hidden';
-          setTimeout(() => {
-            if (prevVideo.className.includes('is-hidden')) {
-              prevVideo.pause();
-            }
-          }, 200);
-        }
-      }).catch(() => {
-        // Direct fallback: activate video track
-        nextVideo.className = 'char-video-track is-active';
-        if (prevVideo && prevVideo !== nextVideo) {
-          prevVideo.className = 'char-video-track is-hidden';
-        }
-      });
+      if (nextVideo) {
+        nextVideo.muted = true;
+        nextVideo.playsInline = true;
+        nextVideo.currentTime = 0;
+        nextVideo.play().then(() => {
+          nextVideo.className = 'char-video-track is-active';
+          if (prevVideo && prevVideo !== nextVideo) {
+            prevVideo.className = 'char-video-track is-hidden';
+            setTimeout(() => {
+              if (prevVideo.className.includes('is-hidden')) {
+                prevVideo.pause();
+              }
+            }, 200);
+          }
+        }).catch(() => {
+          // Direct fallback: make active anyway
+          nextVideo.className = 'char-video-track is-active';
+          if (prevVideo && prevVideo !== nextVideo) {
+            prevVideo.className = 'char-video-track is-hidden';
+          }
+        });
+      }
     }
 
     private startWaitTimer() {
