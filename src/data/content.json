@@ -204,6 +204,27 @@
       "discordUrl": "https://discord.gg",
       "featured": true,
       "color": "#06b6d4"
+    },
+    {
+      "id": "avneesh-gamer",
+      "title": "Minecraft Guides & Pojav Community",
+      "channelName": "Avneesh Gamer",
+      "subscribers": "6.49K",
+      "avgViews": "5,000 - 45,000",
+      "ctrGain": "+140% CTR Lift",
+      "videoCount": "774 videos",
+      "discordMembers": "6,500",
+      "viewsGraph": [4, 9, 16, 24, 35, 48, 65],
+      "graphLabels": ["M1", "M2", "M3", "M4", "M5", "M6", "Current"],
+      "description": "Minecraft PojavLauncher optimization guides, modding resource distribution, and automated Discord community operations.",
+      "longDescription": "Structured clean asset download channels, established high-conversion video upload webhooks, and streamlined Bedwars matchmaking lobbies.",
+      "metrics": "6.49K Subs • 770+ Uploads",
+      "role": "Community Operations & Automation Lead",
+      "tech": ["Resource Hub", "Upload Webhooks", "Pojav Support", "Automated Moderation"],
+      "youtubeUrl": "https://youtube.com/@avneeshgaming?si=A7pBBA-y4xTD8Op1",
+      "discordUrl": "https://discord.gg",
+      "featured": true,
+      "color": "#10b981"
     }
   ],
   "skills": [

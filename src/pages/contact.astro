@@ -43,19 +43,21 @@ import HakeLayout from "@/layouts/HakeLayout.astro";
           <!-- Single Directional Dashed Trajectory (emerges directly from plane tail at 101, 50) -->
           <path class="flight-trail-dash" d="M 14 76 C 36 78, 56 68, 62 48 C 68 28, 48 18, 32 26 C 18 34, 22 58, 44 68 C 68 78, 88 61, 101 50" stroke="url(#flightTrailLight)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 8" />
 
-          <!-- Pure Vector Hand-Drawn Anime Paper Plane (Infinitely Crisp on Retina / 4K) -->
-          <g class="plane-vector-glider" transform="translate(77, -25)">
-            <!-- 1. Under Flap (Crisp White) -->
-            <polygon points="29,50 34,63 50,85 24,75" fill="#FFFFFF" stroke="#0B132B" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" />
-            <!-- 2. Lower Wing Fold / Keel (Brand Sky Blue Accent #BAE6FD) -->
-            <polygon points="7,39 29,50 24,75" fill="#BAE6FD" stroke="#0B132B" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" />
-            <!-- 3. Main Top Wing (Crisp White with Soft Sky Wash) -->
-            <polygon points="82,26 7,39 29,50 34,63 50,85" fill="url(#planeWingLightSub)" stroke="#0B132B" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" />
-            <!-- 4. Crisp Crease Lines -->
-            <line x1="82" y1="26" x2="29" y2="50" stroke="#0B132B" stroke-width="2.6" stroke-linecap="round" />
-            <line x1="29" y1="50" x2="24" y2="75" stroke="#0B132B" stroke-width="2.2" stroke-linecap="round" />
-            <line x1="29" y1="50" x2="34" y2="63" stroke="#0B132B" stroke-width="2.2" stroke-linecap="round" />
+          <!-- Clean Vector Paper Plane (pixel-matched from original hero reference) -->
+          <g class="plane-vector-glider" transform="translate(83, -3)">
+            <!-- Facet 1: Top Wing (Crisp White) -->
+            <polygon points="2,19 78,4 17,31" fill="#FFFFFF" stroke="none" />
+            <!-- Facet 2: Bottom Wing (Crisp White) -->
+            <polygon points="78,4 45,63 26.5,40" fill="#FFFFFF" stroke="none" />
+            <!-- Facet 3: Central Crease Stripe (Soft Sky Blue Shading) -->
+            <polygon points="17,31 78,4 26.5,40" fill="#BAE6FD" stroke="none" />
+            <!-- Facet 4: Keel / Under-Fold (Sky Blue Shading) -->
+            <polygon points="17,31 18,53 26.5,40" fill="#BAE6FD" stroke="none" />
+            <!-- Outlines & Creases -->
+            <path d="M 2,19 L 78,4 L 45,63 L 26.5,40 L 18,53 L 17,31 Z M 17,31 L 78,4 M 26.5,40 L 78,4 M 17,31 L 26.5,40"
+              stroke="#0B132B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" fill="none" />
           </g>
+
         </svg>
       </div>
     </div>

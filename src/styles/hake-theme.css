@@ -985,6 +985,13 @@
     transition: transform 0.2s ease, background-color 0.2s ease;
   }
 
+  .service-card-icon lord-icon {
+    display: block;
+    pointer-events: none;
+    width: 30px;
+    height: 30px;
+  }
+
   .highlight-discord-card .service-card-icon {
     color: #5865F2;
   }
@@ -1263,6 +1270,7 @@
     position: relative;
     width: 160px;
     height: 80px;
+    overflow: visible;
   }
 
   /* Directional Dashed Flight Trail SVG */
@@ -1278,7 +1286,7 @@
   .flight-trail-dash {
     stroke: url(#flightTrailLight);
     animation: flightTrailStream 1.6s linear infinite;
-    transition: stroke-width 0.3s ease;
+    transition: stroke-width 0.3s ease, opacity 0.4s ease;
   }
 
   body.hake-theme-dark .flight-trail-dash,
@@ -1291,6 +1299,7 @@
   :root.dark-theme .flight-trail-aura {
     stroke: url(#flightTrailDark);
     opacity: 0.35;
+    transition: opacity 0.4s ease;
   }
 
   /* Smooth backward streaming of dashes out from the plane tail */
@@ -1309,36 +1318,60 @@
     animation: planeVectorGlider 3.2s ease-in-out infinite alternate;
     transform-origin: 101px 50px;
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
-    filter: drop-shadow(0 4px 12px rgba(0, 85, 238, 0.16));
+    filter: drop-shadow(0 2px 5px rgba(0, 85, 238, 0.08));
   }
 
   body.hake-theme-dark .plane-vector-glider,
   :root.dark-theme .plane-vector-glider {
-    filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.45)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.3));
+  }
+
+  /* Active Flying Loop State */
+  .contact-plane-ornament.is-flying {
+    z-index: 50;
+    cursor: default;
+  }
+
+  .contact-plane-ornament.is-flying .plane-vector-glider {
+    animation: none !important;
+  }
+
+  .contact-plane-ornament.is-flying .flight-trail-dash,
+  .contact-plane-ornament.is-flying .flight-trail-aura {
+    opacity: 0.25;
+  }
+
+  /* Landed Resting State: paused upon flight completion at original coordinates */
+  .contact-plane-ornament.is-paused .plane-vector-glider {
+    animation-play-state: paused;
+  }
+
+  .contact-plane-ornament.is-paused .flight-trail-dash {
+    animation-play-state: paused;
   }
 
   /* Gentle physical glide: subtle sway pivoting directly from the tail */
   @keyframes planeVectorGlider {
     0% {
-      transform: translate(77px, -25px) rotate(0deg);
+      transform: translate(83px, -3px) rotate(0deg);
     }
     100% {
-      transform: translate(78px, -28px) rotate(2deg);
+      transform: translate(84px, -6px) rotate(2deg);
     }
   }
 
-  /* Hover State: surging forward into the breeze */
-  .contact-plane-ornament:hover .plane-vector-glider {
+  /* Hover State: surging forward into the breeze (only while parked) */
+  .contact-plane-ornament:not(.is-flying):hover .plane-vector-glider {
     animation-play-state: paused;
-    transform: translate(80px, -30px) rotate(3.5deg) scale(1.06);
-    filter: drop-shadow(0 8px 20px rgba(0, 85, 238, 0.32));
+    transform: translate(86px, -8px) rotate(3deg) scale(1.04);
+    filter: drop-shadow(0 4px 10px rgba(0, 85, 238, 0.15));
   }
 
-  body.hake-theme-dark .contact-plane-ornament:hover .plane-vector-glider {
-    filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.75)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.6));
+  body.hake-theme-dark .contact-plane-ornament:not(.is-flying):hover .plane-vector-glider {
+    filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.5));
   }
 
-  .contact-plane-ornament:hover .flight-trail-dash {
+  .contact-plane-ornament:not(.is-flying):hover .flight-trail-dash {
     animation-duration: 0.9s;
     stroke-width: 2.8;
   }
@@ -2936,6 +2969,13 @@ body.hake-theme-dark .subpage-eyebrow {
   color: var(--accent-blue);
 }
 
+.service-card-icon-box lord-icon {
+  display: block;
+  pointer-events: none;
+  width: 30px;
+  height: 30px;
+}
+
 body.hake-theme-dark .service-card-icon-box {
   background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(0, 102, 255, 0.25) 100%);
   border-color: rgba(56, 189, 248, 0.3);
@@ -4021,18 +4061,21 @@ body.hake-theme-dark .human-review-bubble {
   transform-style: preserve-3d !important;
 }
 
-:root.dark-theme ::view-transition-old(main-content),
-:root.dark-theme ::view-transition-new(main-content),
-body.hake-theme-dark ::view-transition-old(main-content),
-body.hake-theme-dark ::view-transition-new(main-content) {
-  background-color: #0E121A !important;
+:root.dark-theme::view-transition-old(main-content),
+:root.dark-theme::view-transition-new(main-content),
+html.dark-theme::view-transition-old(main-content),
+html.dark-theme::view-transition-new(main-content) {
+  background-color: #313338 !important;
 }
 
 /* 1. Codrops Move to Left / From Right (Forward Slide between standard pages) */
 :root[data-transition="slide-left"]::view-transition-old(main-content),
 :root[data-astro-transition="slide-left"]::view-transition-old(main-content),
 :root[data-astro-transition="forward"]::view-transition-old(main-content),
-:root:not([data-transition])::view-transition-old(main-content) {
+html[data-transition="slide-left"]::view-transition-old(main-content),
+html[data-astro-transition="slide-left"]::view-transition-old(main-content),
+html[data-astro-transition="forward"]::view-transition-old(main-content),
+:root:not([data-transition]):not([data-astro-transition])::view-transition-old(main-content) {
   animation-name: ptMoveToLeft !important;
   z-index: 1 !important;
 }
@@ -4040,7 +4083,10 @@ body.hake-theme-dark ::view-transition-new(main-content) {
 :root[data-transition="slide-left"]::view-transition-new(main-content),
 :root[data-astro-transition="slide-left"]::view-transition-new(main-content),
 :root[data-astro-transition="forward"]::view-transition-new(main-content),
-:root:not([data-transition])::view-transition-new(main-content) {
+html[data-transition="slide-left"]::view-transition-new(main-content),
+html[data-astro-transition="slide-left"]::view-transition-new(main-content),
+html[data-astro-transition="forward"]::view-transition-new(main-content),
+:root:not([data-transition]):not([data-astro-transition])::view-transition-new(main-content) {
   animation-name: ptMoveFromRight !important;
   z-index: 2 !important;
   box-shadow: -25px 0 60px rgba(0, 0, 0, 0.3) !important;
@@ -4050,14 +4096,20 @@ body.hake-theme-dark ::view-transition-new(main-content) {
 /* 2. Codrops Move to Right / From Left (Backwards Slide between standard pages) */
 :root[data-transition="slide-right"]::view-transition-old(main-content),
 :root[data-astro-transition="slide-right"]::view-transition-old(main-content),
-:root[data-astro-transition="back"]::view-transition-old(main-content) {
+:root[data-astro-transition="back"]::view-transition-old(main-content),
+html[data-transition="slide-right"]::view-transition-old(main-content),
+html[data-astro-transition="slide-right"]::view-transition-old(main-content),
+html[data-astro-transition="back"]::view-transition-old(main-content) {
   animation-name: ptMoveToRight !important;
   z-index: 1 !important;
 }
 
 :root[data-transition="slide-right"]::view-transition-new(main-content),
 :root[data-astro-transition="slide-right"]::view-transition-new(main-content),
-:root[data-astro-transition="back"]::view-transition-new(main-content) {
+:root[data-astro-transition="back"]::view-transition-new(main-content),
+html[data-transition="slide-right"]::view-transition-new(main-content),
+html[data-astro-transition="slide-right"]::view-transition-new(main-content),
+html[data-astro-transition="back"]::view-transition-new(main-content) {
   animation-name: ptMoveFromLeft !important;
   z-index: 2 !important;
   box-shadow: 25px 0 60px rgba(0, 0, 0, 0.3) !important;
@@ -4066,23 +4118,28 @@ body.hake-theme-dark ::view-transition-new(main-content) {
 
 /* 3. Codrops Zoom In / Scale Down (In-page Button / Card Click) */
 :root[data-transition="zoom-in"]::view-transition-old(main-content),
-:root[data-astro-transition="zoom-in"]::view-transition-old(main-content) {
+:root[data-astro-transition="zoom-in"]::view-transition-old(main-content),
+html[data-transition="zoom-in"]::view-transition-old(main-content),
+html[data-astro-transition="zoom-in"]::view-transition-old(main-content) {
   animation-name: ptScaleDown !important;
   z-index: 1 !important;
 }
 
 :root[data-transition="zoom-in"]::view-transition-new(main-content),
-:root[data-astro-transition="zoom-in"]::view-transition-new(main-content) {
+:root[data-astro-transition="zoom-in"]::view-transition-new(main-content),
+html[data-transition="zoom-in"]::view-transition-new(main-content),
+html[data-astro-transition="zoom-in"]::view-transition-new(main-content) {
   animation-name: ptZoomIn !important;
   z-index: 2 !important;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4) !important;
-  border: 3px solid #38BDF8 !important;
-  border-radius: 20px !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35) !important;
+  border-radius: 12px !important;
 }
 
 /* 4. Codrops Zoom Out / Scale Up (Back navigation from zoomed view) */
 :root[data-transition="zoom-out"]::view-transition-old(main-content),
-:root[data-astro-transition="zoom-out"]::view-transition-old(main-content) {
+:root[data-astro-transition="zoom-out"]::view-transition-old(main-content),
+html[data-transition="zoom-out"]::view-transition-old(main-content),
+html[data-astro-transition="zoom-out"]::view-transition-old(main-content) {
   animation-name: ptZoomOut !important;
   z-index: 2 !important;
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4) !important;
@@ -4091,12 +4148,14 @@ body.hake-theme-dark ::view-transition-new(main-content) {
 }
 
 :root[data-transition="zoom-out"]::view-transition-new(main-content),
-:root[data-astro-transition="zoom-out"]::view-transition-new(main-content) {
+:root[data-astro-transition="zoom-out"]::view-transition-new(main-content),
+html[data-transition="zoom-out"]::view-transition-new(main-content),
+html[data-astro-transition="zoom-out"]::view-transition-new(main-content) {
   animation-name: ptScaleUp !important;
   z-index: 1 !important;
 }
 
-/* --- Exact Codrops PageTransitions Keyframes (Solid Physical Motion) --- */
+/* Exact Codrops PageTransitions Keyframes (Solid Physical Motion) */
 
 /* Pure physical slide: NO opacity changes, 100% solid horizontal movement */
 @keyframes ptMoveToLeft {
@@ -4119,17 +4178,18 @@ body.hake-theme-dark ::view-transition-new(main-content) {
   to { transform: translateX(0%); }
 }
 
-/* Scale Down: Outgoing page shrinks into background */
+/* Scale Down: Outgoing page shrinks gracefully into background */
 @keyframes ptScaleDown {
   from { transform: scale(1); opacity: 1; }
-  to { transform: scale(0.60); opacity: 0.2; }
+  to { transform: scale(0.88); opacity: 0; }
 }
 
-/* Zoom In: Incoming page starts at 60% scale and zooms into camera - fully opaque! */
+/* Zoom In: Incoming page starts at 88% scale and zooms opening the page again */
 @keyframes ptZoomIn {
-  from { transform: scale(0.60); opacity: 1; }
+  from { transform: scale(0.88); opacity: 0.85; }
   to { transform: scale(1); opacity: 1; }
 }
+
 
 /* Zoom Out: Outgoing page shrinks down into distance */
 @keyframes ptZoomOut {
@@ -4143,14 +4203,5 @@ body.hake-theme-dark ::view-transition-new(main-content) {
   to { transform: scale(1); opacity: 1; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(main-content),
-  ::view-transition-old(main-content),
-  ::view-transition-new(main-content) {
-    animation-duration: 0.05s !important;
-    animation-name: none !important;
-    transform: none !important;
-  }
-}
 
 

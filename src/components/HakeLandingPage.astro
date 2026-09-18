@@ -2,6 +2,7 @@
 // HakeLandingPage.astro - Complete Working Creator Services & Discord Architecture Portfolio
 // Clean Humanized Copy • Grounded Real Services • Cropped Reference Assets • Smooth Underline Animation
 import { ClientRouter } from 'astro:transitions';
+import InteractiveHeroCharacter from './InteractiveHeroCharacter.astro';
 import '../styles/hake-theme.css';
 ---
 
@@ -11,7 +12,7 @@ import '../styles/hake-theme.css';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#1e1f22" />
-    <link rel="canonical" href="https://hake-drab.vercel.app/" />
+    <link rel="canonical" href="https://hake-acc.vercel.app/" />
     <link rel="icon" type="image/svg+xml" href="/brand/logo.png" />
     <title>hake. | Discord Server Manager & Creator Services Coordinator</title>
     <meta name="description" content="Official portfolio of Hake. Discord server manager and creator services coordinator helping YouTubers and gaming communities with clean server architecture, bot automation, video editing coordination, and sponsorships." />
@@ -20,17 +21,20 @@ import '../styles/hake-theme.css';
     <meta property="og:title" content="hake. | Discord Server Manager & Creator Services Coordinator" />
     <meta property="og:description" content="Official portfolio of Hake. Discord server manager and creator services coordinator helping YouTubers and gaming communities with clean server architecture, bot automation, video editing coordination, and sponsorships." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://hake-drab.vercel.app/" />
+    <meta property="og:url" content="https://hake-acc.vercel.app/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@hake_acc" />
 
     <!-- Preload Critical Hero LCP Image -->
-    <link rel="preload" as="image" href="/assets/hero_illustration_dark.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/hero_illustration_light.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/hero_illustration_dark.webp" type="image/webp" fetchpriority="high" media="(prefers-color-scheme: dark)" />
 
-    <!-- Google Fonts: Outfit (Headings) & DM Sans (Body) - Preconnected & Preloaded -->
+    <!-- Preconnect to Lordicon CDN to eliminate connection latency -->
+    <link rel="preconnect" href="https://cdn.lordicon.com" crossorigin />
+
+    <!-- Google Fonts: Outfit (Headings) & DM Sans (Body) - Preconnected & Non-Blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Outfit:wght@400;500;600;700;800&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Outfit:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Outfit:wght@400;500;600;700;800&display=swap" />
@@ -243,6 +247,11 @@ import '../styles/hake-theme.css';
                       <img src="/creators/not-vangid.webp" alt="Not Vangid" width="40" height="40" loading="lazy" class="creator-pfp-img" />
                     </span>
                   </a>
+                  <a href="https://youtube.com/@avneeshgaming?si=A7pBBA-y4xTD8Op1" target="_blank" rel="noopener noreferrer" class="creator-avatar" title="Avneesh Gamer (@avneeshgaming) • 6.49K Subs">
+                    <span class="avatar-ring">
+                      <img src="/creators/avneesh-gamer.webp" alt="Avneesh Gamer" width="40" height="40" loading="lazy" class="creator-pfp-img" />
+                    </span>
+                  </a>
                   <div class="creator-count-badge" title="25+ Creator Communities">
                     <span>+20</span>
                   </div>
@@ -255,26 +264,8 @@ import '../styles/hake-theme.css';
             <div class="hero-art-column">
               <div class="art-visual-frame">
                 
-                <!-- Dual-mode Character Illustration (High-efficiency WebP) -->
-                <img 
-                  src="/assets/hero_illustration_light.webp" 
-                  alt="Hake character working at desk on laptop" 
-                  class="hero-art-asset hero-art-light"
-                  width="600"
-                  height="600"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <img 
-                  src="/assets/hero_illustration_dark.webp" 
-                  alt="Hake character working at desk on laptop" 
-                  class="hero-art-asset hero-art-dark"
-                  width="600"
-                  height="600"
-                  loading="eager"
-                  fetchpriority="high"
-                  decoding="async"
-                />
+                <!-- Interactive 5-State Character Machine (Typing, Coffee Sip, Wave, Listen, Seamless A/B Video Buffer) -->
+                <InteractiveHeroCharacter />
 
                 <!-- Floating Service Badges Around Character (Exact from Reference) -->
                 <div class="floating-badges-layer" aria-hidden="true">
@@ -416,11 +407,15 @@ import '../styles/hake-theme.css';
               <!-- Card 1: Social Media Management -->
               <div class="service-feature-card">
                 <div class="service-card-icon">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                  </svg>
+                  <lord-icon
+                    class="hake-lord-icon"
+                    src="https://cdn.lordicon.com/rpviwvwn.json"
+                    trigger="loop"
+                    loading="lazy"
+                    colors="primary:#0055ee,secondary:#38bdf8"
+                    style="width:30px;height:30px"
+                    aria-hidden="true">
+                  </lord-icon>
                 </div>
                 <h3 class="service-card-title">Social Media Management</h3>
                 <p class="service-card-desc">Complete handling of your social platforms with content scheduling, posting, and account management.</p>
@@ -430,16 +425,18 @@ import '../styles/hake-theme.css';
                 </a>
               </div>
 
-              <!-- Card 2: Sponsorships & Brand Deals (Authentic Handshake SVG from Reference) -->
+              <!-- Card 2: Sponsorships & Brand Deals (Lordicon Free Outline Animated Suitcase/Deals) -->
               <div class="service-feature-card">
                 <div class="service-card-icon">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m11 17 2 2a1 1 0 1 0 3-3"></path>
-                    <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path>
-                    <path d="m21 3 1 11h-2"></path>
-                    <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path>
-                    <path d="M3 4h8"></path>
-                  </svg>
+                  <lord-icon
+                    class="hake-lord-icon"
+                    src="https://cdn.lordicon.com/zhiiqoue.json"
+                    trigger="loop"
+                    loading="lazy"
+                    colors="primary:#0055ee,secondary:#38bdf8"
+                    style="width:30px;height:30px"
+                    aria-hidden="true">
+                  </lord-icon>
                 </div>
                 <h3 class="service-card-title">Sponsorships &amp; Brand Deals</h3>
                 <p class="service-card-desc">I connect you with the right brands and handle the communication, negotiation, and deal closing.</p>
@@ -464,13 +461,18 @@ import '../styles/hake-theme.css';
                 </a>
               </div>
 
-              <!-- Card 4: Editing Services (Video Player Screen with Centered Play Triangle) -->
+              <!-- Card 4: Editing Services (Lordicon Free Outline Animated Film) -->
               <div class="service-feature-card">
                 <div class="service-card-icon">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="4" width="20" height="16" rx="4" ry="4"></rect>
-                    <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon>
-                  </svg>
+                  <lord-icon
+                    class="hake-lord-icon"
+                    src="https://cdn.lordicon.com/qfwgmyhc.json"
+                    trigger="loop"
+                    loading="lazy"
+                    colors="primary:#0055ee,secondary:#38bdf8"
+                    style="width:30px;height:30px"
+                    aria-hidden="true">
+                  </lord-icon>
                 </div>
                 <h3 class="service-card-title">Editing Services</h3>
                 <p class="service-card-desc">High-quality video editing, shorts, and thumbnail design by my team of skilled editors.</p>
@@ -480,14 +482,18 @@ import '../styles/hake-theme.css';
                 </a>
               </div>
 
-              <!-- Card 5: Content Strategy (Tilted Pencil on Writing Baseline from Reference) -->
+              <!-- Card 5: Content Strategy (Lordicon Free Outline Animated Edit Pencil) -->
               <div class="service-feature-card">
                 <div class="service-card-icon">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
-                    <path d="m15 5 4 4"></path>
-                    <line x1="2" y1="22" x2="22" y2="22"></line>
-                  </svg>
+                  <lord-icon
+                    class="hake-lord-icon"
+                    src="https://cdn.lordicon.com/exymduqj.json"
+                    trigger="loop"
+                    loading="lazy"
+                    colors="primary:#0055ee,secondary:#38bdf8"
+                    style="width:30px;height:30px"
+                    aria-hidden="true">
+                  </lord-icon>
                 </div>
                 <h3 class="service-card-title">Content Strategy</h3>
                 <p class="service-card-desc">Planning content that aligns with your goals and keeps your audience engaged.</p>
@@ -497,17 +503,18 @@ import '../styles/hake-theme.css';
                 </a>
               </div>
 
-              <!-- Card 6: Reports & Analytics (Ascending Bar Columns + Upward Zigzag Arrow from Reference) -->
+              <!-- Card 6: Reports & Analytics (Lordicon Free Outline Animated Growth Chart) -->
               <div class="service-feature-card">
                 <div class="service-card-icon">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 20h18"></path>
-                    <path d="M6 16v4"></path>
-                    <path d="M11 12v8"></path>
-                    <path d="M16 8v12"></path>
-                    <path d="m3 12 5-5 4 4 7-7"></path>
-                    <path d="M15 4h4v4"></path>
-                  </svg>
+                  <lord-icon
+                    class="hake-lord-icon"
+                    src="https://cdn.lordicon.com/lbcxnxti.json"
+                    trigger="loop"
+                    loading="lazy"
+                    colors="primary:#0055ee,secondary:#38bdf8"
+                    style="width:30px;height:30px"
+                    aria-hidden="true">
+                  </lord-icon>
                 </div>
                 <h3 class="service-card-title">Reports &amp; Analytics</h3>
                 <p class="service-card-desc">Regular performance reports and insights to help you make better content decisions.</p>
@@ -634,6 +641,19 @@ import '../styles/hake-theme.css';
                 </div>
               </a>
 
+              <!-- Avneesh Gamer -->
+              <a href="https://youtube.com/@avneeshgaming?si=A7pBBA-y4xTD8Op1" target="_blank" rel="noopener noreferrer" class="brand-link-item" aria-label="AVNEESH GAMER YouTube Channel">
+                <span class="brand-icon-box">
+                  <img src="/creators/icons/avneesh-gamer-icon.webp" alt="Avneesh Gamer Icon" class="brand-mark-img" width="28" height="28" loading="lazy" />
+                </span>
+                <span class="brand-name font-avneesh">AVNEESH <span class="brand-accent-tag">GAMER</span></span>
+                <div class="brand-info-popover">
+                  <div class="popover-head">Avneesh Gamer</div>
+                  <div class="popover-stat">6.49K Subs • Pojav Community</div>
+                  <div class="popover-metric">Guides &amp; Mod Hub ↗</div>
+                </div>
+              </a>
+
               <!-- Plus More Badge -->
               <div class="brand-link-item brand-more-pill" title="25+ Creator Hubs Managed">
                 <span class="brand-icon-box more-box">+</span>
@@ -740,18 +760,19 @@ import '../styles/hake-theme.css';
                     <!-- Single Directional Dashed Trajectory (emerges directly from plane tail at 101, 50) -->
                     <path class="flight-trail-dash" d="M 14 76 C 36 78, 56 68, 62 48 C 68 28, 48 18, 32 26 C 18 34, 22 58, 44 68 C 68 78, 88 61, 101 50" stroke="url(#flightTrailLight)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 8" />
 
-                    <!-- Pure Vector Hand-Drawn Anime Paper Plane (Infinitely Crisp on Retina / 4K) -->
-                    <g class="plane-vector-glider" transform="translate(77, -25)">
-                      <!-- 1. Under Flap (Crisp White) -->
-                      <polygon points="29,50 34,63 50,85 24,75" fill="#FFFFFF" stroke="#0B132B" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" />
-                      <!-- 2. Lower Wing Fold / Keel (Brand Sky Blue Accent #BAE6FD) -->
-                      <polygon points="7,39 29,50 24,75" fill="#BAE6FD" stroke="#0B132B" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" />
-                      <!-- 3. Main Top Wing (Crisp White with Soft Sky Wash) -->
-                      <polygon points="82,26 7,39 29,50 34,63 50,85" fill="url(#planeWingLight)" stroke="#0B132B" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" />
-                      <!-- 4. Crisp Crease Lines -->
-                      <line x1="82" y1="26" x2="29" y2="50" stroke="#0B132B" stroke-width="2.6" stroke-linecap="round" />
-                      <line x1="29" y1="50" x2="24" y2="75" stroke="#0B132B" stroke-width="2.2" stroke-linecap="round" />
-                      <line x1="29" y1="50" x2="34" y2="63" stroke="#0B132B" stroke-width="2.2" stroke-linecap="round" />
+                    <!-- Clean Vector Paper Plane (pixel-matched from original hero reference) -->
+                    <g class="plane-vector-glider" transform="translate(83, -3)">
+                      <!-- Facet 1: Top Wing (Crisp White) -->
+                      <polygon points="2,19 78,4 17,31" fill="#FFFFFF" stroke="none" />
+                      <!-- Facet 2: Bottom Wing (Crisp White) -->
+                      <polygon points="78,4 45,63 26.5,40" fill="#FFFFFF" stroke="none" />
+                      <!-- Facet 3: Central Crease Stripe (Soft Sky Blue Shading) -->
+                      <polygon points="17,31 78,4 26.5,40" fill="#BAE6FD" stroke="none" />
+                      <!-- Facet 4: Keel / Under-Fold (Sky Blue Shading) -->
+                      <polygon points="17,31 18,53 26.5,40" fill="#BAE6FD" stroke="none" />
+                      <!-- Outlines & Creases -->
+                      <path d="M 2,19 L 78,4 L 45,63 L 26.5,40 L 18,53 L 17,31 Z M 17,31 L 78,4 M 26.5,40 L 78,4 M 17,31 L 26.5,40"
+                        stroke="#0B132B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" fill="none" />
                     </g>
                   </svg>
                 </div>
@@ -1060,7 +1081,7 @@ import '../styles/hake-theme.css';
 
     <!-- Interactive Logic & Page Transitions Controller -->
     <script>
-      import { initPageTransitions } from '../lib/page-transitions';
+      import { initPageTransitions, syncLordiconTheme } from '../lib/page-transitions';
       initPageTransitions();
 
       // 1. Theme Toggle (Light & Discord Dark)
@@ -1078,6 +1099,7 @@ import '../styles/hake-theme.css';
         document.body.className = isDark ? 'hake-theme-dark' : 'hake-theme-light';
         document.documentElement.classList.toggle('dark-theme', isDark);
         updateThemeIcons(isDark);
+        syncLordiconTheme(isDark);
         try { localStorage.setItem('hake-theme', theme); } catch(e) {}
       }
 
@@ -2644,36 +2666,60 @@ import '../styles/hake-theme.css';
     animation: planeVectorGlider 3.2s ease-in-out infinite alternate;
     transform-origin: 101px 50px;
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
-    filter: drop-shadow(0 4px 12px rgba(0, 85, 238, 0.16));
+    filter: drop-shadow(0 2px 5px rgba(0, 85, 238, 0.08));
   }
 
   body.hake-theme-dark .plane-vector-glider,
   :root.dark-theme .plane-vector-glider {
-    filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.45)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.3));
+  }
+
+  /* Active Flying Loop State */
+  .contact-plane-ornament.is-flying {
+    z-index: 50;
+    cursor: default;
+  }
+
+  .contact-plane-ornament.is-flying .plane-vector-glider {
+    animation: none !important;
+  }
+
+  .contact-plane-ornament.is-flying .flight-trail-dash,
+  .contact-plane-ornament.is-flying .flight-trail-aura {
+    opacity: 0.25;
+  }
+
+  /* Landed Resting State: paused upon flight completion at original coordinates */
+  .contact-plane-ornament.is-paused .plane-vector-glider {
+    animation-play-state: paused;
+  }
+
+  .contact-plane-ornament.is-paused .flight-trail-dash {
+    animation-play-state: paused;
   }
 
   /* Gentle physical glide: subtle sway pivoting directly from the tail */
   @keyframes planeVectorGlider {
     0% {
-      transform: translate(77px, -25px) rotate(0deg);
+      transform: translate(83px, -3px) rotate(0deg);
     }
     100% {
-      transform: translate(78px, -28px) rotate(2deg);
+      transform: translate(84px, -6px) rotate(2deg);
     }
   }
 
-  /* Hover State: surging forward into the breeze */
-  .contact-plane-ornament:hover .plane-vector-glider {
+  /* Hover State: surging forward into the breeze (only while parked) */
+  .contact-plane-ornament:not(.is-flying):hover .plane-vector-glider {
     animation-play-state: paused;
-    transform: translate(80px, -30px) rotate(3.5deg) scale(1.06);
-    filter: drop-shadow(0 8px 20px rgba(0, 85, 238, 0.32));
+    transform: translate(86px, -8px) rotate(3deg) scale(1.04);
+    filter: drop-shadow(0 4px 10px rgba(0, 85, 238, 0.15));
   }
 
-  body.hake-theme-dark .contact-plane-ornament:hover .plane-vector-glider {
-    filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.75)) drop-shadow(0 6px 20px rgba(0, 0, 0, 0.6));
+  body.hake-theme-dark .contact-plane-ornament:not(.is-flying):hover .plane-vector-glider {
+    filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.5));
   }
 
-  .contact-plane-ornament:hover .flight-trail-dash {
+  .contact-plane-ornament:not(.is-flying):hover .flight-trail-dash {
     animation-duration: 0.9s;
     stroke-width: 2.8;
   }
@@ -3948,3 +3994,12 @@ import '../styles/hake-theme.css';
     }
   }
 </style>
+
+<script>
+  import { initPaperPlaneFlight } from '../lib/paper-plane-flight';
+  initPaperPlaneFlight();
+  document.addEventListener('astro:page-load', () => {
+    initPaperPlaneFlight();
+  });
+</script>
+

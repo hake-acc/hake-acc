@@ -1,0 +1,678 @@
+---
+// InteractiveHeroCharacter.astro
+// Seamless 5-State Interactive Video State Machine for Hake
+// States:
+// 1. Base Loop: Typing with periodic coffee sipping (Infinite loop)
+// 2. Transition: Typing -> Look up & wave (Plays on click)
+// 3. Greeting: Waving with interactive speech bubble ("Hey! I'm Hake, wanna know more?")
+// 4. Listening: 5-second attentive wait loop with clickable dialogue pills
+// 5. Transition: Wave/Listen -> Smooth return to typing
+---
+
+<div 
+  class="interactive-character-container hero-art-asset" 
+  id="interactiveCharContainer"
+  role="button"
+  tabindex="0"
+  aria-label="Interactive Hake character. Click to talk with Hake"
+  title="Click to interact with Hake"
+>
+  <!-- Poster Images for Instant LCP, Dark Mode, & Fallback -->
+  <img
+    src="/assets/hero_illustration_light.webp"
+    alt="Hake character working at desk on laptop"
+    class="char-poster-fallback char-poster-light"
+    id="charPosterLight"
+    width="600"
+    height="600"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+  />
+  <img
+    src="/assets/hero_illustration_dark.webp"
+    alt="Hake character working at desk on laptop"
+    class="char-poster-fallback char-poster-dark"
+    id="charPosterDark"
+    width="600"
+    height="600"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+  />
+
+  <!-- Dual-Video A/B Seamless Swap Buffer -->
+  <div class="video-buffer-stage" id="videoBufferStage" aria-hidden="true">
+    <video
+      id="charVideoA"
+      class="char-video-layer layer-active"
+      muted
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    >
+      <source src="/assets/character_states/clip_1_typing_loop.webm" type="video/webm" />
+      <source src="/assets/character_states/clip_1_typing_loop.mp4" type="video/mp4" />
+    </video>
+
+    <video
+      id="charVideoB"
+      class="char-video-layer layer-standby"
+      muted
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    ></video>
+  </div>
+
+  <!-- Interactive Speech Bubble (Shown in State 3 & 4) -->
+  <div class="char-speech-bubble" id="charSpeechBubble" aria-live="polite" aria-hidden="true">
+    <div class="speech-bubble-content">
+      <div class="speech-bubble-avatar">
+        <span class="speech-status-dot"></span>
+        <span class="speech-name">hake.</span>
+      </div>
+      <p class="speech-text">
+        Hey! I'm Hake. Wanna know what I can build for your community?
+      </p>
+      <div class="speech-actions">
+        <a href="#services" class="speech-pill-btn" data-action="services">
+          <span>Explore Services</span>
+        </a>
+        <a href="/experience" class="speech-pill-btn" data-action="cases">
+          <span>Case Studies</span>
+        </a>
+        <button type="button" class="speech-pill-btn btn-dismiss" id="charDismissBtn" aria-label="Dismiss greeting and return to work">
+          <span>Back to Work</span>
+        </button>
+      </div>
+    </div>
+    <div class="speech-bubble-tail"></div>
+  </div>
+
+  <!-- Micro-Badge Hint (Fades out once clicked, returns after cycle) -->
+  <div
+    class="char-interaction-trigger"
+    id="charInteractBtn"
+    aria-hidden="true"
+  >
+    <span class="trigger-pulse"></span>
+    <span class="trigger-label">Click me!</span>
+  </div>
+</div>
+
+<style>
+  .interactive-character-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 1 / 1;
+    border-radius: 28px;
+    overflow: visible;
+    user-select: none;
+    cursor: pointer;
+    z-index: 5;
+    outline: none;
+  }
+
+  .interactive-character-container:focus-visible {
+    outline: 2px solid var(--accent, #0055ee);
+    outline-offset: 4px;
+  }
+
+  .char-poster-fallback {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 1;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  .char-poster-light {
+    display: block;
+  }
+  .char-poster-dark {
+    display: none;
+  }
+
+  :global(.dark-theme) .char-poster-light,
+  :global(body.hake-theme-dark) .char-poster-light {
+    display: none;
+  }
+  :global(.dark-theme) .char-poster-dark,
+  :global(body.hake-theme-dark) .char-poster-dark {
+    display: block;
+  }
+
+  .interactive-character-container.videos-ready .char-poster-fallback {
+    opacity: 0;
+  }
+
+  .video-buffer-stage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    border-radius: 28px;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .char-video-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
+    pointer-events: none;
+  }
+
+  .char-video-layer.layer-active {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .char-video-layer.layer-standby {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  /* Interactive Speech Bubble */
+  .char-speech-bubble {
+    position: absolute;
+    top: -36px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px) scale(0.94);
+    width: min(320px, 92vw);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 85, 238, 0.18);
+    box-shadow: 0 16px 36px -10px rgba(0, 85, 238, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.8);
+    border-radius: 18px;
+    padding: 14px 16px;
+    z-index: 30;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1), transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  :global(.dark-theme) .char-speech-bubble,
+  :global(body.hake-theme-dark) .char-speech-bubble {
+    background: rgba(30, 31, 34, 0.94);
+    border-color: rgba(56, 189, 248, 0.25);
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .char-speech-bubble.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .speech-bubble-avatar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .speech-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px #22c55e;
+    animation: statusPulse 2s infinite ease-in-out;
+  }
+
+  @keyframes statusPulse {
+    0%, 100% { opacity: 0.9; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  .speech-name {
+    font-family: var(--font-heading, Outfit, sans-serif);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-heading, #0f172a);
+    letter-spacing: -0.01em;
+  }
+
+  :global(.dark-theme) .speech-name,
+  :global(body.hake-theme-dark) .speech-name {
+    color: #f1f5f9;
+  }
+
+  .speech-text {
+    font-size: 0.88rem;
+    line-height: 1.38;
+    color: var(--text-body, #334155);
+    margin: 0 0 12px 0;
+    font-family: var(--font-body, "DM Sans", sans-serif);
+  }
+
+  :global(.dark-theme) .speech-text,
+  :global(body.hake-theme-dark) .speech-text {
+    color: #cbd5e1;
+  }
+
+  .speech-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .speech-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    background: #0055ee;
+    color: #ffffff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.16s ease;
+  }
+
+  :global(.dark-theme) .speech-pill-btn,
+  :global(body.hake-theme-dark) .speech-pill-btn {
+    background: #0284c7;
+    color: #ffffff;
+  }
+
+  .speech-pill-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 85, 238, 0.28);
+  }
+
+  .speech-pill-btn.btn-dismiss {
+    background: rgba(100, 116, 139, 0.12);
+    color: var(--text-body, #475569);
+  }
+
+  :global(.dark-theme) .speech-pill-btn.btn-dismiss,
+  :global(body.hake-theme-dark) .speech-pill-btn.btn-dismiss {
+    background: rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+  }
+
+  .speech-pill-btn.btn-dismiss:hover {
+    background: rgba(100, 116, 139, 0.2);
+    box-shadow: none;
+  }
+
+  .speech-bubble-tail {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid rgba(255, 255, 255, 0.96);
+  }
+
+  :global(.dark-theme) .speech-bubble-tail,
+  :global(body.hake-theme-dark) .speech-bubble-tail {
+    border-top-color: rgba(30, 31, 34, 0.94);
+  }
+
+  /* Click Me Hint Button */
+  .char-interaction-trigger {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 85, 238, 0.2);
+    box-shadow: 0 8px 20px -4px rgba(0, 85, 238, 0.18);
+    border-radius: 999px;
+    padding: 6px 13px;
+    pointer-events: none;
+    z-index: 10;
+    transition: opacity 0.3s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  :global(.dark-theme) .char-interaction-trigger,
+  :global(body.hake-theme-dark) .char-interaction-trigger {
+    background: rgba(30, 31, 34, 0.92);
+    border-color: rgba(56, 189, 248, 0.28);
+    box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.5);
+  }
+
+  .interactive-character-container:hover .char-interaction-trigger {
+    transform: scale(1.05);
+  }
+
+  .trigger-pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #0055ee;
+    animation: triggerPulse 1.8s infinite ease-in-out;
+  }
+
+  :global(.dark-theme) .trigger-pulse,
+  :global(body.hake-theme-dark) .trigger-pulse {
+    background: #38bdf8;
+  }
+
+  @keyframes triggerPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.4); }
+  }
+
+  .trigger-label {
+    font-family: var(--font-heading, Outfit, sans-serif);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #0055ee;
+  }
+
+  :global(.dark-theme) .trigger-label,
+  :global(body.hake-theme-dark) .trigger-label {
+    color: #38bdf8;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-buffer-stage {
+      display: none;
+    }
+    .char-poster-fallback {
+      opacity: 1 !important;
+    }
+    .char-interaction-trigger {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Interactive Video State Machine Engine
+  // Seamless Dual-Buffer A/B Swapping with zero visible seams
+
+  type CharacterState = 'typing' | 'transition_wave' | 'waving' | 'listening' | 'transition_typing';
+
+  const CLIPS: Record<CharacterState, { mp4: string; webm: string; loop: boolean }> = {
+    typing: {
+      mp4: '/assets/character_states/clip_1_typing_loop.mp4',
+      webm: '/assets/character_states/clip_1_typing_loop.webm',
+      loop: true,
+    },
+    transition_wave: {
+      mp4: '/assets/character_states/clip_2_typing_to_wave.mp4',
+      webm: '/assets/character_states/clip_2_typing_to_wave.webm',
+      loop: false,
+    },
+    waving: {
+      mp4: '/assets/character_states/clip_3_waving_speech.mp4',
+      webm: '/assets/character_states/clip_3_waving_speech.webm',
+      loop: false,
+    },
+    listening: {
+      mp4: '/assets/character_states/clip_4_listening_wait.mp4',
+      webm: '/assets/character_states/clip_4_listening_wait.webm',
+      loop: false,
+    },
+    transition_typing: {
+      mp4: '/assets/character_states/clip_5_listen_to_typing.mp4',
+      webm: '/assets/character_states/clip_5_listen_to_typing.webm',
+      loop: false,
+    },
+  };
+
+  class CharacterStateMachine {
+    private container: HTMLElement | null = null;
+    private videoA: HTMLVideoElement | null = null;
+    private videoB: HTMLVideoElement | null = null;
+    private bubble: HTMLElement | null = null;
+    private triggerBtn: HTMLElement | null = null;
+    private dismissBtn: HTMLElement | null = null;
+
+    private activeLayer: 'A' | 'B' = 'A';
+    private currentState: CharacterState = 'typing';
+    private waitTimer: number | null = null;
+    private isTransitioning: boolean = false;
+    private initialized: boolean = false;
+
+    constructor() {
+      this.init();
+    }
+
+    public init() {
+      if (typeof window === 'undefined') return;
+      this.container = document.getElementById('interactiveCharContainer');
+      this.videoA = document.getElementById('charVideoA') as HTMLVideoElement;
+      this.videoB = document.getElementById('charVideoB') as HTMLVideoElement;
+      this.bubble = document.getElementById('charSpeechBubble');
+      this.triggerBtn = document.getElementById('charInteractBtn');
+      this.dismissBtn = document.getElementById('charDismissBtn');
+
+      if (!this.container || !this.videoA || !this.videoB) return;
+      if (this.initialized) return;
+      this.initialized = true;
+
+      // Preload next clips in background to ensure 0ms latency when clicked
+      this.preloadClips();
+
+      // Start initial state (Typing Loop)
+      this.playInitialState();
+
+      // User click triggers state machine
+      this.container.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        if (target.closest('.speech-pill-btn')) return; // let pill buttons handle their own actions
+        this.handleUserClick();
+      });
+
+      // Keyboard support
+      this.container.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.handleUserClick();
+        }
+      });
+
+      // Dismiss / Action button handlers
+      this.dismissBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.transitionToTyping();
+      });
+
+      const servicePill = this.bubble?.querySelector('[data-action="services"]');
+      servicePill?.addEventListener('click', () => {
+        // Return character to work when user navigates
+        this.transitionToTyping();
+      });
+    }
+
+    private preloadClips() {
+      // Warm up HTTP cache for all clips
+      const clipsToWarm = [
+        CLIPS.transition_wave.mp4,
+        CLIPS.waving.mp4,
+        CLIPS.listening.mp4,
+        CLIPS.transition_typing.mp4,
+      ];
+      clipsToWarm.forEach((src) => {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.as = 'video';
+        link.href = src;
+        document.head.appendChild(link);
+      });
+    }
+
+    private playInitialState() {
+      if (!this.videoA) return;
+      this.currentState = 'typing';
+      this.setVideoSource(this.videoA, 'typing');
+      this.videoA.loop = true;
+
+      this.videoA.play().then(() => {
+        this.container?.classList.add('videos-ready');
+      }).catch(() => {
+        // Autoplay policy fallback: start on first touch/interaction
+        const onFirstTouch = () => {
+          this.videoA?.play().then(() => {
+            this.container?.classList.add('videos-ready');
+          });
+          window.removeEventListener('pointerdown', onFirstTouch);
+        };
+        window.addEventListener('pointerdown', onFirstTouch, { once: true });
+      });
+    }
+
+    private handleUserClick() {
+      if (this.isTransitioning) return;
+      if (this.currentState === 'typing') {
+        if (this.triggerBtn) this.triggerBtn.style.opacity = '0';
+        this.transitionToState('transition_wave');
+      } else if (this.currentState === 'listening' || this.currentState === 'waving') {
+        this.transitionToTyping();
+      }
+    }
+
+    private transitionToState(nextState: CharacterState) {
+      if (!this.videoA || !this.videoB) return;
+      this.isTransitioning = true;
+      this.currentState = nextState;
+
+      const currentVideo = this.activeLayer === 'A' ? this.videoA : this.videoB;
+      const nextVideo = this.activeLayer === 'A' ? this.videoB : this.videoA;
+      const nextLayer = this.activeLayer === 'A' ? 'B' : 'A';
+
+      const clipInfo = CLIPS[nextState];
+      this.setVideoSource(nextVideo, nextState);
+      nextVideo.loop = clipInfo.loop;
+      nextVideo.currentTime = 0;
+
+      // When next video has buffered enough to play smoothly
+      const startSwap = () => {
+        nextVideo.removeEventListener('canplay', startSwap);
+        nextVideo.play().then(() => {
+          // Crossfade: activate next, standby current
+          nextVideo.className = 'char-video-layer layer-active';
+          currentVideo.className = 'char-video-layer layer-standby';
+          this.activeLayer = nextLayer;
+          this.isTransitioning = false;
+
+          // Pause standby video after crossfade transition
+          setTimeout(() => {
+            if (currentVideo.className.includes('layer-standby')) {
+              currentVideo.pause();
+            }
+          }, 150);
+
+          // Wire onended for sequence
+          nextVideo.onended = () => {
+            this.handleVideoEnded(nextState);
+          };
+        }).catch(() => {
+          this.isTransitioning = false;
+        });
+      };
+
+      if (nextVideo.readyState >= 3) {
+        startSwap();
+      } else {
+        nextVideo.addEventListener('canplay', startSwap, { once: true });
+      }
+    }
+
+    private handleVideoEnded(state: CharacterState) {
+      if (state === 'transition_wave') {
+        // State 2 ended -> State 3 (Waving & Speech)
+        this.showSpeechBubble();
+        this.transitionToState('waving');
+      } else if (state === 'waving') {
+        // State 3 ended -> State 4 (5-second Attentive Listening Wait)
+        this.transitionToState('listening');
+        this.startWaitTimer();
+      } else if (state === 'listening') {
+        // State 4 ended -> State 5 (Return to Typing)
+        this.transitionToTyping();
+      } else if (state === 'transition_typing') {
+        // State 5 ended -> Return to State 1 Infinite Loop
+        this.hideSpeechBubble();
+        this.transitionToState('typing');
+
+        // Restore click-me trigger after a brief delay
+        setTimeout(() => {
+          if (this.currentState === 'typing' && this.triggerBtn) {
+            this.triggerBtn.style.opacity = '1';
+          }
+        }, 1200);
+      }
+    }
+
+    private startWaitTimer() {
+      if (this.waitTimer) clearTimeout(this.waitTimer);
+      // Wait exactly 5 seconds before returning to work
+      this.waitTimer = window.setTimeout(() => {
+        if (this.currentState === 'listening') {
+          this.transitionToTyping();
+        }
+      }, 5000);
+    }
+
+    private transitionToTyping() {
+      if (this.currentState === 'transition_typing' || this.currentState === 'typing') return;
+      if (this.waitTimer) {
+        clearTimeout(this.waitTimer);
+        this.waitTimer = null;
+      }
+      this.hideSpeechBubble();
+      this.transitionToState('transition_typing');
+    }
+
+    private showSpeechBubble() {
+      this.bubble?.classList.add('active');
+      this.bubble?.setAttribute('aria-hidden', 'false');
+    }
+
+    private hideSpeechBubble() {
+      this.bubble?.classList.remove('active');
+      this.bubble?.setAttribute('aria-hidden', 'true');
+    }
+
+    private setVideoSource(videoEl: HTMLVideoElement, state: CharacterState) {
+      const clip = CLIPS[state];
+      // Supports direct mp4 (universal cross-browser compatibility)
+      videoEl.src = clip.mp4;
+      videoEl.load();
+    }
+  }
+
+  // Initialize on load and on Astro view transition navigation
+  let stateMachine: CharacterStateMachine | null = null;
+  function initCharMachine() {
+    if (!stateMachine) {
+      stateMachine = new CharacterStateMachine();
+    } else {
+      stateMachine.init();
+    }
+  }
+
+  initCharMachine();
+  document.addEventListener('astro:page-load', () => {
+    stateMachine = null;
+    initCharMachine();
+  });
+</script>

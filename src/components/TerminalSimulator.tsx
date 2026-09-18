@@ -97,6 +97,7 @@ export default function TerminalSimulator() {
               <div>7. Not Vangid - Creator &amp; Content [1.87K Subs] (@notvangid)</div>
               <div>8. Mc thunder Playz - Gaming Hub [1.05K Subs] (@mcthunderxdofficial)</div>
               <div>9. Sky Plays - Gameplay &amp; Streams [10K+ Reach] (@oneskyplayz)</div>
+              <div>10. Avneesh Gamer - Minecraft &amp; Pojav Guides [6.49K Subs] (@avneeshgaming)</div>
               <div className="text-white/60 text-xs">→ Explore full direct links at /experience</div>
             </div>
           );

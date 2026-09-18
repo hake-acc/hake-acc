@@ -26,6 +26,8 @@ const {
     <link rel="icon" type="image/svg+xml" href="/brand/logo.png" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href="https://hake-acc.vercel.app/" />
+    <link rel="preconnect" href="https://cdn.lordicon.com" crossorigin />
     <meta name="robots" content="index, follow" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -33,10 +35,9 @@ const {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@hake_acc" />
 
-    <!-- Google Fonts: Outfit (Headings) & DM Sans (Body) - Preconnected & Preloaded -->
+    <!-- Google Fonts: Outfit (Headings) & DM Sans (Body) - Preconnected & Non-Blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Outfit:wght@400;500;600;700;800&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Outfit:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Outfit:wght@400;500;600;700;800&display=swap" />
@@ -375,7 +376,12 @@ const {
     <!-- Universal Interactive & Page Transition Controller -->
     <script>
       import { initPageTransitions } from '../lib/page-transitions';
+      import { initPaperPlaneFlight } from '../lib/paper-plane-flight';
       initPageTransitions();
+      initPaperPlaneFlight();
+      document.addEventListener('astro:page-load', () => {
+        initPaperPlaneFlight();
+      });
     </script>
   </body>
 </html>

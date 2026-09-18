@@ -6,9 +6,13 @@ const PAGE_ORDER: Record<string, number> = {
   '/': 0,
   '/services': 1,
   '/experience': 2,
+  '/communities': 2.5,
+  '/projects': 2.7,
   '/about': 3,
   '/contact': 4,
+  '/legacy-portfolio': 5,
 };
+
 
 function cleanPath(raw: string): string {
   if (!raw) return '/';
@@ -34,7 +38,8 @@ export function determineTransition(
   const from = cleanPath(fromRaw);
   const to = cleanPath(toRaw);
 
-  if (from === to) return 'slide-left';
+  // Clicking on the same page you are already on: zooms opening that page again
+  if (from === to) return 'zoom-in';
 
   // 2. Check if link is an in-page button, card, or content CTA
   // This satisfies: "if its a button inside then zoom in and etcetc"
@@ -73,6 +78,11 @@ export function determineTransition(
 }
 
 export function determineTransitionFromPaths(from: string, to: string): string {
+  // Clicking on the same page you are already on: zooms opening that page again
+  if (from === to) {
+    return 'zoom-in';
+  }
+
   // Homepage to subpage: swipe from right
   if (from === '/' && to !== '/') {
     return 'slide-left'; // ptMoveToLeft / ptMoveFromRight
@@ -98,8 +108,12 @@ export function determineTransitionFromPaths(from: string, to: string): string {
   return 'slide-left';
 }
 
+let isInitialized = false;
+
 export function initPageTransitions(): void {
   if (typeof window === 'undefined') return;
+  if (isInitialized) return;
+  isInitialized = true;
 
   // Pre-prime transition attribute on click so Astro snapshots with the exact transition primed
   document.addEventListener('click', (e: MouseEvent) => {
@@ -133,27 +147,41 @@ export function initPageTransitions(): void {
     const fromPath = event.from ? event.from.pathname : window.location.pathname;
     const toPath = event.to ? event.to.pathname : '';
 
+    let transitionType = 'slide-left';
+
     // Handle browser back button handoff
     if (event.direction === 'back') {
-      document.documentElement.setAttribute('data-transition', 'slide-right');
-      document.documentElement.setAttribute('data-astro-transition', 'slide-right');
-      event.direction = 'slide-right';
-      return;
+      transitionType = 'slide-right';
+    } else if (cleanPath(fromPath) === cleanPath(toPath)) {
+      transitionType = 'zoom-in';
+    } else if (event.sourceElement && (event.sourceElement as HTMLElement).closest('a')) {
+      const anchor = (event.sourceElement as HTMLElement).closest('a') as HTMLAnchorElement;
+      transitionType = determineTransition(anchor, fromPath, toPath);
+    } else {
+      transitionType = determineTransitionFromPaths(cleanPath(fromPath), cleanPath(toPath));
     }
 
-    let current = document.documentElement.getAttribute('data-transition');
-    if (!current) {
-      current = determineTransitionFromPaths(cleanPath(fromPath), cleanPath(toPath));
-      document.documentElement.setAttribute('data-transition', current);
-      document.documentElement.setAttribute('data-astro-transition', current);
-    }
-    event.direction = current;
+    event.direction = transitionType;
+    document.documentElement.setAttribute('data-transition', transitionType);
+    document.documentElement.setAttribute('data-astro-transition', transitionType);
   });
 
   // Synchronize incoming document before DOM swap to prevent flash
   document.addEventListener('astro:before-swap', (event: any) => {
     const current =
-      document.documentElement.getAttribute('data-transition') || 'slide-left';
+      event.direction ||
+      document.documentElement.getAttribute('data-transition') ||
+      document.documentElement.getAttribute('data-astro-transition') ||
+      'slide-left';
+
+    document.documentElement.setAttribute('data-transition', current);
+    document.documentElement.setAttribute('data-astro-transition', current);
+
+    // When re-opening the same page via zoom-in, reset scroll position so it opens clean from top
+    if (current === 'zoom-in') {
+      window.scrollTo({ left: 0, top: 0, behavior: 'instant' });
+    }
+
 
     if (event.newDocument) {
       event.newDocument.documentElement.setAttribute('data-transition', current);
@@ -201,6 +229,10 @@ export function initPageTransitions(): void {
       toggleBtn.setAttribute('title', isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme');
     }
 
+    // Sync Lordicon theme colors
+    syncLordiconTheme(isDark);
+    loadLordiconWhenNeeded();
+
     // Replay SVG underline animation on home if present
     const togetherAccent = document.getElementById('heroTogetherAccent');
     if (togetherAccent) {
@@ -228,6 +260,9 @@ export function initPageTransitions(): void {
     if (document.body) {
       document.body.className = newTheme === 'dark' ? 'hake-theme-dark' : 'hake-theme-light';
     }
+
+    // Sync Lordicon icon colors
+    syncLordiconTheme(newTheme === 'dark');
 
     toggle.setAttribute('aria-label', newTheme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
     toggle.setAttribute('title', newTheme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme');
@@ -292,4 +327,83 @@ export function initPageTransitions(): void {
       }
     }
   });
+
+  // Check and load Lordicon player non-blockingly
+  loadLordiconWhenNeeded();
 }
+
+let lordiconScriptInjected = false;
+
+/**
+ * Non-blocking, viewport-aware dynamic loader for Lordicon player.
+ * Only injects https://cdn.lordicon.com/lordicon.js when lord-icon elements
+ * are nearing the viewport or during idle time, eliminating render-blocking overhead.
+ */
+export function loadLordiconWhenNeeded() {
+  if (typeof window === 'undefined') return;
+
+  const lordIcons = document.querySelectorAll('lord-icon');
+  if (!lordIcons.length) return;
+
+  const injectScript = () => {
+    if (lordiconScriptInjected) return;
+    lordiconScriptInjected = true;
+
+    // Guard if script was already manually added to page
+    if (document.querySelector('script[src*="lordicon.js"]')) {
+      syncLordiconTheme();
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://cdn.lordicon.com/lordicon.js';
+    script.defer = true;
+    script.onload = () => {
+      syncLordiconTheme();
+    };
+    document.head.appendChild(script);
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          injectScript();
+          observer.disconnect();
+          break;
+        }
+      }
+    }, { rootMargin: '150px' });
+
+    lordIcons.forEach((icon) => observer.observe(icon));
+  }
+
+  // Pre-load on first real user interaction so icons are ready before scroll finishes
+  const userEvents = ['scroll', 'pointerdown', 'touchstart', 'keydown'];
+  const onInteract = () => {
+    userEvents.forEach((ev) => window.removeEventListener(ev, onInteract));
+    injectScript();
+  };
+  userEvents.forEach((ev) => window.addEventListener(ev, onInteract, { passive: true, once: true }));
+}
+
+/**
+ * Synchronize Lordicon animated icon colors with light/dark theme.
+ * Light mode: primary cobalt #0055EE, secondary sky blue #38BDF8.
+ * Dark mode: primary sky blue #38BDF8, secondary electric blue #60A5FA.
+ */
+export function syncLordiconTheme(isDark?: boolean) {
+  const dark = isDark !== undefined
+    ? isDark
+    : (document.documentElement.classList.contains('dark-theme') || (document.body && document.body.classList.contains('hake-theme-dark')));
+
+  const colors = dark
+    ? 'primary:#38bdf8,secondary:#60a5fa'
+    : 'primary:#0055ee,secondary:#38bdf8';
+
+  const icons = document.querySelectorAll('lord-icon.hake-lord-icon');
+  icons.forEach((el) => {
+    el.setAttribute('colors', colors);
+  });
+}
+

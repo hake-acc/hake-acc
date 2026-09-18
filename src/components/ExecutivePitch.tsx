@@ -22,6 +22,7 @@ const clientChannels = [
   { name: "Sky Plays", url: "https://youtube.com/@oneskyplayz?si=z-opykPHHVZfbFEA", tag: "Gameplay & Streams" },
   { name: "Cappy Mc (CappuXD)", url: "https://youtube.com/@cappy-mc?si=OejN4xeqeLOyf4xl", tag: "Multi-Channel" },
   { name: "Arpan GamzO", url: "https://youtube.com/@arpangamzo_official?si=xtwSqSXOWGjZKe9B", tag: "Gaming & Community" },
+  { name: "Avneesh Gamer", url: "https://youtube.com/@avneeshgaming?si=A7pBBA-y4xTD8Op1", tag: "6.49K Subs • Minecraft & Pojav" },
 ];
 
 export default function ExecutivePitch() {

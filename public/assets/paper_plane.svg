@@ -1,21 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 70" width="85" height="70" fill="none">
-  <defs>
-    <linearGradient id="planeWingLightStandAlone" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="70%" stop-color="#FFFFFF" />
-      <stop offset="100%" stop-color="#E0F2FE" />
-    </linearGradient>
-  </defs>
-  <g transform="translate(-5, -20)">
-    <!-- Under Flap (White) -->
-    <polygon points="29,50 34,63 50,85 24,75" fill="#FFFFFF" stroke="#0B132B" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" />
-    <!-- Lower Wing Fold (Sky Blue #BAE6FD) -->
-    <polygon points="7,39 29,50 24,75" fill="#BAE6FD" stroke="#0B132B" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" />
-    <!-- Main Top Wing (Crisp White with Soft Sky Wash) -->
-    <polygon points="82,26 7,39 29,50 34,63 50,85" fill="url(#planeWingLightStandAlone)" stroke="#0B132B" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" />
-    <!-- Internal Crease Lines -->
-    <line x1="82" y1="26" x2="29" y2="50" stroke="#0B132B" stroke-width="2.6" stroke-linecap="round" />
-    <line x1="29" y1="50" x2="24" y2="75" stroke="#0B132B" stroke-width="2.2" stroke-linecap="round" />
-    <line x1="29" y1="50" x2="34" y2="63" stroke="#0B132B" stroke-width="2.2" stroke-linecap="round" />
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 65" width="80" height="65" fill="none">
+  <!-- Facet 1: Top Wing (Crisp White) -->
+  <polygon points="2,19 78,4 17,31" fill="#FFFFFF" stroke="none" />
+  <!-- Facet 2: Bottom Wing (Crisp White) -->
+  <polygon points="78,4 45,63 26.5,40" fill="#FFFFFF" stroke="none" />
+  <!-- Facet 3: Central Crease Stripe (Soft Sky Blue Shading) -->
+  <polygon points="17,31 78,4 26.5,40" fill="#BAE6FD" stroke="none" />
+  <!-- Facet 4: Keel / Under-Fold (Sky Blue Shading) -->
+  <polygon points="17,31 18,53 26.5,40" fill="#BAE6FD" stroke="none" />
+  <!-- Crisp Outlines & Creases (single clean path, zero overlapping double-strokes) -->
+  <path d="M 2,19 L 78,4 L 45,63 L 26.5,40 L 18,53 L 17,31 Z M 17,31 L 78,4 M 26.5,40 L 78,4 M 17,31 L 26.5,40"
+    stroke="#0B132B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" fill="none" />
 </svg>
