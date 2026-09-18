@@ -46,13 +46,15 @@
     <video
       id="charVideoA"
       class="char-video-layer layer-active"
+      autoplay
       muted
+      loop
       playsinline
       preload="auto"
       aria-hidden="true"
     >
-      <source src="/assets/character_states/clip_1_typing_loop.webm" type="video/webm" />
       <source src="/assets/character_states/clip_1_typing_loop.mp4" type="video/mp4" />
+      <source src="/assets/character_states/clip_1_typing_loop.webm" type="video/webm" />
     </video>
 
     <video
@@ -149,6 +151,7 @@
 
   .interactive-character-container.videos-ready .char-poster-fallback {
     opacity: 0;
+    visibility: hidden;
   }
 
   .video-buffer-stage {
@@ -522,17 +525,19 @@
     private playInitialState() {
       if (!this.videoA) return;
       this.currentState = 'typing';
-      this.setVideoSource(this.videoA, 'typing');
+
+      const markReady = () => {
+        this.container?.classList.add('videos-ready');
+      };
+
+      this.videoA.addEventListener('playing', markReady, { once: true });
       this.videoA.loop = true;
 
-      this.videoA.play().then(() => {
-        this.container?.classList.add('videos-ready');
-      }).catch(() => {
+      this.videoA.play().then(markReady).catch(() => {
         // Autoplay policy fallback: start on first touch/interaction
         const onFirstTouch = () => {
-          this.videoA?.play().then(() => {
-            this.container?.classList.add('videos-ready');
-          });
+          this.videoA?.play().then(markReady);
+          markReady();
           window.removeEventListener('pointerdown', onFirstTouch);
         };
         window.addEventListener('pointerdown', onFirstTouch, { once: true });
@@ -540,6 +545,7 @@
     }
 
     private handleUserClick() {
+      this.container?.classList.add('videos-ready');
       if (this.isTransitioning) return;
       if (this.currentState === 'typing') {
         if (this.triggerBtn) this.triggerBtn.style.opacity = '0';
