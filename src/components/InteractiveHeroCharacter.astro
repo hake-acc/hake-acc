@@ -122,14 +122,15 @@
     <div class="speech-bubble-tail"></div>
   </div>
 
-  <!-- Micro-Badge Hint (Fades out once clicked, returns after cycle) -->
+  <!-- Prominent Interactive Prompt Pill -->
   <div
     class="char-interaction-trigger"
     id="charInteractBtn"
-    aria-hidden="true"
+    aria-label="Click to interact with Hake"
   >
+    <span class="trigger-wave-icon" aria-hidden="true">👋</span>
+    <span class="trigger-label">Tap Hake to talk</span>
     <span class="trigger-pulse"></span>
-    <span class="trigger-label">Click me!</span>
   </div>
 </div>
 
@@ -359,35 +360,51 @@
     border-top-color: rgba(30, 31, 34, 0.94);
   }
 
-  /* Click Me Hint Button */
+  /* Prominent Interactive Prompt Pill */
   .char-interaction-trigger {
     position: absolute;
     bottom: 14px;
-    right: 14px;
+    left: 50%;
+    transform: translateX(-50%);
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 85, 238, 0.2);
-    box-shadow: 0 8px 20px -4px rgba(0, 85, 238, 0.18);
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1.5px solid rgba(0, 85, 238, 0.28);
+    box-shadow: 0 10px 24px -4px rgba(0, 85, 238, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.9);
     border-radius: 999px;
-    padding: 6px 13px;
+    padding: 7px 16px;
     pointer-events: none;
-    z-index: 10;
+    z-index: 20;
     transition: opacity 0.3s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   :global(.dark-theme) .char-interaction-trigger,
   :global(body.hake-theme-dark) .char-interaction-trigger {
-    background: rgba(30, 31, 34, 0.92);
-    border-color: rgba(56, 189, 248, 0.28);
-    box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.5);
+    background: rgba(30, 31, 34, 0.94);
+    border-color: rgba(56, 189, 248, 0.35);
+    box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
   }
 
   .interactive-character-container:hover .char-interaction-trigger {
-    transform: scale(1.05);
+    transform: translateX(-50%) scale(1.06);
+  }
+
+  .trigger-wave-icon {
+    font-size: 1rem;
+    line-height: 1;
+    animation: triggerWave 2s infinite ease-in-out;
+    transform-origin: 70% 70%;
+  }
+
+  @keyframes triggerWave {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(14deg); }
+    40% { transform: rotate(-8deg); }
+    60% { transform: rotate(12deg); }
+    80% { transform: rotate(0deg); }
   }
 
   .trigger-pulse {
@@ -395,12 +412,14 @@
     height: 7px;
     border-radius: 50%;
     background: #0055ee;
+    box-shadow: 0 0 8px #0055ee;
     animation: triggerPulse 1.8s infinite ease-in-out;
   }
 
   :global(.dark-theme) .trigger-pulse,
   :global(body.hake-theme-dark) .trigger-pulse {
     background: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
   }
 
   @keyframes triggerPulse {
@@ -410,9 +429,10 @@
 
   .trigger-label {
     font-family: var(--font-heading, Outfit, sans-serif);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     font-weight: 700;
     color: #0055ee;
+    letter-spacing: -0.01em;
   }
 
   :global(.dark-theme) .trigger-label,
