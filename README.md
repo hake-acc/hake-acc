@@ -1,7 +1,7 @@
 <div align="center">
 
   <!-- Main Supplied Banner (Custom vector typography with authentic personal avatar) -->
-  <a href="https://hake-acc.vercel.app/">
+  <a href="https://hake-drab.vercel.app/">
     <img src="./assets/readme/banner-main.svg" alt="HakeAcc — Managing Your Idea" width="100%" />
   </a>
 
@@ -10,7 +10,7 @@
   <h3>Full-Stack Developer &bull; Discord Systems Architect &bull; Creator Operations Lead</h3>
 
   <p>
-    <a href="https://hake-acc.vercel.app/">Website</a> &bull;
+    <a href="https://hake-drab.vercel.app/">Website</a> &bull;
     <a href="#featured-projects">Projects</a> &bull;
     <a href="#creator-operations">Creator Ops</a> &bull;
     <a href="#technologies--skills">Skills</a> &bull;
@@ -27,7 +27,7 @@ Hi, I'm **Hake** ([@hake-acc](https://github.com/hake-acc)). I build fast, resil
 
 With a background spanning modern frontend architecture (Astro, TypeScript, React), real-time automation tooling, and creator community operations, I focus on building reliable systems that scale smoothly under high traffic.
 
-- 🌐 **Live Website**: [hake-acc.vercel.app](https://hake-acc.vercel.app/) *(also available at [hake-drab.vercel.app](https://hake-drab.vercel.app/))*
+- 🌐 **Live Website**: [hake-drab.vercel.app](https://hake-drab.vercel.app/) *(canonical: [hake-acc.vercel.app](https://hake-acc.vercel.app/))*
 - 📍 **Focus Areas**: Static-first web apps, headless UI, Discord bot ecosystems, and automated creator pipelines.
 - ⚡ **Philosophy**: Clean code, zero unnecessary dependencies, and authentic execution over vanity metrics.
 
@@ -52,7 +52,7 @@ With a background spanning modern frontend architecture (Astro, TypeScript, Reac
 - **Stack**: Astro 5, React 18, TypeScript, Tailwind CSS v3, Framer Motion
 - **Architecture**: Static Site Generation (SSG) with React Islands for interactive widgets (character state machines, interactive calculator, audio engine).
 - **Features**: Dual-mode theme system (Daylight / Discord Dark `#1e1f22`), vector paper-plane physics animation, and 100/100 Core Web Vitals.
-- **Links**: [Repository](https://github.com/hake-acc/hake-acc) &bull; [Live Demo](https://hake-acc.vercel.app/)
+- **Links**: [Repository](https://github.com/hake-acc/hake-acc) &bull; [Live Demo](https://hake-drab.vercel.app/)
 
 #### 2. [WebMirror](https://github.com/hake-acc/webmirror)
 *High-fidelity website cloning Android app and browser-processing engine.*
@@ -114,9 +114,9 @@ Beyond standalone codebases, I engineer operational backends and Discord ecosyst
 
 Looking to collaborate on a development project, scale a web platform, or restructure your Discord community?
 
-- 🌐 **Portfolio & Contact Form**: [hake-acc.vercel.app](https://hake-acc.vercel.app/#contact)
+- 🌐 **Portfolio & Contact Form**: [hake-drab.vercel.app](https://hake-drab.vercel.app/#contact)
 - 🐦 **Twitter / X**: [@hake_acc](https://twitter.com/hake_acc)
-- 💬 **Discord**: Reach out directly via the [contact form on my site](https://hake-acc.vercel.app/#contact)
+- 💬 **Discord**: Reach out directly via the [contact form on my site](https://hake-drab.vercel.app/#contact)
 - 🐙 **GitHub**: [@hake-acc](https://github.com/hake-acc)
 
 <br/>
